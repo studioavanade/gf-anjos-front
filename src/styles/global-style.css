@@ -1,26 +1,36 @@
+
 /*
  * FONTS
  */
 @font-face {
-  font-family: 'SoletoRegular';
+  font-family: 'AvenirLTSd Black';
   font-weight: normal;
-  src: local('SoletoRegular'),
-    url('../assets/fonts/Soleto/Soleto-Regular.ttf') format('truetype');
+  src: local('AvenirLTStd-Black'),
+    url('../assets/font/AvenirLTStd-Black.otf') format('truetype');
 }
 
 @font-face {
-  font-family: 'SoletoBold';
+  font-family: 'AvenirLTStd Book';
   font-weight: normal;
-  src: local('SoletoBold'),
-    url('../assets/fonts/Soleto/Soleto-Bold.ttf') format('truetype');
+  src: local('AvenirLTStd-Book'),
+    url('../assets/font/AvenirLTStd-Book.otf') format('truetype');
 }
 
 @font-face {
-  font-family: 'SoletoMedium';
+  font-family: 'AvenirLTSd Roman';
   font-weight: normal;
-  src: local('SoletoMedium'),
-    url('../assets/fonts/Soleto/Soleto-Medium.ttf') format('truetype');
+  src: local('AvenirLTStd-Roman'),
+    url('../assets/font/AvenirLTStd-Roman.otf') format('truetype');
 }
+
+@font-face {
+  font-family: 'KG Life is Messy';
+  font-weight: normal;
+  src: local('KGLifeisMessy'),
+   url('../assets/font/KGLifeisMessy.ttf') format('truetype');
+
+}
+
 
 /*
  * variables

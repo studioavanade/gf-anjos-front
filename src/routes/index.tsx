@@ -8,7 +8,7 @@ const AppRoutes = () => {
     <BrowserRouter>
       <Routes>
         <PublicRoute exact path={ROUTING_PATHS.Root}>
-          <Home />
+          <Home /> teste
         </PublicRoute>
 
         <PublicRoute path="*">

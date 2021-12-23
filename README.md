@@ -1,20 +1,24 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+## SETUP
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references 
+- `git config --global core.autocrlf false`: fix for prettier endline;
+- `npm install`: install dependencies;
+- `npm start`: we suggest you to use `npm start` to run the project;
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+## PROJECT RULES
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+- COMPONENTS:
+  1. Application specific components must be in "/modules/components";
+  2. Components specific to another component must be inside the parent's component folder;
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+## GIT PATTERNS:
+
+- BRANCHES:
+
+  - `main`: branch containing everything that is reflected in production;
+  - `develop`: development branch, where is everything that was validated;
+  - `qa`: branch where the testers (QAs) can test everything from the develop branch before deploying to production (main);
+  - `feat/*`: branch generated during the development of a feature, task or PBI must have the prefix "feat/" in the name. We name it with "feat/" followed by the number of the task and later by the name of the feature, like so: `feat/1234_pbi_name`;
+  - `hotfix/*`: when we need to fix an urgent bug from production branch (main). When the fix is done in production, merge it with `develop` and `qa`;
+
+    > **Pattern:**<br>`prefix: description of the commit`.<br> 
+    > **Example:**<br>`feat: migration to chakra ui`.<br>

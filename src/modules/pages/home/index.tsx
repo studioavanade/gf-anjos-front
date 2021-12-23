@@ -1,5 +1,9 @@
+import Email from "../ambassador-register/email/email";
+
 const Home = () => {
-  return <>Home</>;
+  return <>
+   <Email />
+  </>
 };
 
 export default Home;

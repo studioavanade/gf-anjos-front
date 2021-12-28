@@ -31,15 +31,8 @@ const BasicRegistration = () => {
               <TextField
                 id="email"
                 label="E-mail"
+                type="email"
                 variant="standard"
-                fullWidth
-                margin="normal"
-              />
-              <TextField
-                id="password"
-                label="Senha"
-                variant="standard"
-                autoComplete="on"
                 fullWidth
                 margin="normal"
               />
@@ -49,6 +42,15 @@ const BasicRegistration = () => {
                 variant="standard"
                 fullWidth
                 margin="normal"
+                type="password"
+              />
+              <TextField
+                id="confirmPassword"
+                label="Confirmar senha"
+                variant="standard"
+                fullWidth
+                margin="normal"
+                type="password"
               />
               <DivSubmitButton>
                 <Button variant="contained" type="submit" fullWidth>

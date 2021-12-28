@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Body = styled.body`
+export const RootContainer = styled.body`
   background-color: #000000;
   width: 100%;
   height: auto;
@@ -177,7 +177,7 @@ export const StyleCardCount = styled.div`
   border-radius: 8px;
 `;
 
-export const ButtonStyled = styled.div`
+export const DivSubmitButton = styled.div`
   position: relative;
   padding-top: 95px;
   text-align: center;

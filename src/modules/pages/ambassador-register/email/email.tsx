@@ -1,4 +1,4 @@
-import HeaderInfluenciador from "../../../../assets/img/email/header-influenciador.svg";
+import HeaderInfluencer from "../../../../assets/img/email/header-influenciador.svg";
 import { Button, TextField } from "@mui/material";
 import {
   RootContainer,
@@ -17,7 +17,7 @@ const BasicRegistration = () => {
     <>
       <RootContainer>
         <Topo
-          src={HeaderInfluenciador}
+          src={HeaderInfluencer}
           alt="banner"
           style={{
             paddingBottom: "90px",

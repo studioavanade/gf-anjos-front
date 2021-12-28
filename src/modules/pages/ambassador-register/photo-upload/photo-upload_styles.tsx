@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const RootContainer = styled.body`
+export const RootContainer = styled.div`
   height: 940px;
   width: auto;
   background-color: #000000;
@@ -16,6 +16,7 @@ export const BoxCard = styled.div`
   padding-top: 370px;
   display: flex;
   justify-content: center;
+  background-color: "#000000";
 `;
 
 export const StyleCard = styled.div`

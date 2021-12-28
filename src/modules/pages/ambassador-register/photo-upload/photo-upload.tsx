@@ -28,7 +28,7 @@ const PhotoUpload = () => {
 
   return (
     <>
-      <RootContainer>
+    <RootContainer>
         <Topo src={HeaderInfluencerSVG} alt="topo-header" />
         <BoxCard>
           <StyleCard>
@@ -73,7 +73,7 @@ const PhotoUpload = () => {
             </DivSubmitButton>
           </StyleCard>
         </BoxCard>
-      </RootContainer>
+        </RootContainer>
     </>
   );
 };

@@ -1,21 +1,21 @@
 import HeaderInfluencer from "../../../../assets/img/email/header-influenciador.svg";
 import { Button, TextField } from "@mui/material";
 import {
-  Body,
+  RootContainer,
   Topo,
   BoxCard,
   StyleCard,
   TitleLogin,
-  ButtonStyled,
+  DivSubmitButton,
 } from "./email_styles";
 
-const Email = () => {
-  const titleEmail = "Login";
+const BasicRegistration = () => {
+  const titleEmail = "Cadastro";
   const buttonContinue = "Continuar";
 
   return (
     <>
-      <Body>
+      <RootContainer>
         <Topo
           src={HeaderInfluencer}
           alt="banner"
@@ -31,15 +31,8 @@ const Email = () => {
               <TextField
                 id="email"
                 label="E-mail"
+                type="email"
                 variant="standard"
-                fullWidth
-                margin="normal"
-              />
-              <TextField
-                id="password"
-                label="Senha"
-                variant="standard"
-                autoComplete="on"
                 fullWidth
                 margin="normal"
               />
@@ -49,29 +42,27 @@ const Email = () => {
                 variant="standard"
                 fullWidth
                 margin="normal"
+                type="password"
               />
-              <ButtonStyled>
-                <Button
-                  variant="contained"
-                  type="submit"
-                  style={{
-                    backgroundColor: "#04C6FB",
-                    color: "#000000",
-                    fontWeight: "bold",
-                    fontSize: "16px",
-                    width: "450px",
-                  }}
-                  fullWidth
-                >
+              <TextField
+                id="confirmPassword"
+                label="Confirmar senha"
+                variant="standard"
+                fullWidth
+                margin="normal"
+                type="password"
+              />
+              <DivSubmitButton>
+                <Button variant="contained" type="submit" fullWidth>
                   {buttonContinue}
                 </Button>
-              </ButtonStyled>
+              </DivSubmitButton>
             </form>
           </StyleCard>
         </BoxCard>
-      </Body>
+      </RootContainer>
     </>
   );
 };
 
-export default Email;
+export default BasicRegistration;

@@ -7,7 +7,7 @@ import ButtonIncrementSVG from "../../../../assets/img/personal-information/butt
 import ButtonDecrementSVG from "../../../../assets/img/personal-information/button-descrement.svg";
 
 import {
-  Body,
+  RootContainer,
   Topo,
   BoxCard,
   StyleCard,
@@ -29,7 +29,7 @@ import {
   ButtonIncremented,
   ButtonDecremented,
   StyleCardCount,
-  ButtonStyled,
+  DivSubmitButton,
 } from "./personal-information_styles";
 
 import Radio from "@mui/material/Radio";
@@ -51,7 +51,7 @@ const PersonalInformation = () => {
 
   return (
     <>
-      <Body>
+      <RootContainer>
         <Topo src={HeaderInfluencer} alt="Header-Influencer" />
         <BoxCard>
           <StyleCard>
@@ -165,26 +165,19 @@ const PersonalInformation = () => {
                   </ButtonIncremented>
                 </StyleButtonsDonors>
               </StyleCountDonors>
-              <ButtonStyled>
+              <DivSubmitButton>
                 <Button
                   variant="contained"
                   type="submit"
-                  style={{
-                    backgroundColor: "#04C6FB",
-                    color: "#000000",
-                    fontWeight: "bold",
-                    fontSize: "16px",
-                    width: "450px",
-                  }}
                   fullWidth
                 >
                   {buttonRegister}
                 </Button>
-              </ButtonStyled>
+              </DivSubmitButton>
             </StyleDonors>
           </StyleCard>
         </BoxCard>
-      </Body>
+      </RootContainer>
     </>
   );
 };

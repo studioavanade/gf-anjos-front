@@ -6,7 +6,7 @@ import ChosseFileSVG from "../../../../assets/img/photo-upload/subtitle-choose-f
 import { Button } from "@mui/material";
 
 import {
-  Body,
+  RootContainer,
   Topo,
   BoxCard,
   StyleCard,
@@ -14,7 +14,7 @@ import {
   Title,
   SubTitle,
   StylePhotoUpload,
-  ButtonStyled,
+  DivSubmitButton,
   StyleUploadFile,
   CloudIcon,
   ChooseFile,
@@ -28,7 +28,7 @@ const PhotoUpload = () => {
 
   return (
     <>
-      <Body>
+      <RootContainer>
         <Topo src={HeaderInfluencerSVG} alt="topo-header" />
         <BoxCard>
           <StyleCard>
@@ -62,25 +62,18 @@ const PhotoUpload = () => {
                 </ChooseFile>
               </StylePhotoUpload>
             </StyleUploadFile>
-            <ButtonStyled>
+            <DivSubmitButton>
               <Button
                 variant="contained"
                 type="submit"
-                style={{
-                  backgroundColor: "#04C6FB",
-                  color: "#000000",
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  width: "450px",
-                }}
                 fullWidth
               >
                 {send}
               </Button>
-            </ButtonStyled>
+            </DivSubmitButton>
           </StyleCard>
         </BoxCard>
-      </Body>
+      </RootContainer>
     </>
   );
 };

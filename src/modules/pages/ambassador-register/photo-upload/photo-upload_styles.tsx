@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Body = styled.body`
+export const RootContainer = styled.body`
   height: 940px;
   width: auto;
   background-color: #000000;
@@ -86,7 +86,11 @@ export const ChooseFile = styled.div`
   align-items: center;
 `;
 
-export const ButtonStyled = styled.div`
+export const DivSubmitButton = styled.div`
+ position: relative;
   padding-top: 35px;
   text-align: center;
+  max-width: 450px;
+  left: 330.4px;
 `;
+

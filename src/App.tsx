@@ -1,12 +1,9 @@
-import Home from "./modules/pages/home";
-import './styles/global-style.css'
+import "react-toastify/dist/ReactToastify.css";
+import "./styles/global-style.css";
+import AppRoutes from "./routes/index";
 
 const App = () => {
-  return (
-    <div className="App">
-      <Home />
-    </div>
-  );
+  return <AppRoutes />;
 };
 
 export default App;

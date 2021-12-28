@@ -1,15 +1,18 @@
-import { IAddress } from "../shared";
+import { Education, IAddress, PersonType } from "../shared";
 import { ICampaign } from "./../campaign/types";
 
 export enum AmbassadorActionTypes {
-  CREATE_ACCOUNT_SUCCESS = "@register/CREATE_ACCOUNT_SUCCESS",
-  CREATE_ACCOUNT_ERROR = "@register/CREATE_ACCOUNT_ERROR",
+  REGISTER_PERSONAL_INFO_SUCCESS = "@ambassador/REGISTER_PERSONAL_INFO_SUCCESS",
+  REGISTER_PERSONAL_INFO_ERROR = "@ambassador/REGISTER_PERSONAL_INFO_ERROR",
 
-  UPDATE_ACCOUNT_SUCCESS = "@register/UPDATE_ACCOUNT_SUCCESS",
-  UPDATE_ACCOUNT_ERROR = "@register/UPDATE_ACCOUNT_ERROR",
+  UPDATE_PERSONAL_INFO_SUCCESS = "@ambassador/UPDATE_PERSONAL_INFO_SUCCESS",
+  UPDATE_PERSONAL_INFO_ERROR = "@ambassador/UPDATE_PERSONAL_INFO_ERROR",
 
-  CREATE_CAMPAIGN_SUCCESS = "@register/CREATE_CAMPAIGN_SUCCESS",
-  CREATE_CAMPAIGN_ERROR = "@register/CREATE_CAMPAIGN_ERROR",
+  CREATE_CAMPAIGN_SUCCESS = "@ambassador/CREATE_CAMPAIGN_SUCCESS",
+  CREATE_CAMPAIGN_ERROR = "@ambassador/CREATE_CAMPAIGN_ERROR",
+
+  UDDATE_CAMPAIGN_SUCCESS = "@ambassador/UDDATE_CAMPAIGN_SUCCESS",
+  UDDATE_CAMPAIGN_ERROR = "@ambassador/UDDATE_CAMPAIGN_ERROR",
 }
 
 export interface IAmbassador {
@@ -24,19 +27,6 @@ export interface IAmbassador {
   address: IAddress;
   personType: PersonType;
   campaigns: ICampaign[];
-}
-
-export enum Education {
-  FUNDAMENTAL = 0,
-  HIGH_SCHOOL = 1,
-  GRADUATION_COMPLETE = 2,
-  GRADUATION_INCOMPLETE = 3,
-  POST_GRADUATION = 4,
-}
-
-export enum PersonType {
-  NATURAL_PERSON = 0,
-  LEGAL_PERSON = 1,
 }
 
 export interface IAmbassadorStates {

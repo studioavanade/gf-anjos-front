@@ -1,21 +1,21 @@
 import HeaderInfluencer from "../../../../assets/img/email/header-influenciador.svg";
 import { Button, TextField } from "@mui/material";
 import {
-  Body,
+  RootContainer,
   Topo,
   BoxCard,
   StyleCard,
   TitleLogin,
-  ButtonStyled,
+  DivSubmitButton,
 } from "./email_styles";
 
-const Email = () => {
-  const titleEmail = "Login";
+const BasicRegistration = () => {
+  const titleEmail = "Cadastro";
   const buttonContinue = "Continuar";
 
   return (
     <>
-      <Body>
+      <RootContainer>
         <Topo
           src={HeaderInfluencer}
           alt="banner"
@@ -50,28 +50,17 @@ const Email = () => {
                 fullWidth
                 margin="normal"
               />
-              <ButtonStyled>
-                <Button
-                  variant="contained"
-                  type="submit"
-                  style={{
-                    backgroundColor: "#04C6FB",
-                    color: "#000000",
-                    fontWeight: "bold",
-                    fontSize: "16px",
-                    width: "450px",
-                  }}
-                  fullWidth
-                >
+              <DivSubmitButton>
+                <Button variant="contained" type="submit" fullWidth>
                   {buttonContinue}
                 </Button>
-              </ButtonStyled>
+              </DivSubmitButton>
             </form>
           </StyleCard>
         </BoxCard>
-      </Body>
+      </RootContainer>
     </>
   );
 };
 
-export default Email;
+export default BasicRegistration;

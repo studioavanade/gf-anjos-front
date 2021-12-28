@@ -1,12 +1,11 @@
-import Email from "../ambassador-register/email/email";
-import PersonalInformation from "../ambassador-register/personal-information/personal-information";
+import BasicRegistration from "../ambassador-register/email/email";
 
 const Home = () => {
-  return <>
-
-  <PersonalInformation />
-   {/* <Email /> */}
-  </>
+  return (
+    <>
+      <BasicRegistration />
+    </>
+  );
 };
 
 export default Home;

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const RootContainer = styled.body`
+export const RootContainer = styled.div`
   background-color: #000000;
   width: 100%;
   height: auto;

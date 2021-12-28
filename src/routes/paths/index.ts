@@ -4,8 +4,7 @@ const ROUTING_PATHS = {
   BasicRegistration: "/basic-registration",
   PersonalInformations: "/personal-informations",
   PhotoUpload: "/photo-upload",
-  CampaignInformations: "/campaign-informations",
-  CampaignPicture: "/campaign-picture",
+  PaymentSteps: "/payment-steps",
 };
 
 export default ROUTING_PATHS;

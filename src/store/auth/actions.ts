@@ -4,7 +4,12 @@ import { FAIL_LOGIN, FAIL_SIGN_UP } from "../../constants/feedback-messages";
 import * as AuthService from "../../services/firebase-auth";
 import { AuthTypes } from "./types";
 
+const authRequest = () => ({
+  type: AuthTypes.AUTH_REQUEST,
+});
+
 export const signIn = (email: string, password: string) => (dispatch: any) => {
+  dispatch(authRequest());
   AuthService.signIn(email, password)
     .then((userCredential: UserCredential) => {
       dispatch(signInSuccess(userCredential));
@@ -12,21 +17,35 @@ export const signIn = (email: string, password: string) => (dispatch: any) => {
     .catch((error) => {
       const errorCode = error.code;
       toast.error(`${errorCode} - ${FAIL_LOGIN}`);
+      dispatch(signInError(errorCode));
     });
 };
 
-export const signInSuccess = (user: UserCredential) => ({
+const signInSuccess = (user: UserCredential) => ({
   payload: user,
-  type: AuthTypes.SIGNUP_UP,
+  type: AuthTypes.SIGNIN_SUCCESS,
 });
 
-export const createUser = (email: string, password: string) => {
-  AuthService.createUser(email, password)
-    .then((userCredential) => {
-      return userCredential.user;
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      toast.error(`${errorCode} - ${FAIL_SIGN_UP}`);
-    });
-};
+const signInError = (error: any) => ({
+  payload: error,
+  type: AuthTypes.SIGNIN_ERROR,
+});
+
+export const createUser =
+  (email: string, password: string) => (dispatch: any) => {
+    dispatch(authRequest());
+    AuthService.createUser(email, password)
+      .then((_) => {
+        dispatch(signIn(email, password));
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        toast.error(`${errorCode} - ${FAIL_SIGN_UP}`);
+        dispatch(createUserError(errorCode));
+      });
+  };
+
+const createUserError = (error: any) => ({
+  payload: error,
+  type: AuthTypes.CREATE_USER_ERROR,
+});

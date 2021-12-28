@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
-export const Body = styled.body`
-  height: 940px;
+export const RootContainer = styled.div`
+  height: 100vw;
   width: auto;
   background-color: #000000;
 `;
@@ -46,8 +46,9 @@ export const TitleLogin = styled.div`
   font-family: "KG Life is Messy";
 `;
 
-export const ButtonStyled = styled.div`
+export const DivSubmitButton = styled.div`
   position: relative;
   padding-top: 95px;
   text-align: center;
+  max-width: 450px;
 `;

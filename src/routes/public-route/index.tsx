@@ -1,7 +1,7 @@
-import { Route } from 'react-router-dom'
+import { Route } from "react-router-dom";
 
 const PublicRoute = ({ children, ...rest }: any) => {
-  return <Route {...rest} render={() => children} />
-}
+  return <Route {...rest} component />;
+};
 
-export default PublicRoute
+export default PublicRoute;

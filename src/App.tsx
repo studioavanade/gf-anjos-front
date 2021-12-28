@@ -1,16 +1,9 @@
-import Home from "./modules/pages/home";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { TOAST_DURATION } from "./constants/feedback-messages";
 import "./styles/global-style.css";
+import AppRoutes from "./routes/index";
 
 const App = () => {
-  return (
-    <div className="App">
-      <ToastContainer autoClose={TOAST_DURATION} />
-      <Home />
-    </div>
-  );
+  return <AppRoutes />;
 };
 
 export default App;

@@ -1,7 +1,7 @@
 const ROUTING_PATHS = {
   Root: "/",
-  StartPage: "/start-registration",
-  EmailPage: "/email-form",
+  BasicRegistration: "/basic-registration",
+  Login: "/email-form",
   PersonalInformations: "/personal-informations",
   CampaignInformations: "/campaign-informations",
   CampaignPicture: "/campaign-picture",

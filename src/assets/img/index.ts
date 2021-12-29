@@ -1,3 +1,6 @@
+//Headers
+import HEADER_LARGE from "./header/header_large.svg";
+
 // TopNavigation
 import LOGO_FACEBOOK from "../img/top-navigation/logo_facebook.svg";
 import LOGO_GFALCOES from "../img/top-navigation/logo_gfalcoes.svg";
@@ -16,6 +19,7 @@ import ICON_REGISTRATION_STEP from "../img/payment/icon-registration-step.svg";
 import DONATION_CARDS from "../img/donation-cards/donation-cards.svg";
 
 export {
+  HEADER_LARGE,
   LOGO_FACEBOOK,
   LOGO_GFALCOES,
   LOGO_INSTAGRAM,

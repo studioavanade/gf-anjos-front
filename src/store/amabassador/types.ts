@@ -1,5 +1,4 @@
 import { Education, IAddress, PersonType } from "../shared";
-import { ICampaign } from "./../campaign/types";
 
 export enum AmbassadorActionTypes {
   REGISTER_PERSONAL_INFO_SUCCESS = "@ambassador/REGISTER_PERSONAL_INFO_SUCCESS",
@@ -16,6 +15,7 @@ export enum AmbassadorActionTypes {
 }
 
 export interface IAmbassador {
+  id?: number;
   email: string;
   name: string;
   lastName: string;
@@ -26,7 +26,6 @@ export interface IAmbassador {
   celPhone: string;
   address: IAddress;
   personType: PersonType;
-  campaigns: ICampaign[];
 }
 
 export interface IAmbassadorStates {

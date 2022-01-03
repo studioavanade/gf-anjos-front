@@ -1,45 +1,66 @@
 import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
+import { DARK_BLUE } from "../../../styles/colors";
+
+const minWidth = "700px";
 
 export const RootContainer = styled(Grid)`
-  margin-top: 330px;
+  width: 100%;
+  height: 100vh;
+  background-color: ${DARK_BLUE};
+`;
+
+export const OuterContentContainer = styled(Grid)`
+  background-color: #fff;
+  margin-top: 70px;
+  height: 100%;
+`;
+
+export const TopContent = styled(Grid)`
+  position: relative;
+  top: -170px;
+`;
+
+export const BottomContent = styled(Grid)`
+  position: relative;
+  top: -100px;
+  width: 85vw;
+  border-radius: 24px;
+  background-color: #fff;
+  min-width: ${minWidth};
+  border: 3px solid #e5e5e5;
+  padding: 32px;
 `;
 
 export const TopImage = styled.img`
   width: 100%;
   height: auto;
-  position: absolute;
-  top: 0;
-  z-index: -1;
-`;
-
-export const TopImageBlue = styled.div`
-  width: 100%;
-  height: 500px;
-  position: relative;
-  top: 0;
-  z-index: -2;
-  background-color: #061936;
 `;
 
 export const PageTitle = styled(Grid)`
-  font-size: 44px;
+  font-size: 2rem;
   font-family: "KG Life is Messy";
   color: white;
-  m
+  text-align: center;
+  margin-bottom: 54px;
 `;
 
-export const HeaderContainer = styled.div`
+export const StepsHeader = styled(Grid)`
   width: 85vw;
-  border-radius: 8px;
+  border-radius: 24px;
   height: 187px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: #e7e7e7;
+  text-align: center;
+  min-width: ${minWidth};
 `;
 
-export const EmailIcon = styled.img`
-  display: flex;
-  align-items: center;
+export const StepsItemBG = styled.div`
+  text-align: center;
+  background-color: #e7e7e7;
+  z-index: 10;
+`;
+
+export const StepName = styled.div`
+  font-size: 23px;
+  margin-top: 16px;
 `;

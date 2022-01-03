@@ -1,14 +1,14 @@
 import { IAction } from "..";
-import { AuthTypes, IAuthState } from "./types";
+import { AuthTypes, IAuthStates } from "./types";
 
-const initialState: IAuthState = {
+const initialState: IAuthStates = {
   createUserError: undefined,
   signInError: undefined,
   loading: false,
   user: undefined,
 };
 
-const authReducer = (state = initialState, action: IAction): IAuthState => {
+const authReducer = (state = initialState, action: IAction): IAuthStates => {
   switch (action.type) {
     case AuthTypes.AUTH_REQUEST: {
       return {

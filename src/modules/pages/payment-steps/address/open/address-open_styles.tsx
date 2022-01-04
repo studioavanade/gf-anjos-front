@@ -35,7 +35,7 @@ export const TitleAddress = styled.div`
 `;
 
 export const StyleCep = styled.div`
-padding-bottom: 40px;
+  padding-bottom: 40px;
 `;
 
 export const CardAddressHome = styled.div`
@@ -47,7 +47,6 @@ export const CardAddressHome = styled.div`
   border-radius: 20px;
   padding-left: 10px;
 `;
-
 
 export const DivSubmitButton = styled.div`
   padding-right: 15px;

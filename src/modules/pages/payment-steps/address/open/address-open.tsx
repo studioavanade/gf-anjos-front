@@ -21,17 +21,15 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 
 const AddressStepOpen = () => {
+  const titleAddress = "Dados de Endereço";
+  const buttonSaved = "Salvar e continuar";
+  const notKnowCep = "Não sei meu CEP";
+  const address = "Endereço";
 
-        const titleAddress = "Dados de Endereço";
-        const buttonSaved = "Salvar e continuar";
-        const notKnowCep = "Não sei meu CEP";
-        const address = "Endereço";
-
-
-  const [pais, setPais] = React.useState("");
+  const [country, setCountry] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
-    setPais(event.target.value);
+    setCountry(event.target.value);
   };
 
   return (
@@ -43,15 +41,15 @@ const AddressStepOpen = () => {
         </AddressIcon>
 
         <FormControl variant="standard" sx={{ m: 1, minWidth: 380 }}>
-          <InputLabel id="pais">País</InputLabel>
+          <InputLabel id="country">País</InputLabel>
           <Select
-            labelId="pais"
-            id="pais"
+            labelId="country"
+            id="country"
             label="País"
             variant="standard"
             placeholder="País"
             onChange={handleChange}
-            value={pais}
+            value={country}
             fullWidth
           />
         </FormControl>
@@ -75,10 +73,8 @@ const AddressStepOpen = () => {
             <Link href="https://buscacepinter.correios.com.br/app/endereco/index.php">
               {notKnowCep}
             </Link>
-            </StyleCep>
-            <CardAddressHome>
-              {address}
-            </CardAddressHome>
+          </StyleCep>
+          <CardAddressHome>{address}</CardAddressHome>
           <TextField
             id="Number"
             label="Número"

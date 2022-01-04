@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 
-
 export const CardAddressClosed = styled.div`
   width: 453px;
   height: 240px;
@@ -9,7 +8,7 @@ export const CardAddressClosed = styled.div`
   box-sizing: border-box;
   border-radius: 20px;
   padding-left: 10px;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
 `;
 
 export const AddressIcon = styled.div`
@@ -26,16 +25,16 @@ export const TitleAddress = styled.div`
 `;
 
 export const StyleLink = styled.div`
-font-family: "Roboto Regular";
-font-size: 20px;
-padding-top: 12px;
-padding-left: 45px;
+  font-family: "Roboto Regular";
+  font-size: 20px;
+  padding-top: 12px;
+  padding-left: 45px;
 `;
 
 export const AddressDados = styled.div`
-font-family: "Roboto";
-font-weight: 300;
-padding-left: 15px;
-padding-top: 10px;
-font-size: 20px;
+  font-family: "Roboto";
+  font-weight: 300;
+  padding-left: 15px;
+  padding-top: 10px;
+  font-size: 20px;
 `;

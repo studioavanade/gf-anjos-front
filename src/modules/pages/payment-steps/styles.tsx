@@ -30,6 +30,9 @@ export const BottomContent = styled(Grid)`
   min-width: ${minWidth};
   border: 3px solid #e5e5e5;
   padding: 32px;
+  top: 219.5px;
+  position: relative;
+  left: -1305.6px;
 `;
 
 export const TopImage = styled.img`

@@ -1,5 +1,4 @@
-import styled from "@emotion/styled"; 
-
+import styled from "@emotion/styled";
 
 export const CardPersonalOpen = styled.div`
   width: 453px;
@@ -9,7 +8,7 @@ export const CardPersonalOpen = styled.div`
   box-sizing: border-box;
   border-radius: 20px;
   padding-left: 10px;
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
 `;
 
 export const DonationIcon = styled.div`

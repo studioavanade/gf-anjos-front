@@ -10,7 +10,6 @@ import {
 import { Button } from "@mui/material";
 
 const DonationSummaryStep = () => {
-
   const titleSummary = "Resumo da doação:";
   const subtitleSummary = "Subtotal:";
   const totalSummary = "Total:";
@@ -41,7 +40,7 @@ const DonationSummaryStep = () => {
             paddingLeft: "15px",
           }}
         >
-          {totalSummary} 
+          {totalSummary}
         </div>
       </CardPersonalOpen>
       <DivSubmitButton>

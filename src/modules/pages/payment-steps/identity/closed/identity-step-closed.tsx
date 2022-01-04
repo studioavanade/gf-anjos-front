@@ -9,7 +9,7 @@ import { CardIdentityClosed, EnvelopeIcon, TitleIdentity, StyleLink, Email } fro
 const IdentityStepClosed = () => {
 
   const titleIdentity = "Identificação";
-  const alteredDados = "Alterar dados";
+  const changeDataLabels = "Alterar dados";
   const personEmail = "eduardo.lyra@email.com";
 
 
@@ -22,7 +22,7 @@ const IdentityStepClosed = () => {
                 {titleIdentity}
                 </TitleIdentity>
                 <StyleLink>
-                <Link href="#">{alteredDados}</Link>
+                <Link href="#">{changeDataLabels}</Link>
                 </StyleLink>
                 </EnvelopeIcon>
                 <Email>{personEmail}</Email>

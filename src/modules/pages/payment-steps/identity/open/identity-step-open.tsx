@@ -12,7 +12,7 @@ import {
 const IdentityStepOpen = () => {
   
   const titleIdentity = "Identificação";
-  const createCont = "Criar Conta";
+  const createAccount = "Criar Conta";
 
   return (
     <>
@@ -48,7 +48,7 @@ const IdentityStepOpen = () => {
           />
           <DivSubmitButton>
             <Button variant="contained" type="submit" fullWidth>
-              {createCont}
+              {createAccount}
             </Button>
           </DivSubmitButton>
         </form>

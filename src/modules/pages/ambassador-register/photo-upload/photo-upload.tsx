@@ -77,8 +77,6 @@ const PhotoUpload = () => {
         
     </>
   );
-
-  console.log(PhotoUpload)
 };
 
 export default PhotoUpload;

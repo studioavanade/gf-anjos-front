@@ -13,8 +13,8 @@ export const BoxCard = styled.div`
 `;
 
 export const Centralization = styled.div`
-display: flex
-justify-content: center;
+  display: flex
+  justify-content: center;
 `;
 
 export const CheckConfirmationIcon = styled.div`

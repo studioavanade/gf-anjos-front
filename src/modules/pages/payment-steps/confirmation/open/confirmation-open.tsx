@@ -15,7 +15,6 @@ import {
 } from "./confirmation_styles";
 
 const ConfirmationStepOpen = () => {
-  
   const title = "OBRIGADO POR SUA DOAÇÃO";
   const subTitle =
     "Essa doação vai ajudar muitas pessoas, esse pequeno gesto faz uma grande diferença";

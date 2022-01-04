@@ -1,30 +1,28 @@
-// TopNavigation
-import LOGO_FACEBOOK from "../img/top-navigation/logo_facebook.svg";
-import LOGO_GFALCOES from "../img/top-navigation/logo_gfalcoes.svg";
-import LOGO_INSTAGRAM from "../img/top-navigation/logo_instagram.svg";
-import LOGO_LINKEDIN from "../img/top-navigation/logo_linkedin.svg";
-import LOGO_LOGIN from "../img/top-navigation/logo_login.svg";
-import LOGO_YOUTUBE from "../img/top-navigation/logo_youtube.svg";
+//Headers
+import HEADER_LARGE from "./headers/header_large.svg";
+import HEADER_SHORT from "./headers/header_short.svg";
 
 //Icons payment steps
-import ICON_CONFIRMATION_STEP from "../img/payment/icon-confirmation-step.svg";
-import ICON_IDENTITY_STEP from "../img/payment/icon-identity-step.svg";
-import ICON_PAYMENT_STEP from "../img/payment/icon-payment-step.svg";
-import ICON_REGISTRATION_STEP from "../img/payment/icon-registration-step.svg";
-
-// Donation Cards
-import DONATION_CARDS from "../img/donation-cards/donation-cards.svg";
+//Active
+import ICON_CONFIRMATION_STEP_INACTIVE from "../img/payment/icon-confirmation-step-inactive.svg";
+import ICON_IDENTITY_STEP_INACTIVE from "../img/payment/icon-identity-step-inactive.svg";
+import ICON_PAYMENT_STEP_INACTIVE from "../img/payment/icon-payment-step-inactive.svg";
+import ICON_REGISTRATION_STEP_INACTIVE from "../img/payment/icon-personal-data-step-inactive.svg";
+//Inactive
+import ICON_CONFIRMATION_STEP_ACTIVE from "../img/payment/icon-confirmation-step-active.svg";
+import ICON_IDENTITY_STEP_ACTIVE from "../img/payment/icon-identity-step-active.svg";
+import ICON_PAYMENT_STEP_ACTIVE from "../img/payment/icon-payment-step-active.svg";
+import ICON_REGISTRATION_STEP_ACTIVE from "../img/payment/icon-personal-data-step-active.svg";
 
 export {
-  LOGO_FACEBOOK,
-  LOGO_GFALCOES,
-  LOGO_INSTAGRAM,
-  LOGO_LINKEDIN,
-  LOGO_LOGIN,
-  LOGO_YOUTUBE,
-  DONATION_CARDS,
-  ICON_CONFIRMATION_STEP,
-  ICON_IDENTITY_STEP,
-  ICON_PAYMENT_STEP,
-  ICON_REGISTRATION_STEP,
+  HEADER_LARGE,
+  HEADER_SHORT,
+  ICON_CONFIRMATION_STEP_INACTIVE,
+  ICON_IDENTITY_STEP_INACTIVE,
+  ICON_PAYMENT_STEP_INACTIVE,
+  ICON_REGISTRATION_STEP_INACTIVE,
+  ICON_CONFIRMATION_STEP_ACTIVE,
+  ICON_IDENTITY_STEP_ACTIVE,
+  ICON_PAYMENT_STEP_ACTIVE,
+  ICON_REGISTRATION_STEP_ACTIVE,
 };

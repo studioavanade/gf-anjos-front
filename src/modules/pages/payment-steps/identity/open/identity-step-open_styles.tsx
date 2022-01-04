@@ -1,37 +1,5 @@
 import styled from "@emotion/styled";
 
-export const BoxContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 1200px;
-  padding-top: 110px;
-  position: absolute;
-`;
-
-export const PaymentSteps = styled.div`
-  left: 15px;
-  position: relative;
-  top: -90px;
-`;
-
-export const Topo = styled.img`
-  position: relative;
-  width: 100%;
-  height: 100%;
-`;
-
-export const BoxCard = styled.div`
-  width: 1200px;
-  height: 843px;
-  display: flex;
-  justify-content: flex-start;
-  border: 3px solid #e7e7e7;
-  box-sizing: border-box;
-  border-radius: 24px;
-  padding: 20px;
-`;
-
 export const CardIdentityOpen = styled.div`
   width: 423px;
   height: 450px;
@@ -40,6 +8,7 @@ export const CardIdentityOpen = styled.div`
   box-sizing: border-box;
   border-radius: 20px;
   padding-left: 10px;
+  left: 38.0139px;
 `;
 
 export const TitleIdentity = styled.div`
@@ -61,4 +30,3 @@ export const DivSubmitButton = styled.div`
   text-align: center;
   max-width: 450px;
 `;
-

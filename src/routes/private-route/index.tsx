@@ -11,9 +11,9 @@ const PrivateRoute = ({ children, ...rest }: any) => {
 
   const isLoggedIn = () => {
     if (
-      ambassadorState &&
-      ambassadorState.email &&
-      ambassadorState.email.length > 0
+      ambassadorState.ambassador &&
+      ambassadorState.ambassador.email &&
+      ambassadorState.ambassador.email.length > 0
     )
       return true;
 

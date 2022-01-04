@@ -6,7 +6,12 @@ import Link from '@mui/material/Link';
 import { CardIdentityClosed, EnvelopeIcon, TitleIdentity, StyleLink, Email } from "./identity-step-closed_styles";
 
 
-const IdentityStepClosed = (props: any) => {
+const IdentityStepClosed = () => {
+
+  const titleIdentity = "Identificação";
+  const alteredDados = "Alterar dados";
+  const personEmail = "eduardo.lyra@email.com";
+
 
   return <>
   
@@ -14,13 +19,13 @@ const IdentityStepClosed = (props: any) => {
           <EnvelopeIcon>
               <img src={EnvelopeIconSVG} alt="IconEnvelope" />
             <TitleIdentity>
-                {props.titleIdentity}
+                {titleIdentity}
                 </TitleIdentity>
                 <StyleLink>
-                <Link href="#">{props.alteredDados}</Link>
+                <Link href="#">{alteredDados}</Link>
                 </StyleLink>
                 </EnvelopeIcon>
-                <Email>{props.personEmail}</Email>
+                <Email>{personEmail}</Email>
           </CardIdentityClosed>
   
   </>;

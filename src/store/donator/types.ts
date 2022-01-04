@@ -1,4 +1,3 @@
-import { IDonation } from "../donation/types";
 import { IAddress } from "../shared";
 
 export interface IDonator {
@@ -10,5 +9,4 @@ export interface IDonator {
   phone: string;
   followAccountabilityReports: boolean;
   address: IAddress;
-  donations: IDonation[];
 }

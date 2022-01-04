@@ -5,7 +5,7 @@ export enum AuthTypes {
   CREATE_USER_ERROR = "@auth/CREATE_USER_ERROR",
 }
 
-export interface IAuthState {
+export interface IAuthStates {
   createUserError?: any;
   signInError?: any;
   loading: boolean;

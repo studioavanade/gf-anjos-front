@@ -24,6 +24,9 @@ import {
   BottomContent,
 } from "./styles";
 
+import PersonalStepOpen from "./personal/open/personal-open";
+import PersonalStepClosed from "./personal/closed/personal-closed";
+
 const DashedStroke = () => (
   <svg
     height="1px"
@@ -115,7 +118,10 @@ const PaymentSteps = () => {
             />
           </StepsHeader>
         </TopContent>
-        <BottomContent>Etapa atual: {paymentState.currentStep}</BottomContent>
+        <BottomContent>Etapa atual: 
+          <PersonalStepOpen />
+          <PersonalStepClosed />
+          {paymentState.currentStep}</BottomContent>
       </OuterContentContainer>
     </RootContainer>
   );

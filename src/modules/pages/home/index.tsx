@@ -1,8 +1,9 @@
 import PhotoUpload from "../ambassador-register/photo-upload/photo-upload";
-
+import PaymentSteps from "../payment-steps/index";
 const Home = () => {
   return <>
-  <PhotoUpload />
+  <PaymentSteps />
+  {/* <PhotoUpload /> */}
   </>
 };
 

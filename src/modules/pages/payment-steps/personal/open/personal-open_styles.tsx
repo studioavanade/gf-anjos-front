@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 
-
 export const CardPersonalOpen = styled.div`
   width: 470px;
   height: 800px;
@@ -36,12 +35,12 @@ export const DivSubmitButton = styled.div`
 `;
 
 export const StyleCheckBox = styled.div`
-font-family: "Roboto Regular";
-font-weight: 400;
-padding-bottom: 15px;
-flex-wrap: wrap;
+  font-family: "Roboto Regular";
+  font-weight: 400;
+  padding-bottom: 15px;
+  flex-wrap: wrap;
 `;
 
 export const StyleTitleCheck = styled.div`
-display: flex;
+  display: flex;
 `;

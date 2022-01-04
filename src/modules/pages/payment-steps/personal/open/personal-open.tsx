@@ -14,7 +14,7 @@ import { Button, TextField, Checkbox } from "@mui/material";
 const PersonalStepOpen = () => {
 
   const titlePersonal = "Dados Pessoais";
-  const campanignCheck = "Desejo acompanhar a prestação de conta da campanha e informações sobre a Gerando Falcões";
+  const campaignCheck = "Desejo acompanhar a prestação de conta da campanha e informações sobre a Gerando Falcões";
   const acceptCommunication = "Eu aceito receber comunicações";
   const myDataInform = "Ao informar meus dados, eu concordo com a Politica de Privacidade e com os Termos de Uso";
   const buttonSaved = "Salvar e continuar";
@@ -76,7 +76,7 @@ const PersonalStepOpen = () => {
         <StyleCheckBox>
           <StyleTitleCheck>
             <Checkbox></Checkbox>
-            {campanignCheck}
+            {campaignCheck}
           </StyleTitleCheck>
           <Checkbox /> 
           <StyleTitleCheck>{acceptCommunication}</StyleTitleCheck>

@@ -11,10 +11,8 @@ import {
 import Link from "@mui/material/Link";
 
 const PersonalStepClosed = () => {
-
- const titlePersonal = "Dados Pessoais";
- const subTitle = "Aguardando o preenchimento dos dados";
-
+  const titlePersonal = "Dados Pessoais";
+  const subTitle = "Aguardando o preenchimento dos dados";
 
   return (
     <>
@@ -23,9 +21,7 @@ const PersonalStepClosed = () => {
           <img src={PersonIconSVG} alt="IconPerson" />
           <TitleRegistration>{titlePersonal}</TitleRegistration>
         </PersonIcon>
-        <PersonDados>
-          {subTitle}
-        </PersonDados>
+        <PersonDados>{subTitle}</PersonDados>
       </CardPersonalClosed>
     </>
   );

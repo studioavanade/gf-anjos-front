@@ -74,8 +74,11 @@ const PhotoUpload = () => {
           </StyleCard>
         </BoxCard>
         </RootContainer>
+        
     </>
   );
+
+  console.log(PhotoUpload)
 };
 
 export default PhotoUpload;

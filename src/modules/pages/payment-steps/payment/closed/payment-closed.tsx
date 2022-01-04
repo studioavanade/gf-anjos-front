@@ -4,7 +4,7 @@ import {
   CardPaymentClosed,
   PaymentIcon,
   TitlePayment,
-  PaymentDados,
+  PaymentData,
 } from "./payment-closed_styles";
 
 const PaymentStepClosed = () => {
@@ -18,7 +18,7 @@ const PaymentStepClosed = () => {
           <img src={PaymentIconSVG} alt="IconAddress" />
           <TitlePayment>{titlePayment}</TitlePayment>
         </PaymentIcon>
-        <PaymentDados>{subTitle}</PaymentDados>
+        <PaymentData>{subTitle}</PaymentData>
       </CardPaymentClosed>
     </>
   );

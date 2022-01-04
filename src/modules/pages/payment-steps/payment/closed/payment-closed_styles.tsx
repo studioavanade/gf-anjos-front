@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 
-
 export const CardPaymentClosed = styled.div`
   width: 453px;
   height: 240px;
@@ -9,7 +8,7 @@ export const CardPaymentClosed = styled.div`
   box-sizing: border-box;
   border-radius: 20px;
   padding-left: 10px;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
 `;
 
 export const PaymentIcon = styled.div`
@@ -25,10 +24,10 @@ export const TitlePayment = styled.div`
   font-size: 24px;
 `;
 
-export const PaymentDados = styled.div`
-font-family: "Roboto";
-font-weight: 300;
-padding-left: 15px;
-padding-top: 10px;
-font-size: 20px;
+export const PaymentData = styled.div`
+  font-family: "Roboto";
+  font-weight: 300;
+  padding-left: 15px;
+  padding-top: 10px;
+  font-size: 20px;
 `;

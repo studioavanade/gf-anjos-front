@@ -17,7 +17,6 @@ import {
 } from "./payment-open_styles";
 
 const PaymentStepOpen = (props: any) => {
-
   const titlePayment = "Pagamento";
   const creditCard = "Cartão de Crédito";
   const addressInvoice = "Endereço da fatura do cartão é ?";

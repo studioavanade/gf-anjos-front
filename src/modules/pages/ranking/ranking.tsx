@@ -7,6 +7,8 @@ import IconWordSVG from "../../../assets/img/ranking/icon-document-box.svg";
 import BackgroundConcessionSVG from "../../../assets/img/ranking/background-concession-slide.svg";
 import IconPhysicalPersonSVG from "../../../assets/img/ranking/icon-physical-person.svg";
 import IconJuridicalPersonSVG from "../../../assets/img/ranking/icon-juridical-person.svg";
+import IconClosedDialogSVG from "../../../assets/img/ranking/icon-closed-dialog.svg";
+
 
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
@@ -145,14 +147,14 @@ const Ranking = () => {
                 aria-labelledby="Seja um influenciador"
               >
                 <StyleButtonDialog>
-                  <DialogTitle style={{ fontFamily: "KG Life is Messy" }}>
+                  <DialogTitle style={{ fontFamily: "KG Life is Messy", fontSize: "27px"}}>
                     {TitleDialog}
                     <Button
-                      style={{ fontSize: "15px", paddingLeft: "130px", backgroundColor: "transparent" }}
+                      style={{ paddingLeft: "130px", backgroundColor: "transparent" }}
                       onClick={handleClose}
                       autoFocus
                     >
-                      X
+                      <img src={IconClosedDialogSVG} alt="Icon Closed" />
                     </Button>
                   </DialogTitle>
                 </StyleButtonDialog>

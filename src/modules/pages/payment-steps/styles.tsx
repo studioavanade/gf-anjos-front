@@ -28,8 +28,10 @@ export const BottomContent = styled(Grid)`
   background-color: #fff;
   min-width: ${minWidth};
   border: 3px solid #e5e5e5;
+  padding: 32px;
+  top: 219.5px;
+  position: relative;
   left: -1305.6px;
-  top: 229.5px;
 `;
 
 export const TopImage = styled.img`

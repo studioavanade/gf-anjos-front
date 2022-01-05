@@ -5,7 +5,9 @@ import {
   UserCredential,
 } from "firebase/auth";
 
-const auth = getAuth();
+import app from "../../settings/firebase";
+
+const auth = getAuth(app);
 
 export const createUser = async (
   email: string,

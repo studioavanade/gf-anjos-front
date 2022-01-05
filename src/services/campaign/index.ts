@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 
-import APIS from "../../constants/apis";
+import apis from "../../constants/apis";
 
 interface IApi {
   backend: AxiosInstance;
@@ -13,7 +13,7 @@ interface IApi {
 
 const api = (): IApi => {
   const backend = axios.create({
-    baseURL: APIS.backend,
+    baseURL: apis.backend,
   });
 
   // backend.interceptors.request.use(

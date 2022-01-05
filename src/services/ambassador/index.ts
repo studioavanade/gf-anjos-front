@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 
-import APIS from "../../constants/apis";
+import apis from "../../constants/apis";
 import { IAmbassador } from "../../store/amabassador/types";
 
 interface IApi {
@@ -10,7 +10,7 @@ interface IApi {
 
 const api = (): IApi => {
   const backend = axios.create({
-    baseURL: APIS.backend,
+    baseURL: apis.backend,
   });
 
   // backend.interceptors.request.use(
@@ -26,7 +26,7 @@ const api = (): IApi => {
     backend,
 
     createAmbassador: (ambassador: IAmbassador): Promise<AxiosResponse> => {
-      return backend.post(`/ambassador`, ambassador);
+      return backend.post(`/ambassadors`, ambassador);
     },
   };
 };

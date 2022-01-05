@@ -14,7 +14,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <ToastContainer autoClose={TOAST_DURATION} />
+        <ToastContainer autoClose={TOAST_DURATION} theme="colored" />
         <App />
       </ThemeProvider>
     </Provider>

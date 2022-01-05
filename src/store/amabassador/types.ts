@@ -19,12 +19,12 @@ export interface IAmbassador {
   email: string;
   name: string;
   lastName: string;
+  cpfCnpj: string;
   birthDate: Date;
   education: Education;
   profession: string;
   phone: string;
   celPhone: string;
-  address: IAddress;
   personType: PersonType;
 }
 

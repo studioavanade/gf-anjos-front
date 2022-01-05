@@ -24,8 +24,7 @@ import {
   BottomContent,
 } from "./styles";
 
-import PersonalStepOpen from "./personal/open/personal-open";
-import PersonalStepClosed from "./personal/closed/personal-closed";
+import DonationSummaryStep from "./summary/donation-summary";
 import ConfirmationStepOpen from "./confirmation/open/confirmation-open";
 
 const DashedStroke = () => (
@@ -119,11 +118,10 @@ const PaymentSteps = () => {
             />
           </StepsHeader>
         </TopContent>
-        <BottomContent>Etapa atual: 
-          <PersonalStepOpen />
-          <PersonalStepClosed />
+        <BottomContent>Etapa atual:
+          <DonationSummaryStep />
           <ConfirmationStepOpen />
-          {paymentState.currentStep}</BottomContent>
+           {paymentState.currentStep}</BottomContent>
       </OuterContentContainer>
     </RootContainer>
   );

@@ -1,6 +1,6 @@
 import { UserCredential } from "firebase/auth";
 import { toast } from "react-toastify";
-import { FAIL_LOGIN, FAIL_SIGN_UP } from "../../constants/feedback-messages";
+import { FAIL_LOGIN, FAIL_SIGN_UP } from "../../constants";
 import * as AuthService from "../../services/firebase-auth";
 import { AuthTypes } from "./types";
 

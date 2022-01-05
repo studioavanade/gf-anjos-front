@@ -26,6 +26,7 @@ import {
 
 import PersonalStepOpen from "./personal/open/personal-open";
 import PersonalStepClosed from "./personal/closed/personal-closed";
+import ConfirmationStepOpen from "./confirmation/open/confirmation-open";
 
 const DashedStroke = () => (
   <svg
@@ -121,6 +122,7 @@ const PaymentSteps = () => {
         <BottomContent>Etapa atual: 
           <PersonalStepOpen />
           <PersonalStepClosed />
+          <ConfirmationStepOpen />
           {paymentState.currentStep}</BottomContent>
       </OuterContentContainer>
     </RootContainer>

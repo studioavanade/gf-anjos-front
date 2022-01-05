@@ -30,7 +30,7 @@ export const BottomContent = styled(Grid)`
   border: 3px solid #e5e5e5;
   padding: 32px;
   top: 194.49px;
- left: -1295.61px;
+  left: -1295.61px;
 `;
 
 export const TopImage = styled.img`

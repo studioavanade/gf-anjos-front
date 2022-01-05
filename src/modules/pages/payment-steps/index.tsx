@@ -118,12 +118,10 @@ const PaymentSteps = () => {
             />
           </StepsHeader>
         </TopContent>
-        <BottomContent>
-          Etapa atual:
+        <BottomContent>Etapa atual:
           <DonationSummaryStep />
           <ConfirmationStepOpen />
-          {paymentState.currentStep}
-        </BottomContent>
+           {paymentState.currentStep}</BottomContent>
       </OuterContentContainer>
     </RootContainer>
   );

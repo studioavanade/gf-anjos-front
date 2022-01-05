@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
+
 import React, { useState } from "react";
 import HeaderInfluencerSVG from "../../../assets/img/ranking/header-influencer.svg";
 import IconHeartSVG from "../../../assets/img/ranking/icon-heart-box.svg";
@@ -8,6 +9,12 @@ import BackgroundConcessionSVG from "../../../assets/img/ranking/background-conc
 import IconPhysicalPersonSVG from "../../../assets/img/ranking/icon-physical-person.svg";
 import IconJuridicalPersonSVG from "../../../assets/img/ranking/icon-juridical-person.svg";
 import IconClosedDialogSVG from "../../../assets/img/ranking/icon-closed-dialog.svg";
+
+import Photo1 from "../../../assets/img/ranking/slider-images/photo1.svg";
+import Photo2 from "../../../assets/img/ranking/slider-images/photo2.svg";
+import Photo3 from "../../../assets/img/ranking/slider-images/photo3.svg";
+import Photo4 from "../../../assets/img/ranking/slider-images/photo4.svg";
+
 
 
 import Table from "@mui/material/Table";
@@ -21,6 +28,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+
 
 import {
   RootContainer,
@@ -42,7 +50,7 @@ import {
   StyleBox,
   StyleSlider,
   StyleSliderPhoto,
-  Carousel,
+  CarouselStyle,
   CarouselInner,
   StyleTitleYourInfluencer,
   StyleSubTitleFamily,
@@ -67,11 +75,21 @@ import {
 import { Button, Typography } from "@mui/material";
 
 const Ranking = () => {
+
+
+  const slides = [
+    <img src={Photo1} alt="Photo1" />,
+    <img src={Photo2} alt="Photo2" />,
+    <img src={Photo3} alt="Photo3" />,
+    <img src={Photo4} alt="Photo4" />,
+  ];
+
+
   const [currImg, setCurrImg] = useState(0);
 
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const fullScreen = useMediaQuery(theme.breakpoints.down("xs"));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -145,6 +163,7 @@ const Ranking = () => {
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="Seja um influenciador"
+                fullWidth
               >
                 <StyleButtonDialog>
                   <DialogTitle style={{ fontFamily: "KG Life is Messy", fontSize: "27px"}}>
@@ -186,9 +205,16 @@ const Ranking = () => {
           <StyleBox>
             <StyleSlider>
               <StyleSliderPhoto>
-                <Carousel>
-                  <CarouselInner>Slider</CarouselInner>
-                </Carousel>
+                <CarouselStyle>
+                  <CarouselInner>
+                    <CarouselStyle>
+                     <img src={Photo1} width="320px"  height="450px"  alt="photo1" />
+                     <img src={Photo2} height="450px" alt="photo2" />
+                     <img src={Photo3} height="450px" alt="photo3" />
+                     <img src={Photo4} height="450px" alt="photo4" />
+                    </CarouselStyle>
+                  </CarouselInner>
+                </CarouselStyle>
               </StyleSliderPhoto>
             </StyleSlider>
           </StyleBox>

@@ -129,10 +129,10 @@ export const StyleBox = styled.div`
 export const StyleSlider = styled.div`
   width: 90%;
   height: 500px;
-  background: yellow;
+  background: #061936;
   position: relative;
   padding-top: 30px;
-  opacity: 100%;
+  opacity: 40%;
 `;
 
 export const StyleSliderPhoto = styled.div`
@@ -141,7 +141,8 @@ export const StyleSliderPhoto = styled.div`
   align-items: center;
 `;
 
-export const Carousel = styled.div`
+export const CarouselStyle = styled.div`
+  display: flex;
   background: black;
   width: 80%;
   height: 450px;

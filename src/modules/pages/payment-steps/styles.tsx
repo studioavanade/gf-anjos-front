@@ -23,7 +23,6 @@ export const TopContent = styled(Grid)`
 
 export const BottomContent = styled(Grid)`
   position: relative;
-  top: -100px;
   width: 85vw;
   border-radius: 24px;
   background-color: #fff;

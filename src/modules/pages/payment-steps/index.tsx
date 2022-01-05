@@ -26,7 +26,7 @@ import {
 
 import AddressStepOpen from "../payment-steps/address/open/address-open";
 import AddressStepClosed from "./address/closed/address-closed";
-
+import ConfirmationStepOpen from "./confirmation/open/confirmation-open";
 
 const DashedStroke = () => (
   <svg
@@ -123,6 +123,7 @@ const PaymentSteps = () => {
         <BottomContent>Etapa atual: 
           <AddressStepOpen />
           <AddressStepClosed />
+          <ConfirmationStepOpen />
           {paymentState.currentStep}</BottomContent>
       </OuterContentContainer>
     </RootContainer>

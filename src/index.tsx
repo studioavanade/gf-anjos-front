@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "@mui/material";
 import { ToastContainer } from "react-toastify";
-import { TOAST_DURATION } from "./constants/feedback-messages";
+import { TOAST_DURATION } from "./constants";
 import theme from "./theme";
 import store from "./store";
 

@@ -24,6 +24,9 @@ import {
   BottomContent,
 } from "./styles";
 
+import DonationSummaryStep from "./summary/donation-summary";
+import ConfirmationStepOpen from "./confirmation/open/confirmation-open";
+
 const DashedStroke = () => (
   <svg
     height="1px"
@@ -117,6 +120,8 @@ const PaymentSteps = () => {
         </TopContent>
         <BottomContent>
           Etapa atual:
+          <DonationSummaryStep />
+          <ConfirmationStepOpen />
           {paymentState.currentStep}
         </BottomContent>
       </OuterContentContainer>

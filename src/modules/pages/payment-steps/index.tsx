@@ -24,9 +24,6 @@ import {
   BottomContent,
 } from "./styles";
 
-import IdentityStepOpen from "../payment-steps/identity/open/identity-step-open";
-import ConfirmationStepOpen from "./confirmation/open/confirmation-open";
-
 const DashedStroke = () => (
   <svg
     height="1px"
@@ -120,13 +117,10 @@ const PaymentSteps = () => {
         </TopContent>
         <BottomContent>
           Etapa atual:
-          <IdentityStepOpen />
-          <ConfirmationStepOpen />
           {paymentState.currentStep}
         </BottomContent>
       </OuterContentContainer>
     </RootContainer>
-    
   );
 };
 

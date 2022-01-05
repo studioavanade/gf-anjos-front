@@ -1,13 +1,9 @@
 import PhotoUpload from "../ambassador-register/photo-upload/photo-upload";
-import PaymentSteps from "../payment-steps";
 
 const Home = () => {
-  return (
-    <>
-      <PaymentSteps />
-      {/* <PhotoUpload /> */}
-    </>
-  );
+  return <>
+  <PhotoUpload />
+  </>
 };
 
 export default Home;

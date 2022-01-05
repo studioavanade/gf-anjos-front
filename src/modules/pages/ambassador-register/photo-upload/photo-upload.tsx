@@ -74,6 +74,7 @@ const PhotoUpload = () => {
           </StyleCard>
         </BoxCard>
         </RootContainer>
+        
     </>
   );
 };

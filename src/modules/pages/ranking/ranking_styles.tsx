@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
 
-const maxWidth = "1200px";
-
 export const RootContainer = styled.div`
   background-color: #061936;
 `;
@@ -90,13 +88,12 @@ export const DivSubmitButton = styled.div`
 `;
 
 export const StyleButtonDialog = styled.div`
-display: flex;
-justify-content: center;
-background: #333333;
-color: #FFFFFF;
-font-family: "KG Life is Messy";
+  display: flex;
+  justify-content: center;
+  background: #333333;
+  color: #ffffff;
+  font-family: "KG Life is Messy";
 `;
-
 
 export const StyleTitleInfluencers = styled.div`
   display: flex;
@@ -117,41 +114,6 @@ export const BackgroundImg = styled.div`
   opacity: 50%;
   position: absolute;
   top: -120px;
-`;
-
-export const StyleBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-`;
-
-export const StyleSlider = styled.div`
-  width: 90%;
-  height: 500px;
-  background: #061936;
-  position: relative;
-  padding-top: 30px;
-  opacity: 40%;
-`;
-
-export const StyleSliderPhoto = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const CarouselStyle = styled.div`
-  display: flex;
-  background: black;
-  width: 80%;
-  height: 450px;
-`;
-
-export const CarouselInner = styled.div`
-  width: 100%;
-  height: 100%;
-  color: #ffff;
 `;
 
 export const StyleTitleYourInfluencer = styled.div`
@@ -194,7 +156,7 @@ export const StyleBoxRanking = styled.div`
 `;
 
 export const CardRanking = styled.div`
-position: relative;
+  position: relative;
   justify-content: center;
   width: 1300px;
   height: 800px;
@@ -218,7 +180,7 @@ export const StyleCardPersons = styled.div`
 `;
 
 export const CardPhysicalPerson = styled.div`
-position: relative;
+  position: relative;
   justify-content: center;
   background: #f0f0f0;
   border-radius: 24px;
@@ -227,7 +189,7 @@ position: relative;
 `;
 
 export const CardJuridicalPerson = styled.div`
-position: relative;
+  position: relative;
   justify-content: center;
   background: #f0f0f0;
   border-radius: 24px;
@@ -243,16 +205,15 @@ export const IconImgPersons = styled.div`
 `;
 
 export const CardStyleListName = styled.div`
-padding: 10px;
-background: white;
-height: 380px;
-
+  padding: 10px;
+  background: white;
+  height: 380px;
 `;
 
 export const CardStyleListCompany = styled.div`
-padding: 10px;
-background: white;
-height: 388px;
+  padding: 10px;
+  background: white;
+  height: 388px;
 `;
 
 export const StyleColorCardAndMovies = styled.div`
@@ -292,4 +253,39 @@ export const StyleSubTitleGF = styled.div`
 export const StyleMovies = styled.div`
   max-width: 750px;
   text-align: center;
+`;
+
+export const StyleBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
+
+export const CarouselStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CarouselSlider = styled.div`
+  width: 90%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  cursor: pointer;
+`;
+
+export const ItemPhotos = styled.div`
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  height: 401px;
+  width: 295px;
+  background-color: #00008b;
+  color: #fff;
+  margin: 0 15px;
+  font-size: 4em;
+  border-radius: 10px;
+  cursor: pointer;
 `;

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 
-import React, { useState } from "react";
+import React from "react";
 import HeaderInfluencerSVG from "../../../assets/img/ranking/header-influencer.svg";
 import IconHeartSVG from "../../../assets/img/ranking/icon-heart-box.svg";
 import IconPageSVG from "../../../assets/img/ranking/icon-page-box.svg";
@@ -9,13 +9,6 @@ import BackgroundConcessionSVG from "../../../assets/img/ranking/background-conc
 import IconPhysicalPersonSVG from "../../../assets/img/ranking/icon-physical-person.svg";
 import IconJuridicalPersonSVG from "../../../assets/img/ranking/icon-juridical-person.svg";
 import IconClosedDialogSVG from "../../../assets/img/ranking/icon-closed-dialog.svg";
-
-import Photo1 from "../../../assets/img/ranking/slider-images/photo1.svg";
-import Photo2 from "../../../assets/img/ranking/slider-images/photo2.svg";
-import Photo3 from "../../../assets/img/ranking/slider-images/photo3.svg";
-import Photo4 from "../../../assets/img/ranking/slider-images/photo4.svg";
-
-
 
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
@@ -28,7 +21,12 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import Carousel from "react-elastic-carousel";
 
+import Photo1SVG from "../../../assets/img/ranking/slider-images/photo1.svg";
+import Photo2SVG from "../../../assets/img/ranking/slider-images/photo2.svg";
+import Photo3SVG from "../../../assets/img/ranking/slider-images/photo3.svg";
+import Photo4SVG from "../../../assets/img/ranking/slider-images/photo4.svg";
 
 import {
   RootContainer,
@@ -47,11 +45,9 @@ import {
   StyleTitleInfluencers,
   StyleBackgroundConcession,
   BackgroundImg,
-  StyleBox,
-  StyleSlider,
-  StyleSliderPhoto,
+  CarouselSlider,
   CarouselStyle,
-  CarouselInner,
+  ItemPhotos,
   StyleTitleYourInfluencer,
   StyleSubTitleFamily,
   StylePharseFamily,
@@ -72,21 +68,9 @@ import {
   StyleMovies,
 } from "./ranking_styles";
 
-import { Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 
 const Ranking = () => {
-
-
-  const slides = [
-    <img src={Photo1} alt="Photo1" />,
-    <img src={Photo2} alt="Photo2" />,
-    <img src={Photo3} alt="Photo3" />,
-    <img src={Photo4} alt="Photo4" />,
-  ];
-
-
-  const [currImg, setCurrImg] = useState(0);
-
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("xs"));
@@ -118,6 +102,9 @@ const Ranking = () => {
   const titleRanking = "ACOMPANHE NOSSO RANKING DE ANJOS";
   const TitleDialog = "SEJA UM INFLUENCIADOR";
   const buttonStart = "COMEÇAR";
+  const personName = "Nome";
+  const company = "Empresa";
+  const totalCollectedTitle = "Total arrecado";
 
   return (
     <>
@@ -166,10 +153,15 @@ const Ranking = () => {
                 fullWidth
               >
                 <StyleButtonDialog>
-                  <DialogTitle style={{ fontFamily: "KG Life is Messy", fontSize: "27px"}}>
+                  <DialogTitle
+                    style={{ fontFamily: "KG Life is Messy", fontSize: "27px" }}
+                  >
                     {TitleDialog}
                     <Button
-                      style={{ paddingLeft: "130px", backgroundColor: "transparent" }}
+                      style={{
+                        paddingLeft: "130px",
+                        backgroundColor: "transparent",
+                      }}
                       onClick={handleClose}
                       autoFocus
                     >
@@ -202,22 +194,38 @@ const Ranking = () => {
               height="100%"
             />
           </BackgroundImg>
-          <StyleBox>
-            <StyleSlider>
-              <StyleSliderPhoto>
-                <CarouselStyle>
-                  <CarouselInner>
-                    <CarouselStyle>
-                     <img src={Photo1} width="320px"  height="450px"  alt="photo1" />
-                     <img src={Photo2} height="450px" alt="photo2" />
-                     <img src={Photo3} height="450px" alt="photo3" />
-                     <img src={Photo4} height="450px" alt="photo4" />
-                    </CarouselStyle>
-                  </CarouselInner>
-                </CarouselStyle>
-              </StyleSliderPhoto>
-            </StyleSlider>
-          </StyleBox>
+          <CarouselStyle>
+            <CarouselSlider>
+              <div>
+                <Carousel itemsToShow={4}>
+                  <ItemPhotos>
+                    <img src={Photo1SVG} alt="photo1" />
+                  </ItemPhotos>
+                  <ItemPhotos>
+                    <img src={Photo2SVG} alt="photo2" />
+                  </ItemPhotos>
+                  <ItemPhotos>
+                    <img src={Photo3SVG} alt="photo3" />
+                  </ItemPhotos>
+                  <ItemPhotos>
+                    <img src={Photo4SVG} alt="photo4" />
+                  </ItemPhotos>
+                  <ItemPhotos>
+                    <img src={Photo1SVG} alt="photo1" />
+                  </ItemPhotos>
+                  <ItemPhotos>
+                    <img src={Photo2SVG} alt="photo2" />
+                  </ItemPhotos>
+                  <ItemPhotos>
+                    <img src={Photo3SVG} alt="photo3" />
+                  </ItemPhotos>
+                  <ItemPhotos>
+                    <img src={Photo4SVG} alt="photo4" />
+                  </ItemPhotos>
+                </Carousel>
+              </div>
+            </CarouselSlider>
+          </CarouselStyle>
           <StyleTitleYourInfluencer>
             <span style={{ color: "#04C6FB" }}>Como funciona</span> a sua
             influência?
@@ -251,7 +259,7 @@ const Ranking = () => {
                               justifyContent: "space-between",
                             }}
                           >
-                            Nome
+                            {personName}
                           </TableCell>
                           <TableCell
                             style={{
@@ -259,7 +267,7 @@ const Ranking = () => {
                               justifyContent: "space-between",
                             }}
                           >
-                            Total arrecado
+                            {totalCollectedTitle}
                           </TableCell>
                         </TableRow>
                       </TableHead>
@@ -284,7 +292,7 @@ const Ranking = () => {
                               justifyContent: "space-between",
                             }}
                           >
-                            Empresa
+                            {company}
                           </TableCell>
                           <TableCell
                             style={{
@@ -292,7 +300,7 @@ const Ranking = () => {
                               justifyContent: "space-between",
                             }}
                           >
-                            Total arrecado
+                            {totalCollectedTitle}
                           </TableCell>
                         </TableRow>
                       </TableHead>

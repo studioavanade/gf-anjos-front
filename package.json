@@ -17,7 +17,11 @@
     "firebase": "^9.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+<<<<<<< HEAD
     "react-elastic-carousel": "^0.11.5",
+=======
+    "react-hook-form": "^7.22.5",
+>>>>>>> b16307ab9e120282025df01d50545a7854030c2f
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.0",
     "react-scripts": "5.0.0",

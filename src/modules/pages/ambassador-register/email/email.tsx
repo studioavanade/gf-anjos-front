@@ -1,3 +1,5 @@
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import HeaderInfluencer from "../../../../assets/img/email/header-influenciador.svg";
 import { Button, TextField } from "@mui/material";
 import {
@@ -8,10 +10,29 @@ import {
   TitleLogin,
   DivSubmitButton,
 } from "./email_styles";
+import { showErrorToast } from "./../../../../utils/toast/index";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../../../store/auth/actions";
 
 const BasicRegistration = () => {
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+
   const titleEmail = "Cadastro";
   const buttonContinue = "Continuar";
+
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data: any) => {
+    const { email, password, confirmPassword } = data;
+
+    if (password !== confirmPassword) {
+      showErrorToast("Senhas não correspondem!");
+      return;
+    }
+
+    dispatch(createUser(email, password, navigate));
+  };
 
   return (
     <>
@@ -26,7 +47,7 @@ const BasicRegistration = () => {
         />
         <BoxCard>
           <StyleCard>
-            <form style={{ width: "450px" }}>
+            <form onSubmit={handleSubmit(onSubmit)} style={{ width: "450px" }}>
               <TitleLogin>{titleEmail}</TitleLogin>
               <TextField
                 id="email"
@@ -35,6 +56,16 @@ const BasicRegistration = () => {
                 variant="standard"
                 fullWidth
                 margin="normal"
+                {...register("email")}
+              />
+              <TextField
+                id="password"
+                label="Senha"
+                variant="standard"
+                fullWidth
+                margin="normal"
+                type="password"
+                {...register("password")}
               />
               <TextField
                 id="confirmPassword"
@@ -43,14 +74,7 @@ const BasicRegistration = () => {
                 fullWidth
                 margin="normal"
                 type="password"
-              />
-              <TextField
-                id="confirmPassword"
-                label="Confirmar senha"
-                variant="standard"
-                fullWidth
-                margin="normal"
-                type="password"
+                {...register("confirmPassword")}
               />
               <DivSubmitButton>
                 <Button variant="contained" type="submit" fullWidth>

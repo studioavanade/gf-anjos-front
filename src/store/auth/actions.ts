@@ -1,25 +1,32 @@
 import { UserCredential } from "firebase/auth";
-import { toast } from "react-toastify";
-import { FAIL_LOGIN, FAIL_SIGN_UP } from "../../constants";
 import * as AuthService from "../../services/firebase-auth";
 import { AuthTypes } from "./types";
+import { showErrorToast } from "./../../utils/toast/index";
+import ROUTING_PATHS from "./../../routes/paths/index";
+import { NavigateFunction } from "react-router-dom";
+import { FirebaseError } from "firebase/app";
+import { getMessageFromError } from "../../utils/firebase";
 
 const authRequest = () => ({
   type: AuthTypes.AUTH_REQUEST,
 });
 
-export const signIn = (email: string, password: string) => (dispatch: any) => {
-  dispatch(authRequest());
-  AuthService.signIn(email, password)
-    .then((userCredential: UserCredential) => {
-      dispatch(signInSuccess(userCredential));
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      toast.error(`${errorCode} - ${FAIL_LOGIN}`);
-      dispatch(signInError(errorCode));
-    });
-};
+export const signIn =
+  (email: string, password: string, navigate: NavigateFunction | null = null) =>
+  (dispatch: any) => {
+    dispatch(authRequest());
+    AuthService.signIn(email, password)
+      .then((userCredential: UserCredential) => {
+        dispatch(signInSuccess(userCredential));
+        //if(navigate) // go to the logged area
+      })
+      .catch((error) => {
+        const errorMessageTranslated = getMessageFromError(error);
+        dispatch(signInError(errorMessageTranslated));
+        if (!navigate) return;
+        showErrorToast(errorMessageTranslated);
+      });
+  };
 
 const signInSuccess = (user: UserCredential) => ({
   payload: user,
@@ -32,16 +39,20 @@ const signInError = (error: any) => ({
 });
 
 export const createUser =
-  (email: string, password: string) => (dispatch: any) => {
+  (email: string, password: string, navigate: NavigateFunction | null = null) =>
+  (dispatch: any) => {
     dispatch(authRequest());
     AuthService.createUser(email, password)
       .then((_) => {
         dispatch(signIn(email, password));
+        if (navigate) {
+          navigate(ROUTING_PATHS.PersonalInformations);
+        }
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        toast.error(`${errorCode} - ${FAIL_SIGN_UP}`);
-        dispatch(createUserError(errorCode));
+      .catch((error: FirebaseError) => {
+        const errorMessageTranslated = getMessageFromError(error);
+        showErrorToast(errorMessageTranslated);
+        dispatch(createUserError(errorMessageTranslated));
       });
   };
 

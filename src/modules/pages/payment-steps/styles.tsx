@@ -23,13 +23,15 @@ export const TopContent = styled(Grid)`
 
 export const BottomContent = styled(Grid)`
   position: relative;
-  top: -100px;
   width: 85vw;
   border-radius: 24px;
   background-color: #fff;
   min-width: ${minWidth};
   border: 3px solid #e5e5e5;
   padding: 32px;
+  top: 219.5px;
+  position: relative;
+  left: -1305.6px;
 `;
 
 export const TopImage = styled.img`

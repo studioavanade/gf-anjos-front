@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import Carousel from "react-elastic-carousel";
 
-class CarrouselSlider extends Component {
-  render() {
+const CarrouselSlider = () => { 
+ 
     const { items } = this.state;
     return (
       <Carousel>
@@ -12,6 +12,5 @@ class CarrouselSlider extends Component {
       </Carousel>
     );
   }
-}
 
 export default CarrouselSlider;

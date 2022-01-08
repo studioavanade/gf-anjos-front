@@ -9,7 +9,7 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={ROUTING_PATHS.Root} element={<BasicRegistration />} />
+        <Route path={ROUTING_PATHS.Root} element={<Home />} />
         <Route
           path={ROUTING_PATHS.BasicRegistration}
           element={<BasicRegistration />}

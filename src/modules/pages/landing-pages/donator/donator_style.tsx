@@ -109,7 +109,6 @@ export const StyleMoneyIcon = styled.div`
 export const StyleBoxTitleDonate = styled.div`
   width: 300px;
   height: 46px;
-  padding-top: ;
   background: #e7e7e7;
   border-radius: 8px;
   padding: 5px;

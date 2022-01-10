@@ -106,6 +106,20 @@
 }
 
 @font-face {
+    font-family: "Inter Regular";
+    src: url("../assets/font/Inter/Inter-Regular.otf") format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Inter Light";
+    src: url("../assets/font/Inter/Inter-Light-BETA.otf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: "SuperClarendon Ligth";
     src: url("../assets/font/SuperClarendon/Superclarendon\ Light.ttf") format('truetype');
     font-weight: 400;

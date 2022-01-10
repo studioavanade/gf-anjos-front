@@ -4,6 +4,7 @@
 
 :root {
   --theme-primary-color: #6d2077;
+  --page-min-width: 480px;
 }
 
 /* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -31,11 +32,11 @@ html {
 }
 
 body {
-  font-family: 'SoletoRegular', Courier, monospace;
+  font-family: "AvenirLTStd Book", Courier, monospace;
   overflow-x: hidden; /* Hide horizontal scrollbar */
   margin: 0;
   padding: 0;
-  min-width: 360px;
+  min-width: var(--page-min-width);
 }
 
 /**
@@ -87,7 +88,7 @@ pre {
 
 a {
   background-color: transparent;
-  color: var(--theme-primary-color);
+  text-decoration: none;
 }
 
 /**
@@ -360,10 +361,4 @@ template {
 }
 body #root {
   min-height: 100vh;
-}
-
-a {
-  color: var(--theme-primary-color);
-  font-family: 'SoletoBold';
-  font-weight: 800;
 }

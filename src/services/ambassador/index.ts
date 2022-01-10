@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 import apis from "../../constants/apis";
-import { IAmbassador } from "../../store/amabassador/types";
+import { IAmbassador } from "../../store/ambassador/types";
 
 interface IApi {
   backend: AxiosInstance;
@@ -9,6 +9,7 @@ interface IApi {
 }
 
 const api = (): IApi => {
+  console.log("url: ", apis.backend);
   const backend = axios.create({
     baseURL: apis.backend,
   });

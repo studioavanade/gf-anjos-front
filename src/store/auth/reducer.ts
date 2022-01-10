@@ -5,7 +5,7 @@ const initialState: IAuthStates = {
   createUserError: undefined,
   signInError: undefined,
   loading: false,
-  user: undefined,
+  userEmail: undefined,
 };
 
 const authReducer = (state = initialState, action: IAction): IAuthStates => {
@@ -25,7 +25,7 @@ const authReducer = (state = initialState, action: IAction): IAuthStates => {
     case AuthTypes.SIGNIN_SUCCESS:
       return {
         ...state,
-        user: action.payload,
+        userEmail: action.payload,
         signInError: initialState.signInError,
         loading: false,
       };

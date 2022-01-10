@@ -5,7 +5,7 @@ import apis from "../../constants/apis";
 interface IApi {
   backend: AxiosInstance;
   createCampaign(
-    image: File,
+    image: any,
     ambassadorId: string,
     targetDonators: number
   ): Promise<AxiosResponse>;
@@ -29,7 +29,7 @@ const api = (): IApi => {
     backend,
 
     createCampaign: (
-      image: File,
+      image: any,
       ambassadorId: string,
       targetDonators: number
     ): Promise<AxiosResponse> => {

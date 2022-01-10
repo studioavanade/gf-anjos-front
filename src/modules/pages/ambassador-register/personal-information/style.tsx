@@ -1,12 +1,15 @@
 import styled from "@emotion/styled";
+import { Grid, RadioGroup } from "@mui/material";
 
 export const RootContainer = styled.div`
   background-color: #000000;
   width: 100%;
   height: auto;
+  padding-bottom: 50px;
 `;
 
 export const Topo = styled.img`
+  min-width: var(--page-min-width);
   width: 100%;
   height: auto;
   position: absolute;
@@ -18,22 +21,22 @@ export const BoxCard = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
-  padding-top: 370px;
+  padding-top: 20vw;
 `;
 
 export const StyleCard = styled.div`
   position: relative;
-  width: 1100px;
   height: auto;
   text-align: center;
   border-radius: 8px;
   background-color: #ffffff;
+  padding: 64px;
 `;
 
 export const RegistrationIcon = styled.div`
   display: flex;
   justify-content: center;
-  padding: 64px;
+  margin-bottom: 40px;
 `;
 
 export const TitleRegistration = styled.div`
@@ -41,60 +44,40 @@ export const TitleRegistration = styled.div`
   justify-content: center;
   font-size: 32px;
   font-family: "KG Life is Messy";
-  padding-left: 10px;
+  margin-left: 16px;
 `;
 
-export const StyleCardCheckbox = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 924px;
-  height: 80px;
+export const CardPersonType = styled(Grid)`
   border-radius: 8px;
-  margin-left: 90px;
   background-color: #f2f2f2;
+  padding: 16px;
+  margin-bottom: 50px;
+  margin-left: 0px;
+  margin-top: 0px;
 `;
 
-export const CheckboxOptions = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  font-family: "AvenirLTSd Roman";
-  font-size: 24px;
-  padding-left: 10px;
+export const PersonTypeText2 = styled.span`
+  color: #975e95;
+  margin-right: 16px;
 `;
 
-export const StyleCampaign = styled.div`
-font-family: AvenirLTStd Book,
-font-size: 22px;
-padding-left: 5px;
-padding-top: 6px;
+export const GridNoPadding = styled(Grid)`
+  font-size: 18px;
+  font-family: "AvenirLTStd Book";
+  text-align: right;
+  padding: 0px !important;
 `;
 
-export const StyleTitleYouIs = styled.div`
-color: #975E95;
-font-family: "AvenirLTStd Book",
-font-size: 22px;
-padding-left: 5px;
-padding-top: 6px;
-`;
-
-export const StyleRadioCheckbox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const RadioGroupStyled = styled(RadioGroup)`
+  flex-direction: row;
+  width: 100%;
 `;
 
 export const RegistrationForm = styled.div`
-  width: 924px;
-  height: 80px;
   border-radius: 8px;
-  margin-left: 90px;
-  padding-top: 50px;
 `;
 
-export const StyleDonors = styled.div`
-  padding: 270px;
-`;
+export const StyleDonors = styled.div``;
 
 export const StyleRecurringDonors = styled.div`
   display: flex;
@@ -102,12 +85,15 @@ export const StyleRecurringDonors = styled.div`
   align-items: center;
   font-family: "KG Life is Messy";
   font-size: 32px;
+  margin-top: 50px;
 `;
 
 export const TitleRecurring = styled.div`
   display: flex;
   justify-content: center;
-  padding-left: 10px;
+  font-size: 32px;
+  font-family: "KG Life is Messy";
+  margin-left: 16px;
 `;
 
 export const PersonIcon = styled.div`
@@ -178,7 +164,8 @@ export const StyleCardCount = styled.div`
 `;
 
 export const DivSubmitButton = styled.div`
-  position: relative;
-  padding-top: 95px;
-  text-align: center;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

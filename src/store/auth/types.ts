@@ -9,5 +9,5 @@ export interface IAuthStates {
   createUserError?: any;
   signInError?: any;
   loading: boolean;
-  user?: any;
+  userEmail?: any;
 }

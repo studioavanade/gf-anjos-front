@@ -6,30 +6,42 @@ import ROUTING_PATHS from "./../../routes/paths/index";
 import { NavigateFunction } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
 import { getMessageFromError } from "../../utils/firebase";
+import { setSessionStorage } from "./../../utils/storage/index";
+import { USER_EMAIL_STORAGE_KEY } from "../../constants";
 
 const authRequest = () => ({
   type: AuthTypes.AUTH_REQUEST,
 });
 
 export const signIn =
-  (email: string, password: string, navigate: NavigateFunction | null = null) =>
+  (
+    email: string,
+    password: string,
+    navigate: NavigateFunction | null = null,
+    destinationRoute: string = ""
+  ) =>
   (dispatch: any) => {
     dispatch(authRequest());
     AuthService.signIn(email, password)
-      .then((userCredential: UserCredential) => {
-        dispatch(signInSuccess(userCredential));
-        //if(navigate) // go to the logged area
+      .then(() => {
+        dispatch(signInSuccess(email));
+        if (navigate && destinationRoute.length > 0) {
+          navigate(destinationRoute);
+        }
       })
       .catch((error) => {
         const errorMessageTranslated = getMessageFromError(error);
         dispatch(signInError(errorMessageTranslated));
-        if (!navigate) return;
         showErrorToast(errorMessageTranslated);
       });
   };
 
-const signInSuccess = (user: UserCredential) => ({
-  payload: user,
+export const saveUserEmail = (email: string) => (dispatch: any) => {
+  dispatch(signInSuccess(email));
+};
+
+export const signInSuccess = (userEmail: string) => ({
+  payload: userEmail,
   type: AuthTypes.SIGNIN_SUCCESS,
 });
 
@@ -45,6 +57,7 @@ export const createUser =
     AuthService.createUser(email, password)
       .then((_) => {
         dispatch(signIn(email, password));
+        setSessionStorage(USER_EMAIL_STORAGE_KEY, email);
         if (navigate) {
           navigate(ROUTING_PATHS.PersonalInformations);
         }

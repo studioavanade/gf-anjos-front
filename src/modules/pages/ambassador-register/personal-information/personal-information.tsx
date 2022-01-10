@@ -54,6 +54,7 @@ import { saveFormTargetDonators } from "../../../../store/campaign/actions";
 import ROUTING_PATHS from "./../../../../routes/paths/index";
 import { useNavigate } from "react-router-dom";
 import { createAmbassador } from "./../../../../store/ambassador/actions";
+import PrivateComponentVerifier from "../../../components/private-component-verifier";
 
 const PersonalInformation = () => {
   const dispatch = useDispatch();
@@ -131,7 +132,7 @@ const PersonalInformation = () => {
   useEffect(() => {
     if (ambassadorId && ambassadorId.length > 0) {
       dispatch(saveFormTargetDonators(targetDonators));
-      navigate(ROUTING_PATHS.PhotoUpload);
+      //navigate(ROUTING_PATHS.PhotoUpload);
     }
   }, [ambassadorId]);
 
@@ -145,6 +146,7 @@ const PersonalInformation = () => {
 
   return (
     <>
+      <PrivateComponentVerifier />
       <RootContainer>
         <Topo src={HeaderInfluencer} alt="Header-Influencer" />
         <BoxCard>

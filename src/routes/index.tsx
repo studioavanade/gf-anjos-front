@@ -26,13 +26,11 @@ const AppRoutes = () => {
 
         <Route path="*" element={<Home />} />
 
-        {/* Private routes */}
+        {/* Private components */}
         <Route
           path={ROUTING_PATHS.PersonalInformations}
-          element={<PrivateRoute />}
-        >
-          <Route element={<PersonalInformation />} />
-        </Route>
+          element={<PersonalInformation />}
+        />
       </Routes>
     </BrowserRouter>
   );

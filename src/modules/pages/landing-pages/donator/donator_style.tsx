@@ -39,12 +39,14 @@ export const StylePerfilAndText = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 80px;
+  padding: 50px;
+  line-height: 1.5;
 `;
 
 export const StylePerfil = styled.div`
   border-right: 1px solid #c4c4c4;
   padding-right: 40px;
+  font-size: 40px;
 `;
 
 export const TitlePerson = styled.div`
@@ -228,38 +230,15 @@ export const StyleBoxGoal = styled.div`
   height: 400px;
   background: #f2f2f2;
   border-radius: 8px;
-  display: flex;
   justify-content: space-around;
-  align-items: center;
 `;
 
 export const StyleDonut = styled.div`
-flex-direction: column;
-font-family: "Inter Light";
-font-size: 20px;
-align-items: center;
+  flex-direction: column;
+  font-family: "Inter Light";
+  font-size: 20px;
+  align-items: center;
 `;
-
-export const StyleStatus = styled.div`
-flex-direction: column;
-font-family: "Inter Light";
-font-size: 20px;
-align-items: center;
-
-`;
-
-export const StyleStatusRamining = styled.div`
-display: flex;
-padding: 10px;
-`;
-
-export const StyleStatusHit = styled.div`
-display: flex;
-padding: 10px;
-`;
-
-
-
 
 export const CardBoxCollected = styled.div`
   display: flex;

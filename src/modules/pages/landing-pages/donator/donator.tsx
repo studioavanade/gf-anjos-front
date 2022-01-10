@@ -4,10 +4,9 @@ import BackgroundConcessionSVG from "../../../../assets/img/landing-donation/bac
 import BackgroundLastSVF from "../../../../assets/img/landing-donation/background-last.svg";
 import IconMoneySVG from "../../../../assets/img/landing-donation/icon-money.svg";
 import IconMoneyLargeSVG from "../../../../assets/img/landing-donation/icon-money-large.svg";
-import IconStatusRemaining from "../../../../assets/img/landing-donation/icon-status-gray.svg";
-import IconStatusHit from "../../../../assets/img/landing-donation/icon-status-colors.svg";
 
-import { Button, Link } from "@mui/material";
+import DoughnutChart from "./doughnut-chart";
+import { Button, TextField } from "@mui/material";
 
 import {
   HeaderInfluencer,
@@ -43,9 +42,6 @@ import {
   StyleMonth,
   StyleTodayValue,
   StyleDonut,
-  StyleStatus,
-  StyleStatusRamining,
-  StyleStatusHit,
   CardBoxCollected,
   StyleMoneyLarge,
   StyleBoxValue,
@@ -54,15 +50,11 @@ import {
 
 const Donation = () => {
   const titleDonation = "VAMOS DOAR JUNTOS";
-  const subTitle =
-    "Neste Reality Show da fome, que já eliminou 1900 brasileiros em um único paredão, a Rede Gerando Falcões será, de novo, a ponte que levará para as instituições da Rede, cestas básicas digitais, que serão distribuídas em suas favelas para as famílias em estado de vulnerabilidade, colocando o #InfluênciaDaBoa.";
   const subTitleAngel =
     "Convido você para também ser o anjo que vai dar condições para que os moradores das favelas recebam o colar da imunidade.";
-  const name = "Eduardo";
+  const namePerfil = "Eduardo";
   const titleRecurring = "SEJA UM DOADOR RECORRENTE";
   const titleGoal = "Sua meta de doadores recorrentes";
-  const statusTitleRemaining = "Restante";
-  const statusTitleHit = "Atingido";
   const titleCollected = "Já arrecadamos";
   const donationMonth = "Em doações mensais para nossa campanha";
   const titleNetwork =
@@ -95,11 +87,21 @@ const Donation = () => {
             <StylePerfilAndText>
               <StylePerfil>
                 <img src={PerfilSVG} alt="Perfil" />
-                <TitlePerson>{}</TitlePerson>
+                <TitlePerson>{namePerfil}</TitlePerson>
               </StylePerfil>
               <StyleTitleDonation>
                 {titleDonation}
-                <StyleSubsTitleDonation>{subTitle}</StyleSubsTitleDonation>
+                <StyleSubsTitleDonation>
+                  Neste Reality Show da fome, que já eliminou 1900 brasileiros
+                  em um único paredão, a Rede Gerando Falcões será, de novo, a
+                  ponte que levará para as instituições da Rede, cestas básicas
+                  digitais, que serão distribuídas em suas favelas para as
+                  famílias em estado de vulnerabilidade, colocando o
+                  <span style={{ color: "#00AEEF" }}>
+                    <b> #InfluênciaDaBoa</b>
+                  </span>
+                  .
+                </StyleSubsTitleDonation>
                 <SubTitleAngel>{subTitleAngel}</SubTitleAngel>
               </StyleTitleDonation>
             </StylePerfilAndText>
@@ -133,7 +135,7 @@ const Donation = () => {
             <StyleCentralizacionValue>
               <div style={{ display: "flex", color: "#EB1D68" }}>
                 <StyleReal>{subTitleReal}</StyleReal>
-                <StyleValue>20</StyleValue>
+                <StyleValue>50</StyleValue>
               </div>
               <StyleMonth>{subTitleMonth}</StyleMonth>
               <StyleTodayValue>{subTitleFiffty}</StyleTodayValue>
@@ -149,7 +151,7 @@ const Donation = () => {
             <StyleCentralizacionValue>
               <div style={{ display: "flex", color: "#00AEEF" }}>
                 <StyleReal>{subTitleReal}</StyleReal>
-                <StyleValue>20</StyleValue>
+                <StyleValue>100</StyleValue>
               </div>
               <StyleMonth>{subTitleMonth}</StyleMonth>
               <StyleTodayValue>{subTitleHundred}</StyleTodayValue>
@@ -159,13 +161,25 @@ const Donation = () => {
             <StyleBoxTitleDonate>
               <StyleMoneyIcon>
                 <img src={IconMoneySVG} alt="IconMoney" />
-                <BoxTitleDonate> {titleDonate} </BoxTitleDonate>
+                <BoxTitleDonate> {titleDonateAnotherValue} </BoxTitleDonate>
               </StyleMoneyIcon>
             </StyleBoxTitleDonate>
             <StyleCentralizacionValue>
-              <div style={{ display: "flex", color: "#00B094" }}>
+              <div
+                style={{
+                  display: "flex",
+                  color: "#00B094",
+                  paddingTop: "10px",
+                }}
+              >
                 <StyleReal>{subTitleReal}</StyleReal>
-                <StyleValue>3000</StyleValue>
+                <StyleValue>
+                  <TextField
+                    id="value"
+                    variant="standard"
+                    style={{ width: "200px", margin: "12px" }}
+                  />
+                </StyleValue>
               </div>
               <StyleMonth>{subTitleMonth}</StyleMonth>
               <StyleTodayValue>{}</StyleTodayValue>
@@ -175,22 +189,39 @@ const Donation = () => {
         <StyleGoalAndCollected>
           <div>
             <StyleTitleGoal>{titleGoal}</StyleTitleGoal>
-            <div style={{display: "flex"}}>
-            <StyleBoxGoal>
-              <StyleDonut>donut</StyleDonut>
-              <StyleStatus>
-              <StyleStatusRamining>
-                      <img src={IconStatusRemaining} alt="StatusRemaining" width="25px"/>
-                      <StyleStatusRamining>{statusTitleRemaining}
-                  </StyleStatusRamining>
-                  </StyleStatusRamining>
-                  <StyleStatusHit>
-                      <img src={IconStatusHit} alt="StatusHit" width="25px" />
-                      <StyleStatusHit>{statusTitleHit}</StyleStatusHit>
-                  </StyleStatusHit>
-              </StyleStatus>
-              <div style={{display: "flex", flexDirection: "column", left: "-250,1px", position: "relative", top: "120px"}}>teste</div>
-            </StyleBoxGoal>
+            <div>
+              <div>
+                <StyleBoxGoal>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      paddingTop: "40px",
+                    }}
+                  >
+                    <StyleDonut>
+                      <DoughnutChart />
+                    </StyleDonut>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      fontSize: "18px",
+                    }}
+                  >
+                    <div style={{ paddingTop: "25px", fontFamily: "Inter Light", }}>
+                      <b>310 de 500 </b> doadores já fizeram doações
+                    </div>
+                    <div style={{fontFamily: "Inter Light",}}>
+                      Faltam <b>190</b> doadores para atingir sua meta
+                    </div>
+                  </div>
+                </StyleBoxGoal>
+              </div>
             </div>
           </div>
           <div>

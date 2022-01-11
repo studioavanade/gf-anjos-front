@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import { IAuthStates } from "./auth/types";
-import { IAmbassadorStates } from "./amabassador/types";
+import { IAmbassadorStates } from "./ambassador/types";
 import { IPaymentStates } from "./payment/types";
 
 import auth from "./auth/reducer";
-import ambassador from "./amabassador/reducer";
+import ambassador from "./ambassador/reducer";
 import payment from "./payment/reducer";
 
 export interface ApplicationState {

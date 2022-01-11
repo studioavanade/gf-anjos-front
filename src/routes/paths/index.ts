@@ -1,7 +1,7 @@
 const ROUTING_PATHS = {
   Root: "/",
-  Login: "/email-form",
-  BasicRegistration: "/basic-registration",
+  AmbassadorLogin: "/ambassador-login",
+  AmbassadorCreateAccount: "/ambassador-create-account",
   PersonalInformations: "/personal-informations",
   PhotoUpload: "/photo-upload",
   PaymentSteps: "/payment-steps",

@@ -16,7 +16,7 @@ export const Topo = styled.img`
 
 export const BoxCard = styled.div`
   position: relative;
-  padding-top: 370px;
+  padding-top: 20vw;
   display: flex;
   justify-content: center;
 `;
@@ -42,13 +42,19 @@ export const TitleLogin = styled.div`
   display: flex;
   justify-content: center;
   font-size: 44px;
-  padding-top: 40px;
+  margin-top: 40px;
+  margin-bottom: 60px;
   font-family: "KG Life is Messy";
 `;
 
 export const DivSubmitButton = styled.div`
-  position: relative;
-  padding-top: 95px;
-  text-align: center;
+  margin-top: 120px;
   max-width: 450px;
+  text-align: center;
+`;
+
+export const LoginLink = styled.div`
+  color: white !important;
+  margin-top: 32px;
+  text-align: center;
 `;

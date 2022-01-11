@@ -9,9 +9,16 @@ const ambassadorReducer = (
   action: any
 ): IAmbassadorStates => {
   switch (action.type) {
-    case AmbassadorActionTypes.CREATE_CAMPAIGN_SUCCESS:
+    case AmbassadorActionTypes.CREATE_AMBASSADOR_SUCCESS:
       return {
-        ambassador: action.payload,
+        ...state,
+        ambassador: { ...action.payload },
+        loading: false,
+      };
+    case AmbassadorActionTypes.CREATE_AMBASSADOR_ERROR:
+      return {
+        ...state,
+        error: action.payload,
         loading: false,
       };
 

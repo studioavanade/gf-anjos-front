@@ -1,41 +1,14 @@
 import styled from "@emotion/styled";
 
-export const RootContainer = styled.div`
-  height: 100vw;
-  width: auto;
-  background-color: #000000;
-`;
 
-export const Topo = styled.img`
-  width: 100%;
+export const Topo = styled.div`
   height: auto;
-  position: absolute;
-  display: flex;
+  box-shadow: none;
+  display: grid;
+  place-items: center;
+  justify-content: space-around;
   align-items: center;
-`;
-
-export const BoxCard = styled.div`
-  position: relative;
-  padding-top: 20vw;
-  display: flex;
-  justify-content: center;
-`;
-
-export const StyleCard = styled.div`
-  position: relative;
-  width: 1100px;
-  height: 450px;
-  padding-top: 50px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffffff;
-`;
-
-export const EmailIcon = styled.img`
-  display: flex;
-  align-items: center;
+  justify-items: center;
 `;
 
 export const TitleLogin = styled.div`
@@ -48,13 +21,13 @@ export const TitleLogin = styled.div`
 
 export const DivSubmitButton = styled.div`
   position: relative;
-  padding-top: 95px;
+  padding-top: 60px;
   text-align: center;
   max-width: 450px;
 `;
 
 export const LoginLink = styled.div`
   color: white;
-  margin-top: 32px;
+  padding-bottom: 20px;
   text-align: center;
 `;

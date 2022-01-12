@@ -3,12 +3,9 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import HeaderInfluencer from "../../../../assets/img/email/header-influenciador.svg";
-import { Button, Stack, TextField } from "@mui/material";
+import { Button, Stack, TextField, Grid, Paper, Box } from "@mui/material";
 import {
-  RootContainer,
   Topo,
-  BoxCard,
-  StyleCard,
   TitleLogin,
   DivSubmitButton,
   LoginLink,
@@ -56,17 +53,19 @@ const AmbassadorCreateAccount = () => {
 
   return (
     <>
-      <RootContainer>
-        <Topo
-          src={HeaderInfluencer}
-          alt="banner"
-          style={{
-            paddingBottom: "90px",
-            boxShadow: "box-shadow: inset, 0 0 1em black",
-          }}
-        />
-        <BoxCard>
-          <StyleCard>
+      <Grid container xs={12} justifyContent="center">
+        <Topo>
+          <img src={HeaderInfluencer} alt="Header" width="100%" />
+        </Topo>
+        <Paper
+          elevation={12}
+          style={{ position: "relative", top: "-70px" }}
+        >
+          <Box
+            sx={{ width: 900, height: 550 }}
+            justifyContent="center"
+            display="flex"
+          >
             <form onSubmit={handleSubmit(onSubmit)} style={{ width: "450px" }}>
               <TitleLogin>{titleEmail}</TitleLogin>
               <TextField
@@ -119,12 +118,12 @@ const AmbassadorCreateAccount = () => {
                 </Button>
               </DivSubmitButton>
             </form>
-          </StyleCard>
-        </BoxCard>
-        <LoginLink>
+          </Box>
+          <LoginLink>
           <Link to={ROUTING_PATHS.AmbassadorLogin}>Entrar</Link>
         </LoginLink>
-      </RootContainer>
+        </Paper>
+      </Grid>
     </>
   );
 };

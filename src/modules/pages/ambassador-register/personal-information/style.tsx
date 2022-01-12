@@ -1,27 +1,14 @@
 import styled from "@emotion/styled";
 import { Grid, RadioGroup } from "@mui/material";
 
-export const RootContainer = styled.div`
-  background-color: #000000;
-  width: 100%;
+export const Topo = styled.div`
   height: auto;
-  padding-bottom: 50px;
-`;
-
-export const Topo = styled.img`
-  min-width: var(--page-min-width);
-  width: 100%;
-  height: auto;
-  position: absolute;
-  display: flex;
+  box-shadow: none;
+  display: grid;
+  place-items: center;
+  justify-content: space-around;
   align-items: center;
-`;
-
-export const BoxCard = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  padding-top: 20vw;
+  justify-items: center;
 `;
 
 export const StyleCard = styled.div`

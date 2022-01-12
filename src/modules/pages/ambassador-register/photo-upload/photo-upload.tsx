@@ -3,7 +3,7 @@ import CameraIconSVG from "../../../../assets/img/photo-upload/camera-icon.svg";
 import CloudIconSVG from "../../../../assets/img/photo-upload/cloud-icon.svg";
 import ChosseFileSVG from "../../../../assets/img/photo-upload/subtitle-choose-file.svg";
 
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 
 import {
   RootContainer,
@@ -28,53 +28,61 @@ const PhotoUpload = () => {
 
   return (
     <>
-    <RootContainer>
+      <RootContainer>
         <Topo src={HeaderInfluencerSVG} alt="topo-header" />
         <BoxCard>
-          <StyleCard>
-            <CameraIcon>
-              <img src={CameraIconSVG} alt="CameraIcon" />
-              <Title>{title}</Title>
-            </CameraIcon>
-            <SubTitle>{subTitle}</SubTitle>
-            <StyleUploadFile>
-              <StylePhotoUpload>
-                <CloudIcon>
-                  <input
-                    type="file"
-                    multiple
-                    style={{
-                      position: "absolute",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      paddingTop: "100px",
-                      paddingLeft: "15px",
-                      padding: "90px",
-                      opacity: "0",
-                      cursor: "pointer",
-                    }}
-                  />
-                  <img src={CloudIconSVG} alt="CloudIcon" />
-                </CloudIcon>
-                <ChooseFile>
-                  <img src={ChosseFileSVG} alt="ChooseFile" />
-                </ChooseFile>
-              </StylePhotoUpload>
-            </StyleUploadFile>
-            <DivSubmitButton>
-              <Button
-                variant="contained"
-                type="submit"
-                fullWidth
-              >
-                {send}
-              </Button>
-            </DivSubmitButton>
-          </StyleCard>
+          <Grid container xs={12} justifyContent="center">
+            <StyleCard>
+              <CameraIcon>
+                <img src={CameraIconSVG} alt="CameraIcon" />
+                <Title>{title}</Title>
+              </CameraIcon>
+              <Grid container xs={12} justifyContent="center">
+                <SubTitle>{subTitle}</SubTitle>
+              </Grid>
+              <Grid item xs={12} justifyContent="center">
+                <StyleUploadFile>
+                  <StylePhotoUpload>
+                    <CloudIcon>
+                      <input
+                        type="file"
+                        multiple
+                        style={{
+                          position: "absolute",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          paddingTop: "100px",
+                          paddingLeft: "15px",
+                          padding: "90px",
+                          opacity: "0",
+                          cursor: "pointer",
+                        }}
+                      />
+                      <img src={CloudIconSVG} alt="CloudIcon" />
+                    </CloudIcon>
+                    <ChooseFile>
+                      <img src={ChosseFileSVG} alt="ChooseFile" />
+                    </ChooseFile>
+                  </StylePhotoUpload>
+                </StyleUploadFile>
+
+                <DivSubmitButton>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    size="large"
+                    fullWidth
+                    style={{ maxWidth: "320px" }}
+                  >
+                    {send}
+                  </Button>
+                </DivSubmitButton>
+              </Grid>
+            </StyleCard>
+          </Grid>
         </BoxCard>
-        </RootContainer>
-        
+      </RootContainer>
     </>
   );
 };

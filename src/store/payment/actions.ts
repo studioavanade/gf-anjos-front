@@ -79,6 +79,14 @@ const submitPaymentSuccess = () => ({
   type: PaymentTypes.SUBMIT_PAYMENT_SUCCESS,
 });
 
+// Submit Payment
+export const setDonationValue = (donationValue: number) => (dispatch: any) => {
+  dispatch({
+    payload: donationValue,
+    type: PaymentTypes.SET_DONATION_VALUE,
+  });
+};
+
 // Clear states
 export const clearStates = () => (dispatch: any) => {
   dispatch({

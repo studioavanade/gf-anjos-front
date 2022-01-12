@@ -3,9 +3,10 @@ import { IPaymentStates, PaymentTypes } from "./types";
 const initialState: IPaymentStates = {
   loading: false,
   error: undefined,
-  currentStep: 0,
+  currentStep: 5,
   donator: undefined,
-  paymentSubmitted: false,
+  paymentSubmitted: true,
+  donationValue: 0,
 };
 
 const paymentReducer = (
@@ -15,6 +16,7 @@ const paymentReducer = (
   switch (action.type) {
     case PaymentTypes.SET_PAYMENT_STEP:
       return {
+        ...state,
         currentStep: action.payload,
       };
     case PaymentTypes.CREATE_DONATOR_ACCOUNT_SUCCESS:
@@ -40,15 +42,20 @@ const paymentReducer = (
           id: action.payload.id,
         },
       };
-      case PaymentTypes.SUBMIT_PAYMENT_SUCCESS:
-        return {
-          ...state,
-          paymentSubmitted: false,
-        };
-        case PaymentTypes.CLEAR_STATES:
-          return {
-            ...initialState
-          };
+    case PaymentTypes.SUBMIT_PAYMENT_SUCCESS:
+      return {
+        ...state,
+        paymentSubmitted: false,
+      };
+    case PaymentTypes.CLEAR_STATES:
+      return {
+        ...initialState,
+      };
+    case PaymentTypes.SET_DONATION_VALUE:
+      return {
+        ...state,
+        donationValue: action.payload,
+      };
 
     default:
       return state;

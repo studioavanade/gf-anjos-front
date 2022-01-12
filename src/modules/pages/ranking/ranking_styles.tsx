@@ -5,27 +5,13 @@ export const RootContainer = styled.div`
 `;
 
 export const HeaderInfluencer = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-`;
-
-export const BoxCentralizacion = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
+  height: auto;
+  box-shadow: none;
+  display: grid;
+  place-items: center;
+  justify-content: space-around;
   align-items: center;
-`;
-
-export const InfluencerBox = styled.div`
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  background: #ffffff;
-  border-radius: 8px;
-  width: 1200px;
-  height: 460px;
-  top: -80.75px;
+  justify-items: center;
 `;
 
 export const TitleInfluencerBox = styled.div`
@@ -46,15 +32,6 @@ export const SubTitleInfluencerBox = styled.div`
   font-family: "AvenirLTSd Roman";
   weight: 500;
   font-size: 20px;
-`;
-
-export const ColumnPhrasesBox = styled.div`
-  display: center;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px;
-  padding-top: 70px;
-  font-size: 24px;
 `;
 
 export const StylePharseCreatePage = styled.div`
@@ -81,10 +58,10 @@ export const StyleIcon = styled.div`
 
 export const DivSubmitButton = styled.div`
   position: relative;
-  padding-top: 35px;
+  padding-top: 95px;
   text-align: center;
   max-width: 450px;
-  left: 330.4px;
+  left: 340.4px;
 `;
 
 export const StyleButtonDialog = styled.div`
@@ -108,12 +85,6 @@ export const StyleBackgroundConcession = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-`;
-
-export const BackgroundImg = styled.div`
-  opacity: 50%;
-  position: absolute;
-  top: -120px;
 `;
 
 export const StyleTitleYourInfluencer = styled.div`
@@ -266,6 +237,7 @@ export const CarouselStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
 export const CarouselSlider = styled.div`
@@ -273,7 +245,12 @@ export const CarouselSlider = styled.div`
   object-fit: cover;
   border-radius: 10px;
   display: block;
-  cursor: pointer;
+`;
+
+export const BackgroundImg = styled.div`
+  opacity: 50%;
+  position: absolute;
+  top: -120px;
 `;
 
 export const ItemPhotos = styled.div`
@@ -288,4 +265,10 @@ export const ItemPhotos = styled.div`
   font-size: 4em;
   border-radius: 10px;
   cursor: pointer;
+`;
+
+export const LoginLink = styled.div`
+  color: white !important;
+  margin-top: 32px;
+  text-align: center;
 `;

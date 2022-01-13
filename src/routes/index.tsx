@@ -5,7 +5,6 @@ import PersonalInformation from "../modules/pages/ambassador-register/personal-i
 import AmbassadorCreateAccount from "../modules/pages/ambassador-register/create-account/create-account";
 import PaymentSteps from "./../modules/pages/payment-steps";
 import AmbassadorLogin from "../modules/pages/ambassador-login";
-import PrivateRoute from "./private-route/index";
 
 const AppRoutes = () => {
   return (

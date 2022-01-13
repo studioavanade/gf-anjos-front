@@ -51,7 +51,7 @@ html {
 
 body {
   font-family: "AvenirLTStd Book", Courier, monospace;
-   /*overflow-x: hidden; Hide horizontal scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar; */
   margin: 0;
   padding: 0;
   min-width: var(--page-min-width);

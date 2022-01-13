@@ -190,12 +190,8 @@ export const CardStyleListCompany = styled.div`
   height: 388px;
 `;
 
-export const StyleColorCardAndMovies = styled.div`
+export const StyleColorText = styled.div`
   color: #ffffff;
-  text-align: center;
-`;
-
-export const StyleTitleText = styled.div`
   text-align: center;
   font-family: "AvenirLTSd Roman";
 `;
@@ -220,8 +216,6 @@ export const StyleSubTitleGF = styled.div`
 `;
 
 export const StyleMovies = styled.div`
-  max-width: 750px;
-  text-align: center;
   padding-top: 80px;
 `;
 

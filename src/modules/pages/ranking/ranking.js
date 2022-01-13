@@ -60,8 +60,7 @@ import {
   CardStyleListName,
   CardStyleListCompany,
   IconImgPersons,
-  StyleColorCardAndMovies,
-  StyleTitleText,
+  StyleColorText,
   TitleGF,
   StyleSubTitleGF,
   StyleMovies,
@@ -359,18 +358,18 @@ const Ranking = () => {
               </PaperCardBox>
             </Grid>
             <Grid container justifyContent="space-around">
-              <Box display="flex">
-                <Grid item xs={12}>
-                  <StyleColorCardAndMovies>
-                    <StyleTitleText>
-                      <StyleSubTitleGF>
-                        <TitleGF>{titleGF}</TitleGF>
-                        {subTitleGF}
-                      </StyleSubTitleGF>
-                    </StyleTitleText>
-                  </StyleColorCardAndMovies>
-                </Grid>
-                <Grid item xs={12}>
+              <Grid item xs={12} md={6}>
+                <Box>
+                  <StyleColorText>
+                    <StyleSubTitleGF>
+                      <TitleGF>{titleGF}</TitleGF>
+                      {subTitleGF}
+                    </StyleSubTitleGF>
+                  </StyleColorText>
+                </Box>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Box>
                   <StyleMovies>
                     <iframe
                       width="630"
@@ -380,8 +379,8 @@ const Ranking = () => {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     ></iframe>
                   </StyleMovies>
-                </Grid>
-              </Box>
+                </Box>
+              </Grid>
             </Grid>
           </StyleBackgroundConcession>
         </Grid>

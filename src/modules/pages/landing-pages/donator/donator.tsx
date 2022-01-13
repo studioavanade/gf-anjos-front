@@ -11,6 +11,9 @@ import { Box, Button, Grid, Paper, TextField } from "@mui/material";
 import {
   HeaderInfluencer,
   RootContainer,
+  StyleBoxPerfil,
+  PaperCards,
+  PaperDonation,
   BackgroundImg,
   StylePerfil,
   TitlePerson,
@@ -22,6 +25,9 @@ import {
   StyleMoneyIcon,
   StyleBoxTitleDonate,
   StyleBoxGoal,
+  StyleCardGoal,
+  StyleSubtitleDonation,
+  StyleCardDonut,
   StyleTitleGoal,
   StyleTitleCollected,
   StyleCentralizacion,
@@ -80,7 +86,7 @@ const Donation = () => {
         </BackgroundImg>
 
         <Grid container justifyContent="center">
-          <Paper elevation={12} style={{ position: "relative", top: "-90px" }}>
+          <StyleBoxPerfil>
             <Box
               sx={{ width: 1150, height: 550 }}
               justifyContent="center"
@@ -107,7 +113,7 @@ const Donation = () => {
                 <SubTitleAngel>{subTitleAngel}</SubTitleAngel>
               </StyleTitleDonation>
             </Box>
-          </Paper>
+          </StyleBoxPerfil>
         </Grid>
         <StyleTitleRecurring>{titleRecurring}</StyleTitleRecurring>
         <Grid container justifyContent="space-around">
@@ -116,9 +122,7 @@ const Donation = () => {
             justifyContent="space-around"
             paddingBottom="10px"
           >
-            <Paper
-              style={{ position: "relative", width: "300px", height: "195px" }}
-            >
+            <PaperCards>
               <StyleBoxTitleDonate>
                 <StyleMoneyIcon>
                   <img src={IconMoneySVG} alt="IconMoney" />
@@ -133,12 +137,10 @@ const Donation = () => {
                 <StyleMonth>{subTitleMonth}</StyleMonth>
                 <StyleTodayValue>{subTitleTwenty}</StyleTodayValue>
               </StyleCentralizacionValue>
-            </Paper>
+            </PaperCards>
           </Box>
           <Box paddingBottom="10px">
-            <Paper
-              style={{ position: "relative", width: "300px", height: "195px" }}
-            >
+            <PaperCards>
               <StyleBoxTitleDonate>
                 <StyleMoneyIcon>
                   <img src={IconMoneySVG} alt="IconMoney" />
@@ -153,12 +155,10 @@ const Donation = () => {
                 <StyleMonth>{subTitleMonth}</StyleMonth>
                 <StyleTodayValue>{subTitleFiffty}</StyleTodayValue>
               </StyleCentralizacionValue>
-            </Paper>
+            </PaperCards>
           </Box>
           <Box paddingBottom="10px">
-            <Paper
-              style={{ position: "relative", width: "300px", height: "195px" }}
-            >
+            <PaperCards>
               <StyleBoxTitleDonate>
                 <StyleMoneyIcon>
                   <img src={IconMoneySVG} alt="IconMoney" />
@@ -173,12 +173,10 @@ const Donation = () => {
                 <StyleMonth>{subTitleMonth}</StyleMonth>
                 <StyleTodayValue>{subTitleHundred}</StyleTodayValue>
               </StyleCentralizacionValue>
-            </Paper>
+            </PaperCards>
           </Box>
           <Box paddingBottom="10px">
-            <Paper
-              style={{ position: "relative", width: "300px", height: "195px" }}
-            >
+            <PaperCards>
               <StyleBoxTitleDonate>
                 <StyleMoneyIcon>
                   <img src={IconMoneySVG} alt="IconMoney" />
@@ -205,55 +203,34 @@ const Donation = () => {
                 <StyleMonth>{subTitleMonth}</StyleMonth>
                 <StyleTodayValue>{}</StyleTodayValue>
               </StyleCentralizacionValue>
-            </Paper>
+            </PaperCards>
           </Box>
         </Grid>
 
         <Grid container justifyContent="space-around">
           <Box>
             <StyleTitleGoal>{titleGoal}</StyleTitleGoal>
-            <Paper
-              style={{ position: "relative", width: "600px", height: "400px" }}
-            >
+            <PaperDonation>
               <StyleBoxGoal>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    paddingTop: "40px",
-                  }}
-                >
+                <StyleCardGoal>
                   <StyleDonut>
                     <DoughnutChart />
                   </StyleDonut>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: "18px",
-                  }}
-                >
-                  <div
-                    style={{ paddingTop: "25px", fontFamily: "Inter Light" }}
-                  >
+                </StyleCardGoal>
+                <StyleCardDonut>
+                  <StyleSubtitleDonation>
                     <b>310 de 500 </b> doadores já fizeram doações
-                  </div>
+                  </StyleSubtitleDonation>
                   <div style={{ fontFamily: "Inter Light" }}>
                     Faltam <b>190</b> doadores para atingir sua meta
                   </div>
-                </div>
+                </StyleCardDonut>
               </StyleBoxGoal>
-            </Paper>
+            </PaperDonation>
           </Box>
           <Box>
             <StyleTitleCollected>{titleCollected}</StyleTitleCollected>
-            <Paper
-              style={{ position: "relative", width: "600px", height: "400px" }}
-            >
+            <PaperDonation>
               <CardBoxCollected>
                 <StyleMoneyLarge>
                   <img src={IconMoneyLargeSVG} alt="IconMoney" />
@@ -263,7 +240,7 @@ const Donation = () => {
                 </div>
                 <StyleDonationMonth>{donationMonth}</StyleDonationMonth>
               </CardBoxCollected>
-            </Paper>
+            </PaperDonation>
           </Box>
         </Grid>
 

@@ -1,8 +1,50 @@
 import styled from "@emotion/styled";
+import { Paper } from "@mui/material";
 
 export const RootContainer = styled.div`
   background-color: #061936;
 `;
+
+export const StyleBoxPerfil = styled(Paper)`
+position: relative;
+top: -90px;
+`;
+
+
+export const PaperCards = styled(Paper)`
+position: relative;
+width: 300px;
+height: 195px;
+`;
+
+export const PaperDonation = styled(Paper)`
+position: relative;
+width: 600px;
+height: 400px;
+`;
+
+export const StyleSubtitleDonation = styled.div`
+padding-top: 25px;
+font-family: "Inter Light";
+`;
+
+
+export const StyleCardGoal = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+padding-top: 40px;
+`;
+
+
+export const StyleCardDonut = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+font-size: 18px;
+`;
+
 
 export const HeaderInfluencer = styled.div`
   height: auto;

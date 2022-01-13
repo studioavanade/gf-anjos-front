@@ -21,7 +21,7 @@
 
 :root {
   --theme-primary-color: #6d2077;
-  --page-min-width: 480px;
+  --page-min-width: 320px;
 }
 
 /* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

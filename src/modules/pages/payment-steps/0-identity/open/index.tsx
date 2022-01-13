@@ -3,13 +3,29 @@ import EnvelopeIconSVG from "../../../../../assets/img/payment/icon-envelope-car
 import { Button, TextField, Grid } from "@mui/material";
 
 import { ButtonContainer, CardIdentityOpen, Title } from "./styles";
+import { useForm } from "react-hook-form";
+
+interface ISubmitData {
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+}
 
 const IdentityStepOpen = () => {
   const titleIdentity = "Identificação";
   const createAccount = "Criar Conta";
 
+  const { handleSubmit } = useForm();
+
+  const onSubmit = (data: ISubmitData) => {
+    const { email, password, passwordConfirmation } = data;
+    console.log("email: ", email);
+    console.log("password: ", password);
+    console.log("passwordConfirmation: ", passwordConfirmation);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <CardIdentityOpen direction="column">
         <Grid container item direction="row" spacing={3}>
           <Grid item>

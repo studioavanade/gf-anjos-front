@@ -36,8 +36,8 @@ import { DARK_BLUE } from "./../../../styles/colors";
 
 const DashedStroke = () => (
   <Stroke height="1px" width="67%">
-    <g stroke="gray" stroke-width="3px">
-      <line x2="100%" y2="0" stroke-linecap="round" stroke-dasharray="8,10" />
+    <g stroke="gray" strokeWidth="3px">
+      <line x2="100%" y2="0" strokeLinecap="round" strokeDasharray="8,10" />
     </g>
   </Stroke>
 );
@@ -68,9 +68,15 @@ const PaymentSteps = () => {
   const Spacer = () => <div style={{ height: "32px" }} />;
 
   return (
-    <RootContainer direction="column" wrap="nowrap">
+    <RootContainer direction="column">
       <Background>
-        <div style={{ height: "fit-content", backgroundColor: DARK_BLUE }}>
+        <div
+          style={{
+            height: "fit-content",
+            backgroundColor: DARK_BLUE,
+            width: "100%",
+          }}
+        >
           <TopImage src={HEADER_SHORT} alt="banner" />
         </div>
         <div style={{ backgroundColor: "white", height: "100%" }} />
@@ -98,7 +104,7 @@ const PaymentSteps = () => {
               md={3}
               stepName="IDENTIFICAÇÃO"
               img={
-                getCurrentStep() === 0
+                getCurrentStep() === 0 && !paymentState.paymentSubmitted
                   ? ICON_IDENTITY_STEP_ACTIVE
                   : ICON_IDENTITY_STEP_INACTIVE
               }
@@ -108,7 +114,8 @@ const PaymentSteps = () => {
               md={3}
               stepName="CADASTRO"
               img={
-                getCurrentStep() === 1 || getCurrentStep() === 2
+                (getCurrentStep() === 1 || getCurrentStep() === 2) &&
+                !paymentState.paymentSubmitted
                   ? ICON_REGISTRATION_STEP_ACTIVE
                   : ICON_REGISTRATION_STEP_INACTIVE
               }
@@ -118,7 +125,7 @@ const PaymentSteps = () => {
               md={3}
               stepName="PAGAMENTO"
               img={
-                getCurrentStep() === 3
+                getCurrentStep() === 3 && !paymentState.paymentSubmitted
                   ? ICON_PAYMENT_STEP_ACTIVE
                   : ICON_PAYMENT_STEP_INACTIVE
               }

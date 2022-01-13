@@ -3,20 +3,24 @@ import styled from "@emotion/styled";
 export const RootContainer = styled.div`
   height: 940px;
   width: auto;
-  background-color: #000000;
+  background-color: #ffffff;
 `;
 
 export const Topo = styled.img`
-  width: 100%;
+  min-width: var(--page-min-width);
   height: auto;
   position: absolute;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
 `;
 
 export const BoxCard = styled.div`
   padding-top: 370px;
   display: flex;
   justify-content: center;
-  background-color: "#000000";
+  padding-top: 20vw;
 `;
 
 export const StyleCard = styled.div`
@@ -28,6 +32,9 @@ export const StyleCard = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
+  border: 3px solid #e7e7e7;
+  box-sizing: border-box;
+  border-radius: 8px;
 `;
 
 export const CameraIcon = styled.div`
@@ -42,15 +49,14 @@ export const Title = styled.div`
   font-size: 32px;
   font-family: "KG Life is Messy";
   padding-left: 10px;
+  white-space: normal;
 `;
 
 export const SubTitle = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 15px;
   font-family: "AvenirLTSd Roman";
-  font-weight: 300px;
+  max-width: 350px;
+  text-align: center;
 `;
 
 export const StyleUploadFile = styled.div`
@@ -88,10 +94,7 @@ export const ChooseFile = styled.div`
 `;
 
 export const DivSubmitButton = styled.div`
- position: relative;
+  position: relative;
   padding-top: 35px;
   text-align: center;
-  max-width: 450px;
-  left: 330.4px;
 `;
-

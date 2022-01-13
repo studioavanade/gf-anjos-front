@@ -7,9 +7,7 @@ import ButtonIncrementSVG from "../../../../assets/img/personal-information/butt
 import ButtonDecrementSVG from "../../../../assets/img/personal-information/button-descrement.svg";
 
 import {
-  RootContainer,
   Topo,
-  BoxCard,
   StyleCard,
   RegistrationIcon,
   TitleRegistration,
@@ -41,6 +39,7 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  Paper,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { PersonType } from "../../../../store/shared";
@@ -147,9 +146,17 @@ const PersonalInformation = () => {
   return (
     <>
       <PrivateComponentVerifier />
-      <RootContainer>
-        <Topo src={HeaderInfluencer} alt="Header-Influencer" />
-        <BoxCard>
+      <Grid container justifyContent="center">
+        <Topo>
+          <img src={HeaderInfluencer} alt="Header" width="100%" />
+        </Topo>
+        <Paper
+          elevation={12}
+          style={{ position: "relative",
+          top: "-70px",
+          width: "1300px"
+           }}
+        >
           <form onSubmit={handleSubmit(onSubmit)}>
             <StyleCard>
               <RegistrationIcon>
@@ -331,8 +338,8 @@ const PersonalInformation = () => {
               </StyleDonors>
             </StyleCard>
           </form>
-        </BoxCard>
-      </RootContainer>
+        </Paper>
+      </Grid>
     </>
   );
 };

@@ -54,18 +54,14 @@ import {
   StyleSubTitleFamily,
   StylePharseFamily,
   PaperCardBox,
-  StyleBoxRanking,
-  CardRanking,
   TitleRanking,
-  StyleCardPersons,
   CardPhysicalPerson,
   CardJuridicalPerson,
   CardStyleListName,
   CardStyleListCompany,
   IconImgPersons,
   StyleColorCardAndMovies,
-  StyleCardAndMovies,
-  StyleTitle,
+  StyleTitleText,
   TitleGF,
   StyleSubTitleGF,
   StyleMovies,
@@ -362,23 +358,31 @@ const Ranking = () => {
                 </Box>
               </PaperCardBox>
             </Grid>
-            <StyleColorCardAndMovies>
-              <StyleCardAndMovies>
-                <StyleTitle>
-                  <TitleGF>{titleGF}</TitleGF>
-                  <StyleSubTitleGF>{subTitleGF}</StyleSubTitleGF>
-                </StyleTitle>
-                <StyleMovies>
-                  <iframe
-                    width="630"
-                    height="420"
-                    src="https://www.youtube.com/embed/lHq387vic-c"
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  ></iframe>
-                </StyleMovies>
-              </StyleCardAndMovies>
-            </StyleColorCardAndMovies>
+            <Grid container justifyContent="space-around">
+              <Box display="flex">
+                <Grid item xs={12}>
+                  <StyleColorCardAndMovies>
+                    <StyleTitleText>
+                      <StyleSubTitleGF>
+                        <TitleGF>{titleGF}</TitleGF>
+                        {subTitleGF}
+                      </StyleSubTitleGF>
+                    </StyleTitleText>
+                  </StyleColorCardAndMovies>
+                </Grid>
+                <Grid item xs={12}>
+                  <StyleMovies>
+                    <iframe
+                      width="630"
+                      height="420"
+                      src="https://www.youtube.com/embed/lHq387vic-c"
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
+                  </StyleMovies>
+                </Grid>
+              </Box>
+            </Grid>
           </StyleBackgroundConcession>
         </Grid>
       </RootContainer>

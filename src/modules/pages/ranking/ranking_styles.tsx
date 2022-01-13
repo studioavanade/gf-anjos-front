@@ -192,18 +192,10 @@ export const CardStyleListCompany = styled.div`
 
 export const StyleColorCardAndMovies = styled.div`
   color: #ffffff;
+  text-align: center;
 `;
 
-export const StyleCardAndMovies = styled.div`
-  display: center;
-  justify-content: center;
-  align-items: center;
-  padding: 90px;
-  padding-top: 110px;
-  font-size: 24px;
-`;
-
-export const StyleTitle = styled.div`
+export const StyleTitleText = styled.div`
   text-align: center;
   font-family: "AvenirLTSd Roman";
 `;
@@ -212,6 +204,8 @@ export const TitleGF = styled.div`
   padding-bottom: 20px;
   font-family: "KG Life is Messy";
   font-size: 50px;
+  padding-top: 80px;
+  padding-bottom: "30px";
 `;
 
 export const StyleSubTitleGF = styled.div`
@@ -222,11 +216,13 @@ export const StyleSubTitleGF = styled.div`
   font-size: 25px;
   color: "#FFFFFF";
   padding: 20px;
+  padding-top: 50px;
 `;
 
 export const StyleMovies = styled.div`
   max-width: 750px;
   text-align: center;
+  padding-top: 80px;
 `;
 
 export const StyleBox = styled.div`

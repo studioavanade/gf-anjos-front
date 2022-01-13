@@ -36,6 +36,7 @@ html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
   scroll-behavior: smooth;
+  min-width: var(--page-min-width);
 }
 
 /* Sections
@@ -50,7 +51,7 @@ html {
 
 body {
   font-family: "AvenirLTStd Book", Courier, monospace;
-  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar; */
   margin: 0;
   padding: 0;
   min-width: var(--page-min-width);

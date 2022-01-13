@@ -2,6 +2,7 @@ import { IDonator } from "../donator/types";
 
 export enum PaymentTypes {
   SET_PAYMENT_STEP = "@payment/SET_PAYMENT_STEP",
+  SET_DONATION_VALUE = "@payment/SET_DONATION_VALUE",
   CREATE_DONATOR_ACCOUNT_SUCCESS = "@payment/CREATE_DONATOR_ACCOUNT_SUCCESS",
   SAVE_DONATOR_PERSONAL_DATA_SUCCESS = "@payment/SAVE_DONATOR_PERSONAL_DATA_SUCCESS",
   SUBMIT_DONATOR_SUCCESS = "@payment/SUBMIT_DONATOR_SUCCESS",
@@ -29,5 +30,6 @@ export interface IPaymentStates {
   error?: any;
   currentStep: number;
   donator?: IDonator;
-  paymentSubmitted?: boolean;
+  donationValue: number;
+  paymentSubmitted: boolean;
 }

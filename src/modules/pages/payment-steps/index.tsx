@@ -10,10 +10,10 @@ import {
   ICON_REGISTRATION_STEP_ACTIVE,
   ICON_PAYMENT_STEP_ACTIVE,
   ICON_CONFIRMATION_STEP_ACTIVE,
-} from "../../../assets/img/index";
+} from "../../../assets/img";
 import { ApplicationState } from "./../../../store/rootReducer";
 import {
-  OuterContentContainer,
+  InnerContentContainer,
   TopImage,
   StepsHeader,
   PageTitle,
@@ -22,26 +22,24 @@ import {
   StepName,
   StepsItemBG,
   BottomContent,
+  Background,
+  Stroke,
 } from "./styles";
 
-import DonationSummaryStep from "./summary/donation-summary";
-import ConfirmationStepOpen from "./confirmation/open/confirmation-open";
+import IdentityStep from "./0-identity";
+import PersonalStep from "./1-personal";
+import AddressStep from "./2-address";
+import PaymentStep from "./3-payment";
+import DonationSummaryStep from "./4-summary";
+import ConfirmationStep from "./5-confirmation";
+import { DARK_BLUE } from "./../../../styles/colors";
 
 const DashedStroke = () => (
-  <svg
-    height="1px"
-    width="70%"
-    style={{
-      position: "relative",
-      top: "93px",
-      zIndex: "1",
-      marginLeft: "20%",
-    }}
-  >
+  <Stroke height="1px" width="67%">
     <g stroke="gray" stroke-width="3px">
       <line x2="100%" y2="0" stroke-linecap="round" stroke-dasharray="8,10" />
     </g>
-  </svg>
+  </Stroke>
 );
 
 const PaymentSteps = () => {
@@ -67,12 +65,27 @@ const PaymentSteps = () => {
 
   const getCurrentStep = () => paymentState.currentStep;
 
+  const Spacer = () => <div style={{ height: "32px" }} />;
+
   return (
-    <RootContainer>
-      <TopImage src={HEADER_SHORT} alt="banner" />
-      <OuterContentContainer container alignItems="center" direction="column">
-        <TopContent>
-          <PageTitle item>{title}</PageTitle>
+    <RootContainer direction="column" wrap="nowrap">
+      <Background>
+        <div style={{ height: "fit-content", backgroundColor: DARK_BLUE }}>
+          <TopImage src={HEADER_SHORT} alt="banner" />
+        </div>
+        <div style={{ backgroundColor: "white", height: "100%" }} />
+      </Background>
+      <InnerContentContainer
+        container
+        item
+        alignItems="center"
+        direction="column"
+        wrap="nowrap"
+      >
+        <TopContent container item alignItems="center" justifyContent="center">
+          <PageTitle container item justifyContent="center">
+            {title}
+          </PageTitle>
           <DashedStroke />
           <StepsHeader
             container
@@ -81,7 +94,8 @@ const PaymentSteps = () => {
             direction="row"
           >
             <HeaderStepItem
-              xs={3}
+              xs={12}
+              md={3}
               stepName="IDENTIFICAÇÃO"
               img={
                 getCurrentStep() === 0
@@ -90,39 +104,59 @@ const PaymentSteps = () => {
               }
             />
             <HeaderStepItem
-              xs={3}
+              xs={12}
+              md={3}
               stepName="CADASTRO"
               img={
-                getCurrentStep() === 1
+                getCurrentStep() === 1 || getCurrentStep() === 2
                   ? ICON_REGISTRATION_STEP_ACTIVE
                   : ICON_REGISTRATION_STEP_INACTIVE
               }
             />
             <HeaderStepItem
-              xs={3}
+              xs={12}
+              md={3}
               stepName="PAGAMENTO"
               img={
-                getCurrentStep() === 2
+                getCurrentStep() === 3
                   ? ICON_PAYMENT_STEP_ACTIVE
                   : ICON_PAYMENT_STEP_INACTIVE
               }
             />
             <HeaderStepItem
-              xs={3}
+              xs={12}
+              md={3}
               stepName="CONFIRMAÇÃO"
               img={
-                getCurrentStep() === 3
+                paymentState.paymentSubmitted === true
                   ? ICON_CONFIRMATION_STEP_ACTIVE
                   : ICON_CONFIRMATION_STEP_INACTIVE
               }
             />
           </StepsHeader>
         </TopContent>
-        <BottomContent>Etapa atual:
-          <DonationSummaryStep />
-          <ConfirmationStepOpen />
-           {paymentState.currentStep}</BottomContent>
-      </OuterContentContainer>
+        <BottomContent container direction="row" spacing={3}>
+          {!paymentState.paymentSubmitted ? (
+            <>
+              <Grid item direction="column" xs={12} lg={4}>
+                <IdentityStep currentStep={paymentState.currentStep} />
+                <Spacer />
+                <PersonalStep currentStep={paymentState.currentStep} />
+              </Grid>
+              <Grid item direction="column" xs={12} lg={4}>
+                <AddressStep currentStep={paymentState.currentStep} />
+                <Spacer />
+                <PaymentStep currentStep={paymentState.currentStep} />
+              </Grid>
+              <Grid item container direction="column" xs={12} lg={4}>
+                <DonationSummaryStep />
+              </Grid>
+            </>
+          ) : (
+            <ConfirmationStep />
+          )}
+        </BottomContent>
+      </InnerContentContainer>
     </RootContainer>
   );
 };

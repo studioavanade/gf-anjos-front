@@ -53,6 +53,7 @@ import {
   StyleTitleYourInfluencer,
   StyleSubTitleFamily,
   StylePharseFamily,
+  PaperCardBox,
   StyleBoxRanking,
   CardRanking,
   TitleRanking,
@@ -282,79 +283,85 @@ const Ranking = () => {
                 </b>
               </StyleSubTitleFamily>
             </StylePharseFamily>
-            <StyleBoxRanking>
-              <CardRanking>
+            <Grid container justifyContent="center">
+              <PaperCardBox>
                 <TitleRanking>{titleRanking}</TitleRanking>
-                <StyleCardPersons>
-                  <CardPhysicalPerson>
-                    <IconImgPersons>
-                      <img src={IconPhysicalPersonSVG} alt="IconPerson" />
-                    </IconImgPersons>
-                    <CardStyleListName>
-                      <Table>
-                        <TableHead>
-                          <TableRow>
-                            <TableCell
-                              style={{
-                                fontWeight: "bold",
-                                justifyContent: "space-between",
-                              }}
-                            >
-                              {personName}
-                            </TableCell>
-                            <TableCell
-                              style={{
-                                fontWeight: "bold",
-                                justifyContent: "space-between",
-                              }}
-                            >
-                              {totalCollectedTitle}
-                            </TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          <TableCell>Nome completo da pessoa</TableCell>
-                          <TableCell>R$: 75.000,00</TableCell>
-                        </TableBody>
-                      </Table>
-                    </CardStyleListName>
-                  </CardPhysicalPerson>
-                  <CardJuridicalPerson>
-                    <IconImgPersons>
-                      <img src={IconJuridicalPersonSVG} alt="IconPerson" />
-                    </IconImgPersons>
-                    <CardStyleListCompany>
-                      <Table>
-                        <TableHead>
-                          <TableRow>
-                            <TableCell
-                              style={{
-                                fontWeight: "bold",
-                                justifyContent: "space-between",
-                              }}
-                            >
-                              {company}
-                            </TableCell>
-                            <TableCell
-                              style={{
-                                fontWeight: "bold",
-                                justifyContent: "space-between",
-                              }}
-                            >
-                              {totalCollectedTitle}
-                            </TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          <TableCell>Nome da emppresa</TableCell>
-                          <TableCell>R$: 75.000,00</TableCell>
-                        </TableBody>
-                      </Table>
-                    </CardStyleListCompany>
-                  </CardJuridicalPerson>
-                </StyleCardPersons>
-              </CardRanking>
-            </StyleBoxRanking>
+                <Box
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
+                  <Box paddingTop="50px">
+                    <CardPhysicalPerson>
+                      <IconImgPersons>
+                        <img src={IconPhysicalPersonSVG} alt="IconPerson" />
+                      </IconImgPersons>
+                      <CardStyleListName>
+                        <Table>
+                          <TableHead>
+                            <TableRow>
+                              <TableCell
+                                style={{
+                                  fontWeight: "bold",
+                                  justifyContent: "space-between",
+                                }}
+                              >
+                                {personName}
+                              </TableCell>
+                              <TableCell
+                                style={{
+                                  fontWeight: "bold",
+                                  justifyContent: "space-between",
+                                }}
+                              >
+                                {totalCollectedTitle}
+                              </TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            <TableCell>Nome completo da pessoa</TableCell>
+                            <TableCell>R$: 75.000,00</TableCell>
+                          </TableBody>
+                        </Table>
+                      </CardStyleListName>
+                    </CardPhysicalPerson>
+                  </Box>
+                  <Box paddingTop="50px">
+                    <CardJuridicalPerson>
+                      <IconImgPersons>
+                        <img src={IconJuridicalPersonSVG} alt="IconPerson" />
+                      </IconImgPersons>
+                      <CardStyleListCompany>
+                        <Table>
+                          <TableHead>
+                            <TableRow>
+                              <TableCell
+                                style={{
+                                  fontWeight: "bold",
+                                  justifyContent: "space-between",
+                                }}
+                              >
+                                {company}
+                              </TableCell>
+                              <TableCell
+                                style={{
+                                  fontWeight: "bold",
+                                  justifyContent: "space-between",
+                                }}
+                              >
+                                {totalCollectedTitle}
+                              </TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            <TableCell>Nome da emppresa</TableCell>
+                            <TableCell>R$: 75.000,00</TableCell>
+                          </TableBody>
+                        </Table>
+                      </CardStyleListCompany>
+                    </CardJuridicalPerson>
+                  </Box>
+                </Box>
+              </PaperCardBox>
+            </Grid>
             <StyleColorCardAndMovies>
               <StyleCardAndMovies>
                 <StyleTitle>

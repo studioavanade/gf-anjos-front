@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Paper } from "@mui/material";
 
 export const RootContainer = styled.div`
   background-color: #061936;
@@ -117,6 +118,7 @@ export const StyleSubTitleFamily = styled.div`
   font-family: "AvenirLTSd Roman";
   position: relative;
   font-size: 20px;
+  padding-bottom: 60px;
 `;
 
 export const StyleBoxRanking = styled.div`
@@ -126,13 +128,14 @@ export const StyleBoxRanking = styled.div`
   padding-top: 50px;
 `;
 
-export const CardRanking = styled.div`
+export const PaperCardBox = styled(Paper)`
   position: relative;
   justify-content: center;
   width: 1300px;
   height: 800px;
   background: #ffffff;
   border-radius: 8px;
+  padding-top: 35px;
 `;
 
 export const TitleRanking = styled.div`

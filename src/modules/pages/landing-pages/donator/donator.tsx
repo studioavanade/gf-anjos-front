@@ -6,29 +6,28 @@ import IconMoneySVG from "../../../../assets/img/landing-donation/icon-money.svg
 import IconMoneyLargeSVG from "../../../../assets/img/landing-donation/icon-money-large.svg";
 
 import DoughnutChart from "./doughnut-chart";
-import { Button, TextField } from "@mui/material";
+import { Box, Button, Grid, Paper, TextField } from "@mui/material";
 
 import {
   HeaderInfluencer,
   RootContainer,
+  StyleBoxPerfil,
+  PaperCards,
+  PaperDonation,
   BackgroundImg,
-  BoxCentralizacion,
-  InfluencerBox,
-  StylePerfilAndText,
   StylePerfil,
   TitlePerson,
   StyleTitleDonation,
   StyleSubsTitleDonation,
   SubTitleAngel,
   StyleTitleRecurring,
-  StyleCard,
-  CardBox,
   BoxTitleDonate,
   StyleMoneyIcon,
   StyleBoxTitleDonate,
-  StyleGoalAndCollected,
   StyleBoxGoal,
-  StyleBoxCollected,
+  StyleCardGoal,
+  StyleSubtitleDonation,
+  StyleCardDonut,
   StyleTitleGoal,
   StyleTitleCollected,
   StyleCentralizacion,
@@ -64,6 +63,9 @@ const Donation = () => {
   const titleDonateAnotherValue = "Doe outro valor";
   const subTitleReal = "R$";
   const subTitleMonth = "POR MÊS";
+  const titleTwenty = "20";
+  const titleFifty = "50";
+  const titleOneHundred = "100";
   const subTitleTwenty = "Apenas R$ 0,66 por dia";
   const subTitleFiffty = "Apenas R$ 1,66 por dia";
   const subTitleHundred = "Apenas R$ 3,33 por dia";
@@ -82,9 +84,15 @@ const Donation = () => {
             height="100%"
           />
         </BackgroundImg>
-        <BoxCentralizacion>
-          <InfluencerBox>
-            <StylePerfilAndText>
+
+        <Grid container justifyContent="center">
+          <StyleBoxPerfil>
+            <Box
+              sx={{ width: 1150, height: 550 }}
+              justifyContent="center"
+              display="flex"
+              paddingTop="90px"
+            >
               <StylePerfil>
                 <img src={PerfilSVG} alt="Perfil" />
                 <TitlePerson>{namePerfil}</TitlePerson>
@@ -104,129 +112,125 @@ const Donation = () => {
                 </StyleSubsTitleDonation>
                 <SubTitleAngel>{subTitleAngel}</SubTitleAngel>
               </StyleTitleDonation>
-            </StylePerfilAndText>
-          </InfluencerBox>
-        </BoxCentralizacion>
+            </Box>
+          </StyleBoxPerfil>
+        </Grid>
         <StyleTitleRecurring>{titleRecurring}</StyleTitleRecurring>
-        <StyleCard>
-          <CardBox style={{ background: "#FFFF" }}>
-            <StyleBoxTitleDonate>
-              <StyleMoneyIcon>
-                <img src={IconMoneySVG} alt="IconMoney" />
-                <BoxTitleDonate> {titleDonate} </BoxTitleDonate>
-              </StyleMoneyIcon>
-            </StyleBoxTitleDonate>
-            <StyleCentralizacionValue>
-              <div style={{ display: "flex", color: "#F5821F" }}>
-                <StyleReal>{subTitleReal}</StyleReal>
-                <StyleValue>20</StyleValue>
-              </div>
-              <StyleMonth>{subTitleMonth}</StyleMonth>
-              <StyleTodayValue>{subTitleTwenty}</StyleTodayValue>
-            </StyleCentralizacionValue>
-          </CardBox>
-          <CardBox style={{ background: "#FFFF" }}>
-            <StyleBoxTitleDonate>
-              <StyleMoneyIcon>
-                <img src={IconMoneySVG} alt="IconMoney" />
-                <BoxTitleDonate> {titleDonate} </BoxTitleDonate>
-              </StyleMoneyIcon>
-            </StyleBoxTitleDonate>
-            <StyleCentralizacionValue>
-              <div style={{ display: "flex", color: "#EB1D68" }}>
-                <StyleReal>{subTitleReal}</StyleReal>
-                <StyleValue>50</StyleValue>
-              </div>
-              <StyleMonth>{subTitleMonth}</StyleMonth>
-              <StyleTodayValue>{subTitleFiffty}</StyleTodayValue>
-            </StyleCentralizacionValue>
-          </CardBox>
-          <CardBox style={{ background: "#FFFF" }}>
-            <StyleBoxTitleDonate>
-              <StyleMoneyIcon>
-                <img src={IconMoneySVG} alt="IconMoney" />
-                <BoxTitleDonate> {titleDonate} </BoxTitleDonate>
-              </StyleMoneyIcon>
-            </StyleBoxTitleDonate>
-            <StyleCentralizacionValue>
-              <div style={{ display: "flex", color: "#00AEEF" }}>
-                <StyleReal>{subTitleReal}</StyleReal>
-                <StyleValue>100</StyleValue>
-              </div>
-              <StyleMonth>{subTitleMonth}</StyleMonth>
-              <StyleTodayValue>{subTitleHundred}</StyleTodayValue>
-            </StyleCentralizacionValue>
-          </CardBox>
-          <CardBox style={{ background: "#FFFF" }}>
-            <StyleBoxTitleDonate>
-              <StyleMoneyIcon>
-                <img src={IconMoneySVG} alt="IconMoney" />
-                <BoxTitleDonate> {titleDonateAnotherValue} </BoxTitleDonate>
-              </StyleMoneyIcon>
-            </StyleBoxTitleDonate>
-            <StyleCentralizacionValue>
-              <div
-                style={{
-                  display: "flex",
-                  color: "#00B094",
-                  paddingTop: "10px",
-                }}
-              >
-                <StyleReal>{subTitleReal}</StyleReal>
-                <StyleValue>
-                  <TextField
-                    id="value"
-                    variant="standard"
-                    style={{ width: "200px", margin: "12px" }}
-                  />
-                </StyleValue>
-              </div>
-              <StyleMonth>{subTitleMonth}</StyleMonth>
-              <StyleTodayValue>{}</StyleTodayValue>
-            </StyleCentralizacionValue>
-          </CardBox>
-        </StyleCard>
-        <StyleGoalAndCollected>
-          <div>
+        <Grid container justifyContent="space-around">
+          <Box
+            display="flex"
+            justifyContent="space-around"
+            paddingBottom="10px"
+          >
+            <PaperCards>
+              <StyleBoxTitleDonate>
+                <StyleMoneyIcon>
+                  <img src={IconMoneySVG} alt="IconMoney" />
+                  <BoxTitleDonate> {titleDonate} </BoxTitleDonate>
+                </StyleMoneyIcon>
+              </StyleBoxTitleDonate>
+              <StyleCentralizacionValue>
+                <div style={{ display: "flex", color: "#F5821F" }}>
+                  <StyleReal>{subTitleReal}</StyleReal>
+                  <StyleValue>{titleTwenty}</StyleValue>
+                </div>
+                <StyleMonth>{subTitleMonth}</StyleMonth>
+                <StyleTodayValue>{subTitleTwenty}</StyleTodayValue>
+              </StyleCentralizacionValue>
+            </PaperCards>
+          </Box>
+          <Box paddingBottom="10px">
+            <PaperCards>
+              <StyleBoxTitleDonate>
+                <StyleMoneyIcon>
+                  <img src={IconMoneySVG} alt="IconMoney" />
+                  <BoxTitleDonate> {titleDonate} </BoxTitleDonate>
+                </StyleMoneyIcon>
+              </StyleBoxTitleDonate>
+              <StyleCentralizacionValue>
+                <div style={{ display: "flex", color: "#EB1D68" }}>
+                  <StyleReal>{subTitleReal}</StyleReal>
+                  <StyleValue>{titleFifty}</StyleValue>
+                </div>
+                <StyleMonth>{subTitleMonth}</StyleMonth>
+                <StyleTodayValue>{subTitleFiffty}</StyleTodayValue>
+              </StyleCentralizacionValue>
+            </PaperCards>
+          </Box>
+          <Box paddingBottom="10px">
+            <PaperCards>
+              <StyleBoxTitleDonate>
+                <StyleMoneyIcon>
+                  <img src={IconMoneySVG} alt="IconMoney" />
+                  <BoxTitleDonate> {titleDonate} </BoxTitleDonate>
+                </StyleMoneyIcon>
+              </StyleBoxTitleDonate>
+              <StyleCentralizacionValue>
+                <div style={{ display: "flex", color: "#00AEEF" }}>
+                  <StyleReal>{subTitleReal}</StyleReal>
+                  <StyleValue>{titleOneHundred}</StyleValue>
+                </div>
+                <StyleMonth>{subTitleMonth}</StyleMonth>
+                <StyleTodayValue>{subTitleHundred}</StyleTodayValue>
+              </StyleCentralizacionValue>
+            </PaperCards>
+          </Box>
+          <Box paddingBottom="10px">
+            <PaperCards>
+              <StyleBoxTitleDonate>
+                <StyleMoneyIcon>
+                  <img src={IconMoneySVG} alt="IconMoney" />
+                  <BoxTitleDonate> {titleDonateAnotherValue} </BoxTitleDonate>
+                </StyleMoneyIcon>
+              </StyleBoxTitleDonate>
+              <StyleCentralizacionValue>
+                <div
+                  style={{
+                    display: "flex",
+                    color: "#00B094",
+                    paddingTop: "10px",
+                  }}
+                >
+                  <StyleReal>{subTitleReal}</StyleReal>
+                  <StyleValue>
+                    <TextField
+                      id="value"
+                      variant="standard"
+                      style={{ width: "200px", margin: "12px" }}
+                    />
+                  </StyleValue>
+                </div>
+                <StyleMonth>{subTitleMonth}</StyleMonth>
+                <StyleTodayValue>{}</StyleTodayValue>
+              </StyleCentralizacionValue>
+            </PaperCards>
+          </Box>
+        </Grid>
+
+        <Grid container justifyContent="space-around">
+          <Box>
             <StyleTitleGoal>{titleGoal}</StyleTitleGoal>
-            <div>
-              <div>
-                <StyleBoxGoal>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      paddingTop: "40px",
-                    }}
-                  >
-                    <StyleDonut>
-                      <DoughnutChart />
-                    </StyleDonut>
+            <PaperDonation>
+              <StyleBoxGoal>
+                <StyleCardGoal>
+                  <StyleDonut>
+                    <DoughnutChart />
+                  </StyleDonut>
+                </StyleCardGoal>
+                <StyleCardDonut>
+                  <StyleSubtitleDonation>
+                    <b>310 de 500 </b> doadores já fizeram doações
+                  </StyleSubtitleDonation>
+                  <div style={{ fontFamily: "Inter Light" }}>
+                    Faltam <b>190</b> doadores para atingir sua meta
                   </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      fontSize: "18px",
-                    }}
-                  >
-                    <div style={{ paddingTop: "25px", fontFamily: "Inter Light", }}>
-                      <b>310 de 500 </b> doadores já fizeram doações
-                    </div>
-                    <div style={{fontFamily: "Inter Light",}}>
-                      Faltam <b>190</b> doadores para atingir sua meta
-                    </div>
-                  </div>
-                </StyleBoxGoal>
-              </div>
-            </div>
-          </div>
-          <div>
+                </StyleCardDonut>
+              </StyleBoxGoal>
+            </PaperDonation>
+          </Box>
+          <Box>
             <StyleTitleCollected>{titleCollected}</StyleTitleCollected>
-            <StyleBoxCollected>
+            <PaperDonation>
               <CardBoxCollected>
                 <StyleMoneyLarge>
                   <img src={IconMoneyLargeSVG} alt="IconMoney" />
@@ -236,32 +240,39 @@ const Donation = () => {
                 </div>
                 <StyleDonationMonth>{donationMonth}</StyleDonationMonth>
               </CardBoxCollected>
-            </StyleBoxCollected>
-          </div>
-        </StyleGoalAndCollected>
-        <StyleCentralizacion>
-          <StyleParsheNetwork>{titleNetwork}</StyleParsheNetwork>
-        </StyleCentralizacion>
-        <StyleBackgroundLast>
-          <img
-            src={BackgroundLastSVF}
-            alt="backgroundblue"
-            width="100%"
-            height="100%"
-          />
-        </StyleBackgroundLast>
-        <StyleButton>
-          <DivSubmitButton>
-            <Button
-              href="https://www.youtube.com/watch?v=4xSAKGplFEw"
-              variant="contained"
-              type="submit"
-              fullWidth
-            >
-              {buttonWitch}
-            </Button>
-          </DivSubmitButton>
-        </StyleButton>
+            </PaperDonation>
+          </Box>
+        </Grid>
+
+        <Grid container justifyContent="center">
+          <Box>
+            <StyleCentralizacion>
+              <StyleParsheNetwork>{titleNetwork}</StyleParsheNetwork>
+            </StyleCentralizacion>
+          </Box>
+          <Box>
+            <StyleBackgroundLast>
+              <img
+                src={BackgroundLastSVF}
+                alt="backgroundblue"
+                width="100%"
+                height="100%"
+              />
+            </StyleBackgroundLast>
+            <StyleButton>
+              <DivSubmitButton>
+                <Button
+                  href="https://www.youtube.com/watch?v=4xSAKGplFEw"
+                  variant="contained"
+                  type="submit"
+                  fullWidth
+                >
+                  {buttonWitch}
+                </Button>
+              </DivSubmitButton>
+            </StyleButton>
+          </Box>
+        </Grid>
       </RootContainer>
     </>
   );

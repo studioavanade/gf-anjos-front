@@ -1,13 +1,59 @@
 import styled from "@emotion/styled";
+import { Paper } from "@mui/material";
 
 export const RootContainer = styled.div`
   background-color: #061936;
 `;
 
+export const StyleBoxPerfil = styled(Paper)`
+position: relative;
+top: -90px;
+`;
+
+
+export const PaperCards = styled(Paper)`
+position: relative;
+width: 300px;
+height: 195px;
+`;
+
+export const PaperDonation = styled(Paper)`
+position: relative;
+width: 600px;
+height: 400px;
+`;
+
+export const StyleSubtitleDonation = styled.div`
+padding-top: 25px;
+font-family: "Inter Light";
+`;
+
+
+export const StyleCardGoal = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+padding-top: 40px;
+`;
+
+
+export const StyleCardDonut = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+font-size: 18px;
+`;
+
+
 export const HeaderInfluencer = styled.div`
-  height: 100%;
-  padding: 0;
-  margin: 0;
+  height: auto;
+  box-shadow: none;
+  display: grid;
+  place-items: center;
+  justify-content: space-around;
+  align-items: center;
+  justify-items: center;
 `;
 
 export const BackgroundImg = styled.div`
@@ -16,31 +62,6 @@ export const BackgroundImg = styled.div`
   padding: 0;
   margin: 0;
   position: absolute;
-`;
-
-export const BoxCentralizacion = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-`;
-
-export const InfluencerBox = styled.div`
-  position: relative;
-  justify-content: center;
-  background: #ffffff;
-  border-radius: 8px;
-  width: 1200px;
-  height: 500px;
-  left: 0px;
-  top: -100px;
-`;
-
-export const StylePerfilAndText = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 50px;
-  line-height: 1.5;
 `;
 
 export const StylePerfil = styled.div`
@@ -84,21 +105,7 @@ export const StyleTitleRecurring = styled.div`
   font-size: 48px;
   color: #ffffff;
   position: relative;
-`;
-
-export const StyleCard = styled.div`
-  display: flex;
-  position: relative;
-  justify-content: space-around;
-  align-items: center;
-  padding-top: 80px;
-`;
-
-export const CardBox = styled.div`
-  position: relative;
-  width: 300px;
-  height: 195px;
-  border-radius: 10px;
+  padding-bottom: 80px;
 `;
 
 export const StyleMoneyIcon = styled.div`
@@ -154,17 +161,12 @@ export const StyleTodayValue = styled.div`
   padding-top: 10px;
 `;
 
-export const StyleGoalAndCollected = styled.div`
-  display: flex;
-  justify-content: space-around;
-  padding-top: 150px;
-`;
-
 export const StyleTitleGoal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 30px;
+  padding-top: 120px;
+  padding-bottom: 50px;
   font-family: "KG Life is Messy";
   font-size: 30px;
   color: #ffffff;
@@ -174,17 +176,11 @@ export const StyleTitleCollected = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 30px;
+  padding-top: 120px;
+  padding-bottom: 50px;
   font-family: "KG Life is Messy";
   font-size: 30px;
   color: #ffffff;
-`;
-
-export const StyleBoxCollected = styled.div`
-  width: 600px;
-  height: 400px;
-  background: #f2f2f2;
-  border-radius: 8px;
 `;
 
 export const StyleCentralizacion = styled.div`
@@ -212,7 +208,7 @@ export const StyleButton = styled.div`
 
 export const DivSubmitButton = styled.div`
   position: relative;
-  padding-top: 10px;
+  padding-top: 130px;
   text-align: center;
 `;
 

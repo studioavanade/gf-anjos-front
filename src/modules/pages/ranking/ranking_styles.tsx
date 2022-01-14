@@ -1,31 +1,18 @@
 import styled from "@emotion/styled";
+import { Paper } from "@mui/material";
 
 export const RootContainer = styled.div`
   background-color: #061936;
 `;
 
 export const HeaderInfluencer = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-`;
-
-export const BoxCentralizacion = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
+  height: auto;
+  box-shadow: none;
+  display: grid;
+  place-items: center;
+  justify-content: space-around;
   align-items: center;
-`;
-
-export const InfluencerBox = styled.div`
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  background: #ffffff;
-  border-radius: 8px;
-  width: 1200px;
-  height: 460px;
-  top: -80.75px;
+  justify-items: center;
 `;
 
 export const TitleInfluencerBox = styled.div`
@@ -46,15 +33,6 @@ export const SubTitleInfluencerBox = styled.div`
   font-family: "AvenirLTSd Roman";
   weight: 500;
   font-size: 20px;
-`;
-
-export const ColumnPhrasesBox = styled.div`
-  display: center;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px;
-  padding-top: 70px;
-  font-size: 24px;
 `;
 
 export const StylePharseCreatePage = styled.div`
@@ -81,10 +59,10 @@ export const StyleIcon = styled.div`
 
 export const DivSubmitButton = styled.div`
   position: relative;
-  padding-top: 35px;
+  padding-top: 95px;
   text-align: center;
   max-width: 450px;
-  left: 330.4px;
+  left: 340.4px;
 `;
 
 export const StyleButtonDialog = styled.div`
@@ -108,12 +86,6 @@ export const StyleBackgroundConcession = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-`;
-
-export const BackgroundImg = styled.div`
-  opacity: 50%;
-  position: absolute;
-  top: -120px;
 `;
 
 export const StyleTitleYourInfluencer = styled.div`
@@ -146,6 +118,7 @@ export const StyleSubTitleFamily = styled.div`
   font-family: "AvenirLTSd Roman";
   position: relative;
   font-size: 20px;
+  padding-bottom: 60px;
 `;
 
 export const StyleBoxRanking = styled.div`
@@ -155,13 +128,14 @@ export const StyleBoxRanking = styled.div`
   padding-top: 50px;
 `;
 
-export const CardRanking = styled.div`
+export const PaperCardBox = styled(Paper)`
   position: relative;
   justify-content: center;
   width: 1300px;
   height: 800px;
   background: #ffffff;
   border-radius: 8px;
+  padding-top: 35px;
 `;
 
 export const TitleRanking = styled.div`
@@ -216,20 +190,8 @@ export const CardStyleListCompany = styled.div`
   height: 388px;
 `;
 
-export const StyleColorCardAndMovies = styled.div`
+export const StyleColorText = styled.div`
   color: #ffffff;
-`;
-
-export const StyleCardAndMovies = styled.div`
-  display: center;
-  justify-content: center;
-  align-items: center;
-  padding: 90px;
-  padding-top: 110px;
-  font-size: 24px;
-`;
-
-export const StyleTitle = styled.div`
   text-align: center;
   font-family: "AvenirLTSd Roman";
 `;
@@ -238,6 +200,8 @@ export const TitleGF = styled.div`
   padding-bottom: 20px;
   font-family: "KG Life is Messy";
   font-size: 50px;
+  padding-top: 80px;
+  padding-bottom: "30px";
 `;
 
 export const StyleSubTitleGF = styled.div`
@@ -248,11 +212,11 @@ export const StyleSubTitleGF = styled.div`
   font-size: 25px;
   color: "#FFFFFF";
   padding: 20px;
+  padding-top: 50px;
 `;
 
 export const StyleMovies = styled.div`
-  max-width: 750px;
-  text-align: center;
+  padding-top: 80px;
 `;
 
 export const StyleBox = styled.div`
@@ -266,6 +230,7 @@ export const CarouselStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
 export const CarouselSlider = styled.div`
@@ -273,7 +238,12 @@ export const CarouselSlider = styled.div`
   object-fit: cover;
   border-radius: 10px;
   display: block;
-  cursor: pointer;
+`;
+
+export const BackgroundImg = styled.div`
+  opacity: 50%;
+  position: absolute;
+  top: -120px;
 `;
 
 export const ItemPhotos = styled.div`
@@ -288,4 +258,10 @@ export const ItemPhotos = styled.div`
   font-size: 4em;
   border-radius: 10px;
   cursor: pointer;
+`;
+
+export const LoginLink = styled.div`
+  color: white !important;
+  margin-top: 32px;
+  text-align: center;
 `;

@@ -10,15 +10,20 @@ import IconPhysicalPersonSVG from "../../../assets/img/ranking/icon-physical-per
 import IconJuridicalPersonSVG from "../../../assets/img/ranking/icon-juridical-person.svg";
 import IconClosedDialogSVG from "../../../assets/img/ranking/icon-closed-dialog.svg";
 
-import Table from "@mui/material/Table";
-import TableHead from "@mui/material/TableHead";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableRow from "@mui/material/TableRow";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
+import {
+  Box,
+  Grid,
+  Paper,
+  Table,
+  TableHead,
+  TableBody,
+  TableCell,
+  TableRow,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import Carousel from "react-elastic-carousel";
@@ -31,11 +36,8 @@ import Photo4SVG from "../../../assets/img/ranking/slider-images/photo4.svg";
 import {
   RootContainer,
   HeaderInfluencer,
-  InfluencerBox,
   TitleInfluencerBox,
   SubTitleInfluencerBox,
-  BoxCentralizacion,
-  ColumnPhrasesBox,
   StylePharseCreatePage,
   StylePharsePublicizePage,
   StylePharseAmountCollected,
@@ -51,24 +53,22 @@ import {
   StyleTitleYourInfluencer,
   StyleSubTitleFamily,
   StylePharseFamily,
-  StyleBoxRanking,
-  CardRanking,
+  PaperCardBox,
   TitleRanking,
-  StyleCardPersons,
   CardPhysicalPerson,
   CardJuridicalPerson,
   CardStyleListName,
   CardStyleListCompany,
   IconImgPersons,
-  StyleColorCardAndMovies,
-  StyleCardAndMovies,
-  StyleTitle,
+  StyleColorText,
   TitleGF,
   StyleSubTitleGF,
   StyleMovies,
 } from "./ranking_styles";
 
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import ROUTING_PATHS from "./../../../routes/paths/index";
 
 const Ranking = () => {
   const [open, setOpen] = React.useState(false);
@@ -109,95 +109,121 @@ const Ranking = () => {
   return (
     <>
       <RootContainer>
-        <HeaderInfluencer>
-          <img src={HeaderInfluencerSVG} width="100%" alt="HeaderInfluencer" />
-        </HeaderInfluencer>
-        <BoxCentralizacion>
-          <InfluencerBox>
-            <TitleInfluencerBox>{titleInfluencer}</TitleInfluencerBox>
-            <SubTitleInfluencerBox>{subTitleInfluencer}</SubTitleInfluencerBox>
-            <ColumnPhrasesBox>
-              <StylePharseCreatePage>
-                <StyleIcon>
-                  <img src={IconPageSVG} alt="IconPage" />
-                </StyleIcon>
-                {subtitleCreatePage}
-              </StylePharseCreatePage>
-              <StylePharsePublicizePage>
-                <StyleIcon>
-                  <img src={IconHeartSVG} alt="IconPage" />
-                </StyleIcon>
-                {subtitlePublicizePage}
-              </StylePharsePublicizePage>
-              <StylePharseAmountCollected>
-                <StyleIcon>
-                  <img src={IconWordSVG} alt="IconPage" />
-                </StyleIcon>
-                {subtitleAmountCollected}
-              </StylePharseAmountCollected>
-            </ColumnPhrasesBox>
-            <DivSubmitButton>
-              <Button
-                onClick={handleClickOpen}
-                variant="contained"
-                type="submit"
-                fullWidth
-              >
-                {buttonInfluencer}
-              </Button>
-              <Dialog
-                fullScreen={fullScreen}
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="Seja um influenciador"
-                fullWidth
-              >
-                <StyleButtonDialog>
-                  <DialogTitle
-                    style={{ fontFamily: "KG Life is Messy", fontSize: "27px" }}
-                  >
-                    {TitleDialog}
-                    <Button
-                      style={{
-                        paddingLeft: "130px",
-                        backgroundColor: "transparent",
-                      }}
-                      onClick={handleClose}
-                      autoFocus
-                    >
-                      <img src={IconClosedDialogSVG} alt="Icon Closed" />
-                    </Button>
-                  </DialogTitle>
-                </StyleButtonDialog>
-                <DialogContent>
-                  <DialogContentText>{subTitleDialog}</DialogContentText>
-                </DialogContent>
-                <Button
-                  onClick={handleClickOpen}
-                  variant="contained"
-                  type="submit"
-                  fullWidth
-                >
-                  {buttonStart}
-                </Button>
-              </Dialog>
-            </DivSubmitButton>
-          </InfluencerBox>
-        </BoxCentralizacion>
-        <StyleTitleInfluencers>{titleInfluencers}</StyleTitleInfluencers>
-        <StyleBackgroundConcession>
-          <BackgroundImg>
+        <Grid container justifyContent="center" xs={12}>
+          <HeaderInfluencer>
             <img
-              src={BackgroundConcessionSVG}
-              alt="BackgroundConcession"
+              src={HeaderInfluencerSVG}
               width="100%"
-              height="100%"
+              alt="HeaderInfluencer"
             />
-          </BackgroundImg>
-          <CarouselStyle>
-            <CarouselSlider>
-              <div>
-                <Carousel itemsToShow={4}>
+          </HeaderInfluencer>
+          <Grid container justifyContent="center">
+            <Paper
+              elevation={12}
+              style={{ position: "relative", left: "0px", top: "-100px" }}
+            >
+              <Box sx={{ width: 1150, height: 450 }}>
+                <Box>
+                  <TitleInfluencerBox>{titleInfluencer}</TitleInfluencerBox>
+                  <SubTitleInfluencerBox>
+                    {subTitleInfluencer}
+                  </SubTitleInfluencerBox>
+                </Box>
+                <Grid container justifyContent="center" xs={12}>
+                  <Box display="flex" paddingTop="90px">
+                    <Box>
+                      <StylePharseCreatePage>
+                        <StyleIcon>
+                          <img src={IconPageSVG} alt="IconPage" />
+                        </StyleIcon>
+                        {subtitleCreatePage}
+                      </StylePharseCreatePage>
+                    </Box>
+                    <Box>
+                      <StylePharsePublicizePage>
+                        <StyleIcon>
+                          <img src={IconHeartSVG} alt="IconPage" />
+                        </StyleIcon>
+                        {subtitlePublicizePage}
+                      </StylePharsePublicizePage>
+                    </Box>
+                    <Box>
+                      <StylePharseAmountCollected>
+                        <StyleIcon>
+                          <img src={IconWordSVG} alt="IconPage" />
+                        </StyleIcon>
+                        {subtitleAmountCollected}
+                      </StylePharseAmountCollected>
+                    </Box>
+                  </Box>
+                </Grid>
+                <DivSubmitButton>
+                  <Button
+                    onClick={handleClickOpen}
+                    variant="contained"
+                    type="submit"
+                    fullWidth
+                  >
+                    {buttonInfluencer}
+                  </Button>
+                  <Dialog
+                    fullScreen={fullScreen}
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="Seja um influenciador"
+                    fullWidth
+                  >
+                    <StyleButtonDialog>
+                      <DialogTitle
+                        style={{
+                          fontFamily: "KG Life is Messy",
+                          fontSize: "27px",
+                        }}
+                      >
+                        {TitleDialog}
+                        <Button
+                          style={{
+                            paddingLeft: "130px",
+                            backgroundColor: "transparent",
+                          }}
+                          onClick={handleClose}
+                          autoFocus
+                        >
+                          <img src={IconClosedDialogSVG} alt="Icon Closed" />
+                        </Button>
+                      </DialogTitle>
+                    </StyleButtonDialog>
+                    <DialogContent>
+                      <DialogContentText>{subTitleDialog}</DialogContentText>
+                    </DialogContent>
+                    <Button
+                      component={Link}
+                      to={ROUTING_PATHS.AmbassadorCreateAccount}
+                      onClick={handleClickOpen}
+                      variant="contained"
+                      type="submit"
+                      fullWidth
+                    >
+                      {buttonStart}
+                    </Button>
+                  </Dialog>
+                </DivSubmitButton>
+              </Box>
+            </Paper>
+          </Grid>
+          <StyleTitleInfluencers>{titleInfluencers}</StyleTitleInfluencers>
+          <StyleBackgroundConcession>
+            <BackgroundImg>
+              <img
+                src={BackgroundConcessionSVG}
+                alt="BackgroundConcession"
+                width="100%"
+                height="100%"
+              />
+            </BackgroundImg>
+            <CarouselStyle>
+              <CarouselSlider>
+                <Carousel focusOnSelect={true} itemsToShow={4}>
                   <ItemPhotos>
                     <img src={Photo1SVG} alt="photo1" />
                   </ItemPhotos>
@@ -221,117 +247,143 @@ const Ranking = () => {
                   </ItemPhotos>
                   <ItemPhotos>
                     <img src={Photo4SVG} alt="photo4" />
+                  </ItemPhotos>
+                  <ItemPhotos>
+                    <img src={Photo3SVG} alt="photo3" />
+                  </ItemPhotos>
+                  <ItemPhotos>
+                    <img src={Photo3SVG} alt="photo3" />
+                  </ItemPhotos>
+                  <ItemPhotos>
+                    <img src={Photo3SVG} alt="photo3" />
                   </ItemPhotos>
                 </Carousel>
-              </div>
-            </CarouselSlider>
-          </CarouselStyle>
-          <StyleTitleYourInfluencer>
-            <span style={{ color: "#04C6FB" }}>Como funciona</span> a sua
-            influência?
-          </StyleTitleYourInfluencer>
-          <StylePharseFamily>
-            <StyleSubTitleFamily>
-              Uma família de, aproximadamente, 5 pessoas precisa de 1 cesta
-              básica a cada 15 dias. O Valor arrecadado por você será
-              transformado em cestas básicas digitais que vão ajudar essas
-              famílias e não passar necessidade. As cestas são direcionadas para
-              as nossas unidades que farão todo o processo de entrega para as
-              famílias mais carentes.
-              <b>Vamos doar R$: 150,00 durante 2 meses para cada uma delas.</b>
-            </StyleSubTitleFamily>
-          </StylePharseFamily>
-          <StyleBoxRanking>
-            <CardRanking>
-              <TitleRanking>{titleRanking}</TitleRanking>
-              <StyleCardPersons>
-                <CardPhysicalPerson>
-                  <IconImgPersons>
-                    <img src={IconPhysicalPersonSVG} alt="IconPerson" />
-                  </IconImgPersons>
-                  <CardStyleListName>
-                    <Table>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell
-                            style={{
-                              fontWeight: "bold",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            {personName}
-                          </TableCell>
-                          <TableCell
-                            style={{
-                              fontWeight: "bold",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            {totalCollectedTitle}
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        <TableCell>Nome completo da pessoa</TableCell>
-                        <TableCell>R$: 75.000,00</TableCell>
-                      </TableBody>
-                    </Table>
-                  </CardStyleListName>
-                </CardPhysicalPerson>
-                <CardJuridicalPerson>
-                  <IconImgPersons>
-                    <img src={IconJuridicalPersonSVG} alt="IconPerson" />
-                  </IconImgPersons>
-                  <CardStyleListCompany>
-                    <Table>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell
-                            style={{
-                              fontWeight: "bold",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            {company}
-                          </TableCell>
-                          <TableCell
-                            style={{
-                              fontWeight: "bold",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            {totalCollectedTitle}
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        <TableCell>Nome da emppresa</TableCell>
-                        <TableCell>R$: 75.000,00</TableCell>
-                      </TableBody>
-                    </Table>
-                  </CardStyleListCompany>
-                </CardJuridicalPerson>
-              </StyleCardPersons>
-            </CardRanking>
-          </StyleBoxRanking>
-          <StyleColorCardAndMovies>
-            <StyleCardAndMovies>
-              <StyleTitle>
-                <TitleGF>{titleGF}</TitleGF>
-                <StyleSubTitleGF>{subTitleGF}</StyleSubTitleGF>
-              </StyleTitle>
-              <StyleMovies>
-                <iframe
-                  width="630"
-                  height="420"
-                  src="https://www.youtube.com/embed/lHq387vic-c"
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                ></iframe>
-              </StyleMovies>
-            </StyleCardAndMovies>
-          </StyleColorCardAndMovies>
-        </StyleBackgroundConcession>
+              </CarouselSlider>
+            </CarouselStyle>
+            <StyleTitleYourInfluencer>
+              <span style={{ color: "#04C6FB" }}>Como funciona</span> a sua
+              influência?
+            </StyleTitleYourInfluencer>
+            <StylePharseFamily>
+              <StyleSubTitleFamily>
+                Uma família de, aproximadamente, 5 pessoas precisa de 1 cesta
+                básica a cada 15 dias. O Valor arrecadado por você será
+                transformado em cestas básicas digitais que vão ajudar essas
+                famílias e não passar necessidade. As cestas são direcionadas
+                para as nossas unidades que farão todo o processo de entrega
+                para as famílias mais carentes.
+                <b>
+                  {" "}
+                  Vamos doar R$: 150,00 durante 2 meses para cada uma delas.
+                </b>
+              </StyleSubTitleFamily>
+            </StylePharseFamily>
+            <Grid container justifyContent="center">
+              <PaperCardBox>
+                <TitleRanking>{titleRanking}</TitleRanking>
+                <Box
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
+                  <Box paddingTop="50px">
+                    <CardPhysicalPerson>
+                      <IconImgPersons>
+                        <img src={IconPhysicalPersonSVG} alt="IconPerson" />
+                      </IconImgPersons>
+                      <CardStyleListName>
+                        <Table>
+                          <TableHead>
+                            <TableRow>
+                              <TableCell
+                                style={{
+                                  fontWeight: "bold",
+                                  justifyContent: "space-between",
+                                }}
+                              >
+                                {personName}
+                              </TableCell>
+                              <TableCell
+                                style={{
+                                  fontWeight: "bold",
+                                  justifyContent: "space-between",
+                                }}
+                              >
+                                {totalCollectedTitle}
+                              </TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            <TableCell>Nome completo da pessoa</TableCell>
+                            <TableCell>R$: 75.000,00</TableCell>
+                          </TableBody>
+                        </Table>
+                      </CardStyleListName>
+                    </CardPhysicalPerson>
+                  </Box>
+                  <Box paddingTop="50px">
+                    <CardJuridicalPerson>
+                      <IconImgPersons>
+                        <img src={IconJuridicalPersonSVG} alt="IconPerson" />
+                      </IconImgPersons>
+                      <CardStyleListCompany>
+                        <Table>
+                          <TableHead>
+                            <TableRow>
+                              <TableCell
+                                style={{
+                                  fontWeight: "bold",
+                                  justifyContent: "space-between",
+                                }}
+                              >
+                                {company}
+                              </TableCell>
+                              <TableCell
+                                style={{
+                                  fontWeight: "bold",
+                                  justifyContent: "space-between",
+                                }}
+                              >
+                                {totalCollectedTitle}
+                              </TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            <TableCell>Nome da emppresa</TableCell>
+                            <TableCell>R$: 75.000,00</TableCell>
+                          </TableBody>
+                        </Table>
+                      </CardStyleListCompany>
+                    </CardJuridicalPerson>
+                  </Box>
+                </Box>
+              </PaperCardBox>
+            </Grid>
+            <Grid container justifyContent="space-around">
+              <Grid item xs={12} md={6}>
+                <Box>
+                  <StyleColorText>
+                    <StyleSubTitleGF>
+                      <TitleGF>{titleGF}</TitleGF>
+                      {subTitleGF}
+                    </StyleSubTitleGF>
+                  </StyleColorText>
+                </Box>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Box>
+                  <StyleMovies>
+                    <iframe
+                      width="630"
+                      height="420"
+                      src="https://www.youtube.com/embed/lHq387vic-c"
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
+                  </StyleMovies>
+                </Box>
+              </Grid>
+            </Grid>
+          </StyleBackgroundConcession>
+        </Grid>
       </RootContainer>
     </>
   );

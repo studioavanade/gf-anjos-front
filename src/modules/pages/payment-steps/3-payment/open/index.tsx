@@ -39,7 +39,7 @@ const PaymentStepOpen = (props: any) => {
 
   return (
     <form>
-      <CardPaymentOpen item direction="column">
+      <CardPaymentOpen container item direction="column">
         <Grid container item direction="row" spacing={3}>
           <Grid item>
             <img src={PaymentIconSVG} alt="IconAddress" />

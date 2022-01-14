@@ -15,7 +15,7 @@ const DonationSummaryStep = () => {
   const totalSummary = "Total:";
 
   return (
-    <CardPersonalOpen item direction="column">
+    <CardPersonalOpen container item direction="column">
       <Grid container item direction="row" spacing={3}>
         <Grid item>
           <img src={DonationIconSVG} alt="IconAddress" />

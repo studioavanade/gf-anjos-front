@@ -121,17 +121,17 @@ const PaymentSteps = () => {
       <BottomContent container direction="row" spacing={3}>
         {!paymentState.paymentSubmitted ? (
           <>
-            <Grid item direction="column" xs={12} lg={4}>
+            <Grid container item direction="column" xs={12} lg={4}>
               <IdentityStep currentStep={paymentState.currentStep} />
               <Spacer />
               <PersonalStep currentStep={paymentState.currentStep} />
             </Grid>
-            <Grid item direction="column" xs={12} lg={4}>
+            <Grid container item direction="column" xs={12} lg={4}>
               <AddressStep currentStep={paymentState.currentStep} />
               <Spacer />
               <PaymentStep currentStep={paymentState.currentStep} />
             </Grid>
-            <Grid item container direction="column" xs={12} lg={4}>
+            <Grid container item direction="column" xs={12} lg={4}>
               <DonationSummaryStep />
             </Grid>
           </>

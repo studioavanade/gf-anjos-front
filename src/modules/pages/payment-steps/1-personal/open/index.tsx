@@ -22,7 +22,7 @@ const PersonalStepOpen = () => {
 
   return (
     <form>
-      <CardPersonalOpen item direction="column">
+      <CardPersonalOpen container item direction="column">
         <PersonIcon container item direction="row">
           <Grid item>
             <img src={PersonIconSVG} alt="IconPerson" />

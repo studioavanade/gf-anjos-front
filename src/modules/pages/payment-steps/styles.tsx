@@ -1,22 +1,6 @@
 import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
 
-export const RootContainer = styled(Grid)`
-  width: 100%;
-  height: 100vh;
-`;
-
-export const Background = styled.div`
-  height: 100%;
-  position: absolute;
-  z-index: -1;
-`;
-
-export const InnerContentContainer = styled(Grid)`
-  height: 100%;
-  padding-top: 12vw;
-`;
-
 export const TopContent = styled(Grid)`
   margin-bottom: 64px;
 `;
@@ -28,11 +12,7 @@ export const BottomContent = styled(Grid)`
   border: 3px solid #e5e5e5;
   padding-right: 24px !important;
   margin-left: 0px;
-`;
-
-export const TopImage = styled.img`
-  width: 100%;
-  height: auto;
+  min-width: var(--page-min-width);
 `;
 
 export const PageTitle = styled(Grid)`
@@ -53,6 +33,7 @@ export const StepsHeader = styled(Grid)`
   background-color: #e7e7e7;
   text-align: center;
   padding: 32px 16px;
+  min-width: var(--page-min-width);
 `;
 
 export const StepsItemBG = styled.div`

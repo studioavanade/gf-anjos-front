@@ -3,9 +3,9 @@ import { IPaymentStates, PaymentTypes } from "./types";
 const initialState: IPaymentStates = {
   loading: false,
   error: undefined,
-  currentStep: 5,
+  currentStep: 0,
   donator: undefined,
-  paymentSubmitted: true,
+  paymentSubmitted: false,
   donationValue: 0,
 };
 

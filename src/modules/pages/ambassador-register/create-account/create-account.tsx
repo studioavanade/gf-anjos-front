@@ -2,18 +2,14 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import HeaderInfluencer from "../../../../assets/img/email/header-influenciador.svg";
-import { Button, Stack, TextField, Grid, Paper, Box } from "@mui/material";
-import {
-  Topo,
-  TitleLogin,
-  DivSubmitButton,
-  LoginLink,
-} from "./styles";
+import { Button, Stack, TextField, Grid } from "@mui/material";
+import { TitleLogin, DivSubmitButton, LoginLink, Form } from "./styles";
 import { showErrorToast } from "../../../../utils/toast/index";
 import { createUser } from "../../../../store/auth/actions";
 import { ACCESSIBILITY_ERROR } from "../../../../styles/colors";
 import ROUTING_PATHS from "../../../../routes/paths";
+import BackgroundWithHeader from "./../../../components/background-with-header/index";
+import MainContainer from "./../../../components/main-container/index";
 
 const AmbassadorCreateAccount = () => {
   const dispatch = useDispatch();
@@ -52,79 +48,63 @@ const AmbassadorCreateAccount = () => {
   };
 
   return (
-    <>
-      <Grid container xs={12} justifyContent="center">
-        <Topo>
-          <img src={HeaderInfluencer} alt="Header" width="100%" />
-        </Topo>
-        <Paper
-          elevation={12}
-          style={{ position: "relative", top: "-70px" }}
-        >
-          <Box
-            sx={{ width: 900, height: 550 }}
-            justifyContent="center"
-            display="flex"
-          >
-            <form onSubmit={handleSubmit(onSubmit)} style={{ width: "450px" }}>
-              <TitleLogin>{titleEmail}</TitleLogin>
-              <TextField
-                id="email"
-                label="E-mail"
-                type="email"
-                variant="standard"
-                fullWidth
-                margin="normal"
-                {...register("email")}
-              />
-              <TextField
-                id="password"
-                label="Senha"
-                variant="standard"
-                fullWidth
-                margin="normal"
-                type="password"
-                {...register("password")}
-              />
-              <TextField
-                id="confirmPassword"
-                label="Confirmar senha"
-                variant="standard"
-                fullWidth
-                margin="normal"
-                type="password"
-                {...register("confirmPassword")}
-              />
-              {showPasswordRequirements && (
-                <Stack
-                  direction="column"
-                  spacing={2}
-                  color={ACCESSIBILITY_ERROR}
-                >
-                  <br />
-                  Requisitos da senha:
-                  <br />
-                  * Ter 6 ou mais dígitos
-                  <br />
-                  * Possuir pelo menos 1 número
-                  <br />
-                  * Possuir pelo menos 1 caractere especial
-                  <br />
-                </Stack>
-              )}
-              <DivSubmitButton>
-                <Button variant="contained" type="submit" fullWidth>
-                  {buttonContinue}
-                </Button>
-              </DivSubmitButton>
-            </form>
-          </Box>
-          <LoginLink>
+    <BackgroundWithHeader>
+      <MainContainer maxWidth="70vw">
+        <Grid container justifyContent="center" alignItems="center">
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <TitleLogin>{titleEmail}</TitleLogin>
+            <TextField
+              id="email"
+              label="E-mail"
+              type="email"
+              variant="standard"
+              fullWidth
+              margin="normal"
+              {...register("email")}
+            />
+            <TextField
+              id="password"
+              label="Senha"
+              variant="standard"
+              fullWidth
+              margin="normal"
+              type="password"
+              {...register("password")}
+            />
+            <TextField
+              id="confirmPassword"
+              label="Confirmar senha"
+              variant="standard"
+              fullWidth
+              margin="normal"
+              type="password"
+              {...register("confirmPassword")}
+            />
+            {showPasswordRequirements && (
+              <Stack direction="column" spacing={2} color={ACCESSIBILITY_ERROR}>
+                <br />
+                Requisitos da senha:
+                <br />
+                * Ter 6 ou mais dígitos
+                <br />
+                * Possuir pelo menos 1 número
+                <br />
+                * Possuir pelo menos 1 caractere especial
+                <br />
+              </Stack>
+            )}
+            <DivSubmitButton>
+              <Button variant="contained" type="submit" fullWidth>
+                {buttonContinue}
+              </Button>
+            </DivSubmitButton>
+          </Form>
+        </Grid>
+        <LoginLink>
           <Link to={ROUTING_PATHS.AmbassadorLogin}>Entrar</Link>
         </LoginLink>
-        </Paper>
-      </Grid>
-    </>
+      </MainContainer>
+    </BackgroundWithHeader>
   );
 };
 

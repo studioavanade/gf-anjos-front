@@ -35,7 +35,7 @@ const AddressStepOpen = () => {
 
   return (
     <form>
-      <CardAddressOpen item direction="column">
+      <CardAddressOpen container item direction="column">
         <AddressIcon container item direction="row" spacing={3}>
           <Grid item>
             <img src={AddressIconSVG} alt="IconAddress" />

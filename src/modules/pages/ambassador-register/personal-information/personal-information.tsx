@@ -7,7 +7,6 @@ import ButtonIncrementSVG from "../../../../assets/img/personal-information/butt
 import ButtonDecrementSVG from "../../../../assets/img/personal-information/button-descrement.svg";
 
 import {
-  Topo,
   StyleCard,
   RegistrationIcon,
   TitleRegistration,
@@ -54,10 +53,13 @@ import ROUTING_PATHS from "./../../../../routes/paths/index";
 import { useNavigate } from "react-router-dom";
 import { createAmbassador } from "./../../../../store/ambassador/actions";
 import PrivateComponentVerifier from "../../../components/private-component-verifier";
+import BackgroundWithHeader from "./../../../components/background-with-header/index";
+import MainContainer from "./../../../components/main-container/index";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const PersonalInformation = () => {
+  const isSmallScreen = useMediaQuery("(max-width: 900px");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [targetDonators, setTargetDonators] = useState(0);
   const [personType, setPersonType] = useState(PersonType.NATURAL_PERSON);
   const [education, setEducation] = useState("");
@@ -144,19 +146,10 @@ const PersonalInformation = () => {
   };
 
   return (
-    <>
-      <PrivateComponentVerifier />
-      <Grid container justifyContent="center">
-        <Topo>
-          <img src={HeaderInfluencer} alt="Header" width="100%" />
-        </Topo>
-        <Paper
-          elevation={12}
-          style={{ position: "relative",
-          top: "-70px",
-          width: "1300px"
-           }}
-        >
+    <BackgroundWithHeader>
+      <MainContainer maxWidth="70vw">
+        <Grid container justifyContent="center" alignItems="center">
+          <PrivateComponentVerifier />
           <form onSubmit={handleSubmit(onSubmit)}>
             <StyleCard>
               <RegistrationIcon>
@@ -172,19 +165,25 @@ const PersonalInformation = () => {
                 container
                 alignItems="center"
                 justifyContent="center"
-                spacing={0}
               >
                 <GridNoPadding
                   container
                   item
                   xs={12}
-                  sm={6}
-                  justifyContent="flex-end"
+                  md={6}
+                  justifyContent={isSmallScreen ? "center" : "flex-end"}
                 >
                   {titleCheckbox}{" "}
                   <PersonTypeText2>{titleYouAre}</PersonTypeText2>
                 </GridNoPadding>
-                <GridNoPadding container item xs={12} sm={6} direction="row">
+                <GridNoPadding
+                  container
+                  item
+                  xs={12}
+                  md={6}
+                  direction="row"
+                  justifyContent={isSmallScreen ? "center" : "flex-start"}
+                >
                   <FormControl component="fieldset">
                     <RadioGroupStyled
                       aria-label="personType"
@@ -338,9 +337,9 @@ const PersonalInformation = () => {
               </StyleDonors>
             </StyleCard>
           </form>
-        </Paper>
-      </Grid>
-    </>
+        </Grid>
+      </MainContainer>
+    </BackgroundWithHeader>
   );
 };
 

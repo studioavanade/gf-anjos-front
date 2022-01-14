@@ -9,7 +9,7 @@ import { DARK_BLUE } from "./../../../styles/colors";
 
 const BackgroundWithHeader = ({ children }: any) => {
   return (
-    <RootContainer direction="column">
+    <RootContainer container direction="column">
       <Background>
         <div
           style={{

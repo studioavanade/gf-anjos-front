@@ -1,10 +1,11 @@
-import PhotoUpload from "../ambassador-register/photo-upload/photo-upload";
+import PhotoUpload from "../ambassador-register/photo-upload";
 
 const Home = () => {
-  return <>
-  <PhotoUpload />
-  </>
+  return (
+    <>
+      <PhotoUpload />
+    </>
+  );
 };
 
 export default Home;
-

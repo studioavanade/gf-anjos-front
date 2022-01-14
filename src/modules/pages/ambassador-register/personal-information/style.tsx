@@ -1,34 +1,15 @@
 import styled from "@emotion/styled";
 import { Grid, RadioGroup } from "@mui/material";
 
-export const Topo = styled.div`
-  height: auto;
-  box-shadow: none;
-  display: grid;
-  place-items: center;
-  justify-content: space-around;
-  align-items: center;
-  justify-items: center;
-`;
-
 export const StyleCard = styled.div`
-  position: relative;
-  height: auto;
   text-align: center;
-  border-radius: 8px;
-  background-color: #ffffff;
-  padding: 64px;
 `;
 
 export const RegistrationIcon = styled.div`
-  display: flex;
-  justify-content: center;
   margin-bottom: 40px;
 `;
 
 export const TitleRegistration = styled.div`
-  display: flex;
-  justify-content: center;
   font-size: 32px;
   font-family: "KG Life is Messy";
   margin-left: 16px;
@@ -37,15 +18,11 @@ export const TitleRegistration = styled.div`
 export const CardPersonType = styled(Grid)`
   border-radius: 8px;
   background-color: #f2f2f2;
-  padding: 16px;
-  margin-bottom: 50px;
-  margin-left: 0px;
-  margin-top: 0px;
+  margin: 0px 16px 50px 0px;
 `;
 
 export const PersonTypeText2 = styled.span`
   color: #975e95;
-  margin-right: 16px;
 `;
 
 export const GridNoPadding = styled(Grid)`

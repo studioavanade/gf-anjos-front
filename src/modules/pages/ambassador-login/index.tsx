@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import HeaderInfluencer from "../../../assets/img/email/header-influenciador.svg";
-import { Button, TextField, Paper, Box, Grid } from "@mui/material";
-import { Topo, TitleLogin, DivSubmitButton, LoginLink } from "./styles";
+import { Button, TextField, Grid } from "@mui/material";
+import { TitleLogin, DivSubmitButton, LoginLink, Form } from "./styles";
 import { signIn } from "../../../store/auth/actions";
-import ROUTING_PATHS from "./../../../routes/paths/index";
+import ROUTING_PATHS from "./../../../routes/paths";
+import BackgroundWithHeader from "./../../components/background-with-header/";
+import MainContainer from "./../../components/main-container";
 
 const AmbassadorLogin = () => {
   const dispatch = useDispatch();
@@ -26,70 +27,45 @@ const AmbassadorLogin = () => {
   };
 
   return (
-    <>
-      <Grid container xs={12}>
-        <Topo>
-          <img src={HeaderInfluencer} alt="Header" width="100%" />
-        </Topo>
-        <Grid container justifyContent="center">
-          <Paper
-            elevation={12}
-            style={{ position: "relative",
-            left: "0px",
-            top: "-70px"
-             }}
-          >
-            <Box
-              sx={{ width: 900, height: 450 }}
-              justifyContent="center"
-              display="flex"
-            >
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                style={{ width: "450px" }}
-              >
-                <TitleLogin>{title}</TitleLogin>
-                <TextField
-                  id="email"
-                  label="E-mail"
-                  type="email"
-                  variant="standard"
-                  fullWidth
-                  margin="normal"
-                  required
-                  {...register("email")}
-                />
-                <TextField
-                  id="password"
-                  label="Senha"
-                  variant="standard"
-                  fullWidth
-                  margin="normal"
-                  type="password"
-                  required
-                  {...register("password")}
-                />
-                <DivSubmitButton>
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    fullWidth
-                    style={{ marginBottom: "16px" }}
-                  >
-                    {buttonContinue}
-                  </Button>
-                </DivSubmitButton>
-              </form>
-            </Box>
-            <LoginLink>
-              <Link to={ROUTING_PATHS.AmbassadorCreateAccount}>
-                {buttonCreateAccount}
-              </Link>
-            </LoginLink>
-          </Paper>
+    <BackgroundWithHeader>
+      <MainContainer maxWidth="70vw">
+        <Grid container justifyContent="center" alignItems="center">
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <TitleLogin>{title}</TitleLogin>
+            <TextField
+              id="email"
+              label="E-mail"
+              type="email"
+              variant="standard"
+              fullWidth
+              margin="normal"
+              required
+              {...register("email")}
+            />
+            <TextField
+              id="password"
+              label="Senha"
+              variant="standard"
+              fullWidth
+              margin="normal"
+              type="password"
+              required
+              {...register("password")}
+            />
+            <DivSubmitButton>
+              <Button variant="contained" type="submit" fullWidth>
+                {buttonContinue}
+              </Button>
+            </DivSubmitButton>
+          </Form>
         </Grid>
-      </Grid>
-    </>
+        <LoginLink>
+          <Link to={ROUTING_PATHS.AmbassadorCreateAccount}>
+            {buttonCreateAccount}
+          </Link>
+        </LoginLink>
+      </MainContainer>
+    </BackgroundWithHeader>
   );
 };
 

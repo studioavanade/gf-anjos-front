@@ -13,7 +13,7 @@ const PersonalStepClosed = () => {
   const subTitle = "Aguardando o preenchimento dos dados";
 
   return (
-    <CardPersonalClosed direction="column">
+    <CardPersonalClosed container direction="column">
       <PersonIcon container direction="row" spacing={3}>
         <Grid item>
           <img src={PersonIconSVG} alt="IconPerson" />

@@ -10,7 +10,7 @@ const IdentityStepClosed = () => {
   const paymentState = useSelector((state: ApplicationState) => state.payment);
 
   return (
-    <CardIdentityClosed item direction="column">
+    <CardIdentityClosed container item direction="column">
       <Grid container item direction="row" spacing={3}>
         <Grid item flexGrow={0}>
           <img src={EnvelopeIconSVG} alt="IconEnvelope" />

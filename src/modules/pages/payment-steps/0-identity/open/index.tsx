@@ -2,7 +2,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import EnvelopeIconSVG from "../../../../../assets/img/payment/icon-envelope-card.svg";
 
-import { Button, TextField, Grid, Stack } from "@mui/material";
+import {
+  Button,
+  TextField,
+  Grid,
+  Stack,
+  InputAdornment,
+  IconButton,
+  FilledInput,
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 import { ButtonContainer, CardIdentityOpen, Title } from "./styles";
 import { showErrorToast } from "../../../../../utils/toast";
@@ -38,6 +47,7 @@ const IdentityStepOpen = () => {
   const paymentState = useSelector(
     (state: ApplicationState) => state.payment.currentStep
   );
+  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = (data: ISubmitData) => {
     setShowPasswordRequirements(false);
@@ -106,6 +116,22 @@ const IdentityStepOpen = () => {
             required
             {...register("password")}
             style={{ marginBottom: "16px" }}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() => setShowPassword(!showPassword)}
+                    onMouseDown={(event) => {
+                      event.preventDefault();
+                    }}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
         </Grid>
         <Grid item>
@@ -119,6 +145,22 @@ const IdentityStepOpen = () => {
             margin="normal"
             {...register("confirmPassword")}
             style={{ marginBottom: "16px" }}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() => setShowPassword(!showPassword)}
+                    onMouseDown={(event) => {
+                      event.preventDefault();
+                    }}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
         </Grid>
         {showPasswordRequirements && (

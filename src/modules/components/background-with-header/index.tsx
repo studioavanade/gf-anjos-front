@@ -25,7 +25,7 @@ const BackgroundWithHeader = ({ bg = "white", children }: IProps) => {
   }, []);
 
   return (
-    <RootContainer direction="column">
+    <RootContainer container direction="column">
       <Background>
         <div
           style={{

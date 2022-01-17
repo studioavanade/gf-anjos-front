@@ -13,7 +13,7 @@ const AddressStepClosed = () => {
   const subTitle = "Aguardando o preenchimento dos dados";
 
   return (
-    <CardAddressClosed item direction="column">
+    <CardAddressClosed container item direction="column">
       <AddressIcon container direction="row" spacing={3}>
         <Grid item>
           <img src={AddressIconSVG} alt="IconAddress" />

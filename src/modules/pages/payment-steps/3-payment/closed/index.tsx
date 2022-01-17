@@ -8,7 +8,7 @@ const PaymentStepClosed = () => {
   const subTitle = "Aguardando o preenchimento dos dados";
 
   return (
-    <CardPaymentClosed item direction="column">
+    <CardPaymentClosed container item direction="column">
       <Grid container item direction="row" spacing={3}>
         <Grid item>
           <img src={PaymentIconSVG} alt="IconAddress" />

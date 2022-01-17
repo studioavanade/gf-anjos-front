@@ -1,4 +1,6 @@
-import * as React from "react";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AddressIconSVG from "../../../../../assets/img/payment/icon-address-card.svg";
 
 import {
@@ -6,7 +8,6 @@ import {
   AddressIcon,
   TitleAddress,
   DivSubmitButton,
-  StyleCep,
 } from "./styles";
 
 import {
@@ -16,10 +17,27 @@ import {
   Link,
   Button,
   Grid,
+  MenuItem,
 } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { COUNTRIES } from "../../../../../constants";
+import { ApplicationState } from "../../../../../store/rootReducer";
+import {
+  setDonatorAddress,
+  setPaymentStep,
+} from "../../../../../store/payment/actions";
+import { IAddress } from "../../../../../store/shared";
+
+interface IAddressForm {
+  street: string;
+  number: string;
+  neighborhood: string;
+  postalCode: string;
+  city: string;
+  state: string;
+  complement: string;
+}
 
 const AddressStepOpen = () => {
   const titleAddress = "Dados de Endereço";
@@ -27,15 +45,30 @@ const AddressStepOpen = () => {
   const notKnowCep = "Não sei meu CEP";
   //const address = "Endereço";
 
-  const [country, setCountry] = React.useState("");
+  const dispatch = useDispatch();
+  const paymentState = useSelector((state: ApplicationState) => state.payment);
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const { handleSubmit, register } = useForm();
+
+  const [country, setCountry] = useState("");
+
+  const handleChangeCountry = (event: SelectChangeEvent) => {
     setCountry(event.target.value);
   };
 
+  const onSubmit = (data: IAddressForm) => {
+    const address: IAddress = {
+      ...data,
+      country,
+    };
+
+    dispatch(setDonatorAddress(address));
+    dispatch(setPaymentStep(paymentState.currentStep + 1));
+  };
+
   return (
-    <form>
-      <CardAddressOpen container item direction="column">
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <CardAddressOpen item direction="column" spacing={3}>
         <AddressIcon container item direction="row" spacing={3}>
           <Grid item>
             <img src={AddressIconSVG} alt="IconAddress" />
@@ -45,7 +78,22 @@ const AddressStepOpen = () => {
           </Grid>
         </AddressIcon>
 
-        <Grid item>
+        <Grid item container>
+          <TextField
+            id="street"
+            label="Rua"
+            placeholder="Rua das palmeiras"
+            variant="standard"
+            type="text"
+            fullWidth
+            margin="normal"
+            required
+            style={{ marginBottom: "32px" }}
+            {...register("street")}
+          />
+        </Grid>
+
+        <Grid container item>
           <FormControl variant="standard" fullWidth>
             <InputLabel id="country">País</InputLabel>
             <Select
@@ -54,71 +102,128 @@ const AddressStepOpen = () => {
               label="País"
               variant="standard"
               placeholder="País"
-              onChange={handleChange}
+              onChange={handleChangeCountry}
               value={country}
+              style={{ marginBottom: "16px" }}
+              required
               fullWidth
             >
-              <option selected hidden>
+              <MenuItem selected hidden>
                 Selecione um país
-              </option>
+              </MenuItem>
               {COUNTRIES.map((country) => (
-                <option value={country} key={country}>
+                <MenuItem value={country} key={country}>
                   {country}
-                </option>
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
         </Grid>
-        <Grid item>
+
+        <Grid item container>
           <TextField
-            id="Cep"
-            label="CEP"
-            type="text"
+            id="neighborhood"
+            label="Bairro"
+            placeholder="Santo Amaro"
             variant="standard"
-            placeholder="00000-000"
+            type="text"
             fullWidth
+            required
+            margin="normal"
+            style={{ marginBottom: "16px" }}
+            {...register("neighborhood")}
           />
         </Grid>
-        <Grid item>
-          <StyleCep>
-            <Link href="https://buscacepinter.correios.com.br/app/endereco/index.php">
-              {notKnowCep}
-            </Link>
-          </StyleCep>
+
+        <Grid item container>
+          <TextField
+            id="state"
+            label="Estado"
+            placeholder="Rio de Janeiro"
+            variant="standard"
+            type="text"
+            fullWidth
+            required
+            margin="normal"
+            style={{ marginBottom: "16px" }}
+            {...register("state")}
+          />
         </Grid>
-        {/* <Grid item>
-          <CardAddressHome>{address}</CardAddressHome>
-        </Grid> */}
+
+        <Grid container item>
+          <TextField
+            id="postalCode"
+            label="CEP"
+            type="number"
+            variant="standard"
+            placeholder="00000-000"
+            inputProps={{
+              inputMode: "numeric",
+              pattern: "[0-9]{8}",
+              max: 99999999,
+            }}
+            fullWidth
+            required
+            margin="normal"
+            style={{ marginBottom: "16px" }}
+            {...register("postalCode")}
+          />
+        </Grid>
+
+        <Grid container item>
+          <Link
+            href="https://buscacepinter.correios.com.br/app/endereco/index.php"
+            target="_blank"
+            rel="noreferrer"
+            style={{ marginBottom: "16px" }}
+          >
+            {notKnowCep}
+          </Link>
+        </Grid>
+
         <Grid item container direction="row" spacing={2}>
           <Grid item>
             <TextField
-              id="Number"
+              id="number"
               label="Número"
               placeholder="Ex. 285"
               variant="standard"
-              style={{ maxWidth: "100px" }}
+              style={{ maxWidth: "100px", marginBottom: "16px" }}
+              type="number"
               fullWidth
+              required
+              margin="normal"
+              {...register("number")}
             />
           </Grid>
           <Grid item flexGrow={1}>
             <TextField
-              id="Complement"
+              id="complement"
               label="Complemento"
               placeholder="Ex.: Casa, Prédio, Apto"
               variant="standard"
               fullWidth
+              margin="normal"
+              style={{ marginBottom: "16px" }}
+              {...register("complement")}
             />
           </Grid>
         </Grid>
+
         <Grid container item>
           <TextField
             id="reference"
             label="Referência"
+            placeholder="Ao lado do shopping"
             type="text"
             variant="standard"
             fullWidth
+            margin="normal"
+            style={{ marginBottom: "16px" }}
+            {...register("reference")}
           />
         </Grid>
+
         <DivSubmitButton>
           <Button variant="contained" type="submit" fullWidth>
             {buttonSaved}

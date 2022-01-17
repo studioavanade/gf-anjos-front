@@ -28,4 +28,7 @@ export const CardCredit = styled(Grid)`
 
 export const DivSubmitButton = styled(Grid)`
   margin-top: 32px;
+  padding-top: 32px;
+  padding-bottom: 64px;
+  border-bottom: 1px solid black;
 `;

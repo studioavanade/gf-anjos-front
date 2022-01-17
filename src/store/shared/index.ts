@@ -2,7 +2,7 @@ export interface IAddress {
   street: string;
   number: string;
   neighborhood: string;
-  postlCode: string;
+  postalCode: string;
   city: string;
   state: string;
   country: string;

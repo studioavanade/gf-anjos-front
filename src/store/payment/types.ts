@@ -8,6 +8,9 @@ export enum PaymentTypes {
   SUBMIT_DONATOR_SUCCESS = "@payment/SUBMIT_DONATOR_SUCCESS",
   SUBMIT_PAYMENT_SUCCESS = "@payment/SUBMIT_PAYMENT",
   CLEAR_STATES = "@payment/CLEAR_STATES",
+  SET_DONATOR_EMAIL = "@payment/SET_DONATOR_EMAIL",
+  SET_DONATOR_PERSONAL_DATA = "@payment/SET_DONATOR_PERSONAL_DATA",
+  SET_DONATOR_ADDRESS = "@payment/SET_DONATOR_ADDRESS",
 }
 
 export interface IPaymentInfo {
@@ -23,6 +26,17 @@ export interface IPaymentInfo {
       year: string;
     };
   };
+}
+
+export interface IDonatorPersonalDataForm {
+  firstName: string;
+  lastName: string;
+  birthDate: Date;
+  cpf: string;
+  phone: string;
+  followAccountabilityReports?: boolean;
+  allowCommunications?: boolean;
+  allowPrivacyData?: boolean;
 }
 
 export interface IPaymentStates {

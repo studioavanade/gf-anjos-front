@@ -1,6 +1,8 @@
-import * as React from "react";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import PaymentIconSVG from "../../../../../assets/img/payment/icon-money-card.svg";
-import { ICON_CREDIT_CARD } from "../../../../../assets/img";
+import { ICON_CREDIT_CARD, SECURE_ENVIROMENT } from "../../../../../assets/img";
 
 import {
   TextField,
@@ -20,14 +22,21 @@ import {
   CardCredit,
   DivSubmitButton,
 } from "./styles";
+import { ApplicationState } from "../../../../../store/rootReducer";
+import { submitPaymentSuccess } from "../../../../../store/payment/actions";
 
-const PaymentStepOpen = (props: any) => {
+const PaymentStepOpen = () => {
   const titlePayment = "Pagamento";
   const creditCard = "Cartão de Crédito";
   const buttonFinish = "Finalizar doação";
 
-  const [creditCardMonth, setCreditCardMonth] = React.useState("");
-  const [creditCardYear, setCreditCardYear] = React.useState("");
+  const [creditCardMonth, setCreditCardMonth] = useState("");
+  const [creditCardYear, setCreditCardYear] = useState("");
+
+  const dispatch = useDispatch();
+  const paymentState = useSelector((state: ApplicationState) => state.payment);
+
+  const { handleSubmit, register } = useForm();
 
   const handleChangeMonth = (event: SelectChangeEvent) => {
     setCreditCardMonth(event.target.value);
@@ -37,9 +46,13 @@ const PaymentStepOpen = (props: any) => {
     setCreditCardYear(event.target.value);
   };
 
+  const onSubmit = (data: any) => {
+    dispatch(submitPaymentSuccess());
+  };
+
   return (
-    <form>
-      <CardPaymentOpen container item direction="column">
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <CardPaymentOpen item direction="column">
         <Grid container item direction="row" spacing={3}>
           <Grid item>
             <img src={PaymentIconSVG} alt="IconAddress" />
@@ -54,6 +67,7 @@ const PaymentStepOpen = (props: any) => {
           direction="row"
           alignItems="center"
           spacing={3}
+          style={{ marginBottom: "32px" }}
         >
           <Grid item>
             <Radio checked />
@@ -65,13 +79,15 @@ const PaymentStepOpen = (props: any) => {
         </CardCredit>
         <Grid item>
           <TextField
-            id="nomenocartao"
+            id="cardName"
             label="Nome impresso no cartão"
             type="text"
             variant="standard"
             placeholder="Nome"
             fullWidth
             margin="normal"
+            style={{ marginBottom: "32px" }}
+            {...register("cardName")}
           />
         </Grid>
         <Grid item>
@@ -83,17 +99,21 @@ const PaymentStepOpen = (props: any) => {
             placeholder="Número do cartão"
             fullWidth
             margin="normal"
+            style={{ marginBottom: "32px" }}
+            {...register("cardNumber")}
           />
         </Grid>
         <Grid item>
           <TextField
-            id="codeSegurity"
-            label="Código de Segurança / CVV"
+            id="cvv"
+            label="Código de Segurança (CVV)"
             type="text"
             variant="standard"
-            placeholder="CVV"
+            placeholder="123"
             fullWidth
             margin="normal"
+            style={{ marginBottom: "64px" }}
+            {...register("cvv")}
           />
         </Grid>
         <Grid container item direction="row" spacing={3}>
@@ -146,6 +166,21 @@ const PaymentStepOpen = (props: any) => {
             {buttonFinish}
           </Button>
         </DivSubmitButton>
+
+        <Grid
+          container
+          item
+          direction="row"
+          spacing={3}
+          justifyContent="flex-end"
+          alignItems="center"
+          style={{ paddingTop: "8px" }}
+        >
+          <Grid item>Ambiente seguro</Grid>
+          <Grid item>
+            <img src={SECURE_ENVIROMENT} alt="Cadeado" />
+          </Grid>
+        </Grid>
       </CardPaymentOpen>
     </form>
   );

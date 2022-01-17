@@ -7,6 +7,4 @@ export enum IPaymentSteps {
   Personal = 1,
   Address = 2,
   Payment = 3,
-  Summary = 4,
-  Confirmation = 5,
 }

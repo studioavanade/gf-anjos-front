@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { HEADER_SHORT } from "../../../assets/img";
 import {
   InnerContentContainer,
@@ -7,7 +8,22 @@ import {
 } from "./styles";
 import { DARK_BLUE } from "./../../../styles/colors";
 
-const BackgroundWithHeader = ({ children }: any) => {
+interface IProps {
+  bg?: "white" | "darkblue";
+  children?: any;
+}
+
+const BackgroundWithHeader = ({ bg = "white", children }: IProps) => {
+  const getBgColor = () => {
+    if (bg === "white") return bg;
+    else if (bg === "darkblue") return DARK_BLUE;
+    return DARK_BLUE;
+  };
+
+  useEffect(() => {
+    document.body.style.backgroundColor = getBgColor();
+  }, []);
+
   return (
     <RootContainer container direction="column">
       <Background>
@@ -20,7 +36,6 @@ const BackgroundWithHeader = ({ children }: any) => {
         >
           <TopImage src={HEADER_SHORT} alt="banner" />
         </div>
-        <div style={{ backgroundColor: "white", height: "100%" }} />
       </Background>
       <InnerContentContainer
         container

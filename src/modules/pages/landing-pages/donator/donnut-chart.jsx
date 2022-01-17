@@ -2,7 +2,7 @@ import Chart from "react-apexcharts";
 
 // https://apexcharts.com/docs/react-charts/
 
-const DoughnutChart = () => {
+const DoughnutChart = ({width = "400px", height = "500px"}) => {
   const options = {
     series: [38, 62],
     labels: ["Atingido", "Restante"],
@@ -31,15 +31,13 @@ const DoughnutChart = () => {
   const series = [62, 38];
 
   return (
-    <>
       <Chart
         options={options}
         series={series}
         type="donut"
-        width="400px"
-        heigth={500}
+        width={width}
+        height={height}
       />
-    </>
   );
 };
 

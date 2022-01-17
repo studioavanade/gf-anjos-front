@@ -18,6 +18,10 @@ import ICON_CREDIT_CARD from "./credit-card/credit-card.svg";
 
 import CHECK_ICON from "./payment/icon-check-confirmation.svg";
 import DOWNLOAD_PDF_ICON from "./payment/icon-download-pdf.svg";
+import SECURE_ENVIROMENT from "./payment/secure-enviroment.svg";
+import SUBMIT_CUSTOM_VALUE from "./landing-donation/icon-custom-value-submit.svg";
+
+import GREY_BG_CARD from "./landing-donation/grey-bg-card.svg";
 
 export {
   HEADER_LARGE,
@@ -33,4 +37,7 @@ export {
   ICON_CREDIT_CARD,
   CHECK_ICON,
   DOWNLOAD_PDF_ICON,
+  SECURE_ENVIROMENT,
+  SUBMIT_CUSTOM_VALUE,
+  GREY_BG_CARD,
 };

@@ -15,20 +15,11 @@ const api = (): IApi => {
     baseURL: apis.backend,
   });
 
-  // backend.interceptors.request.use(
-  //   async (request: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
-  //     request.headers.Authorization = `Bearer ${
-  //       store.getState().auth.token
-  //     }`;
-  //     return request;
-  //   }
-  // );
-
   return {
     backend,
 
     createDonator: (donator: IDonator): Promise<AxiosResponse> => {
-      return backend.post(`/donator/`, donator);
+      return backend.post(`/donators/`, donator);
     },
 
     submitPayment: (paymentInfo: IPaymentInfo): Promise<AxiosResponse> => {

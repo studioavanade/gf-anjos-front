@@ -69,6 +69,7 @@ import {
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import ROUTING_PATHS from "./../../../routes/paths/index";
+import { useNavigate } from "react-router-dom";
 
 const Ranking = () => {
   const [open, setOpen] = React.useState(false);

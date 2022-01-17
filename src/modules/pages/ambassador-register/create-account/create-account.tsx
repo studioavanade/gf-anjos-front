@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { Button, Stack, TextField, Grid } from "@mui/material";
 import { TitleLogin, DivSubmitButton, LoginLink, Form } from "./styles";
 import { showErrorToast } from "../../../../utils/toast/index";
-import { createUser } from "../../../../store/auth/actions";
+import { createUser, signIn } from "../../../../store/auth/actions";
 import { ACCESSIBILITY_ERROR } from "../../../../styles/colors";
 import ROUTING_PATHS from "../../../../routes/paths";
 import BackgroundWithHeader from "./../../../components/background-with-header/index";
 import MainContainer from "./../../../components/main-container/index";
+import { isEmailValid } from "../../../../utils";
+import { setAmbassadorEmail } from "../../../../store/ambassador/actions";
+import { signOut } from "../../../../store/auth/actions";
+import { setLoading } from "../../../../store/loading-progress/actions";
 
 const AmbassadorCreateAccount = () => {
   const dispatch = useDispatch();
@@ -23,6 +27,10 @@ const AmbassadorCreateAccount = () => {
 
   const { register, handleSubmit } = useForm();
 
+  useEffect(() => {
+    dispatch(signOut());
+  }, []);
+
   const onSubmit = (data: any) => {
     setShowPasswordRequirements(false);
     const { email, password, confirmPassword } = data;
@@ -30,6 +38,8 @@ const AmbassadorCreateAccount = () => {
     if (password !== confirmPassword) {
       showErrorToast("Senhas não correspondem!");
       return;
+    } else if (!isEmailValid(email)) {
+      showErrorToast("E-mail inválido!");
     }
 
     if (
@@ -44,7 +54,14 @@ const AmbassadorCreateAccount = () => {
       return;
     }
 
-    dispatch(createUser(email, password, navigate));
+    dispatch(setLoading());
+    dispatch(
+      createUser(email, password, () => {
+        dispatch(signIn(email, password));
+        navigate(ROUTING_PATHS.PersonalInformations);
+        dispatch(setAmbassadorEmail(email));
+      })
+    );
   };
 
   return (

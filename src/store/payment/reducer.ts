@@ -6,7 +6,7 @@ const initialState: IPaymentStates = {
   currentStep: 0,
   donator: undefined,
   paymentSubmitted: false,
-  donationValue: 0,
+  donationValue: 20,
 };
 
 const paymentReducer = (
@@ -45,7 +45,7 @@ const paymentReducer = (
     case PaymentTypes.SUBMIT_PAYMENT_SUCCESS:
       return {
         ...state,
-        paymentSubmitted: false,
+        paymentSubmitted: true,
       };
     case PaymentTypes.CLEAR_STATES:
       return {
@@ -55,6 +55,30 @@ const paymentReducer = (
       return {
         ...state,
         donationValue: action.payload,
+      };
+    case PaymentTypes.SET_DONATOR_EMAIL:
+      return {
+        ...state,
+        donator: {
+          ...state.donator,
+          email: action.payload,
+        },
+      };
+    case PaymentTypes.SET_DONATOR_PERSONAL_DATA:
+      return {
+        ...state,
+        donator: {
+          ...state.donator,
+          ...action.payload,
+        },
+      };
+    case PaymentTypes.SET_DONATOR_ADDRESS:
+      return {
+        ...state,
+        donator: {
+          ...state.donator,
+          address: action.payload,
+        },
       };
 
     default:

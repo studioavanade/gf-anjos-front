@@ -11,7 +11,9 @@ export const BottomContent = styled(Grid)`
   background-color: #fff;
   border: 3px solid #e5e5e5;
   padding-right: 24px !important;
+  padding-bottom: 24px !important;
   margin-left: 0px;
+  margin-bottom: 50px;
   min-width: var(--page-min-width);
 `;
 

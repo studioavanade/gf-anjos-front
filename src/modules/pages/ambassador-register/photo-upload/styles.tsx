@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
+import { ACCESSIBILITY_SUCCESS } from "../../../../styles/colors";
 
 export const CameraIcon = styled(Grid)``;
 
@@ -56,7 +57,7 @@ export const DropzoneContainer = styled(Grid)`
   cursor: pointer;
   background-color: #f2f2f2;
   &:hover {
-    border-color: grey !important;
+    border-color: #dedede !important;
   }
 `;
 
@@ -68,4 +69,10 @@ export const DropzoneTitleText = styled.span`
 export const DropzoneSubTitleText = styled.span`
   color: #6c6c6c;
   font-size: 12px;
+`;
+
+export const SuccessUploadText = styled(Grid)`
+  color: #2e7d32;
+  font-size: 16px;
+  margin-bottom: 16px;
 `;

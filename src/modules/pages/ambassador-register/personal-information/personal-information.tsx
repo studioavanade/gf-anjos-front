@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
-import HeaderInfluencer from "../../../../assets/img/personal-information/header-influenciador.svg";
 import RegistrationIconSVG from "../../../../assets/img/personal-information/registration-icon.svg";
 import PersonIconSVG from "../../../../assets/img/personal-information/person-icon.svg";
 import ButtonIncrementSVG from "../../../../assets/img/personal-information/button-increment.svg";
@@ -26,7 +28,7 @@ import {
   StyleCardCount,
   DivSubmitButton,
   GridNoPadding,
-} from "./style";
+} from "./styles";
 
 import {
   TextField,
@@ -38,33 +40,32 @@ import {
   Select,
   MenuItem,
   InputLabel,
-  Paper,
 } from "@mui/material";
-import { useForm } from "react-hook-form";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import { PersonType } from "../../../../store/shared";
 import { SCHOOLING } from "./../../../../constants/index";
 import { showErrorToast } from "./../../../../utils/toast/index";
 import { IAmbassador } from "../../../../store/ambassador/types";
 import { ApplicationState } from "./../../../../store/rootReducer";
-import { useDispatch, useSelector } from "react-redux";
 import { isCNPJValid, isCPFValid } from "../../../../utils";
 import { saveFormTargetDonators } from "../../../../store/campaign/actions";
-import ROUTING_PATHS from "./../../../../routes/paths/index";
-import { useNavigate } from "react-router-dom";
 import { createAmbassador } from "./../../../../store/ambassador/actions";
 import PrivateComponentVerifier from "../../../components/private-component-verifier";
 import BackgroundWithHeader from "./../../../components/background-with-header/index";
 import MainContainer from "./../../../components/main-container/index";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import ROUTING_PATHS from "../../../../routes/paths";
+import { setLoading } from "../../../../store/loading-progress/actions";
 
 const PersonalInformation = () => {
   const isSmallScreen = useMediaQuery("(max-width: 900px");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [targetDonators, setTargetDonators] = useState(0);
   const [personType, setPersonType] = useState(PersonType.NATURAL_PERSON);
   const [education, setEducation] = useState("");
 
-  const ambassadorEmail = useSelector(
+  const ambassadorAuthEmail = useSelector(
     (state: ApplicationState) => state.auth.userEmail
   );
 
@@ -86,13 +87,11 @@ const PersonalInformation = () => {
 
     const [firstName, lastName] = name.split(" ");
 
-    console.log("personType: ", personType);
-
     if (!lastName) {
       showErrorToast("Necessário inserir pelo menos 1 sobrenome.");
       return;
-    } else if (!ambassadorEmail || ambassadorEmail.length < 1) {
-      showErrorToast("Embaixador precisa estar autenticado.");
+    } else if (!ambassadorAuthEmail || ambassadorAuthEmail.length < 1) {
+      showErrorToast("Necessário estar autenticado.");
       return;
     }
 
@@ -116,7 +115,7 @@ const PersonalInformation = () => {
     }
 
     const ambassador: IAmbassador = {
-      email: ambassadorEmail,
+      email: ambassadorAuthEmail,
       name: firstName,
       lastName,
       cpfCnpj,
@@ -127,13 +126,14 @@ const PersonalInformation = () => {
       celPhone,
       personType,
     };
+    dispatch(setLoading());
     dispatch(createAmbassador(ambassador));
   };
 
   useEffect(() => {
     if (ambassadorId && ambassadorId.length > 0) {
       dispatch(saveFormTargetDonators(targetDonators));
-      //navigate(ROUTING_PATHS.PhotoUpload);
+      navigate(ROUTING_PATHS.PhotoUpload);
     }
   }, [ambassadorId]);
 
@@ -189,6 +189,7 @@ const PersonalInformation = () => {
                       aria-label="personType"
                       value={personType}
                       onChange={handleChangePersonType}
+                      style={!isSmallScreen ? { marginLeft: "8px" } : undefined}
                     >
                       <FormControlLabel
                         value={PersonType.NATURAL_PERSON}
@@ -243,12 +244,16 @@ const PersonalInformation = () => {
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <FormControl fullWidth variant="standard" required>
+                    <FormControl
+                      fullWidth
+                      variant="standard"
+                      required
+                      style={{ textAlign: "start" }}
+                    >
                       <InputLabel>Escolaridade</InputLabel>
                       <Select
                         value={education}
                         onChange={handleChangeSChooling}
-                        autoWidth
                         label="Escolaridade"
                       >
                         <MenuItem value="">

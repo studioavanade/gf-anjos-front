@@ -9,12 +9,14 @@ import { ToastContainer } from "react-toastify";
 import { TOAST_DURATION } from "./constants";
 import theme from "./theme";
 import store from "./store";
+import LoadingProgress from "./modules/components/loading-progress";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <ToastContainer autoClose={TOAST_DURATION} theme="colored" />
+        <LoadingProgress />
         <App />
       </ThemeProvider>
     </Provider>

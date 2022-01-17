@@ -14,12 +14,6 @@ export const Title = styled.div`
   font-size: 24px;
 `;
 
-export const ChangeDataGrid = styled(Grid)`
-  font-family: "Roboto Regular";
-  font-size: 20px;
-  text-align: end;
-`;
-
 export const EmailGrid = styled(Grid)`
   font-family: "Roboto Regular";
   font-weight: 300;

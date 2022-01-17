@@ -1,70 +1,93 @@
 import styled from "@emotion/styled";
-import { Paper } from "@mui/material";
+import { Grid } from "@mui/material";
+import { DARK_BLUE } from "../../../styles/colors";
 
-export const RootContainer = styled.div`
-  background-color: #061936;
+export const TopContent = styled(Grid)`
+  padding-bottom: 50px;
 `;
-
-export const HeaderInfluencer = styled.div`
-  height: auto;
-  box-shadow: none;
-  display: grid;
-  place-items: center;
-  justify-content: space-around;
-  align-items: center;
-  justify-items: center;
+export const StyleBackground = styled(Grid)`
+  background-color: ${DARK_BLUE};
 `;
-
-export const TitleInfluencerBox = styled.div`
+export const CardBoxInfluencer = styled(Grid)`
+  width: 1100px;
+  height: 500px;
+  background-color: #ffff;
+  border: 3px solid #e5e5e5;
+  box-sizing: border-box;
+  border-radius: 8px;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    height: 700px;
+  }
+`;
+export const TitleInfluencerBox = styled(Grid)`
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "KG Life is Messy";
   font-size: 32px;
   color: #04c6fb;
+  border-radius: 8px;
   padding-top: 60px;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    border-radius: 8px;
+  }
 `;
-
-export const SubTitleInfluencerBox = styled.div`
+export const SubTitleInfluencerBox = styled(Grid)`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 30px;
+  padding-top: 60px;
   font-family: "AvenirLTSd Roman";
   weight: 500;
   font-size: 20px;
+  @media (max-width: 500px) {
+    font-size: 1rem;
+    justify-content: center;
+    text-align: center;
+  }
 `;
-
-export const StylePharseCreatePage = styled.div`
+export const StylePharseCreatePage = styled(Grid)`
   max-width: 350px;
   text-align: center;
   font-family: "AvenirLTSd Roman";
+  padding-top: 30px;
 `;
-
-export const StylePharsePublicizePage = styled.div`
+export const StylePharsePublicizePage = styled(Grid)`
   max-width: 350px;
   text-align: center;
   font-family: "AvenirLTSd Roman";
+  padding-top: 30px;
 `;
-
-export const StylePharseAmountCollected = styled.div`
+export const StylePharseAmountCollected = styled(Grid)`
   max-width: 350px;
   text-align: center;
   font-family: "AvenirLTSd Roman";
+  padding-top: 30px;
 `;
-
 export const StyleIcon = styled.div`
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 `;
-
+export const StylePharses = styled(Grid)`
+  padding-top: 60px;
+  display: flex;
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+`;
 export const DivSubmitButton = styled.div`
   position: relative;
-  padding-top: 95px;
+  padding-top: 100px;
   text-align: center;
   max-width: 450px;
-  left: 340.4px;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 20px;
+  }
 `;
-
 export const StyleButtonDialog = styled.div`
   display: flex;
   justify-content: center;
@@ -72,23 +95,24 @@ export const StyleButtonDialog = styled.div`
   color: #ffffff;
   font-family: "KG Life is Messy";
 `;
-
 export const StyleTitleInfluencers = styled.div`
   display: flex;
   justify-content: center;
   color: #ffffff;
   font-size: 45px;
   font-family: "SuperClarendon Ligth";
-  padding-bottom: 40px;
+  padding-top: 30px;
+  padding-bottom: 60px;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
-
 export const StyleBackgroundConcession = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
 `;
-
-export const StyleTitleYourInfluencer = styled.div`
+export const StyleTitleYourInfluencer = styled(Grid)`
   display: center;
   justify-content: center;
   align-items: center;
@@ -98,14 +122,16 @@ export const StyleTitleYourInfluencer = styled.div`
   font-family: "SuperClarendon Ligth";
   position: relative;
   padding-top: 40px;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    padding-top: 150px;
+  }
 `;
-
-export const StylePharseFamily = styled.div`
+export const StylePharseFamily = styled(Grid)`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-
 export const StyleSubTitleFamily = styled.div`
   justify-content: center;
   align-items: center;
@@ -119,6 +145,9 @@ export const StyleSubTitleFamily = styled.div`
   position: relative;
   font-size: 20px;
   padding-bottom: 60px;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
 `;
 
 export const StyleBoxRanking = styled.div`
@@ -128,14 +157,25 @@ export const StyleBoxRanking = styled.div`
   padding-top: 50px;
 `;
 
-export const PaperCardBox = styled(Paper)`
-  position: relative;
-  justify-content: center;
+export const PaperCardBox = styled.div`
   width: 1300px;
   height: 800px;
   background: #ffffff;
   border-radius: 8px;
   padding-top: 35px;
+  @media (max-width: 600px) {
+    height: 1300px;
+  }
+`;
+
+export const StyleCentralizacionTable = styled(Grid)`
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const StyleCentralizacionMovies = styled(Grid)`
+  display: flex;
+  justify-content: space-around;
 `;
 
 export const TitleRanking = styled.div`
@@ -144,58 +184,63 @@ export const TitleRanking = styled.div`
   font-family: "KG Life is Messy";
   font-size: 40px;
   padding-top: 60px;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
 `;
-
-export const StyleCardPersons = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 100px;
+export const StyleCardsRanking = styled(Grid)`
+  padding-top: 50px;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
 `;
-
-export const CardPhysicalPerson = styled.div`
-  position: relative;
-  justify-content: center;
+export const CardPhysicalPerson = styled(Grid)`
   background: #f0f0f0;
   border-radius: 24px;
   width: 500px;
   height: 530px;
+  padding-bottom: 20px;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
 `;
-
-export const CardJuridicalPerson = styled.div`
-  position: relative;
-  justify-content: center;
+export const CardJuridicalPerson = styled(Grid)`
   background: #f0f0f0;
   border-radius: 24px;
   width: 500px;
   height: 530px;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
 `;
-
 export const IconImgPersons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
 `;
-
 export const CardStyleListName = styled.div`
   padding: 10px;
   background: white;
   height: 380px;
 `;
-
 export const CardStyleListCompany = styled.div`
   padding: 10px;
   background: white;
   height: 388px;
 `;
-
-export const StyleColorText = styled.div`
+export const StyleColorText = styled(Grid)`
   color: #ffffff;
   text-align: center;
   font-family: "AvenirLTSd Roman";
+  @media (max-width: 600px) {
+    padding-top: 20px;
+  }
 `;
-
 export const TitleGF = styled.div`
   padding-bottom: 20px;
   font-family: "KG Life is Messy";
@@ -203,7 +248,6 @@ export const TitleGF = styled.div`
   padding-top: 80px;
   padding-bottom: "30px";
 `;
-
 export const StyleSubTitleGF = styled.div`
   max-width: 700px;
   text-align: center;
@@ -214,38 +258,42 @@ export const StyleSubTitleGF = styled.div`
   padding: 20px;
   padding-top: 50px;
 `;
-
-export const StyleMovies = styled.div`
+export const StyleMovies = styled(Grid)`
   padding-top: 80px;
+  @media (max-width: 600px) {
+    width: 300px;
+    height: 300px;
+  }
 `;
-
 export const StyleBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 `;
-
 export const CarouselStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
-
 export const CarouselSlider = styled.div`
   width: 90%;
   object-fit: cover;
   border-radius: 10px;
   display: block;
 `;
-
 export const BackgroundImg = styled.div`
   opacity: 50%;
   position: absolute;
   top: -120px;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
-
 export const ItemPhotos = styled.div`
   display: inline-block;
   justify-content: center;
@@ -259,7 +307,6 @@ export const ItemPhotos = styled.div`
   border-radius: 10px;
   cursor: pointer;
 `;
-
 export const LoginLink = styled.div`
   color: white !important;
   margin-top: 32px;

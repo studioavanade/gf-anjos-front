@@ -1,23 +1,24 @@
 import CameraIconSVG from "../../../../assets/img/photo-upload/camera-icon.svg";
 import CloudIconSVG from "../../../../assets/img/photo-upload/cloud-icon.svg";
-import ChooseFileSVG from "../../../../assets/img/photo-upload/subtitle-choose-file.svg";
 
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, IconButton } from "@mui/material";
+import { Delete as DeleteIcon } from "@mui/icons-material";
 import { useDropzone } from "react-dropzone";
 
 import {
   CameraIcon,
   Title,
   SubTitle,
-  StylePhotoUpload,
   DivSubmitButton,
   DropzoneContainer,
   DropzoneTitleText,
   DropzoneSubTitleText,
+  SuccessUploadText,
 } from "./styles";
 import BackgroundWithHeader from "../../../components/background-with-header";
 import MainContainer from "../../../components/main-container";
 import { useState } from "react";
+import PrivateComponentVerifier from "../../../components/private-component-verifier";
 
 const PhotoUpload = () => {
   const title = "Envie sua foto";
@@ -48,13 +49,14 @@ const PhotoUpload = () => {
 
   const getBorderColor = () => {
     if (isDragReject) return "red";
-    else if (isDragActive) return "green";
-    else if (isFileDialogActive) return "cyan";
+    else if (isDragActive) return "#04c6fb";
+    else if (isFileDialogActive) return "black";
     return "grey";
   };
 
   return (
     <BackgroundWithHeader>
+      <PrivateComponentVerifier />
       <MainContainer maxWidth="70vw">
         <Grid container justifyContent="center" alignItems="center" spacing={4}>
           <CameraIcon
@@ -72,39 +74,55 @@ const PhotoUpload = () => {
           </Grid>
           <Grid item xs={12} justifyContent="center">
             <Grid container item justifyContent="center" alignItems="center">
-              <DropzoneContainer
-                container
-                item
-                justifyContent="center"
-                alignItems="center"
-                direction="column"
-                {...getRootProps()}
-                style={{ borderColor: getBorderColor() }}
-              >
-                <input {...getInputProps()} />
-                <Grid
+              {!file ? (
+                <DropzoneContainer
                   container
                   item
                   justifyContent="center"
                   alignItems="center"
+                  direction="column"
+                  {...getRootProps()}
+                  style={{ borderColor: getBorderColor() }}
                 >
-                  <img src={CloudIconSVG} alt="CloudIcon" />
-                </Grid>
+                  <input {...getInputProps()} />
+                  <Grid
+                    container
+                    item
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <img src={CloudIconSVG} alt="CloudIcon" />
+                  </Grid>
+                  <Grid
+                    container
+                    item
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <DropzoneTitleText>
+                      <strong>Clique para escolher uma imagem</strong> ou
+                      <strong>a arraste para aqui</strong>
+                    </DropzoneTitleText>
+                    <DropzoneSubTitleText>
+                      Limite de tamanho: 10MB
+                    </DropzoneSubTitleText>
+                  </Grid>
+                </DropzoneContainer>
+              ) : (
                 <Grid
                   container
-                  item
+                  direction="column"
                   justifyContent="center"
                   alignItems="center"
                 >
-                  <DropzoneTitleText>
-                    <strong>Clique para escolher uma imagem</strong> ou{" "}
-                    <strong>a arraste para aqui</strong>
-                  </DropzoneTitleText>
-                  <DropzoneSubTitleText>
-                    Limite de tamanho: 10MB
-                  </DropzoneSubTitleText>
+                  <SuccessUploadText item>
+                    <i>{file.name}</i>
+                    <IconButton onClick={() => setFile(undefined)}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </SuccessUploadText>
                 </Grid>
-              </DropzoneContainer>
+              )}
             </Grid>
 
             <DivSubmitButton>

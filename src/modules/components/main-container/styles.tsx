@@ -6,6 +6,7 @@ export const Container = styled(Paper)`
   padding: 50px 32px;
   min-width: var(--page-min-width);
   border-radius: 10px;
+  margin-bottom: 24px;
 
   @media (max-width: 600px) {
     box-shadow: none !important;

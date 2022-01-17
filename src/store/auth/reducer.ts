@@ -34,6 +34,13 @@ const authReducer = (state = initialState, action: IAction): IAuthStates => {
         ...initialState,
         signInError: action.payload,
       };
+    case AuthTypes.SIGNOUT:
+      return {
+        ...state,
+        userEmail: initialState.userEmail,
+        signInError: initialState.signInError,
+        loading: false,
+      };
     default:
       return { ...initialState };
   }

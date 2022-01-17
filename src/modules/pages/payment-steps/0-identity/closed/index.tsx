@@ -1,11 +1,13 @@
+import { useSelector } from "react-redux";
 import EnvelopeIconSVG from "../../../../../assets/img/payment/icon-envelope-card.svg";
-import { Link, Grid } from "@mui/material";
-import { CardIdentityClosed, Title, ChangeDataGrid, EmailGrid } from "./styles";
+import { Grid } from "@mui/material";
+import { CardIdentityClosed, Title, EmailGrid } from "./styles";
+import { ApplicationState } from "../../../../../store/rootReducer";
 
 const IdentityStepClosed = () => {
   const titleIdentity = "Identificação";
-  const changeData = "Alterar dados";
-  const personEmail = "eduardo.lyra@email.com";
+
+  const paymentState = useSelector((state: ApplicationState) => state.payment);
 
   return (
     <CardIdentityClosed item direction="column">
@@ -16,13 +18,12 @@ const IdentityStepClosed = () => {
         <Grid item flexGrow={0}>
           <Title>{titleIdentity}</Title>
         </Grid>
-        <ChangeDataGrid item flexGrow={1}>
-          <Link href="#" style={{ marginLeft: "auto" }}>
-            {changeData}
-          </Link>
-        </ChangeDataGrid>
         <EmailGrid container item>
-          {personEmail}
+          {paymentState.donator &&
+          paymentState.donator.email &&
+          paymentState.donator.email.length > 0
+            ? paymentState.donator.email
+            : ""}
         </EmailGrid>
       </Grid>
     </CardIdentityClosed>

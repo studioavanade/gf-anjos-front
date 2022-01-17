@@ -15,8 +15,6 @@ export const TitleAddress = styled.div`
   font-size: 24px;
 `;
 
-export const StyleCep = styled.div``;
-
 export const CardAddressHome = styled.div`
   border: 1px solid #c4c4c4;
   border-radius: 20px;

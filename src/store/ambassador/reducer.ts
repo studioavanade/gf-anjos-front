@@ -21,6 +21,15 @@ const ambassadorReducer = (
         error: action.payload,
         loading: false,
       };
+    case AmbassadorActionTypes.SET_AMBASSADOR_EMAIL:
+      return {
+        ...state,
+        loading: false,
+        ambassador: {
+          ...state.ambassador,
+          email: action.payload,
+        },
+      };
 
     default:
       return state;

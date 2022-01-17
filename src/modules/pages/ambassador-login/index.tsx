@@ -22,7 +22,9 @@ const AmbassadorLogin = () => {
     const { email, password } = data;
 
     dispatch(
-      signIn(email, password, navigate, ROUTING_PATHS.PersonalInformations)
+      signIn(email, password, () =>
+        navigate(ROUTING_PATHS.PersonalInformations)
+      )
     );
   };
 

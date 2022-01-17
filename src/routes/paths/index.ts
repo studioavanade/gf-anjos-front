@@ -5,6 +5,8 @@ const ROUTING_PATHS = {
   PersonalInformations: "/personal-informations",
   PhotoUpload: "/photo-upload",
   PaymentSteps: "/payment-steps",
+  LadingPageDonator: "/donator-landing-page",
+  Ranking: "/ranking",
 };
 
 export default ROUTING_PATHS;

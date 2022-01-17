@@ -1,6 +1,7 @@
-import { IAddress } from "../shared";
+import { IAddress, PersonType } from "../shared";
 
 export interface IDonator {
+  personType?: PersonType;
   email?: string;
   id?: string;
   name?: string;

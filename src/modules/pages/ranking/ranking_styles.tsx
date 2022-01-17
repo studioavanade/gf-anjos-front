@@ -4,10 +4,9 @@ import { DARK_BLUE } from "../../../styles/colors";
 
 export const TopContent = styled(Grid)`
   padding-bottom: 50px;
-  
 `;
 export const StyleBackground = styled(Grid)`
-background-color: ${DARK_BLUE};
+  background-color: ${DARK_BLUE};
 `;
 export const CardBoxInfluencer = styled(Grid)`
   width: 1100px;
@@ -71,10 +70,10 @@ export const StyleIcon = styled.div`
   padding-bottom: 10px;
 `;
 export const StylePharses = styled(Grid)`
-padding-top: 60px;
-display: flex;
-@media (max-width: 500px) {
-  flex-direction: column;
+  padding-top: 60px;
+  display: flex;
+  @media (max-width: 500px) {
+    flex-direction: column;
   }
 `;
 export const DivSubmitButton = styled.div`
@@ -105,7 +104,7 @@ export const StyleTitleInfluencers = styled.div`
   padding-top: 30px;
   padding-bottom: 60px;
   @media (max-width: 600px) {
-    font-size: 1rem;
+    display: none;
   }
 `;
 export const StyleBackgroundConcession = styled.div`
@@ -125,7 +124,7 @@ export const StyleTitleYourInfluencer = styled(Grid)`
   padding-top: 40px;
   @media (max-width: 600px) {
     font-size: 1rem;
-    padding-top: 240px;
+    padding-top: 150px;
   }
 `;
 export const StylePharseFamily = styled(Grid)`
@@ -150,12 +149,14 @@ export const StyleSubTitleFamily = styled.div`
     font-size: 1rem;
   }
 `;
+
 export const StyleBoxRanking = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 50px;
 `;
+
 export const PaperCardBox = styled.div`
   width: 1300px;
   height: 800px;
@@ -166,6 +167,17 @@ export const PaperCardBox = styled.div`
     height: 1300px;
   }
 `;
+
+export const StyleCentralizacionTable = styled(Grid)`
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const StyleCentralizacionMovies = styled(Grid)`
+  display: flex;
+  justify-content: space-around;
+`;
+
 export const TitleRanking = styled.div`
   display: flex;
   justify-content: center;
@@ -177,8 +189,8 @@ export const TitleRanking = styled.div`
   }
 `;
 export const StyleCardsRanking = styled(Grid)`
-padding-top: 50px;
-@media (max-width: 600px) {
+  padding-top: 50px;
+  @media (max-width: 600px) {
     font-size: 1rem;
   }
 `;
@@ -192,11 +204,9 @@ export const CardPhysicalPerson = styled(Grid)`
     font-size: 1rem;
     display: flex;
     flex-direction: column;
-    
   }
 `;
 export const CardJuridicalPerson = styled(Grid)`
- 
   background: #f0f0f0;
   border-radius: 24px;
   width: 500px;
@@ -228,7 +238,7 @@ export const StyleColorText = styled(Grid)`
   text-align: center;
   font-family: "AvenirLTSd Roman";
   @media (max-width: 600px) {
-  padding-top: 20px;
+    padding-top: 20px;
   }
 `;
 export const TitleGF = styled.div`
@@ -269,7 +279,6 @@ export const CarouselStyle = styled.div`
   @media (max-width: 600px) {
     display: none;
   }
-  
 `;
 export const CarouselSlider = styled.div`
   width: 90%;

@@ -55,6 +55,8 @@ import {
   StyleSubTitleFamily,
   StylePharseFamily,
   PaperCardBox,
+  StyleCentralizacionTable,
+  StyleCentralizacionMovies,
   TitleRanking,
   CardPhysicalPerson,
   CardJuridicalPerson,
@@ -265,39 +267,41 @@ const Ranking = () => {
             <TitleRanking>{titleRanking}</TitleRanking>
             <StyleCardsRanking container xs={12}>
               <Grid item xs={12} md={6}>
-                <CardPhysicalPerson>
-                  <IconImgPersons>
-                    <img src={IconPhysicalPersonSVG} alt="IconPerson" />
-                  </IconImgPersons>
-                  <CardStyleListName>
-                    <Table>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell
-                            style={{
-                              fontWeight: "bold",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            {personName}
-                          </TableCell>
-                          <TableCell
-                            style={{
-                              fontWeight: "bold",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            {totalCollectedTitle}
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        <TableCell>Nome completo da pessoa</TableCell>
-                        <TableCell>R$: 75.000,00</TableCell>
-                      </TableBody>
-                    </Table>
-                  </CardStyleListName>
-                </CardPhysicalPerson>
+                <StyleCentralizacionTable>
+                  <CardPhysicalPerson>
+                    <IconImgPersons>
+                      <img src={IconPhysicalPersonSVG} alt="IconPerson" />
+                    </IconImgPersons>
+                    <CardStyleListName>
+                      <Table>
+                        <TableHead>
+                          <TableRow>
+                            <TableCell
+                              style={{
+                                fontWeight: "bold",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              {personName}
+                            </TableCell>
+                            <TableCell
+                              style={{
+                                fontWeight: "bold",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              {totalCollectedTitle}
+                            </TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          <TableCell>Nome completo da pessoa</TableCell>
+                          <TableCell>R$: 75.000,00</TableCell>
+                        </TableBody>
+                      </Table>
+                    </CardStyleListName>
+                  </CardPhysicalPerson>
+                </StyleCentralizacionTable>
               </Grid>
               <Grid item xs={12} md={6}>
                 <CardJuridicalPerson>
@@ -337,9 +341,9 @@ const Ranking = () => {
             </StyleCardsRanking>
           </PaperCardBox>
         </Grid>
-        
       </StyleBackgroundConcession>
       <Grid container xs={12} justifyContent="center">
+        <StyleCentralizacionMovies>
           <Grid container justifyContent="center">
             <Grid item xs={12} md={6}>
               <StyleColorText>
@@ -361,7 +365,8 @@ const Ranking = () => {
               </StyleMovies>
             </Grid>
           </Grid>
-        </Grid>
+        </StyleCentralizacionMovies>
+      </Grid>
     </>
   );
 };

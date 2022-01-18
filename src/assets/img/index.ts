@@ -22,6 +22,8 @@ import SECURE_ENVIROMENT from "./payment/secure-enviroment.svg";
 import SUBMIT_CUSTOM_VALUE from "./landing-donation/icon-custom-value-submit.svg";
 
 import GREY_BG_CARD from "./landing-donation/grey-bg-card.svg";
+import PersonIcon from "./landing-donation/person-icon";
+import SuitCaseIcon from "./landing-donation/suitcase-icon";
 
 export {
   HEADER_LARGE,
@@ -40,4 +42,6 @@ export {
   SECURE_ENVIROMENT,
   SUBMIT_CUSTOM_VALUE,
   GREY_BG_CARD,
+  PersonIcon,
+  SuitCaseIcon,
 };

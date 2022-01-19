@@ -38,3 +38,8 @@ export const setAmbassadorEmail = (email: string) => ({
   payload: email,
   type: AmbassadorActionTypes.SET_AMBASSADOR_EMAIL,
 });
+
+ export const getAmbassador = (ambassador: IAmbassador) => ({
+   payload: ambassador, 
+   type: AmbassadorActionTypes.GET_AMBASSADOR,
+ });

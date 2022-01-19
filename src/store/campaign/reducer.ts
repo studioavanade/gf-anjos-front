@@ -35,6 +35,13 @@ const campaignReducer = (
         error: action.payload,
       };
 
+      case CampaignTypes.GET_CAMPAIGN:
+        return {
+          ...state,
+          campaignEdit: action.payload,
+          loading: false,
+        }
+
     default:
       return state;
   }

@@ -64,6 +64,8 @@ const PersonalInformation = () => {
   const [targetDonators, setTargetDonators] = useState(0);
   const [personType, setPersonType] = useState(PersonType.NATURAL_PERSON);
   const [education, setEducation] = useState("");
+  
+  const [editMode, setEditMode] = useState(false);
 
   const ambassadorAuthEmail = useSelector(
     (state: ApplicationState) => state.auth.userEmail

@@ -73,7 +73,7 @@ const LadingPageDonator = () => {
   }, []);
 
   const donate = (value: string | number) => {
-    let donation = Number(value.toString().replaceAll(",", "."));
+    let donation = Number(value.toString().replace(",", "."));
     if (donation === undefined || donation <= 0) {
       showErrorToast("Valor de doação inválido.");
       return;

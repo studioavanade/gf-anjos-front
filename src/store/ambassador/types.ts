@@ -21,6 +21,7 @@ export interface IAmbassador {
   phone?: string;
   celPhone?: string;
   personType?: PersonType;
+  currentCampaignId?: string;
 }
 
 export interface IAmbassadorStates {

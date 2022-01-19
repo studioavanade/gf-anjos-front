@@ -1,5 +1,11 @@
 import styled from "@emotion/styled";
-import { Grid, Table, TableCell } from "@mui/material";
+import {
+  Grid,
+  Table,
+  TableCell,
+  DialogTitle,
+  DialogContent,
+} from "@mui/material";
 import { DARK_BLUE } from "../../../styles/colors";
 
 export const TopContent = styled(Grid)`
@@ -69,12 +75,18 @@ export const DivSubmitButton = styled(Grid)`
   }
 `;
 
-export const StyleButtonDialog = styled.div`
-  display: flex;
-  justify-content: center;
+export const RegisterDialogTitle = styled(DialogTitle)`
   background: #333333;
   color: #ffffff;
   font-family: "KG Life is Messy";
+  font-size: 27px;
+`;
+
+export const RegisterDialogContent = styled(DialogContent)`
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  padding: 50px !important;
 `;
 
 export const TitleOurInfluencers = styled(Grid)`
@@ -141,10 +153,6 @@ export const PaperCardBox = styled(Grid)`
   border-radius: 8px;
   margin-top: 100px;
   padding: 50px;
-
-  @media (max-width: 600px) {
-    height: 1300px;
-  }
 `;
 
 export const TitleRanking = styled(Grid)`

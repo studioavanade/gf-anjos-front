@@ -1,6 +1,10 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 
 import React from "react";
+import { Link } from "react-router-dom";
+
+import { IconButton, Button, DialogActions } from "@mui/material";
+
 import IconHeartSVG from "../../../assets/img/ranking/icon-heart-box.svg";
 import IconPageSVG from "../../../assets/img/ranking/icon-page-box.svg";
 import IconWordSVG from "../../../assets/img/ranking/icon-document-box.svg";
@@ -15,13 +19,9 @@ import {
   TableBody,
   TableRow,
   Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
   TableContainer,
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
 import Carousel from "react-elastic-carousel";
 
 import Photo1SVG from "../../../assets/img/ranking/slider-images/photo1.svg";
@@ -37,7 +37,6 @@ import {
   SubTitleInfluencerBox,
   IconText,
   StyleIcon,
-  StyleButtonDialog,
   DivSubmitButton,
   TitleOurInfluencers,
   StyleBackgroundConcession,
@@ -61,11 +60,11 @@ import {
   RankingSpacer,
   RankingTableCell,
   ResponsiveIframe,
+  RegisterDialogTitle,
+  RegisterDialogContent,
 } from "./styles";
-
-import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
 import ROUTING_PATHS from "../../../routes/paths/index";
+import theme from "../../../theme";
 
 const mockedRanking = [
   {
@@ -133,6 +132,7 @@ const mockedRanking = [
 const Ranking = () => {
   const [open, setOpen] = React.useState(false);
   const isSmallerThan900 = useMediaQuery("(max-width: 900px");
+  const showDialogBefullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const sliderPhotos = [
     Photo1SVG,
@@ -157,15 +157,6 @@ const Ranking = () => {
     setOpen(false);
   };
 
-  const subTitleDialog =
-    "Complete o seu cadastro para receber uma página personalizada com o seu nome para arrecadar fundos para a campanha da Gerando Falcões!";
-  const buttonInfluencer = "Quero ser um influenciador";
-  const titleGF = "Gerando Falções";
-  const subTitleGF =
-    "Somos um ecossistema de desenvolvimento social que atua por meio da estratégia de rede em periferias e favelas de todo o Brasil. Atráves da Falcons University, Unidades Aceleradas, Oficinas e o Redesenho de Favelas, baseamos nossas ações em análise de dados e gestão eficiente, para interromper o ciclo de pobreza e transformar a pobreza em item de museu.";
-  const TitleDialog = "SEJA UM INFLUENCIADOR";
-  const buttonStart = "COMEÇAR";
-
   const IconCard = ({ icon, text }) => {
     return (
       <IconText
@@ -189,45 +180,42 @@ const Ranking = () => {
 
   const RegisterDialog = () => (
     <Dialog
-      fullScreen
       open={open}
       onClose={handleClose}
       aria-labelledby="Seja um influenciador"
-      fullWidth
+      fullScreen={showDialogBefullScreen}
+      style={{ minWidth: "var(--page-min-width)" }}
     >
-      <StyleButtonDialog>
-        <DialogTitle
-          style={{
-            fontFamily: "KG Life is Messy",
-            fontSize: "27px",
+      <RegisterDialogTitle sx={{ m: 0, p: 2 }}>
+        SEJA UM INFLUENCIADOR
+        <IconButton
+          onClick={handleClose}
+          sx={{
+            position: "absolute",
+            right: 16,
+            top: 16,
           }}
         >
-          {TitleDialog}
-          <Button
-            style={{
-              paddingLeft: "130px",
-              backgroundColor: "transparent",
-            }}
-            onClick={handleClose}
-            autoFocus
-          >
-            <img src={IconClosedDialogSVG} alt="Icon Closed" />
-          </Button>
-        </DialogTitle>
-      </StyleButtonDialog>
-      <DialogContent>
-        <DialogContentText>{subTitleDialog}</DialogContentText>
-      </DialogContent>
-      <Button
-        component={Link}
-        to={ROUTING_PATHS.AmbassadorCreateAccount}
-        onClick={handleClickOpen}
-        variant="contained"
-        type="submit"
-        fullWidth
-      >
-        {buttonStart}
-      </Button>
+          <img src={IconClosedDialogSVG} alt="Icon Closed" />
+        </IconButton>
+      </RegisterDialogTitle>
+      <RegisterDialogContent>
+        Complete o seu cadastro para receber uma página personalizada com o seu
+        nome para arrecadar fundos para a campanha da Gerando Falcões!
+      </RegisterDialogContent>
+      <DialogActions sx={{ justifyContent: "center" }}>
+        {" "}
+        <Button
+          component={Link}
+          to={ROUTING_PATHS.AmbassadorCreateAccount}
+          onClick={handleClickOpen}
+          variant="contained"
+          type="submit"
+          sx={{ minWidth: showDialogBefullScreen ? "100%" : "250px" }}
+        >
+          COMEÇAR
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 
@@ -337,7 +325,7 @@ const Ranking = () => {
             type="submit"
             fullWidth
           >
-            {buttonInfluencer}
+            Quero ser um influenciador
           </Button>
         </DivSubmitButton>
       </TopContent>
@@ -416,8 +404,13 @@ const Ranking = () => {
         <Grid item xs={12} lg={6}>
           <StyleColorText>
             <SubTitleGF>
-              <TitleGF>{titleGF}</TitleGF>
-              {subTitleGF}
+              <TitleGF>Gerando Falções</TitleGF>
+              const subTitleGF: "Somos um ecossistema de desenvolvimento social
+              que atua por meio da estratégia de rede em periferias e favelas de
+              todo o Brasil. Atráves da Falcons University, Unidades Aceleradas,
+              Oficinas e o Redesenho de Favelas, baseamos nossas ações em
+              análise de dados e gestão eficiente, para interromper o ciclo de
+              pobreza e transformar a pobreza em item de museu.
             </SubTitleGF>
           </StyleColorText>
         </Grid>

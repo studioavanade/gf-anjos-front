@@ -33,11 +33,11 @@ const api = (): IApi => {
     },
 
     getAmbassador: (ambassador: IAmbassador): Promise<AxiosResponse> => {
-      return backend.get(`/`,  );
+      return backend.get(`/list-ambassadors`, );
     },
 
     updateAmbassador: (ambassador: IAmbassador): Promise<AxiosResponse> => {
-      return backend.put(`/`, )
+      return backend.put(`/ambassadors-update/1`, ambassador )
     }
   };
 };

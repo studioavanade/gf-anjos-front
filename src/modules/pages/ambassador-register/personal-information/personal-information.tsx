@@ -50,7 +50,7 @@ import { IAmbassador } from "../../../../store/ambassador/types";
 import { ApplicationState } from "./../../../../store/rootReducer";
 import { isCNPJValid, isCPFValid } from "../../../../utils";
 import { saveFormTargetDonators } from "../../../../store/campaign/actions";
-import { createAmbassador } from "./../../../../store/ambassador/actions";
+import { createAmbassador, getAmbassador, updateAmbassador } from "./../../../../store/ambassador/actions";
 import PrivateComponentVerifier from "../../../components/private-component-verifier";
 import BackgroundWithHeader from "./../../../components/background-with-header/index";
 import MainContainer from "./../../../components/main-container/index";
@@ -64,6 +64,8 @@ const PersonalInformation = () => {
   const [targetDonators, setTargetDonators] = useState(0);
   const [personType, setPersonType] = useState(PersonType.NATURAL_PERSON);
   const [education, setEducation] = useState("");
+  
+ 
 
   const ambassadorAuthEmail = useSelector(
     (state: ApplicationState) => state.auth.userEmail
@@ -128,6 +130,8 @@ const PersonalInformation = () => {
     };
     dispatch(setLoading());
     dispatch(createAmbassador(ambassador));
+    dispatch(getAmbassador(ambassador));
+    dispatch(updateAmbassador(ambassador));
   };
 
   useEffect(() => {
@@ -144,6 +148,15 @@ const PersonalInformation = () => {
   const handleChangeSChooling = (event: any) => {
     setEducation(event.target.value);
   };
+
+
+
+  const [isEditMode, setIsEditMode] = useState(false);
+
+  useEffect(() => {
+    dispatch(getAmbassador)
+  }, []);
+
 
   return (
     <BackgroundWithHeader>

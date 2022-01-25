@@ -6,6 +6,8 @@ import { IAmbassador } from "../../store/ambassador/types";
 interface IApi {
   backend: AxiosInstance;
   createAmbassador(ambassador: IAmbassador): Promise<AxiosResponse>;
+  getAmbassador(ambassador: IAmbassador): Promise<AxiosResponse>;
+  updateAmbassador(ambassador: IAmbassador): Promise<AxiosResponse>;
 }
 
 const api = (): IApi => {
@@ -29,6 +31,14 @@ const api = (): IApi => {
     createAmbassador: (ambassador: IAmbassador): Promise<AxiosResponse> => {
       return backend.post(`/ambassadors`, ambassador);
     },
+
+    getAmbassador: (ambassador: IAmbassador): Promise<AxiosResponse> => {
+      return backend.get(`/list-ambassadors`, );
+    },
+
+    updateAmbassador: (ambassador: IAmbassador): Promise<AxiosResponse> => {
+      return backend.put(`/ambassadors-update/1`, ambassador )
+    }
   };
 };
 

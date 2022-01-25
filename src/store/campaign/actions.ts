@@ -33,3 +33,8 @@ const saveTargetDonators = (targetDonators: number) => ({
   payload: targetDonators,
   type: CampaignTypes.SAVE_TARGET_DONATORS,
 });
+
+export const getCampaignEdit = (ambassador: ICampaign) => ({
+  payload: ambassador,
+  type: CampaignTypes.GET_CAMPAIGN,
+})

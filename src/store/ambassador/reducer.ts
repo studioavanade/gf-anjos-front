@@ -31,6 +31,13 @@ const ambassadorReducer = (
         },
       };
 
+      case AmbassadorActionTypes.GET_AMBASSADOR:
+        return {
+          ...state,
+          ambassadorEdit: { ...action.payload },
+          loading: false,
+        }
+
     default:
       return state;
   }

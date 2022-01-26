@@ -51,7 +51,11 @@ import { IAmbassador } from "../../../../store/ambassador/types";
 import { ApplicationState } from "../../../../store/rootReducer";
 import { isCNPJValid, isCPFValid } from "../../../../utils";
 import { saveFormTargetDonators } from "../../../../store/campaign/actions";
-import { createAmbassador } from "../../../../store/ambassador/actions";
+import {
+  createAmbassador,
+  getAmbassador,
+  updateAmbassador,
+} from "./../../../../store/ambassador/actions";
 import PrivateComponentVerifier from "../../../components/private-component-verifier";
 import BackgroundWithHeader from "../../../components/background-with-header/";
 import ROUTING_PATHS from "../../../../routes/paths";
@@ -129,6 +133,8 @@ const PersonalInformation = () => {
     };
     dispatch(setLoading());
     dispatch(createAmbassador(ambassador));
+    dispatch(getAmbassador(ambassador));
+    dispatch(updateAmbassador(ambassador));
   };
 
   useEffect(() => {
@@ -145,6 +151,12 @@ const PersonalInformation = () => {
   const handleChangeSChooling = (event: any) => {
     setEducation(event.target.value);
   };
+
+  const [isEditMode, setIsEditMode] = useState(false);
+
+  useEffect(() => {
+    dispatch(getAmbassador);
+  }, []);
 
   return (
     <BackgroundWithHeader>

@@ -4,6 +4,7 @@ export enum CampaignTypes {
   SAVE_TARGET_DONATORS = "@campaign/SAVE_TARGET_DONATORS",
   GET_CAMPAIGN_SUCCESS = "@campaign/GET_CAMPAIGN_SUCCESS",
   GET_CAMPAIGN_ERROR = "@campaign/GET_CAMPAIGN_ERROR",
+  GET_CAMPAIGN = "@campaign/GET_CAMPAIGN",
 }
 
 export interface ICampaign {
@@ -16,4 +17,5 @@ export interface ICampaignStates {
   loading?: boolean;
   error?: any;
   campaign?: ICampaign;
+  campaignEdit?: ICampaign;
 }

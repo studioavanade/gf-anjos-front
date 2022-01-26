@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 import apis from "../../constants/apis";
+import { ICampaign } from "../../store/campaign/types";
 
 interface IApi {
   backend: AxiosInstance;
@@ -10,21 +11,13 @@ interface IApi {
     targetDonators: number
   ): Promise<AxiosResponse>;
   getCampaign(campaignId: string): Promise<AxiosResponse>;
+  updateCampaign(campaign: ICampaign): Promise<AxiosResponse>;
 }
 
 const api = (): IApi => {
   const backend = axios.create({
     baseURL: apis.backend,
   });
-
-  // backend.interceptors.request.use(
-  //   async (request: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
-  //     request.headers.Authorization = `Bearer ${
-  //       store.getState().auth.token
-  //     }`;
-  //     return request;
-  //   }
-  // );
 
   return {
     backend,
@@ -46,6 +39,10 @@ const api = (): IApi => {
 
     getCampaign: (campaignId: string): Promise<AxiosResponse> => {
       return backend.get(`/campaign?campaignId=${campaignId}`);
+    },
+
+    updateCampaign: (campaign: ICampaign): Promise<AxiosResponse> => {
+      return backend.put(`/`);
     },
   };
 };

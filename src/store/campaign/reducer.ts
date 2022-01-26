@@ -34,6 +34,22 @@ const campaignReducer = (
         loading: false,
         error: action.payload,
       };
+    case CampaignTypes.GET_CAMPAIGN_SUCCESS:
+      return {
+        campaign: {
+          targetDonators: action.payload.targetDonators,
+          ambassadorId: action.payload.ambassadorId,
+          image: action.payload.image,
+        },
+        loading: false,
+        error: undefined,
+      };
+    case CampaignTypes.GET_CAMPAIGN_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
 
       case CampaignTypes.GET_CAMPAIGN:
         return {

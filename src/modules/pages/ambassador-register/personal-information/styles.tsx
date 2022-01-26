@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Grid, RadioGroup } from "@mui/material";
+import { Grid, Paper, RadioGroup } from "@mui/material";
 
 export const StyleCard = styled.div`
   text-align: center;
@@ -22,6 +22,7 @@ export const CardPersonType = styled(Grid)`
 `;
 
 export const PersonTypeText2 = styled.span`
+  padding-left: 8px;
   color: #975e95;
 `;
 
@@ -53,11 +54,10 @@ export const StyleRecurringDonors = styled.div`
 `;
 
 export const TitleRecurring = styled.div`
-  display: flex;
-  justify-content: center;
   font-size: 32px;
   font-family: "KG Life is Messy";
   margin-left: 16px;
+  text-align: left;
 `;
 
 export const PersonIcon = styled.div`
@@ -132,4 +132,13 @@ export const DivSubmitButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const PersonTypePaper = styled(Paper)`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  label {
+    margin: 0px;
+  }
 `;

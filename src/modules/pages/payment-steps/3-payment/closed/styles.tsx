@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
 
 export const CardPaymentClosed = styled(Grid)`
-  height: 180px;
+  min-height: 180px;
   border: 1px solid #c4c4c4;
   border-radius: 20px;
   background-color: #f2f2f2;

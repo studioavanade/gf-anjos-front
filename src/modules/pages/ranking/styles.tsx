@@ -93,32 +93,29 @@ export const TitleOurInfluencers = styled(Grid)`
   color: #ffffff;
   font-size: 45px;
   font-family: "SuperClarendon Ligth";
-  padding-top: 60px;
+  margin-top: 60px;
   padding-bottom: 60px;
+  padding: 0px 50px 60px 50px;
   font-weight: 600;
   text-align: center;
 
   @media (max-width: 600px) {
-    display: none;
     padding-top: 0px;
     padding-bottom: 0px;
   }
 `;
 
-export const StyleBackgroundConcession = styled.div`
+export const StyleBackgroundConcession = styled(Grid)`
   width: 100%;
   height: 100%;
-  position: relative;
 `;
 
 export const TitleYourInfluence = styled(Grid)`
-  position: relative;
   color: #ffff;
   font-size: 45px;
   font-family: "SuperClarendon Ligth";
-  position: relative;
-  padding-top: 40px;
   text-align: center;
+  margin-top: 60px;
 `;
 
 export const StylePharseFamily = styled(Grid)`
@@ -134,7 +131,7 @@ export const DescriptionYourInfluence = styled(Grid)`
   line-height: 1.5;
   font-family: "AvenirLTSd Roman";
   font-size: 32px;
-  margin: 0px 50px;
+  padding: 50px 50px;
 
   @media (max-width: 600px) {
     font-size: 18px;
@@ -151,7 +148,7 @@ export const StyleBoxRanking = styled.div`
 export const PaperCardBox = styled(Grid)`
   background: #ffffff;
   border-radius: 8px;
-  margin-top: 100px;
+  margin-top: 50px;
   padding: 50px;
 `;
 
@@ -272,15 +269,7 @@ export const StyleBox = styled.div`
   position: relative;
 `;
 
-export const CarouselStyle = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  @media (max-width: 600px) {
-    display: none;
-  }
-`;
+export const HorizontalCarouselContainer = styled(Grid)``;
 
 export const CarouselSlider = styled.div`
   width: 90%;
@@ -289,16 +278,7 @@ export const CarouselSlider = styled.div`
   display: block;
 `;
 
-export const BackgroundImg = styled.div`
-  opacity: 50%;
-  position: absolute;
-  top: -120px;
-  @media (max-width: 600px) {
-    display: none;
-  }
-`;
-
-export const ItemPhotos = styled.div`
+export const ItemHCarousel = styled.div`
   display: inline-block;
   justify-content: center;
   align-items: center;
@@ -308,10 +288,24 @@ export const ItemPhotos = styled.div`
   color: #fff;
   margin: 0 15px;
   font-size: 4em;
-  border-radius: 10px;
-  cursor: pointer;
 `;
 
+export const ItemVCarousel = styled(Grid)`
+  max-height: 300px;
+  overflow: hidden;
+  color: #fff;
+  margin: 8px 0px;
+  font-size: 4em;
+`;
+
+export const BackgroundImg = styled.div`
+  opacity: 50%;
+  position: absolute;
+  z-index: -2;
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
 export const LoginLink = styled.div`
   color: white !important;
   margin-top: 32px;

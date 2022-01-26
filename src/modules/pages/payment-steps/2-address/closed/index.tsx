@@ -5,24 +5,21 @@ import {
   CardAddressClosed,
   AddressIcon,
   TitleAddress,
-  AddressDados,
+  WaitMsg,
 } from "./styles";
 
 const AddressStepClosed = () => {
-  const titleAddress = "Dados de Endereço";
-  const subTitle = "Aguardando o preenchimento dos dados";
-
   return (
     <CardAddressClosed container item direction="column">
-      <AddressIcon container direction="row" spacing={3}>
+      <AddressIcon container direction="row">
         <Grid item>
           <img src={AddressIconSVG} alt="IconAddress" />
         </Grid>
         <Grid item>
-          <TitleAddress>{titleAddress}</TitleAddress>
+          <TitleAddress>Dados de Endereço</TitleAddress>
         </Grid>
       </AddressIcon>
-      <AddressDados>{subTitle}</AddressDados>
+      <WaitMsg>Aguardando o preenchimento dos dados</WaitMsg>
     </CardAddressClosed>
   );
 };

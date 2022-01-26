@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ROUTING_PATHS from "./paths";
-import Home from "./../modules/pages/home/index";
-import PersonalInformation from "../modules/pages/ambassador-register/personal-information/personal-information";
-import AmbassadorCreateAccount from "../modules/pages/ambassador-register/create-account/create-account";
+import PersonalInformation from "../modules/pages/ambassador-register/personal-information";
+import AmbassadorCreateAccount from "../modules/pages/ambassador-register/create-account";
 import PaymentSteps from "./../modules/pages/payment-steps";
 import AmbassadorLogin from "../modules/pages/ambassador-login";
-import PhotoUpload from "./../modules/pages/ambassador-register/photo-upload/index";
-import LadingPageDonator from "./../modules/pages/landing-pages/donator/index";
-import Ranking from "./../modules/pages/ranking/ranking";
+import PhotoUpload from "./../modules/pages/ambassador-register/photo-upload/";
+import LadingPageDonator from "./../modules/pages/landing-pages/donator/";
+import Ranking from "../modules/pages/ranking";
+import PageNotFound from "./../modules/pages/404/index";
 
 const AppRoutes = () => {
   return (
@@ -31,7 +31,7 @@ const AppRoutes = () => {
         />
         <Route path={ROUTING_PATHS.PaymentSteps} element={<PaymentSteps />} />
 
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<PageNotFound />} />
 
         <Route path={ROUTING_PATHS.Ranking} element={<Ranking />} />
 

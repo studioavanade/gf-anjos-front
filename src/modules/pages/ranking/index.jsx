@@ -42,8 +42,8 @@ import {
   StyleBackgroundConcession,
   BackgroundImg,
   CarouselSlider,
-  CarouselStyle,
-  ItemPhotos,
+  HorizontalCarouselContainer,
+  ItemHCarousel,
   TitleYourInfluence,
   DescriptionYourInfluence,
   PaperCardBox,
@@ -62,6 +62,7 @@ import {
   ResponsiveIframe,
   RegisterDialogTitle,
   RegisterDialogContent,
+  ItemVCarousel,
 } from "./styles";
 import ROUTING_PATHS from "../../../routes/paths/index";
 import theme from "../../../theme";
@@ -131,8 +132,8 @@ const mockedRanking = [
 
 const Ranking = () => {
   const [open, setOpen] = React.useState(false);
-  const isSmallerThan900 = useMediaQuery("(max-width: 900px");
-  const showDialogBefullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallerThan900 = useMediaQuery(theme.breakpoints.down("md"));
+  const isSmallerThan600 = useMediaQuery(theme.breakpoints.down("sm"));
 
   const sliderPhotos = [
     Photo1SVG,
@@ -183,7 +184,7 @@ const Ranking = () => {
       open={open}
       onClose={handleClose}
       aria-labelledby="Seja um influenciador"
-      fullScreen={showDialogBefullScreen}
+      fullScreen={isSmallerThan600}
       style={{ minWidth: "var(--page-min-width)" }}
     >
       <RegisterDialogTitle sx={{ m: 0, p: 2 }}>
@@ -211,7 +212,7 @@ const Ranking = () => {
           onClick={handleClickOpen}
           variant="contained"
           type="submit"
-          sx={{ minWidth: showDialogBefullScreen ? "100%" : "250px" }}
+          sx={{ minWidth: isSmallerThan600 ? "100%" : "250px" }}
         >
           COMEÇAR
         </Button>
@@ -256,10 +257,10 @@ const Ranking = () => {
         <RankingTable>
           <TableHead>
             <TableRow>
-              <RankingTableCell bold align="left">
+              <RankingTableCell bold="true" align="left">
                 Nome
               </RankingTableCell>
-              <RankingTableCell bold align="right">
+              <RankingTableCell bold="true" align="right">
                 Total arrecadado
               </RankingTableCell>
             </TableRow>
@@ -268,7 +269,7 @@ const Ranking = () => {
             {!!list &&
               list.length > 0 &&
               list.map(({ ambassador, totalValue }) => (
-                <TableRow key={ambassador}>
+                <TableRow key={ambassador + Math.random() * 10000}>
                   <RankingTableCell align="left">{ambassador}</RankingTableCell>
                   <RankingTableCell align="right">
                     {totalValue}
@@ -279,6 +280,40 @@ const Ranking = () => {
         </RankingTable>
       </TableContainer>
     </RankingCard>
+  );
+
+  const HorizontalCarousel = () => (
+    <HorizontalCarouselContainer
+      container
+      justifyContent="center"
+      alignItems="center"
+    >
+      <CarouselSlider>
+        <Carousel focusOnSelect={true} itemsToShow={4}>
+          {sliderPhotos.map((photo) => (
+            <ItemHCarousel key={photo.toString() + Math.random() * 10000}>
+              <img src={photo} alt={photo.toString()} />
+            </ItemHCarousel>
+          ))}
+        </Carousel>
+      </CarouselSlider>
+    </HorizontalCarouselContainer>
+  );
+
+  const VerticalGallery = () => (
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      style={{ marginTop: "50px" }}
+    >
+      {sliderPhotos.slice(0, 4).map((photo) => (
+        <ItemVCarousel item sx={12}>
+          <img src={photo} alt={photo.toString()} key={photo.toString()} />
+        </ItemVCarousel>
+      ))}
+    </Grid>
   );
 
   return (
@@ -341,21 +376,7 @@ const Ranking = () => {
             height="100%"
           />
         </BackgroundImg>
-        <CarouselStyle>
-          <CarouselSlider>
-            <Carousel focusOnSelect={true} itemsToShow={4}>
-              {sliderPhotos.map((photo) => (
-                <ItemPhotos>
-                  <img
-                    src={photo}
-                    alt={photo.toString()}
-                    key={photo.toString()}
-                  />
-                </ItemPhotos>
-              ))}
-            </Carousel>
-          </CarouselSlider>
-        </CarouselStyle>
+        {!isSmallerThan600 ? <HorizontalCarousel /> : <VerticalGallery />}
       </StyleBackgroundConcession>
 
       <TitleYourInfluence>
@@ -389,7 +410,7 @@ const Ranking = () => {
           title="PESSOA FÍSICA"
           list={mockedRanking}
         />
-        <RankingSpacer xs={12} lg={0.5} />
+        <RankingSpacer item xs={12} lg={0.5} />
         <RankingParentCard
           xs={12}
           lg={5.5}

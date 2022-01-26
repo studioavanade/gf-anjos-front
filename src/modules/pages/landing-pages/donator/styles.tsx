@@ -55,22 +55,11 @@ export const DonationDescription = styled.div`
 `;
 
 export const StyleTitleRecurring = styled(Grid)`
-  margin-top: 150px;
+  padding: 60px 50px 50px 50px;
   font-family: "KG Life is Messy";
   font-size: 48px;
   color: #ffffff;
-  padding-bottom: 80px;
   text-align: center;
-`;
-
-export const DonationValueCard = styled(Grid)`
-  width: 300px;
-  height: 195px;
-  background-color: white;
-  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-  border-radius: 5px;
-  margin-top: 24px;
 `;
 
 export const CustomValueTextField = styled(TextField)`
@@ -131,8 +120,22 @@ export const StyleMoneyIcon = styled(Grid)`
   padding-left: 16px;
 `;
 
-export const StyleBoxTitleDonate = styled.div`
+export const DonationValueCard = styled(Grid)`
   width: 300px;
+  height: 195px;
+  background-color: white;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  border-radius: 5px;
+  margin: 24px 50px;
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
+`;
+
+export const DonationValueCardTitle = styled.div`
+  width: 100%;
   height: 46px;
   background: #e7e7e7;
   border-radius: 5px 5px 0px 0px;
@@ -168,24 +171,12 @@ export const StyleTodayValue = styled.div`
 `;
 
 export const StyleTitleGoal = styled(Grid)`
-  padding-top: 120px;
-  padding-bottom: 50px;
+  padding: 60px 50px 50px 50px;
   font-family: "KG Life is Messy";
   font-size: 30px;
   color: #ffffff;
   text-align: center;
-  max-height: 200px;
-`;
-
-export const StyleTitleCollected = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 120px;
-  padding-bottom: 50px;
-  font-family: "KG Life is Messy";
-  font-size: 30px;
-  color: #ffffff;
+  height: 200px;
 `;
 
 export const StyleCentralizacion = styled.div`
@@ -200,7 +191,7 @@ export const GFNetwork = styled.div`
   color: #ffffff;
   font-family: "Inter Light";
   font-size: 32px;
-  padding: 100px 10vw;
+  padding: 100px 50px 50px 50px;
   line-height: 1.6;
 `;
 
@@ -222,7 +213,7 @@ export const StyleBoxGoal = styled(Grid)`
   background: #ffffff;
   padding: 50px;
   background-image: url(${GREY_BG_CARD});
-  background-size: 120%;
+  background-size: cover;
   height: 550px;
 `;
 

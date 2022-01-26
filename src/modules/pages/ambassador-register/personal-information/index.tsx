@@ -28,6 +28,7 @@ import {
   StyleCardCount,
   DivSubmitButton,
   GridNoPadding,
+  PersonTypePaper,
 } from "./styles";
 
 import {
@@ -44,18 +45,26 @@ import {
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { PersonType } from "../../../../store/shared";
-import { SCHOOLING } from "./../../../../constants/index";
-import { showErrorToast } from "./../../../../utils/toast/index";
+import { SCHOOLING } from "../../../../constants/";
+import { showErrorToast } from "../../../../utils/toast/";
 import { IAmbassador } from "../../../../store/ambassador/types";
-import { ApplicationState } from "./../../../../store/rootReducer";
+import { ApplicationState } from "../../../../store/rootReducer";
 import { isCNPJValid, isCPFValid } from "../../../../utils";
 import { saveFormTargetDonators } from "../../../../store/campaign/actions";
-import { createAmbassador, getAmbassador, updateAmbassador } from "./../../../../store/ambassador/actions";
+import {
+  createAmbassador,
+  getAmbassador,
+  updateAmbassador,
+} from "./../../../../store/ambassador/actions";
 import PrivateComponentVerifier from "../../../components/private-component-verifier";
-import BackgroundWithHeader from "./../../../components/background-with-header/index";
-import MainContainer from "./../../../components/main-container/index";
+import BackgroundWithHeader from "../../../components/background-with-header/";
 import ROUTING_PATHS from "../../../../routes/paths";
 import { setLoading } from "../../../../store/loading-progress/actions";
+import MainContainer from "../../../components/main-container";
+import {
+  SuitCaseIcon,
+  PersonIcon as PersonTypeIcon,
+} from "../../../../assets/img";
 
 const PersonalInformation = () => {
   const isSmallScreen = useMediaQuery("(max-width: 900px");
@@ -64,8 +73,6 @@ const PersonalInformation = () => {
   const [targetDonators, setTargetDonators] = useState(0);
   const [personType, setPersonType] = useState(PersonType.NATURAL_PERSON);
   const [education, setEducation] = useState("");
-  
- 
 
   const ambassadorAuthEmail = useSelector(
     (state: ApplicationState) => state.auth.userEmail
@@ -75,12 +82,8 @@ const PersonalInformation = () => {
     (state: ApplicationState) => state.ambassador.ambassador?.id
   );
 
-  const title = "Faça seu cadastro";
   const titleCheckbox = "Nesta campanha que vai ser criada, ";
-  const titleYouAre = "você é: ";
-  const titleRecurringDonors = "Doadores Recorrentes";
-  const subTitle = "Quantos doadores você deseja engajar?";
-  const buttonRegister = "Cadastrar";
+  const titleYouAre = " você é: ";
 
   const { register, handleSubmit } = useForm();
 
@@ -149,14 +152,11 @@ const PersonalInformation = () => {
     setEducation(event.target.value);
   };
 
-
-
   const [isEditMode, setIsEditMode] = useState(false);
 
   useEffect(() => {
-    dispatch(getAmbassador)
+    dispatch(getAmbassador);
   }, []);
-
 
   return (
     <BackgroundWithHeader>
@@ -172,55 +172,84 @@ const PersonalInformation = () => {
                   width="35px"
                   height="32px"
                 />
-                <TitleRegistration>{title}</TitleRegistration>
+                <TitleRegistration>Faça seu cadastro</TitleRegistration>
               </RegistrationIcon>
               <CardPersonType
                 container
                 alignItems="center"
                 justifyContent="center"
               >
-                <GridNoPadding
-                  container
-                  item
-                  xs={12}
-                  md={6}
-                  justifyContent={isSmallScreen ? "center" : "flex-end"}
-                >
+                <GridNoPadding container item xs={12} justifyContent="center">
                   {titleCheckbox}{" "}
                   <PersonTypeText2>{titleYouAre}</PersonTypeText2>
                 </GridNoPadding>
-                <GridNoPadding
-                  container
-                  item
-                  xs={12}
-                  md={6}
-                  direction="row"
-                  justifyContent={isSmallScreen ? "center" : "flex-start"}
-                >
-                  <FormControl component="fieldset">
+                <GridNoPadding container item xs={12} direction="row">
+                  <FormControl
+                    component="fieldset"
+                    style={{
+                      width: "100%",
+                      justifyContent: "center",
+                    }}
+                  >
                     <RadioGroupStyled
                       aria-label="personType"
                       value={personType}
                       onChange={handleChangePersonType}
-                      style={!isSmallScreen ? { marginLeft: "8px" } : undefined}
+                      style={{
+                        padding: "16px",
+                        backgroundColor: "#F7F7F7",
+                        border: "1px solid #E5E5E5",
+                        width: "100%",
+                        justifyContent: "center",
+                      }}
                     >
-                      <FormControlLabel
-                        value={PersonType.NATURAL_PERSON}
-                        control={<Radio color="secondary" />}
-                        label="Pessoa Física"
-                      />
-                      <FormControlLabel
-                        value={PersonType.LEGAL_PERSON}
-                        control={<Radio color="secondary" />}
-                        label="Pessoa Jurídica"
-                      />
+                      <PersonTypePaper
+                        style={{ minWidth: "150px", minHeight: "100px" }}
+                      >
+                        <Grid
+                          container
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
+                          style={{ height: "100%" }}
+                        >
+                          <PersonTypeIcon color="grey" />
+                          Pessoa Física
+                          <FormControlLabel
+                            value={PersonType.NATURAL_PERSON}
+                            control={<Radio color="secondary" />}
+                            style={{ width: "100%" }}
+                            label=""
+                          />
+                        </Grid>
+                      </PersonTypePaper>
+
+                      <PersonTypePaper
+                        style={{ width: "150px", height: "150px" }}
+                      >
+                        <Grid
+                          container
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
+                          style={{ height: "100%" }}
+                        >
+                          <SuitCaseIcon color="grey" />
+                          Pessoa Jurídica
+                          <FormControlLabel
+                            value={PersonType.LEGAL_PERSON}
+                            control={<Radio color="secondary" />}
+                            label=""
+                          />
+                        </Grid>
+                      </PersonTypePaper>
                     </RadioGroupStyled>
                   </FormControl>
                 </GridNoPadding>
               </CardPersonType>
               <RegistrationForm>
                 <Grid container spacing={3}>
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12}>
                     <TextField
                       fullWidth
                       id="name"
@@ -230,7 +259,7 @@ const PersonalInformation = () => {
                       {...register("name")}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} md={6}>
                     <TextField
                       fullWidth
                       id="cpfCnpj"
@@ -241,7 +270,7 @@ const PersonalInformation = () => {
                       {...register("cpfCnpj")}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={4}>
+                  <Grid item xs={12} md={6}>
                     <TextField
                       fullWidth
                       id="date"
@@ -256,7 +285,7 @@ const PersonalInformation = () => {
                       {...register("birthDate")}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} md={6}>
                     <FormControl
                       fullWidth
                       variant="standard"
@@ -280,7 +309,7 @@ const PersonalInformation = () => {
                       </Select>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} md={6}>
                     <TextField
                       fullWidth
                       id="profession"
@@ -290,7 +319,7 @@ const PersonalInformation = () => {
                       {...register("profession")}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} md={6}>
                     <TextField
                       fullWidth
                       id="phone"
@@ -302,7 +331,7 @@ const PersonalInformation = () => {
                       {...register("phone")}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} md={6}>
                     <TextField
                       fullWidth
                       id="smartphone"
@@ -321,9 +350,11 @@ const PersonalInformation = () => {
                   <PersonIcon>
                     <img src={PersonIconSVG} alt="Person" />
                   </PersonIcon>
-                  <TitleRecurring>{titleRecurringDonors}</TitleRecurring>
+                  <TitleRecurring>Doadores Recorrentes</TitleRecurring>
                 </StyleRecurringDonors>
-                <SubTitleDonors>{subTitle}</SubTitleDonors>
+                <SubTitleDonors>
+                  Quantos doadores você deseja engajar?
+                </SubTitleDonors>
                 <StyleCountDonors>
                   <StyleButtonsDonors>
                     <ButtonDecremented
@@ -349,7 +380,7 @@ const PersonalInformation = () => {
                     fullWidth
                     style={{ maxWidth: "320px" }}
                   >
-                    {buttonRegister}
+                    Cadastrar
                   </Button>
                 </DivSubmitButton>
               </StyleDonors>

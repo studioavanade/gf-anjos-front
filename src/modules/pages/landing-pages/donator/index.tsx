@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import PerfilSVG from "../../../../assets/img/landing-donation/perfil-donation.svg";
 import BackgroundLastSVF from "../../../../assets/img/landing-donation/background-last.svg";
 import IconMoneySVG from "../../../../assets/img/landing-donation/icon-money.svg";
@@ -20,13 +20,12 @@ import {
   StyleTitleRecurring,
   BoxTitleDonate,
   StyleMoneyIcon,
-  StyleBoxTitleDonate,
+  DonationValueCardTitle,
   StyleBoxGoal,
   StyleCardGoal,
   StyleSubtitleDonation,
   StyleCardDonut,
   StyleTitleGoal,
-  StyleTitleCollected,
   GFNetwork,
   DivSubmitButton,
   StyleBackgroundLast,
@@ -48,6 +47,8 @@ import {
 import ROUTING_PATHS from "./../../../../routes/paths/index";
 import { showErrorToast } from "./../../../../utils/toast/index";
 import { SUBMIT_CUSTOM_VALUE } from "../../../../assets/img";
+import { getCampaign } from "./../../../../store/campaign/actions";
+import { ApplicationState } from "./../../../../store/rootReducer";
 
 interface IValueCardProps {
   monthlyValue: number;
@@ -55,22 +56,36 @@ interface IValueCardProps {
 }
 
 const LadingPageDonator = () => {
-  const titleDonation = "VAMOS DOAR JUNTOS";
-  const subTitleAngel =
-    "Convido você para também ser o anjo que vai dar condições para que os moradores das favelas recebam o colar da imunidade.";
   const namePerfil = "Eduardo";
-  const titleRecurring = "SEJA UM DOADOR RECORRENTE";
-  const donationMonth = "Em doações mensais para nossa campanha";
 
   const isSmallerThan1200 = useMediaQuery("(max-width: 1200px)");
+  const [searchParams] = useSearchParams();
+  const campaignState = useSelector(
+    (state: ApplicationState) => state.campaign
+  );
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [customValue, setCustomValue] = useState<string>("");
+  const [campaignId, setCampaignId] = useState<string | null | undefined>("");
 
   useEffect(() => {
     dispatch(clearStates());
+    const id = searchParams.get("campaignId");
+    setCampaignId(id);
   }, []);
+
+  useEffect(() => {
+    if (campaignId && campaignId.length > 0) {
+      dispatch(getCampaign(campaignId));
+    }
+  }, [campaignId]);
+
+  useEffect(() => {
+    if (campaignState.error || !campaignId) {
+      navigate(ROUTING_PATHS.PageNotFound);
+    }
+  }, [campaignState, campaignState.error]);
 
   const donate = (value: string | number) => {
     let donation = Number(value.toString().replace(",", "."));
@@ -93,7 +108,7 @@ const LadingPageDonator = () => {
         }}
         style={{ cursor: "pointer" }}
       >
-        <StyleBoxTitleDonate>
+        <DonationValueCardTitle>
           <StyleMoneyIcon
             container
             direction="row"
@@ -103,11 +118,11 @@ const LadingPageDonator = () => {
             <Grid item xs={2}>
               <img src={IconMoneySVG} alt="IconMoney" />
             </Grid>
-            <BoxTitleDonate xs={10}>
+            <BoxTitleDonate item xs={10}>
               {monthlyValue ? "Doe" : "Doe outro valor"}
             </BoxTitleDonate>
           </StyleMoneyIcon>
-        </StyleBoxTitleDonate>
+        </DonationValueCardTitle>
         <Grid
           container
           alignItems="center"
@@ -147,18 +162,19 @@ const LadingPageDonator = () => {
             xs={12}
             lg={4}
           >
-            <img src={PerfilSVG} alt="Perfil" />
+            <img src={campaignState.campaign?.image} alt="Perfil" />
             <InfluencerName>{namePerfil}</InfluencerName>
           </InfluencerProfile>
 
           <Grid
             container
+            item
             justifyContent={isSmallerThan1200 ? "center" : "flex-start"}
             xs={12}
             lg={8}
             style={isSmallerThan1200 ? undefined : { paddingLeft: "50px" }}
           >
-            <DonationTitle>{titleDonation}</DonationTitle>
+            <DonationTitle>VAMOS DOAR JUNTOS</DonationTitle>
             <DonationDescription>
               Neste Reality Show da fome, que já eliminou 1900 brasileiros em um
               único paredão, a Rede Gerando Falcões será, de novo, a ponte que
@@ -170,7 +186,10 @@ const LadingPageDonator = () => {
               </span>
               .
             </DonationDescription>
-            <SubTitleAngel>{subTitleAngel}</SubTitleAngel>
+            <SubTitleAngel>
+              Convido você para também ser o anjo que vai dar condições para que
+              os moradores das favelas recebam o colar da imunidade.
+            </SubTitleAngel>
           </Grid>
         </Grid>
       </TopContainerInfluencer>
@@ -180,7 +199,7 @@ const LadingPageDonator = () => {
         alignItems="center"
         justifyContent="center"
       >
-        {titleRecurring}
+        SEJA UM DOADOR RECORRENTE
       </StyleTitleRecurring>
 
       <Grid container justifyContent="space-around">
@@ -189,7 +208,7 @@ const LadingPageDonator = () => {
         <ValueCard monthlyValue={100} color="#00AEEF" />
 
         <DonationValueCard>
-          <StyleBoxTitleDonate>
+          <DonationValueCardTitle>
             <StyleMoneyIcon
               container
               direction="row"
@@ -199,9 +218,11 @@ const LadingPageDonator = () => {
               <Grid item xs={2}>
                 <img src={IconMoneySVG} alt="IconMoney" />
               </Grid>
-              <BoxTitleDonate xs={10}>Doe outro valor</BoxTitleDonate>
+              <BoxTitleDonate item xs={10}>
+                Doe outro valor
+              </BoxTitleDonate>
             </StyleMoneyIcon>
-          </StyleBoxTitleDonate>
+          </DonationValueCardTitle>
           <Grid
             container
             alignItems="center"
@@ -241,13 +262,11 @@ const LadingPageDonator = () => {
         </DonationValueCard>
       </Grid>
 
-      <Grid
-        container
-        justifyContent="space-around"
-        style={{ paddingTop: "70px" }}
-      >
-        <Grid item xs={12} lg={6} direction="column">
-          <StyleTitleGoal>Sua meta de doadores recorrentes</StyleTitleGoal>
+      <Grid container justifyContent="space-around">
+        <Grid container item xs={12} lg={6} direction="column">
+          <StyleTitleGoal container alignItems="center" justifyContent="center">
+            Sua meta de doadores recorrentes
+          </StyleTitleGoal>
           <Grid container item direction="column" alignItems="center">
             <StyleBoxGoal container alignItems="center" justifyContent="center">
               <StyleCardGoal>
@@ -267,8 +286,10 @@ const LadingPageDonator = () => {
           </Grid>
         </Grid>
 
-        <Grid item xs={12} lg={6} direction="column">
-          <StyleTitleCollected>Já arrecadamos</StyleTitleCollected>
+        <Grid container item xs={12} lg={6} direction="column">
+          <StyleTitleGoal container alignItems="center" justifyContent="center">
+            Já arrecadamos
+          </StyleTitleGoal>
           <Grid container item direction="column" alignItems="center">
             <StyleBoxGoal
               container
@@ -284,7 +305,9 @@ const LadingPageDonator = () => {
               >
                 R$: 1.200,00
               </StyleBoxValue>
-              <StyleDonationMonth>{donationMonth}</StyleDonationMonth>
+              <StyleDonationMonth>
+                Em doações mensais para nossa campanha
+              </StyleDonationMonth>
             </StyleBoxGoal>
           </Grid>
         </Grid>
@@ -299,7 +322,7 @@ const LadingPageDonator = () => {
         href="https://www.youtube.com/watch?v=4xSAKGplFEw"
         target="_blank"
         rel="noreferrer"
-        style={{ width: "100%", textAlign: "center", padding: "100px 10vw" }}
+        style={{ width: "100%", textAlign: "center", padding: "50px" }}
       >
         <DivSubmitButton variant="contained" type="submit">
           ASSISTA AO VÍDEO DA CAMPANHA

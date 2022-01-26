@@ -51,7 +51,7 @@ export const StepName = styled.div`
 
 export const Stroke = styled.svg`
   position: relative;
-  top: 95px;
+  top: 75px;
   z-index: 1;
   left: 0;
   @media (max-width: 900px) {

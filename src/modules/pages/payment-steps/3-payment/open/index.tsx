@@ -58,7 +58,7 @@ const PaymentStepOpen = () => {
             <img src={PaymentIconSVG} alt="IconAddress" />
           </Grid>
           <Grid item>
-            <TitlePayment>{titlePayment}</TitlePayment>
+            <TitlePayment>Pagamento</TitlePayment>
           </Grid>
         </Grid>
         <CardCredit
@@ -70,12 +70,9 @@ const PaymentStepOpen = () => {
           style={{ marginBottom: "32px" }}
         >
           <Grid item>
-            <Radio checked />
-          </Grid>
-          <Grid item>
             <img src={ICON_CREDIT_CARD} alt="Credit Card" />
           </Grid>
-          <Grid item>{creditCard}</Grid>
+          <Grid item>Cartão de Crédito</Grid>
         </CardCredit>
         <Grid item>
           <TextField

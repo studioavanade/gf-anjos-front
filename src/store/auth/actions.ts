@@ -23,15 +23,15 @@ export const signIn =
     dispatch(authRequest());
     AuthService.signIn(email, password)
       .then(() => {
-        if (onSuccessCallback) onSuccessCallback();
         setSessionStorage(USER_EMAIL_STORAGE_KEY, email);
         dispatch(signInSuccess(email));
+        if (onSuccessCallback) onSuccessCallback();
       })
       .catch((error) => {
-        if (onErrorCallback) onErrorCallback();
         const errorMessageTranslated = getMessageFromError(error);
         dispatch(signInError(errorMessageTranslated));
         showErrorToast(errorMessageTranslated);
+        if (onErrorCallback) onErrorCallback();
       })
       .finally(() => {
         dispatch(clearLoading());

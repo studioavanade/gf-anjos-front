@@ -10,17 +10,14 @@ interface IApi {
     ambassadorId: string,
     targetDonators: number
   ): Promise<AxiosResponse>;
-
-  getCampaign(ambassador: ICampaign): Promise<AxiosResponse>;
-  updateCampaign(ambassador: ICampaign): Promise<AxiosResponse>;
-
+  getCampaign(campaignId: string): Promise<AxiosResponse>;
+  updateCampaign(campaign: ICampaign): Promise<AxiosResponse>;
 }
 
 const api = (): IApi => {
   const backend = axios.create({
     baseURL: apis.backend,
   });
-
 
   return {
     backend,
@@ -40,12 +37,12 @@ const api = (): IApi => {
       });
     },
 
-    getCampaign: (ambassador: ICampaign): Promise<AxiosResponse> => {
-      return backend.get(`/`,  );
+    getCampaign: (campaignId: string): Promise<AxiosResponse> => {
+      return backend.get(`/campaign?campaignId=${campaignId}`);
     },
 
-    updateCampaign: (ambassador: ICampaign): Promise<AxiosResponse> => {
-      return backend.put(`/`, )
+    updateCampaign: (campaign: ICampaign): Promise<AxiosResponse> => {
+      return backend.put(`/`);
     },
   };
 };

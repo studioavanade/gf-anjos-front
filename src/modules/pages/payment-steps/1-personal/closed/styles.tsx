@@ -6,7 +6,7 @@ export const CardPersonalClosed = styled(Grid)`
   border-radius: 20px;
   background-color: #f2f2f2;
   padding: 16px;
-  height: 180px;
+  min-height: 180px;
 `;
 
 export const PersonIcon = styled(Grid)``;

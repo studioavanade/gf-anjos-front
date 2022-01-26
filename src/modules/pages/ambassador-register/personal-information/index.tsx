@@ -42,7 +42,6 @@ import {
   MenuItem,
   InputLabel,
 } from "@mui/material";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { PersonType } from "../../../../store/shared";
 import { SCHOOLING } from "../../../../constants/";
@@ -67,12 +66,13 @@ import {
 } from "../../../../assets/img";
 
 const PersonalInformation = () => {
-  const isSmallScreen = useMediaQuery("(max-width: 900px");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [targetDonators, setTargetDonators] = useState(0);
   const [personType, setPersonType] = useState(PersonType.NATURAL_PERSON);
   const [education, setEducation] = useState("");
+  //const [isEditMode, setIsEditMode] = useState(false);
 
   const ambassadorAuthEmail = useSelector(
     (state: ApplicationState) => state.auth.userEmail
@@ -151,8 +151,6 @@ const PersonalInformation = () => {
   const handleChangeSChooling = (event: any) => {
     setEducation(event.target.value);
   };
-
-  const [isEditMode, setIsEditMode] = useState(false);
 
   useEffect(() => {
     dispatch(getAmbassador);

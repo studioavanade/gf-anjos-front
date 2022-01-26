@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import PerfilSVG from "../../../../assets/img/landing-donation/perfil-donation.svg";
 import BackgroundLastSVF from "../../../../assets/img/landing-donation/background-last.svg";
 import IconMoneySVG from "../../../../assets/img/landing-donation/icon-money.svg";
 import IconMoneyLargeSVG from "../../../../assets/img/landing-donation/icon-money-large.svg";
 
 import DoughnutChart from "./donnut-chart";
-import { Box, Button, Grid, IconButton } from "@mui/material";
+import { Grid, IconButton } from "@mui/material";
 
 import {
   TopContainerInfluencer,

@@ -1,4 +1,3 @@
-import { UserCredential } from "firebase/auth";
 import * as AuthService from "../../services/firebase-auth";
 import { AuthTypes } from "./types";
 import { showErrorToast } from "./../../utils/toast/index";

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { HEADER_SHORT } from "../../../assets/img";
 import {
   InnerContentContainer,
@@ -14,15 +14,15 @@ interface IProps {
 }
 
 const BackgroundWithHeader = ({ bg = "white", children }: IProps) => {
-  const getBgColor = () => {
+  const getBgColor = useCallback(() => {
     if (bg === "white") return bg;
     else if (bg === "darkblue") return DARK_BLUE;
     return DARK_BLUE;
-  };
+  }, [bg]);
 
   useEffect(() => {
     document.body.style.backgroundColor = getBgColor();
-  }, []);
+  }, [getBgColor]);
 
   return (
     <RootContainer container direction="column">

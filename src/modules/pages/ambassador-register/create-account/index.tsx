@@ -29,7 +29,7 @@ const AmbassadorCreateAccount = () => {
 
   useEffect(() => {
     dispatch(signOut());
-  }, []);
+  }, [dispatch]);
 
   const onSubmit = (data: any) => {
     setShowPasswordRequirements(false);

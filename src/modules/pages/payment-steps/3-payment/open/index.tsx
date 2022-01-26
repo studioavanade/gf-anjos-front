@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import PaymentIconSVG from "../../../../../assets/img/payment/icon-money-card.svg";
 import { ICON_CREDIT_CARD, SECURE_ENVIROMENT } from "../../../../../assets/img";
 
@@ -9,7 +9,6 @@ import {
   Select,
   SelectChangeEvent,
   Grid,
-  Radio,
   MenuItem,
   Button,
 } from "@mui/material";
@@ -22,19 +21,13 @@ import {
   CardCredit,
   DivSubmitButton,
 } from "./styles";
-import { ApplicationState } from "../../../../../store/rootReducer";
 import { submitPaymentSuccess } from "../../../../../store/payment/actions";
 
 const PaymentStepOpen = () => {
-  const titlePayment = "Pagamento";
-  const creditCard = "Cartão de Crédito";
-  const buttonFinish = "Finalizar doação";
-
   const [creditCardMonth, setCreditCardMonth] = useState("");
   const [creditCardYear, setCreditCardYear] = useState("");
 
   const dispatch = useDispatch();
-  const paymentState = useSelector((state: ApplicationState) => state.payment);
 
   const { handleSubmit, register } = useForm();
 
@@ -160,7 +153,7 @@ const PaymentStepOpen = () => {
         </Grid>
         <DivSubmitButton>
           <Button variant="contained" type="submit" fullWidth>
-            {buttonFinish}
+            Finalizar doação
           </Button>
         </DivSubmitButton>
 

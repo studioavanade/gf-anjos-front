@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/iframe-has-title */
-
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -158,26 +156,24 @@ const Ranking = () => {
     setOpen(false);
   };
 
-  const IconCard = ({ icon, text }) => {
-    return (
-      <IconText
-        container
-        item
-        direction="column"
-        xs={12}
-        md={4}
-        alignItems="center"
-        justifyContent="center"
-      >
-        <StyleIcon>
-          <img src={icon} alt="Icon" />
-        </StyleIcon>
-        <IconTextSubtitle container item>
-          {text}
-        </IconTextSubtitle>
-      </IconText>
-    );
-  };
+  const IconCard = ({ icon, text }) => (
+    <IconText
+      container
+      item
+      direction="column"
+      xs={12}
+      md={4}
+      alignItems="center"
+      justifyContent="center"
+    >
+      <StyleIcon>
+        <img src={icon} alt="Icon" />
+      </StyleIcon>
+      <IconTextSubtitle container item>
+        {text}
+      </IconTextSubtitle>
+    </IconText>
+  );
 
   const RegisterDialog = () => (
     <Dialog

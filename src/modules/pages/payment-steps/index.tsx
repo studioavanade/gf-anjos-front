@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import {
   ICON_IDENTITY_STEP_INACTIVE,
@@ -38,7 +38,7 @@ const DashedStroke = () => (
 );
 
 const PaymentSteps = () => {
-  const title = "PAGAMENTO";
+  const isSmallerThan900 = useMediaQuery("(max-width:900px)");
 
   const paymentState = useSelector((state: ApplicationState) => state.payment);
 
@@ -53,7 +53,7 @@ const PaymentSteps = () => {
     >
       <StepsItemBG>
         <img src={img} width="81px" height="81px" alt="Passo" />
-        <StepName>{stepName}</StepName>
+        {stepName && <StepName>{stepName}</StepName>}
       </StepsItemBG>
     </Grid>
   );
@@ -66,7 +66,7 @@ const PaymentSteps = () => {
     <BackgroundWithHeader>
       <TopContent container item alignItems="center" justifyContent="center">
         <PageTitle container item justifyContent="center">
-          {title}
+          PAGAMENTO
         </PageTitle>
         <DashedStroke />
         <StepsHeader
@@ -78,7 +78,7 @@ const PaymentSteps = () => {
           <HeaderStepItem
             xs={12}
             md={3}
-            stepName="IDENTIFICAÇÃO"
+            stepName={isSmallerThan900 ? undefined : "IDENTIFICAÇÃO"}
             img={
               getCurrentStep() === 0 && !paymentState.paymentSubmitted
                 ? ICON_IDENTITY_STEP_ACTIVE
@@ -88,7 +88,7 @@ const PaymentSteps = () => {
           <HeaderStepItem
             xs={12}
             md={3}
-            stepName="CADASTRO"
+            stepName={isSmallerThan900 ? undefined : "CADASTRO"}
             img={
               (getCurrentStep() === 1 || getCurrentStep() === 2) &&
               !paymentState.paymentSubmitted
@@ -99,7 +99,7 @@ const PaymentSteps = () => {
           <HeaderStepItem
             xs={12}
             md={3}
-            stepName="PAGAMENTO"
+            stepName={isSmallerThan900 ? undefined : "PAGAMENTO"}
             img={
               getCurrentStep() === 3 && !paymentState.paymentSubmitted
                 ? ICON_PAYMENT_STEP_ACTIVE
@@ -109,7 +109,7 @@ const PaymentSteps = () => {
           <HeaderStepItem
             xs={12}
             md={3}
-            stepName="CONFIRMAÇÃO"
+            stepName={isSmallerThan900 ? undefined : "CONFIRMAÇÃO"}
             img={
               paymentState.paymentSubmitted === true
                 ? ICON_CONFIRMATION_STEP_ACTIVE

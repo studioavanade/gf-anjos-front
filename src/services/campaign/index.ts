@@ -9,6 +9,7 @@ interface IApi {
     ambassadorId: string,
     targetDonators: number
   ): Promise<AxiosResponse>;
+  getCampaign(campaignId: string): Promise<AxiosResponse>;
 }
 
 const api = (): IApi => {
@@ -41,6 +42,10 @@ const api = (): IApi => {
       return backend.post(`/campaign`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+    },
+
+    getCampaign: (campaignId: string): Promise<AxiosResponse> => {
+      return backend.get(`/campaign?campaignId=${campaignId}`);
     },
   };
 };

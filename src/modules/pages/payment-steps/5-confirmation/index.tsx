@@ -1,5 +1,5 @@
 import { Link } from "@mui/material";
-import { CHECK_ICON, DOWNLOAD_PDF_ICON } from "../../../../assets/img";
+import { CheckIcon, DOWNLOAD_PDF_ICON } from "../../../../assets/img";
 
 import {
   BoxCard,
@@ -12,12 +12,6 @@ import {
 } from "./styles";
 
 const ConfirmationStep = () => {
-  const title = "OBRIGADO POR SUA DOAÇÃO";
-  const subTitle =
-    "Essa doação vai ajudar muitas pessoas, esse pequeno gesto faz uma grande diferença";
-  const titlePayment = "Seu pagamento foi efetuado";
-  const downloadPdf = "Baixar comprovante";
-
   return (
     <BoxCard container justifyContent="center" alignItems="center">
       <CheckConfirmationIcon
@@ -25,24 +19,25 @@ const ConfirmationStep = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <img src={CHECK_ICON} alt="IconCheck" />
+        <CheckIcon />
       </CheckConfirmationIcon>
       <TitleConfirmation container justifyContent="center" alignItems="center">
-        {title}
+        OBRIGADO POR SUA DOAÇÃO
       </TitleConfirmation>
       <SubTitleConfirmation
         container
         justifyContent="center"
         alignItems="center"
       >
-        {subTitle}
+        Essa doação vai ajudar muitas pessoas, esse pequeno gesto faz uma grande
+        diferença
       </SubTitleConfirmation>
       <BoxStyle container justifyContent="center" alignItems="center">
-        <BoxPayment>{titlePayment}</BoxPayment>
+        <BoxPayment>Seu pagamento foi efetuado</BoxPayment>
       </BoxStyle>
       <DownloadStyle container justifyContent="center" alignItems="center">
         <img src={DOWNLOAD_PDF_ICON} alt="IconDownload" />
-        <Link style={{ paddingLeft: "5px" }}>{downloadPdf}</Link>
+        <Link style={{ paddingLeft: "5px" }}>Baixar comprovante</Link>
       </DownloadStyle>
     </BoxCard>
   );

@@ -6,6 +6,7 @@ export const CardPersonalOpen = styled(Grid)`
   border-radius: 20px;
   background-color: #e5e5e5;
   padding: 16px;
+  min-height: 180px;
 `;
 
 export const TitleSummary = styled(Grid)`

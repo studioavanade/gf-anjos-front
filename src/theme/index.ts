@@ -21,6 +21,7 @@ export default createTheme({
             backgroundColor: PRIMARY_COLOR,
             color: "#000000",
             fontWeight: "bold",
+            height: "50px",
           },
         },
       ],

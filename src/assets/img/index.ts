@@ -16,7 +16,7 @@ import ICON_REGISTRATION_STEP_ACTIVE from "./payment/icon-personal-data-step-act
 
 import ICON_CREDIT_CARD from "./credit-card/credit-card.svg";
 
-import CHECK_ICON from "./payment/icon-check-confirmation.svg";
+import CheckIcon from "./payment/icon-check-confirmation";
 import DOWNLOAD_PDF_ICON from "./payment/icon-download-pdf.svg";
 import SECURE_ENVIROMENT from "./payment/secure-enviroment.svg";
 import SUBMIT_CUSTOM_VALUE from "./landing-donation/icon-custom-value-submit.svg";
@@ -24,6 +24,7 @@ import SUBMIT_CUSTOM_VALUE from "./landing-donation/icon-custom-value-submit.svg
 import GREY_BG_CARD from "./landing-donation/grey-bg-card.svg";
 import PersonIcon from "./landing-donation/person-icon";
 import SuitCaseIcon from "./landing-donation/suitcase-icon";
+import PeopleIcon from "./personal-information/people-icon";
 
 export {
   HEADER_LARGE,
@@ -37,11 +38,12 @@ export {
   ICON_PAYMENT_STEP_ACTIVE,
   ICON_REGISTRATION_STEP_ACTIVE,
   ICON_CREDIT_CARD,
-  CHECK_ICON,
+  CheckIcon,
   DOWNLOAD_PDF_ICON,
   SECURE_ENVIROMENT,
   SUBMIT_CUSTOM_VALUE,
   GREY_BG_CARD,
   PersonIcon,
   SuitCaseIcon,
+  PeopleIcon,
 };

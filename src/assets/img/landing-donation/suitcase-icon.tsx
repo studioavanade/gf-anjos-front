@@ -1,4 +1,4 @@
-const PersonIcon = ({ color = "white" }: any) => (
+const SuitCaseIcon = ({ color = "white" }: any) => (
   <svg
     width="32"
     height="26"
@@ -13,4 +13,4 @@ const PersonIcon = ({ color = "white" }: any) => (
   </svg>
 );
 
-export default PersonIcon;
+export default SuitCaseIcon;

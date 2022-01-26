@@ -6,6 +6,7 @@ export const CardIdentityClosed = styled(Grid)`
   border-radius: 20px;
   padding: 16px;
   background-color: #f2f2f2;
+  min-height: 180px;
 `;
 
 export const Title = styled.div`

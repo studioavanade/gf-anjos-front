@@ -137,7 +137,6 @@ const PersonalStepOpen = () => {
             type="text"
             inputProps={{
               inputMode: "numeric",
-              pattern: "[0-9]{11}",
               max: 99999999999,
             }}
             {...register("cpf")}
@@ -148,10 +147,8 @@ const PersonalStepOpen = () => {
           <TextField
             id="phone"
             label="Telefone"
-            type="text"
+            type="number"
             inputProps={{
-              inputMode: "numeric",
-              pattern: "[0-9]{11}",
               max: 99999999999,
             }}
             placeholder="(00) 0000-0000"

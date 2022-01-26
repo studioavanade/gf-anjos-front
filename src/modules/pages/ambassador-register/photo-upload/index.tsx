@@ -54,6 +54,15 @@ const PhotoUpload = () => {
     return "grey";
   };
 
+  const getSanitizedFilename = (filename: string) => {
+    const [name, extension] = filename.split(".");
+    if (name.length <= 10) return filename;
+
+    const sanitizedName = name.slice(0, 17) + "(...)";
+
+    return sanitizedName + "." + extension;
+  };
+
   return (
     <BackgroundWithHeader>
       <PrivateComponentVerifier />
@@ -116,7 +125,7 @@ const PhotoUpload = () => {
                   alignItems="center"
                 >
                   <SuccessUploadText item>
-                    <i>{file.name}</i>
+                    <i>{getSanitizedFilename(file.name)}</i>
                     <IconButton onClick={() => setFile(undefined)}>
                       <DeleteIcon />
                     </IconButton>

@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
-import { ACCESSIBILITY_SUCCESS } from "../../../../styles/colors";
 
 export const CameraIcon = styled(Grid)``;
 
@@ -30,7 +29,6 @@ export const StylePhotoUpload = styled(Grid)`
   border: 2px dashed #888888;
   font-family: Roboto;
   font-weight: 700;
-  color: #2f2d8e;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
 `;

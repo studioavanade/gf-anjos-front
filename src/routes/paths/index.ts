@@ -7,6 +7,7 @@ const ROUTING_PATHS = {
   PaymentSteps: "/payment-steps",
   LadingPageDonator: "/donator-landing-page",
   Ranking: "/ranking",
+  PageNotFound: "/not-found",
 };
 
 export default ROUTING_PATHS;

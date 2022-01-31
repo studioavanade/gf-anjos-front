@@ -1,0 +1,5 @@
+{
+  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
+  "appService.defaultWebAppToDeploy": "/subscriptions/feeaca14-e420-459c-88e9-2e7752639d4f/resourceGroups/studio-gerando-falcoes/providers/Microsoft.Web/sites/gf-anjos-front",
+  "appService.deploySubpath": "."
+}

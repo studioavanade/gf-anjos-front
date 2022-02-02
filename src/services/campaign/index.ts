@@ -32,17 +32,17 @@ const api = (): IApi => {
       formData.append("ambassadorId", ambassadorId);
       formData.append("targetDonators", targetDonators.toString());
 
-      return backend.post(`/campaign`, formData, {
+      return backend.post(`/campaigns`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
     },
 
     getCampaign: (campaignId: string): Promise<AxiosResponse> => {
-      return backend.get(`/campaign?campaignId=${campaignId}`);
+      return backend.get(`/campaigns?id=${campaignId}`);
     },
 
     updateCampaign: (campaign: ICampaign): Promise<AxiosResponse> => {
-      return backend.put(`/`);
+      return backend.put(`/campaigns`);
     },
   };
 };

@@ -16,7 +16,14 @@ export const Background = styled.div`
 export const InnerContentContainer = styled(Grid)`
   height: 100%;
   padding-top: 12vw;
-  min-width: var(--page-min-width);
+
+  & .MuiGrid-root {
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    padding-top: 60vw;
+  }
 `;
 
 export const TopImage = styled.img`

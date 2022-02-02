@@ -45,7 +45,7 @@ import {
 } from "../../../../store/payment/actions";
 import ROUTING_PATHS from "./../../../../routes/paths/index";
 import { showErrorToast } from "./../../../../utils/toast/index";
-import { SUBMIT_CUSTOM_VALUE } from "../../../../assets/img";
+import { SubmiteCustomValue } from "../../../../assets/img";
 import { getCampaign } from "./../../../../store/campaign/actions";
 import { ApplicationState } from "./../../../../store/rootReducer";
 
@@ -248,7 +248,7 @@ const LadingPageDonator = () => {
                       }}
                     >
                       <img
-                        src={SUBMIT_CUSTOM_VALUE}
+                        src={SubmiteCustomValue}
                         alt="Doação personalizada"
                         style={{ color: "black" }}
                       />

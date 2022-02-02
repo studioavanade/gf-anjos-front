@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Paper, Grid, TextField, Button } from "@mui/material";
-import { GREY_BG_CARD } from "../../../../assets/img";
+import { GreyBgIcon } from "../../../../assets/img";
 
 export const RootContainer = styled.div`
   background-color: #061936;
@@ -212,7 +212,7 @@ export const StyleBoxGoal = styled(Grid)`
   border-radius: 8px;
   background: #ffffff;
   padding: 50px;
-  background-image: url(${GREY_BG_CARD});
+  background-image: url(${GreyBgIcon});
   background-size: cover;
   height: 550px;
 `;

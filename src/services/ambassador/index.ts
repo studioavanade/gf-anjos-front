@@ -16,15 +16,6 @@ const api = (): IApi => {
     baseURL: apis.backend,
   });
 
-  // backend.interceptors.request.use(
-  //   async (request: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
-  //     request.headers.Authorization = `Bearer ${
-  //       store.getState().auth.token
-  //     }`;
-  //     return request;
-  //   }
-  // );
-
   return {
     backend,
 
@@ -33,12 +24,12 @@ const api = (): IApi => {
     },
 
     getAmbassador: (ambassador: IAmbassador): Promise<AxiosResponse> => {
-      return backend.get(`/list-ambassadors`, );
+      return backend.get(`/ambassadors/all`);
     },
 
     updateAmbassador: (ambassador: IAmbassador): Promise<AxiosResponse> => {
-      return backend.put(`/ambassadors-update/1`, ambassador )
-    }
+      return backend.put(`/ambassadors/1`, ambassador);
+    },
   };
 };
 

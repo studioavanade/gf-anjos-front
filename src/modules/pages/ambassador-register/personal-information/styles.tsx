@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Grid, Paper, RadioGroup } from "@mui/material";
+import { Grid, Paper, RadioGroup, TextField } from "@mui/material";
 
 export const StyleCard = styled.div`
   text-align: center;
@@ -123,7 +123,6 @@ export const StyleCardCount = styled.div`
   font-weight: 700;
   color: #2f2d8e;
   box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
 `;
 
@@ -138,7 +137,26 @@ export const PersonTypePaper = styled(Paper)`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  width: 180px;
+  height: 100px;
+  margin: 8px;
+
   label {
     margin: 0px;
+  }
+`;
+
+export const TextFieldTargetDonators = styled(TextField)`
+  & .MuiInputBase-root.MuiOutlinedInput-root {
+    width: 150px;
+    height: 120px;
+    font-size: 52px;
+    font-family: Roboto;
+    font-weight: 700;
+    color: #2f2d8e;
+  }
+
+  & .MuiInputBase-input.MuiOutlinedInput-input {
+    text-align: center;
   }
 `;

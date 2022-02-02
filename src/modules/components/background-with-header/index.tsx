@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import { HEADER_SHORT } from "../../../assets/img";
+import { HeaderMobile, HeaderShort } from "../../../assets/img";
 import {
   InnerContentContainer,
   TopImage,
@@ -7,6 +7,8 @@ import {
   Background,
 } from "./styles";
 import { DARK_BLUE } from "./../../../styles/colors";
+import { useMediaQuery } from "@mui/material";
+import theme from "../../../theme";
 
 interface IProps {
   bg?: "white" | "darkblue";
@@ -14,6 +16,8 @@ interface IProps {
 }
 
 const BackgroundWithHeader = ({ bg = "white", children }: IProps) => {
+  const isSmallerThan600 = useMediaQuery(theme.breakpoints.down("sm"));
+
   const getBgColor = useCallback(() => {
     if (bg === "white") return bg;
     else if (bg === "darkblue") return DARK_BLUE;
@@ -34,7 +38,10 @@ const BackgroundWithHeader = ({ bg = "white", children }: IProps) => {
             width: "100%",
           }}
         >
-          <TopImage src={HEADER_SHORT} alt="banner" />
+          <TopImage
+            src={isSmallerThan600 ? HeaderMobile : HeaderShort}
+            alt="banner"
+          />
         </div>
       </Background>
       <InnerContentContainer

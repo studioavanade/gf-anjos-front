@@ -29,6 +29,7 @@ import {
   DivSubmitButton,
   GridNoPadding,
   PersonTypePaper,
+  TextFieldTargetDonators,
 } from "./styles";
 
 import {
@@ -72,18 +73,15 @@ const PersonalInformation = () => {
   const [targetDonators, setTargetDonators] = useState(0);
   const [personType, setPersonType] = useState(PersonType.NATURAL_PERSON);
   const [education, setEducation] = useState("");
-  //const [isEditMode, setIsEditMode] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const ambassadorAuthEmail = useSelector(
     (state: ApplicationState) => state.auth.userEmail
   );
 
-  const ambassadorId = useSelector(
-    (state: ApplicationState) => state.ambassador.ambassador?.id
+  const ambassadorState = useSelector(
+    (state: ApplicationState) => state.ambassador
   );
-
-  const titleCheckbox = "Nesta campanha que vai ser criada, ";
-  const titleYouAre = " você é: ";
 
   const { register, handleSubmit } = useForm();
 
@@ -131,18 +129,20 @@ const PersonalInformation = () => {
       celPhone,
       personType,
     };
-    dispatch(setLoading());
-    dispatch(createAmbassador(ambassador));
-    dispatch(getAmbassador(ambassador));
-    dispatch(updateAmbassador(ambassador));
-  };
 
-  useEffect(() => {
-    if (ambassadorId && ambassadorId.length > 0) {
-      dispatch(saveFormTargetDonators(targetDonators));
-      navigate(ROUTING_PATHS.PhotoUpload);
+    dispatch(setLoading());
+
+    if (!isEditMode) {
+      dispatch(
+        createAmbassador(ambassador, () => {
+          dispatch(saveFormTargetDonators(Number(targetDonators)));
+          navigate(ROUTING_PATHS.PhotoUpload);
+        })
+      );
+    } else {
+      //dispatch(updateAmbassador(ambassador));
     }
-  }, [ambassadorId]);
+  };
 
   const handleChangePersonType = (event: any) => {
     setPersonType(event.target.value);
@@ -155,6 +155,21 @@ const PersonalInformation = () => {
   useEffect(() => {
     dispatch(getAmbassador);
   }, []);
+
+  useEffect(() => {
+    if (
+      !ambassadorState.ambassador ||
+      !ambassadorState.ambassador.email ||
+      ambassadorState.ambassador.email.length < 1
+    ) {
+      showErrorToast(
+        "Crie uma conta ou entre para seguir com este cadastro. Redirecionando em 5s..."
+      );
+      setTimeout(() => {
+        navigate(ROUTING_PATHS.AmbassadorCreateAccount);
+      }, 5000);
+    }
+  }, [ambassadorState.ambassador]);
 
   return (
     <BackgroundWithHeader>
@@ -178,8 +193,8 @@ const PersonalInformation = () => {
                 justifyContent="center"
               >
                 <GridNoPadding container item xs={12} justifyContent="center">
-                  {titleCheckbox}{" "}
-                  <PersonTypeText2>{titleYouAre}</PersonTypeText2>
+                  Nesta campanha que vai ser criada,
+                  <PersonTypeText2> você é: </PersonTypeText2>
                 </GridNoPadding>
                 <GridNoPadding container item xs={12} direction="row">
                   <FormControl
@@ -201,9 +216,7 @@ const PersonalInformation = () => {
                         justifyContent: "center",
                       }}
                     >
-                      <PersonTypePaper
-                        style={{ minWidth: "150px", minHeight: "100px" }}
-                      >
+                      <PersonTypePaper>
                         <Grid
                           container
                           direction="column"
@@ -216,27 +229,25 @@ const PersonalInformation = () => {
                           <FormControlLabel
                             value={PersonType.NATURAL_PERSON}
                             control={<Radio color="secondary" />}
-                            style={{ width: "100%" }}
+                            style={{ width: "100%", justifyContent: "center" }}
                             label=""
                           />
                         </Grid>
                       </PersonTypePaper>
 
-                      <PersonTypePaper
-                        style={{ width: "150px", height: "150px" }}
-                      >
+                      <PersonTypePaper>
                         <Grid
                           container
                           direction="column"
                           justifyContent="center"
                           alignItems="center"
-                          style={{ height: "100%" }}
                         >
                           <SuitCaseIcon color="grey" />
                           Pessoa Jurídica
                           <FormControlLabel
                             value={PersonType.LEGAL_PERSON}
                             control={<Radio color="secondary" />}
+                            style={{ width: "100%", justifyContent: "center" }}
                             label=""
                           />
                         </Grid>
@@ -353,6 +364,7 @@ const PersonalInformation = () => {
                 <SubTitleDonors>
                   Quantos doadores você deseja engajar?
                 </SubTitleDonors>
+
                 <StyleCountDonors>
                   <StyleButtonsDonors>
                     <ButtonDecremented
@@ -363,7 +375,14 @@ const PersonalInformation = () => {
                     >
                       <img src={ButtonDecrementSVG} alt="ButtonDescrement" />
                     </ButtonDecremented>
-                    <StyleCardCount>{targetDonators}</StyleCardCount>
+                    <TextFieldTargetDonators
+                      autoFocus
+                      value={targetDonators}
+                      onChange={(event: any) => {
+                        setTargetDonators(event.target.value);
+                      }}
+                      type="number"
+                    />
                     <ButtonIncremented
                       onClick={() => setTargetDonators(targetDonators + 1)}
                     >
@@ -371,12 +390,18 @@ const PersonalInformation = () => {
                     </ButtonIncremented>
                   </StyleButtonsDonors>
                 </StyleCountDonors>
+
                 <DivSubmitButton>
                   <Button
                     variant="contained"
                     type="submit"
                     fullWidth
                     style={{ maxWidth: "320px" }}
+                    disabled={
+                      !ambassadorState.ambassador ||
+                      !ambassadorState.ambassador.email ||
+                      ambassadorState.ambassador.email.length < 1
+                    }
                   >
                     Cadastrar
                   </Button>

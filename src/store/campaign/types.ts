@@ -5,12 +5,14 @@ export enum CampaignTypes {
   GET_CAMPAIGN_SUCCESS = "@campaign/GET_CAMPAIGN_SUCCESS",
   GET_CAMPAIGN_ERROR = "@campaign/GET_CAMPAIGN_ERROR",
   GET_CAMPAIGN = "@campaign/GET_CAMPAIGN",
+  SET_AMBASSADOR_ID_INTO_CAMPAIGN_SUCCESS = "@campaign/SET_AMBASSADOR_ID_INTO_CAMPAIGN_SUCCESS",
+  CLEAR_STATE = "@campaign/CLEAR_STATE",
 }
 
 export interface ICampaign {
   ambassadorId?: string;
   image?: any;
-  targetDonators: number;
+  targetDonators?: number;
 }
 
 export interface ICampaignStates {

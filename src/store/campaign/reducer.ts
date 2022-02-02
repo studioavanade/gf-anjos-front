@@ -18,6 +18,7 @@ const campaignReducer = (
         },
         loading: false,
       };
+
     case CampaignTypes.CREATE_CAMPAIGN_SUCCESS:
       return {
         campaign: {
@@ -28,12 +29,14 @@ const campaignReducer = (
         loading: false,
         error: undefined,
       };
+
     case CampaignTypes.CREATE_CAMPAIGN_ERROR:
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
+
     case CampaignTypes.GET_CAMPAIGN_SUCCESS:
       return {
         campaign: {
@@ -44,6 +47,7 @@ const campaignReducer = (
         loading: false,
         error: undefined,
       };
+
     case CampaignTypes.GET_CAMPAIGN_ERROR:
       return {
         ...state,
@@ -51,12 +55,30 @@ const campaignReducer = (
         error: action.payload,
       };
 
-      case CampaignTypes.GET_CAMPAIGN:
-        return {
-          ...state,
-          campaignEdit: action.payload,
-          loading: false,
-        }
+    case CampaignTypes.GET_CAMPAIGN:
+      return {
+        ...state,
+        campaignEdit: action.payload,
+        loading: false,
+      };
+
+    case CampaignTypes.SET_AMBASSADOR_ID_INTO_CAMPAIGN_SUCCESS:
+      return {
+        ...state,
+        campaign: {
+          ...state.campaign,
+          ambassadorId: action.payload,
+        },
+        loading: false,
+      };
+
+    case CampaignTypes.CLEAR_STATE:
+      return {
+        error: undefined,
+        campaign: undefined,
+        campaignEdit: undefined,
+        loading: false,
+      };
 
     default:
       return state;

@@ -11,7 +11,10 @@ import ROUTING_PATHS from "../../../../routes/paths";
 import BackgroundWithHeader from "../../../components/background-with-header/";
 import MainContainer from "../../../components/main-container/index";
 import { isEmailValid } from "../../../../utils";
-import { setAmbassadorEmail } from "../../../../store/ambassador/actions";
+import {
+  clearAmbassadorState,
+  setAmbassadorEmail,
+} from "../../../../store/ambassador/actions";
 import { signOut } from "../../../../store/auth/actions";
 import { setLoading } from "../../../../store/loading-progress/actions";
 
@@ -29,6 +32,7 @@ const AmbassadorCreateAccount = () => {
 
   useEffect(() => {
     dispatch(signOut());
+    dispatch(clearAmbassadorState());
   }, [dispatch]);
 
   const onSubmit = (data: any) => {
@@ -58,8 +62,8 @@ const AmbassadorCreateAccount = () => {
     dispatch(
       createUser(email, password, () => {
         dispatch(signIn(email, password));
-        navigate(ROUTING_PATHS.PersonalInformations);
         dispatch(setAmbassadorEmail(email));
+        navigate(ROUTING_PATHS.PersonalInformations);
       })
     );
   };

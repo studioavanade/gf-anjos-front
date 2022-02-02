@@ -1,13 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { IconButton, Button, DialogActions } from "@mui/material";
+import {
+  IconButton,
+  Button,
+  DialogActions,
+  useMediaQuery,
+} from "@mui/material";
 
 import IconHeartSVG from "../../../assets/img/ranking/icon-heart-box.svg";
 import IconPageSVG from "../../../assets/img/ranking/icon-page-box.svg";
 import IconWordSVG from "../../../assets/img/ranking/icon-document-box.svg";
 import BackgroundConcessionSVG from "../../../assets/img/ranking/background-concession-slide.svg";
-import IconClosedDialogSVG from "../../../assets/img/ranking/icon-closed-dialog.svg";
+import { CloseIcon } from "../../../assets/img";
 
 import BackgroundWithHeader from "../../components/background-with-header";
 
@@ -19,7 +24,6 @@ import {
   Dialog,
   TableContainer,
 } from "@mui/material";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import Carousel from "react-elastic-carousel";
 
 import Photo1SVG from "../../../assets/img/ranking/slider-images/photo1.svg";
@@ -193,7 +197,7 @@ const Ranking = () => {
             top: 16,
           }}
         >
-          <img src={IconClosedDialogSVG} alt="Icon Closed" />
+          <img src={CloseIcon} alt="Icon Closed" />
         </IconButton>
       </RegisterDialogTitle>
       <RegisterDialogContent>
@@ -224,7 +228,14 @@ const Ranking = () => {
       justifyContent="center"
       style={{ padding: "16px 0px" }}
     >
-      <Grid container item direction="row" spacing={2} justifyContent="center">
+      <Grid
+        container
+        item
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        alignItems="center"
+      >
         <Grid item style={{ padding: "16px 0px 8px 0px" }}>
           {icon}
         </Grid>
@@ -363,7 +374,7 @@ const Ranking = () => {
 
       <TitleOurInfluencers>Veja nossos influenciadores</TitleOurInfluencers>
 
-      <StyleBackgroundConcession>
+      <StyleBackgroundConcession container>
         <BackgroundImg>
           <img
             src={BackgroundConcessionSVG}
@@ -372,10 +383,10 @@ const Ranking = () => {
             height="100%"
           />
         </BackgroundImg>
-        {!isSmallerThan600 ? <HorizontalCarousel /> : <VerticalGallery />}
       </StyleBackgroundConcession>
+      {!isSmallerThan600 ? <HorizontalCarousel /> : <VerticalGallery />}
 
-      <TitleYourInfluence>
+      <TitleYourInfluence container justifyContent="center">
         <span style={{ color: "#04C6FB" }}>Como funciona</span> a sua
         influência?
       </TitleYourInfluence>

@@ -95,13 +95,14 @@ export const TitleOurInfluencers = styled(Grid)`
   font-family: "SuperClarendon Ligth";
   margin-top: 60px;
   padding-bottom: 60px;
-  padding: 0px 50px 60px 50px;
+  padding: 60px 0px 60px 0px;
   font-weight: 600;
   text-align: center;
 
   @media (max-width: 600px) {
     padding-top: 0px;
     padding-bottom: 0px;
+    font-size: 35px;
   }
 `;
 
@@ -116,6 +117,10 @@ export const TitleYourInfluence = styled(Grid)`
   font-family: "SuperClarendon Ligth";
   text-align: center;
   margin-top: 60px;
+
+  @media (max-width: 600px) {
+    font-size: 30px;
+  }
 `;
 
 export const StylePharseFamily = styled(Grid)`
@@ -156,14 +161,14 @@ export const TitleRanking = styled(Grid)`
   font-family: "KG Life is Messy";
   font-size: 40px;
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 64px !important;
 `;
 
 export const RankingCard = styled(Grid)`
   background: #f0f0f0;
   border-radius: 20px;
   max-width: 600px;
-  min-width: 450px;
+  min-width: 320px;
   padding-bottom: 32px;
 `;
 
@@ -212,6 +217,9 @@ export const RankingHeaderTitle = styled("span")(({ color }: any) => ({
   fontFamily: "KG Life is Messy",
   fontSize: "28px",
   color,
+  "@media(max-width: 600px)": {
+    fontSize: "20px",
+  },
 }));
 
 export const RankingHeaderSubtitle = styled.span`
@@ -306,6 +314,7 @@ export const BackgroundImg = styled.div`
     display: none;
   }
 `;
+
 export const LoginLink = styled.div`
   color: white !important;
   margin-top: 32px;

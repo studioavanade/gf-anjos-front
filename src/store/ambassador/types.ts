@@ -13,7 +13,7 @@ export enum AmbassadorActionTypes {
 
   CREATE_CAMPAIGN_SUCCESS = "@ambassador/CREATE_CAMPAIGN_SUCCESS",
   CREATE_CAMPAIGN_ERROR = "@ambassador/CREATE_CAMPAIGN_ERROR",
-  
+  CLEAR_STATE = "@ambassador/CLEAR_STATE",
 }
 
 export interface IAmbassador {

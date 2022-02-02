@@ -1,49 +1,56 @@
-//Headers
-import HEADER_LARGE from "./headers/header_large.svg";
-import HEADER_SHORT from "./headers/header_short.svg";
+import HeaderLarge from "./headers/header_large.svg";
+import HeaderShort from "./headers/header_short.svg";
+import HeaderMobile from "./headers/header-mobile.png";
 
-//Icons payment steps
-//Active
-import ICON_CONFIRMATION_STEP_INACTIVE from "./payment/icon-confirmation-step-inactive.svg";
-import ICON_IDENTITY_STEP_INACTIVE from "./payment/icon-identity-step-inactive.svg";
-import ICON_PAYMENT_STEP_INACTIVE from "./payment/icon-payment-step-inactive.svg";
-import ICON_REGISTRATION_STEP_INACTIVE from "./payment/icon-personal-data-step-inactive.svg";
-//Inactive
-import ICON_CONFIRMATION_STEP_ACTIVE from "./payment/icon-confirmation-step-active.svg";
-import ICON_IDENTITY_STEP_ACTIVE from "./payment/icon-identity-step-active.svg";
-import ICON_PAYMENT_STEP_ACTIVE from "./payment/icon-payment-step-active.svg";
-import ICON_REGISTRATION_STEP_ACTIVE from "./payment/icon-personal-data-step-active.svg";
+import IconConfirmationStepInactive from "./payment/icon-confirmation-step-inactive.svg";
+import IconIdentityStepInactive from "./payment/icon-identity-step-inactive.svg";
+import IconPaymentStepInactive from "./payment/icon-payment-step-inactive.svg";
+import IconRegistrationStepInactive from "./payment/icon-personal-data-step-inactive.svg";
 
-import ICON_CREDIT_CARD from "./credit-card/credit-card.svg";
+import IconConfirmationStepActive from "./payment/icon-confirmation-step-active.svg";
+import IconIdentityStepActive from "./payment/icon-identity-step-active.svg";
+import IconPaymentStepActive from "./payment/icon-payment-step-active.svg";
+import IconRegistrationStepActive from "./payment/icon-personal-data-step-active.svg";
+
+import IconCreditCard from "./credit-card/credit-card.svg";
 
 import CheckIcon from "./payment/icon-check-confirmation";
-import DOWNLOAD_PDF_ICON from "./payment/icon-download-pdf.svg";
-import SECURE_ENVIROMENT from "./payment/secure-enviroment.svg";
-import SUBMIT_CUSTOM_VALUE from "./landing-donation/icon-custom-value-submit.svg";
+import DownloadPdfIcon from "./payment/icon-download-pdf.svg";
+import SecureEnviroment from "./payment/secure-enviroment.svg";
+import SubmiteCustomValue from "./landing-donation/icon-custom-value-submit.svg";
 
-import GREY_BG_CARD from "./landing-donation/grey-bg-card.svg";
+import GreyBgIcon from "./landing-donation/grey-bg-card.svg";
+import CloseIcon from "./ranking/icon-close-dialog.svg";
 import PersonIcon from "./landing-donation/person-icon";
 import SuitCaseIcon from "./landing-donation/suitcase-icon";
 import PeopleIcon from "./personal-information/people-icon";
+import QuestionCircleIcon from "./photo-upload/question-circle";
+import AmbassadorPhotoExample1 from "./photo-upload/photo-example1.png";
+import AmbassadorPhotoExample2 from "./photo-upload/photo-example2.png";
 
 export {
-  HEADER_LARGE,
-  HEADER_SHORT,
-  ICON_CONFIRMATION_STEP_INACTIVE,
-  ICON_IDENTITY_STEP_INACTIVE,
-  ICON_PAYMENT_STEP_INACTIVE,
-  ICON_REGISTRATION_STEP_INACTIVE,
-  ICON_CONFIRMATION_STEP_ACTIVE,
-  ICON_IDENTITY_STEP_ACTIVE,
-  ICON_PAYMENT_STEP_ACTIVE,
-  ICON_REGISTRATION_STEP_ACTIVE,
-  ICON_CREDIT_CARD,
+  HeaderLarge,
+  HeaderShort,
+  IconConfirmationStepInactive,
+  IconIdentityStepInactive,
+  IconPaymentStepInactive,
+  IconRegistrationStepInactive,
+  IconConfirmationStepActive,
+  IconIdentityStepActive,
+  IconPaymentStepActive,
+  IconRegistrationStepActive,
+  IconCreditCard,
   CheckIcon,
-  DOWNLOAD_PDF_ICON,
-  SECURE_ENVIROMENT,
-  SUBMIT_CUSTOM_VALUE,
-  GREY_BG_CARD,
+  DownloadPdfIcon,
+  SecureEnviroment,
+  SubmiteCustomValue,
+  GreyBgIcon,
   PersonIcon,
   SuitCaseIcon,
   PeopleIcon,
+  QuestionCircleIcon,
+  CloseIcon,
+  AmbassadorPhotoExample1,
+  AmbassadorPhotoExample2,
+  HeaderMobile,
 };

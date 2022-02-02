@@ -3,7 +3,12 @@ import { CampaignTypes, ICampaign } from "../campaign/types";
 import { AxiosResponse } from "axios";
 
 export const createCampaign =
-  (image: any, ambassadorId: string, targetDonators: number) =>
+  (
+    image: File,
+    ambassadorId: string,
+    targetDonators: number,
+    onSuccessCallback?: any
+  ) =>
   (dispatch: any) => {
     CampaignService()
       .createCampaign(image, ambassadorId, targetDonators)
@@ -11,6 +16,7 @@ export const createCampaign =
         dispatch(
           createCampaignSuccess({ image, ambassadorId, targetDonators })
         );
+        if (onSuccessCallback) onSuccessCallback();
       })
       .catch((error) => dispatch(createCampaignError(error.message)));
   };
@@ -52,4 +58,18 @@ const getCampaignSuccess = (ambassador: ICampaign) => ({
 const getCampaignError = (error: any) => ({
   payload: error,
   type: CampaignTypes.GET_CAMPAIGN_ERROR,
+});
+
+export const setAmbassadorIdIntoCampaign =
+  (ambassadorId: string) => (dispatch: any) => {
+    dispatch(setAmbassadorIdIntoCampaignSuccess(ambassadorId));
+  };
+
+const setAmbassadorIdIntoCampaignSuccess = (ambassadorId: string) => ({
+  payload: ambassadorId,
+  type: CampaignTypes.SET_AMBASSADOR_ID_INTO_CAMPAIGN_SUCCESS,
+});
+
+export const clearAmbassadorState = () => ({
+  type: CampaignTypes.CLEAR_STATE,
 });

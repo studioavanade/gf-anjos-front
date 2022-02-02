@@ -1,10 +1,27 @@
+import { useEffect, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  Grid,
+  IconButton,
+  useMediaQuery,
+} from "@mui/material";
+import { Delete as DeleteIcon } from "@mui/icons-material";
 import CameraIconSVG from "../../../../assets/img/photo-upload/camera-icon.svg";
 import CloudIconSVG from "../../../../assets/img/photo-upload/cloud-icon.svg";
 
-import { Button, Grid, IconButton } from "@mui/material";
-import { Delete as DeleteIcon } from "@mui/icons-material";
-import { useDropzone } from "react-dropzone";
-
+import BackgroundWithHeader from "../../../components/background-with-header";
+import MainContainer from "../../../components/main-container";
+import PrivateComponentVerifier from "../../../components/private-component-verifier";
+import { ApplicationState } from "../../../../store/rootReducer";
+import {
+  createCampaign,
+  setAmbassadorIdIntoCampaign,
+} from "../../../../store/campaign/actions";
 import {
   CameraIcon,
   Title,
@@ -14,26 +31,75 @@ import {
   DropzoneTitleText,
   DropzoneSubTitleText,
   SuccessUploadText,
+  RegisterDialogTitle,
+  RegisterDialogContent,
 } from "./styles";
-import BackgroundWithHeader from "../../../components/background-with-header";
-import MainContainer from "../../../components/main-container";
-import { useState } from "react";
-import PrivateComponentVerifier from "../../../components/private-component-verifier";
+import ROUTING_PATHS from "./../../../../routes/paths";
+import { showErrorToast } from "./../../../../utils/toast";
+import QuestionCircleIcon from "../../../../assets/img/photo-upload/question-circle";
+import theme from "../../../../theme";
+import {
+  AmbassadorPhotoExample1,
+  AmbassadorPhotoExample2,
+  CheckIcon,
+  CloseIcon,
+} from "../../../../assets/img";
+import { MAX_PHOTO_SIZE_IN_MB } from "../../../../constants";
 
 const PhotoUpload = () => {
-  const title = "Envie sua foto";
-  const subTitle =
-    "Envie uma foto de perfil para a sua página (se for uma empresa, enviar o logo)";
-  const send = "Enviar";
+  const isSmallerThan600 = useMediaQuery(theme.breakpoints.down("sm"));
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const [openMoreInfoDialog, setOpenMoreInfoDialog] = useState(false);
+  const [openSuccessDialog, setOpenSuccessDialog] = useState(false);
   const [file, setFile] = useState<File>();
 
+  const campaignState = useSelector(
+    (state: ApplicationState) => state.campaign
+  );
+
+  const ambassadorState = useSelector(
+    (state: ApplicationState) => state.ambassador.ambassador
+  );
+
   const handleFile = (file: any) => {
+    if (file.size && file.size > MAX_PHOTO_SIZE_IN_MB * 1000000) {
+      showErrorToast("Arquivo não pode ser maior que 10MB");
+      return;
+    }
     setFile(file);
   };
 
   const onDropFile = (acceptedFiles: any[]) => {
     handleFile(acceptedFiles[0]);
+  };
+
+  const onSubmitFile = () => {
+    if (!file) {
+      showErrorToast("Você precisa anexar um arquivo.");
+      return;
+    }
+
+    if (
+      !campaignState ||
+      !campaignState.campaign ||
+      !campaignState.campaign.ambassadorId ||
+      !campaignState.campaign.targetDonators
+    ) {
+      showAccountErrorAndRedirect();
+      return;
+    }
+    dispatch(
+      createCampaign(
+        file,
+        campaignState.campaign.ambassadorId,
+        Number(campaignState.campaign.targetDonators),
+        () => {
+          setOpenSuccessDialog(true);
+        }
+      )
+    );
   };
 
   const {
@@ -63,9 +129,171 @@ const PhotoUpload = () => {
     return sanitizedName + "." + extension;
   };
 
+  const showAccountErrorAndRedirect = () => {
+    showErrorToast(
+      "Crie uma conta ou entre para seguir com este cadastro. Redirecionando em 5s..."
+    );
+    setTimeout(() => {
+      navigate(ROUTING_PATHS.AmbassadorCreateAccount);
+    }, 5000);
+  };
+
+  useEffect(() => {
+    if (
+      !ambassadorState ||
+      !ambassadorState.email ||
+      ambassadorState.email.length < 1
+    ) {
+      showAccountErrorAndRedirect();
+    } else if (ambassadorState.id) {
+      dispatch(setAmbassadorIdIntoCampaign(ambassadorState.id));
+    }
+  }, [ambassadorState]);
+
+  useEffect(() => {}, [ambassadorState]);
+
+  const CustomDialog = ({ title, content, button, open, onClose }: any) => (
+    <Dialog
+      open={open}
+      onClose={() => {
+        if (onClose) {
+          onClose();
+        }
+      }}
+      fullScreen={isSmallerThan600}
+      style={{ minWidth: "var(--page-min-width)" }}
+      maxWidth="md"
+    >
+      <RegisterDialogTitle
+        sx={{
+          m: 0,
+          p: 2,
+          fontSize: isSmallerThan600 ? "16px !important" : "27px",
+        }}
+      >
+        {title}
+        {onClose && (
+          <IconButton
+            onClick={() => {
+              setOpenMoreInfoDialog(false);
+            }}
+            sx={{
+              position: "absolute",
+              right: 16,
+              top: 16,
+            }}
+          >
+            <img src={CloseIcon} alt="Icon Closed" />
+          </IconButton>
+        )}
+      </RegisterDialogTitle>
+      <RegisterDialogContent>{content}</RegisterDialogContent>
+      <DialogActions sx={{ justifyContent: "center" }}>{button}</DialogActions>
+    </Dialog>
+  );
+
   return (
     <BackgroundWithHeader>
       <PrivateComponentVerifier />
+      <CustomDialog
+        title="COMO SUA FOTO SERÁ UTILIZADA"
+        open={openMoreInfoDialog}
+        onClose={() => {
+          setOpenMoreInfoDialog(false);
+        }}
+        content={
+          <>
+            <Grid
+              container
+              justifyContent="center"
+              alignItems="center"
+              direction="column"
+            >
+              <Grid container justifyContent="center" alignItems="center">
+                <Grid item>
+                  <img
+                    src={AmbassadorPhotoExample1}
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </Grid>
+                <Grid item>
+                  <img
+                    src={AmbassadorPhotoExample2}
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                justifyContent="center"
+                alignItems="center"
+                style={{
+                  textAlign: "center",
+                  fontSize: isSmallerThan600 ? "18px !important" : "inherit",
+                  marginTop: "32px",
+                }}
+              >
+                Sua foto será utilizada na página de personalização da campanha.
+              </Grid>
+            </Grid>
+          </>
+        }
+        button={
+          <Button
+            onClick={() => {
+              setOpenMoreInfoDialog(false);
+            }}
+            variant="contained"
+            type="submit"
+            sx={{
+              minWidth: isSmallerThan600 ? "100%" : "250px",
+            }}
+          >
+            OK
+          </Button>
+        }
+      />
+      <CustomDialog
+        title="UPLOAD DE FOTO"
+        open={openSuccessDialog}
+        content={
+          <>
+            <Grid
+              container
+              justifyContent="center"
+              alignItems="center"
+              direction="column"
+            >
+              <Grid item>
+                <CheckIcon />
+              </Grid>
+              <Grid
+                item
+                style={{ fontFamily: "KG Life is Messy", color: "#00AEEF" }}
+              >
+                OBRIGADO
+              </Grid>
+              <Grid item>Imagem enviada com sucesso!</Grid>
+            </Grid>
+          </>
+        }
+        button={
+          <Button
+            component={Link}
+            to={ROUTING_PATHS.Ranking}
+            onClick={() => {
+              setOpenMoreInfoDialog(false);
+            }}
+            variant="contained"
+            type="submit"
+            sx={{
+              minWidth: isSmallerThan600 ? "100%" : "250px",
+            }}
+          >
+            CONTINUAR
+          </Button>
+        }
+      />
       <MainContainer maxWidth="70vw">
         <Grid container justifyContent="center" alignItems="center" spacing={4}>
           <CameraIcon
@@ -76,10 +304,37 @@ const PhotoUpload = () => {
             alignItems="center"
           >
             <img src={CameraIconSVG} alt="CameraIcon" />
-            <Title>{title}</Title>
+            <Title>Envie sua foto</Title>
           </CameraIcon>
-          <Grid container item xs={12} justifyContent="center">
-            <SubTitle>{subTitle}</SubTitle>
+          <Grid container item xs={12} alignItems="center" direction="column">
+            <SubTitle container justifyContent="center" alignItems="center">
+              Envie uma foto de perfil para a sua página
+            </SubTitle>
+            <br />
+            <SubTitle
+              container
+              justifyContent="center"
+              alignItems="center"
+              style={{
+                marginBottom: "32px",
+                fontSize: "16px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setOpenMoreInfoDialog(true);
+              }}
+            >
+              <QuestionCircleIcon color="#F5821F" size={30} />
+              <span
+                style={{
+                  color: "#04C6FB",
+                  marginLeft: "8px",
+                  textDecoration: "underline",
+                }}
+              >
+                Visualizar como vai ser utilizada minha foto
+              </span>
+            </SubTitle>
           </Grid>
           <Grid item xs={12} justifyContent="center">
             <Grid container item justifyContent="center" alignItems="center">
@@ -110,11 +365,18 @@ const PhotoUpload = () => {
                   >
                     <DropzoneTitleText>
                       <strong>Clique para escolher uma imagem</strong> ou
-                      <strong>a arraste para aqui</strong>
+                      <strong> arraste-a para aqui</strong> <br />
+                      <DropzoneSubTitleText>
+                        Limite de tamanho: 10MB
+                      </DropzoneSubTitleText>{" "}
+                      <br />
+                      <br />
+                      <span style={{ color: "#F5821F" }}>
+                        <strong>Recomendável: </strong>
+                      </span>
+                      A imagem precisa ser quadrada (mesmas dimensões na altura
+                      e na largura. Por exemplo: 1000 x 1000)
                     </DropzoneTitleText>
-                    <DropzoneSubTitleText>
-                      Limite de tamanho: 10MB
-                    </DropzoneSubTitleText>
                   </Grid>
                 </DropzoneContainer>
               ) : (
@@ -141,8 +403,10 @@ const PhotoUpload = () => {
                 size="large"
                 fullWidth
                 style={{ maxWidth: "320px" }}
+                onClick={onSubmitFile}
+                disabled={!file}
               >
-                {send}
+                Enviar
               </Button>
             </DivSubmitButton>
           </Grid>

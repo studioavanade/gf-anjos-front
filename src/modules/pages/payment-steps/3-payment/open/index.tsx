@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import PaymentIconSVG from "../../../../../assets/img/payment/icon-money-card.svg";
-import { ICON_CREDIT_CARD, SECURE_ENVIROMENT } from "../../../../../assets/img";
+import { IconCreditCard, SecureEnviroment } from "../../../../../assets/img";
 
 import {
   TextField,
@@ -63,7 +63,7 @@ const PaymentStepOpen = () => {
           style={{ marginBottom: "32px" }}
         >
           <Grid item>
-            <img src={ICON_CREDIT_CARD} alt="Credit Card" />
+            <img src={IconCreditCard} alt="Credit Card" />
           </Grid>
           <Grid item>Cartão de Crédito</Grid>
         </CardCredit>
@@ -168,7 +168,7 @@ const PaymentStepOpen = () => {
         >
           <Grid item>Ambiente seguro</Grid>
           <Grid item>
-            <img src={SECURE_ENVIROMENT} alt="Cadeado" />
+            <img src={SecureEnviroment} alt="Cadeado" />
           </Grid>
         </Grid>
       </CardPaymentOpen>

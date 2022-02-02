@@ -1,5 +1,5 @@
 import { Link } from "@mui/material";
-import { CheckIcon, DOWNLOAD_PDF_ICON } from "../../../../assets/img";
+import { CheckIcon, DownloadPdfIcon } from "../../../../assets/img";
 
 import {
   BoxCard,
@@ -36,7 +36,7 @@ const ConfirmationStep = () => {
         <BoxPayment>Seu pagamento foi efetuado</BoxPayment>
       </BoxStyle>
       <DownloadStyle container justifyContent="center" alignItems="center">
-        <img src={DOWNLOAD_PDF_ICON} alt="IconDownload" />
+        <img src={DownloadPdfIcon} alt="IconDownload" />
         <Link style={{ paddingLeft: "5px" }}>Baixar comprovante</Link>
       </DownloadStyle>
     </BoxCard>

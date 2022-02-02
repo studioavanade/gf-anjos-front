@@ -31,12 +31,20 @@ const ambassadorReducer = (
         },
       };
 
-      case AmbassadorActionTypes.GET_AMBASSADOR:
-        return {
-          ...state,
-          ambassadorEdit: { ...action.payload },
-          loading: false,
-        }
+    case AmbassadorActionTypes.GET_AMBASSADOR:
+      return {
+        ...state,
+        ambassadorEdit: { ...action.payload },
+        loading: false,
+      };
+
+    case AmbassadorActionTypes.CLEAR_STATE:
+      return {
+        error: undefined,
+        loading: false,
+        ambassador: undefined,
+        ambassadorEdit: undefined,
+      };
 
     default:
       return state;

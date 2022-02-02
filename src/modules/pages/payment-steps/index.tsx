@@ -1,14 +1,14 @@
 import { Grid, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import {
-  ICON_IDENTITY_STEP_INACTIVE,
-  ICON_REGISTRATION_STEP_INACTIVE,
-  ICON_PAYMENT_STEP_INACTIVE,
-  ICON_CONFIRMATION_STEP_INACTIVE,
-  ICON_IDENTITY_STEP_ACTIVE,
-  ICON_REGISTRATION_STEP_ACTIVE,
-  ICON_PAYMENT_STEP_ACTIVE,
-  ICON_CONFIRMATION_STEP_ACTIVE,
+  IconIdentityStepInactive,
+  IconRegistrationStepInactive,
+  IconPaymentStepInactive,
+  IconConfirmationStepInactive,
+  IconIdentityStepActive,
+  IconRegistrationStepActive,
+  IconPaymentStepActive,
+  IconConfirmationStepActive,
 } from "../../../assets/img";
 import { ApplicationState } from "./../../../store/rootReducer";
 import {
@@ -81,8 +81,8 @@ const PaymentSteps = () => {
             stepName={isSmallerThan900 ? undefined : "IDENTIFICAÇÃO"}
             img={
               getCurrentStep() === 0 && !paymentState.paymentSubmitted
-                ? ICON_IDENTITY_STEP_ACTIVE
-                : ICON_IDENTITY_STEP_INACTIVE
+                ? IconIdentityStepActive
+                : IconIdentityStepInactive
             }
           />
           <HeaderStepItem
@@ -92,8 +92,8 @@ const PaymentSteps = () => {
             img={
               (getCurrentStep() === 1 || getCurrentStep() === 2) &&
               !paymentState.paymentSubmitted
-                ? ICON_REGISTRATION_STEP_ACTIVE
-                : ICON_REGISTRATION_STEP_INACTIVE
+                ? IconRegistrationStepActive
+                : IconRegistrationStepInactive
             }
           />
           <HeaderStepItem
@@ -102,8 +102,8 @@ const PaymentSteps = () => {
             stepName={isSmallerThan900 ? undefined : "PAGAMENTO"}
             img={
               getCurrentStep() === 3 && !paymentState.paymentSubmitted
-                ? ICON_PAYMENT_STEP_ACTIVE
-                : ICON_PAYMENT_STEP_INACTIVE
+                ? IconPaymentStepActive
+                : IconPaymentStepInactive
             }
           />
           <HeaderStepItem
@@ -112,8 +112,8 @@ const PaymentSteps = () => {
             stepName={isSmallerThan900 ? undefined : "CONFIRMAÇÃO"}
             img={
               paymentState.paymentSubmitted === true
-                ? ICON_CONFIRMATION_STEP_ACTIVE
-                : ICON_CONFIRMATION_STEP_INACTIVE
+                ? IconConfirmationStepActive
+                : IconConfirmationStepInactive
             }
           />
         </StepsHeader>

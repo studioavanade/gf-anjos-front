@@ -24,6 +24,15 @@ export default createTheme({
             height: "50px",
           },
         },
+        {
+          props: { variant: "outlined" },
+          style: {
+            backgroundColor: "white",
+            color: PRIMARY_COLOR,
+            fontWeight: "bold",
+            height: "50px",
+          },
+        },
       ],
     },
   },

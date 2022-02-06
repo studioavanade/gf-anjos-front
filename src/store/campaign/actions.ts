@@ -7,11 +7,12 @@ export const createCampaign =
     image: File,
     ambassadorId: string,
     targetDonators: number,
-    onSuccessCallback?: any
+    onSuccessCallback: any = null,
+    isActive: boolean = true
   ) =>
   (dispatch: any) => {
     CampaignService()
-      .createCampaign(image, ambassadorId, targetDonators)
+      .createCampaign(image, ambassadorId, targetDonators, isActive)
       .then(() => {
         dispatch(
           createCampaignSuccess({ image, ambassadorId, targetDonators })
@@ -70,6 +71,6 @@ const setAmbassadorIdIntoCampaignSuccess = (ambassadorId: string) => ({
   type: CampaignTypes.SET_AMBASSADOR_ID_INTO_CAMPAIGN_SUCCESS,
 });
 
-export const clearAmbassadorState = () => ({
+export const clearCampaignState = () => ({
   type: CampaignTypes.CLEAR_STATE,
 });

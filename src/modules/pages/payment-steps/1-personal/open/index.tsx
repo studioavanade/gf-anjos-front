@@ -20,7 +20,7 @@ import {
 } from "../../../../../store/payment/actions";
 import { showErrorToast } from "./../../../../../utils/toast/index";
 import { isCPFValid } from "../../../../../utils";
-import { ApplicationState } from "./../../../../../store/rootReducer";
+import { IApplicationState } from "./../../../../../store/rootReducer";
 
 const PersonalStepOpen = () => {
   const titlePersonal = "Dados Pessoais";
@@ -32,7 +32,7 @@ const PersonalStepOpen = () => {
   const buttonSaved = "Salvar e continuar";
 
   const dispatch = useDispatch();
-  const paymentState = useSelector((state: ApplicationState) => state.payment);
+  const paymentState = useSelector((state: IApplicationState) => state.payment);
 
   const { handleSubmit, register } = useForm();
 

@@ -48,10 +48,11 @@ import { PersonType } from "../../../../store/shared";
 import { SCHOOLING } from "../../../../constants/";
 import { showErrorToast } from "../../../../utils/toast/";
 import { IAmbassador } from "../../../../store/ambassador/types";
-import { ApplicationState } from "../../../../store/rootReducer";
+import { IApplicationState } from "../../../../store/rootReducer";
 import { isCNPJValid, isCPFValid } from "../../../../utils";
 import { saveFormTargetDonators } from "../../../../store/campaign/actions";
 import {
+  clearAmbassadorState,
   createAmbassador,
   getAmbassador,
   updateAmbassador,
@@ -75,12 +76,12 @@ const PersonalInformation = () => {
   const [education, setEducation] = useState("");
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const ambassadorAuthEmail = useSelector(
-    (state: ApplicationState) => state.auth.userEmail
+  const authEmail = useSelector(
+    (state: IApplicationState) => state.auth.userEmail
   );
 
   const ambassadorState = useSelector(
-    (state: ApplicationState) => state.ambassador
+    (state: IApplicationState) => state.ambassador
   );
 
   const { register, handleSubmit } = useForm();
@@ -93,7 +94,7 @@ const PersonalInformation = () => {
     if (!lastName) {
       showErrorToast("Necessário inserir pelo menos 1 sobrenome.");
       return;
-    } else if (!ambassadorAuthEmail || ambassadorAuthEmail.length < 1) {
+    } else if (!authEmail || authEmail.length < 1) {
       showErrorToast("Necessário estar autenticado.");
       return;
     }
@@ -118,7 +119,7 @@ const PersonalInformation = () => {
     }
 
     const ambassador: IAmbassador = {
-      email: ambassadorAuthEmail,
+      email: authEmail,
       name: firstName,
       lastName,
       cpfCnpj,
@@ -152,22 +153,47 @@ const PersonalInformation = () => {
     setEducation(event.target.value);
   };
 
-  useEffect(() => {
-    dispatch(getAmbassador);
-  }, []);
+  const showErrorAndMavigateDelyaed = (
+    msg: string,
+    delay: number,
+    to: string
+  ) => {
+    showErrorToast(msg);
+    setTimeout(() => {
+      navigate(to);
+    }, delay);
+  };
 
   useEffect(() => {
-    if (
-      !ambassadorState.ambassador ||
-      !ambassadorState.ambassador.email ||
-      ambassadorState.ambassador.email.length < 1
-    ) {
-      showErrorToast(
-        "Crie uma conta ou entre para seguir com este cadastro. Redirecionando em 5s..."
+    if (isEditMode) return;
+
+    if (ambassadorState.isEditting && authEmail && authEmail.length > 0) {
+      setIsEditMode(true);
+      dispatch(setLoading());
+      dispatch(getAmbassador("", authEmail));
+    }
+    // return () => {
+    //   dispatch(clearAmbassadorState());
+    // };
+  }, [ambassadorState.isEditting, authEmail]);
+
+  useEffect(() => {
+    if (ambassadorState.error && ambassadorState.isEditting) {
+      // showErrorAndMavigateDelyaed(
+      //   "Erro para localizar embaixador.",
+      //   3000,
+      //   ROUTING_PATHS.AmbassadorLogin
+      // );
+    }
+  }, [ambassadorState.error]);
+
+  useEffect(() => {
+    if (!ambassadorState && (!authEmail || authEmail.length < 1)) {
+      showErrorAndMavigateDelyaed(
+        "Crie uma conta ou entre para seguir com este cadastro. Redirecionando em 5s...",
+        5000,
+        ROUTING_PATHS.AmbassadorCreateAccount
       );
-      setTimeout(() => {
-        navigate(ROUTING_PATHS.AmbassadorCreateAccount);
-      }, 5000);
     }
   }, [ambassadorState.ambassador]);
 
@@ -257,7 +283,11 @@ const PersonalInformation = () => {
                 </GridNoPadding>
               </CardPersonType>
               <RegistrationForm>
-                <Grid container spacing={3}>
+                <Grid
+                  container
+                  spacing={3}
+                  style={{ margin: "-24px 0px 0px -24px" }}
+                >
                   <Grid item xs={12}>
                     <TextField
                       fullWidth
@@ -379,7 +409,12 @@ const PersonalInformation = () => {
                       autoFocus
                       value={targetDonators}
                       onChange={(event: any) => {
-                        setTargetDonators(event.target.value);
+                        const value = event.target.value;
+                        if (Number(value) > 0) {
+                          setTargetDonators(value);
+                        } else {
+                          setTargetDonators(0);
+                        }
                       }}
                       type="number"
                     />

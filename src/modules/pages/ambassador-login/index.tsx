@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
@@ -7,6 +8,7 @@ import { signIn } from "../../../store/auth/actions";
 import ROUTING_PATHS from "./../../../routes/paths";
 import BackgroundWithHeader from "./../../components/background-with-header/";
 import MainContainer from "./../../components/main-container";
+import { setIsEditting } from "../../../store/ambassador/actions";
 
 const AmbassadorLogin = () => {
   const dispatch = useDispatch();
@@ -18,13 +20,18 @@ const AmbassadorLogin = () => {
 
   const { register, handleSubmit } = useForm();
 
+  useEffect(() => {
+    dispatch(setIsEditting(false));
+  }, []);
+
   const onSubmit = (data: any) => {
     const { email, password } = data;
 
     dispatch(
-      signIn(email, password, () =>
-        navigate(ROUTING_PATHS.PersonalInformations)
-      )
+      signIn(email, password, () => {
+        dispatch(setIsEditting(true));
+        navigate(ROUTING_PATHS.PersonalInformations);
+      })
     );
   };
 

@@ -10,7 +10,7 @@ import {
   IconPaymentStepActive,
   IconConfirmationStepActive,
 } from "../../../assets/img";
-import { ApplicationState } from "./../../../store/rootReducer";
+import { IApplicationState } from "./../../../store/rootReducer";
 import {
   StepsHeader,
   PageTitle,
@@ -40,7 +40,7 @@ const DashedStroke = () => (
 const PaymentSteps = () => {
   const isSmallerThan900 = useMediaQuery("(max-width:900px)");
 
-  const paymentState = useSelector((state: ApplicationState) => state.payment);
+  const paymentState = useSelector((state: IApplicationState) => state.payment);
 
   const HeaderStepItem = ({ stepName, img, ...rest }: any) => (
     <Grid

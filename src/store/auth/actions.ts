@@ -2,7 +2,10 @@ import * as AuthService from "../../services/firebase-auth";
 import { AuthTypes } from "./types";
 import { showErrorToast } from "./../../utils/toast/index";
 import { FirebaseError } from "firebase/app";
-import { getMessageFromError } from "../../utils/firebase";
+import {
+  getApiErrorMessages,
+  getMessageFromFirebaseError,
+} from "../../utils/firebase";
 import { setSessionStorage } from "./../../utils/storage/index";
 import { USER_EMAIL_STORAGE_KEY } from "../../constants";
 import { clearLoading } from "./../loading-progress/actions";
@@ -27,7 +30,14 @@ export const signIn =
         if (onSuccessCallback) onSuccessCallback();
       })
       .catch((error) => {
-        const errorMessageTranslated = getMessageFromError(error);
+        let errorMessageTranslated = "";
+        if (error.customData?._tokenResponse) {
+          errorMessageTranslated = getMessageFromFirebaseError(error);
+        } else if (error.message) {
+          errorMessageTranslated = getApiErrorMessages(error.message);
+        } else {
+          errorMessageTranslated = "Erro desconhecido.";
+        }
         dispatch(signInError(errorMessageTranslated));
         showErrorToast(errorMessageTranslated);
         if (onErrorCallback) onErrorCallback();
@@ -66,7 +76,7 @@ export const createUser =
       })
       .catch((error: FirebaseError) => {
         if (onErrorCallback) onErrorCallback();
-        const errorMessageTranslated = getMessageFromError(error);
+        const errorMessageTranslated = getMessageFromFirebaseError(error);
         showErrorToast(errorMessageTranslated);
         dispatch(createUserError(errorMessageTranslated));
       })

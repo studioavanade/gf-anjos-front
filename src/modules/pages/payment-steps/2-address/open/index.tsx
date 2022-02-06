@@ -22,7 +22,7 @@ import {
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { COUNTRIES } from "../../../../../constants";
-import { ApplicationState } from "../../../../../store/rootReducer";
+import { IApplicationState } from "../../../../../store/rootReducer";
 import {
   setDonatorAddress,
   setPaymentStep,
@@ -46,7 +46,7 @@ const AddressStepOpen = () => {
   //const address = "Endereço";
 
   const dispatch = useDispatch();
-  const paymentState = useSelector((state: ApplicationState) => state.payment);
+  const paymentState = useSelector((state: IApplicationState) => state.payment);
 
   const { handleSubmit, register } = useForm();
 

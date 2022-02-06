@@ -14,6 +14,7 @@ import { isEmailValid } from "../../../../utils";
 import {
   clearAmbassadorState,
   setAmbassadorEmail,
+  setIsEditting,
 } from "../../../../store/ambassador/actions";
 import { signOut } from "../../../../store/auth/actions";
 import { setLoading } from "../../../../store/loading-progress/actions";
@@ -33,6 +34,7 @@ const AmbassadorCreateAccount = () => {
   useEffect(() => {
     dispatch(signOut());
     dispatch(clearAmbassadorState());
+    dispatch(setIsEditting(false));
   }, [dispatch]);
 
   const onSubmit = (data: any) => {
@@ -61,9 +63,12 @@ const AmbassadorCreateAccount = () => {
     dispatch(setLoading());
     dispatch(
       createUser(email, password, () => {
-        dispatch(signIn(email, password));
-        dispatch(setAmbassadorEmail(email));
-        navigate(ROUTING_PATHS.PersonalInformations);
+        dispatch(
+          signIn(email, password, false, () => {
+            dispatch(setAmbassadorEmail(email));
+            navigate(ROUTING_PATHS.PersonalInformations);
+          })
+        );
       })
     );
   };

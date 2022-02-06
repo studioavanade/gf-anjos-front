@@ -7,6 +7,7 @@ const initialState: IPaymentStates = {
   donator: undefined,
   paymentSubmitted: false,
   donationValue: 20,
+  donationItemId: "",
 };
 
 const paymentReducer = (

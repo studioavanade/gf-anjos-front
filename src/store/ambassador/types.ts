@@ -14,6 +14,7 @@ export enum AmbassadorActionTypes {
   CREATE_CAMPAIGN_SUCCESS = "@ambassador/CREATE_CAMPAIGN_SUCCESS",
   CREATE_CAMPAIGN_ERROR = "@ambassador/CREATE_CAMPAIGN_ERROR",
   CLEAR_STATE = "@ambassador/CLEAR_STATE",
+  SET_AMBASSADOR_EDITTING = "@ambassador/SET_AMBASSADOR_EDITTING",
 }
 
 export interface IAmbassador {
@@ -35,4 +36,5 @@ export interface IAmbassadorStates {
   loading: boolean;
   ambassador?: IAmbassador;
   ambassadorEdit?: IAmbassador;
+  isEditting: boolean;
 }

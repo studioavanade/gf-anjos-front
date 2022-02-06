@@ -17,7 +17,7 @@ import CloudIconSVG from "../../../../assets/img/photo-upload/cloud-icon.svg";
 import BackgroundWithHeader from "../../../components/background-with-header";
 import MainContainer from "../../../components/main-container";
 import PrivateComponentVerifier from "../../../components/private-component-verifier";
-import { ApplicationState } from "../../../../store/rootReducer";
+import { IApplicationState } from "../../../../store/rootReducer";
 import {
   createCampaign,
   setAmbassadorIdIntoCampaign,
@@ -56,11 +56,11 @@ const PhotoUpload = () => {
   const [file, setFile] = useState<File>();
 
   const campaignState = useSelector(
-    (state: ApplicationState) => state.campaign
+    (state: IApplicationState) => state.campaign
   );
 
   const ambassadorState = useSelector(
-    (state: ApplicationState) => state.ambassador.ambassador
+    (state: IApplicationState) => state.ambassador.ambassador
   );
 
   const handleFile = (file: any) => {
@@ -97,7 +97,8 @@ const PhotoUpload = () => {
         Number(campaignState.campaign.targetDonators),
         () => {
           setOpenSuccessDialog(true);
-        }
+        },
+        true
       )
     );
   };

@@ -5,7 +5,7 @@ import EnvelopeIconSVG from "../../../../../assets/img/payment/icon-envelope-car
 import { Button, TextField, Grid } from "@mui/material";
 
 import { ButtonContainer, CardIdentityOpen, Title } from "./styles";
-import { ApplicationState } from "../../../../../store/rootReducer";
+import { IApplicationState } from "../../../../../store/rootReducer";
 import {
   setDonatorEmail,
   setPaymentStep,
@@ -28,7 +28,7 @@ const IdentityStepOpen = () => {
   const { handleSubmit, register } = useForm();
 
   const paymentState = useSelector(
-    (state: ApplicationState) => state.payment.currentStep
+    (state: IApplicationState) => state.payment.currentStep
   );
 
   const onSubmit = (data: ISubmitData) => {

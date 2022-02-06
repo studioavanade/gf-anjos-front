@@ -47,7 +47,7 @@ import ROUTING_PATHS from "./../../../../routes/paths/index";
 import { showErrorToast } from "./../../../../utils/toast/index";
 import { SubmiteCustomValue } from "../../../../assets/img";
 import { getCampaign } from "./../../../../store/campaign/actions";
-import { ApplicationState } from "./../../../../store/rootReducer";
+import { IApplicationState } from "./../../../../store/rootReducer";
 
 interface IValueCardProps {
   monthlyValue: number;
@@ -60,7 +60,7 @@ const LadingPageDonator = () => {
   const isSmallerThan1200 = useMediaQuery("(max-width: 1200px)");
   const [searchParams] = useSearchParams();
   const campaignState = useSelector(
-    (state: ApplicationState) => state.campaign
+    (state: IApplicationState) => state.campaign
   );
 
   const navigate = useNavigate();
@@ -82,6 +82,7 @@ const LadingPageDonator = () => {
 
   useEffect(() => {
     if (campaignState.error || !campaignId) {
+      showErrorToast("Não conseguimos localizar esta campanha...");
       navigate(ROUTING_PATHS.PageNotFound);
     }
   }, [campaignState, campaignState.error]);

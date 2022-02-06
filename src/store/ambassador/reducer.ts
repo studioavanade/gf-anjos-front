@@ -2,6 +2,7 @@ import { AmbassadorActionTypes, IAmbassadorStates } from "./types";
 
 const initialState: IAmbassadorStates = {
   loading: false,
+  isEditting: false,
 };
 
 const ambassadorReducer = (
@@ -38,12 +39,26 @@ const ambassadorReducer = (
         loading: false,
       };
 
+    case AmbassadorActionTypes.GET_AMBASSADOR_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+
     case AmbassadorActionTypes.CLEAR_STATE:
       return {
+        ...state,
         error: undefined,
         loading: false,
         ambassador: undefined,
         ambassadorEdit: undefined,
+      };
+
+    case AmbassadorActionTypes.SET_AMBASSADOR_EDITTING:
+      return {
+        ...state,
+        isEditting: action.payload,
       };
 
     default:

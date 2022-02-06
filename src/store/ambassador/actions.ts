@@ -40,21 +40,23 @@ export const setAmbassadorEmail = (email: string) => ({
 
 // Get Ambassador
 
-export const getAmbassador = (ambassador: IAmbassador) => (dispatch: any) => {
-  AmbassadorService()
-    .getAmbassador(ambassador)
-    .then((res: any) => {
-      const getAmb = {
-        ...ambassador,
-        id: res.data.id,
-      };
-      dispatch(getAmbassadorSuccess(getAmb));
-    })
-    .catch((error) => {
-      dispatch(getAmbassadorError(error.message));
-      showErrorToast(error.message);
-    });
-};
+export const getAmbassador =
+  (cpfCnpj?: string, email?: string) => (dispatch: any) => {
+    AmbassadorService()
+      .getAmbassador(cpfCnpj, email)
+      .then((res: any) => {
+        console.log("data: ", res.data);
+        // const getAmb = {
+        //   ...ambassador,
+        //   id: res.data.id,
+        // };
+        // dispatch(getAmbassadorSuccess(getAmb));
+      })
+      .catch((error) => {
+        dispatch(getAmbassadorError(error.message));
+        showErrorToast(error.message);
+      });
+  };
 
 export const getAmbassadorSuccess = (ambassador: IAmbassador) => ({
   payload: ambassador,
@@ -97,4 +99,9 @@ export const updateAmbassadorError = (error: any) => ({
 
 export const clearAmbassadorState = () => ({
   type: AmbassadorActionTypes.CLEAR_STATE,
+});
+
+export const setIsEditting = (isEditting: boolean) => ({
+  payload: isEditting,
+  type: AmbassadorActionTypes.SET_AMBASSADOR_EDITTING,
 });

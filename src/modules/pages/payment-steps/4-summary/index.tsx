@@ -3,12 +3,12 @@ import DonationIconSVG from "../../../../assets/img/payment/icon-box-card.svg";
 import { CardPersonalOpen, TitleSummary, ValueSummary } from "./styles";
 
 import { Grid } from "@mui/material";
-import { ApplicationState } from "./../../../../store/rootReducer";
+import { IApplicationState } from "./../../../../store/rootReducer";
 import { useSelector } from "react-redux";
 
 const DonationSummaryStep = () => {
   const donationValue = useSelector(
-    (state: ApplicationState) => state.payment.donationValue
+    (state: IApplicationState) => state.payment.donationValue
   );
   const titleSummary = "Resumo da doação:";
   const subtitleSummary = "Subtotal:";

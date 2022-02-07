@@ -81,6 +81,7 @@ const AmbassadorCreateAccount = () => {
               variant="standard"
               fullWidth
               margin="normal"
+              data-testid="email-form"
               {...register("email")}
             />
             <TextField

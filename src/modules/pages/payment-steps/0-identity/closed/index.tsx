@@ -2,12 +2,12 @@ import { useSelector } from "react-redux";
 import EnvelopeIconSVG from "../../../../../assets/img/payment/icon-envelope-card.svg";
 import { Grid } from "@mui/material";
 import { CardIdentityClosed, Title, EmailGrid } from "./styles";
-import { ApplicationState } from "../../../../../store/rootReducer";
+import { IApplicationState } from "../../../../../store/rootReducer";
 
 const IdentityStepClosed = () => {
   const titleIdentity = "Identificação";
 
-  const paymentState = useSelector((state: ApplicationState) => state.payment);
+  const paymentState = useSelector((state: IApplicationState) => state.payment);
 
   return (
     <CardIdentityClosed container item direction="column">

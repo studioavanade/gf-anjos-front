@@ -17,10 +17,11 @@ import CloudIconSVG from "../../../../assets/img/photo-upload/cloud-icon.svg";
 import BackgroundWithHeader from "../../../components/background-with-header";
 import MainContainer from "../../../components/main-container";
 import PrivateComponentVerifier from "../../../components/private-component-verifier";
-import { ApplicationState } from "../../../../store/rootReducer";
+import { IApplicationState } from "../../../../store/rootReducer";
 import {
   createCampaign,
   setAmbassadorIdIntoCampaign,
+  updateCampaign,
 } from "../../../../store/campaign/actions";
 import {
   CameraIcon,
@@ -56,11 +57,15 @@ const PhotoUpload = () => {
   const [file, setFile] = useState<File>();
 
   const campaignState = useSelector(
-    (state: ApplicationState) => state.campaign
+    (state: IApplicationState) => state.campaign
   );
 
   const ambassadorState = useSelector(
-    (state: ApplicationState) => state.ambassador.ambassador
+    (state: IApplicationState) => state.ambassador.ambassador
+  );
+
+  const isEditMode = useSelector(
+    (state: IApplicationState) => state.ambassador.isEditting
   );
 
   const handleFile = (file: any) => {
@@ -90,16 +95,31 @@ const PhotoUpload = () => {
       showAccountErrorAndRedirect();
       return;
     }
-    dispatch(
-      createCampaign(
-        file,
-        campaignState.campaign.ambassadorId,
-        Number(campaignState.campaign.targetDonators),
-        () => {
-          setOpenSuccessDialog(true);
-        }
-      )
-    );
+    if (!isEditMode) {
+      dispatch(
+        createCampaign(
+          file,
+          campaignState.campaign.ambassadorId,
+          Number(campaignState.campaign.targetDonators),
+          () => {
+            setOpenSuccessDialog(true);
+          },
+          true
+        )
+      );
+    } else {
+      dispatch(
+        updateCampaign(
+          file,
+          campaignState.campaign.ambassadorId,
+          Number(campaignState.campaign.targetDonators),
+          () => {
+            setOpenSuccessDialog(true);
+          },
+          true
+        )
+      );
+    }
   };
 
   const {
@@ -406,7 +426,7 @@ const PhotoUpload = () => {
                 onClick={onSubmitFile}
                 disabled={!file}
               >
-                Enviar
+                {isEditMode ? "Salvar Campanha" : "Criar Campanha"}
               </Button>
             </DivSubmitButton>
           </Grid>

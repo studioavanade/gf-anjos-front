@@ -14,6 +14,7 @@ export enum AmbassadorActionTypes {
   CREATE_CAMPAIGN_SUCCESS = "@ambassador/CREATE_CAMPAIGN_SUCCESS",
   CREATE_CAMPAIGN_ERROR = "@ambassador/CREATE_CAMPAIGN_ERROR",
   CLEAR_STATE = "@ambassador/CLEAR_STATE",
+  SET_AMBASSADOR_EDITTING = "@ambassador/SET_AMBASSADOR_EDITTING",
 }
 
 export interface IAmbassador {
@@ -22,17 +23,17 @@ export interface IAmbassador {
   name?: string;
   lastName?: string;
   cpfCnpj?: string;
-  birthDate?: Date;
+  birthDate?: string;
   education?: string;
   profession?: string;
   phone?: string;
   celPhone?: string;
   personType?: PersonType;
+  currentCampaignId?: number;
 }
 
 export interface IAmbassadorStates {
   error?: any;
-  loading: boolean;
   ambassador?: IAmbassador;
-  ambassadorEdit?: IAmbassador;
+  isEditting: boolean;
 }

@@ -40,21 +40,18 @@ export const setAmbassadorEmail = (email: string) => ({
 
 // Get Ambassador
 
-export const getAmbassador = (ambassador: IAmbassador) => (dispatch: any) => {
-  AmbassadorService()
-    .getAmbassador(ambassador)
-    .then((res: any) => {
-      const getAmb = {
-        ...ambassador,
-        id: res.data.id,
-      };
-      dispatch(getAmbassadorSuccess(getAmb));
-    })
-    .catch((error) => {
-      dispatch(getAmbassadorError(error.message));
-      showErrorToast(error.message);
-    });
-};
+export const getAmbassador =
+  (cpfCnpj?: string, email?: string) => (dispatch: any) => {
+    AmbassadorService()
+      .getAmbassador(cpfCnpj, email)
+      .then((res: any) => {
+        dispatch(getAmbassadorSuccess(res.data));
+      })
+      .catch((error) => {
+        dispatch(getAmbassadorError(error.message));
+        showErrorToast(error.message);
+      });
+  };
 
 export const getAmbassadorSuccess = (ambassador: IAmbassador) => ({
   payload: ambassador,
@@ -69,7 +66,7 @@ export const getAmbassadorError = (error: any) => ({
 // Update Ambassador
 
 export const updateAmbassador =
-  (ambassador: IAmbassador) => (dispatch: any) => {
+  (ambassador: IAmbassador, successCallback?: any) => (dispatch: any) => {
     AmbassadorService()
       .updateAmbassador(ambassador)
       .then((res: any) => {
@@ -78,6 +75,7 @@ export const updateAmbassador =
           id: res.data.id,
         };
         dispatch(updateAmbassadorSuccess(updAmb));
+        if (successCallback) successCallback();
       })
       .catch((error) => {
         dispatch(updateAmbassadorError(error.message));
@@ -97,4 +95,9 @@ export const updateAmbassadorError = (error: any) => ({
 
 export const clearAmbassadorState = () => ({
   type: AmbassadorActionTypes.CLEAR_STATE,
+});
+
+export const setIsEditting = (isEditting: boolean) => ({
+  payload: isEditting,
+  type: AmbassadorActionTypes.SET_AMBASSADOR_EDITTING,
 });

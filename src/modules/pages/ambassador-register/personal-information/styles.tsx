@@ -40,6 +40,7 @@ export const RadioGroupStyled = styled(RadioGroup)`
 
 export const RegistrationForm = styled.div`
   border-radius: 8px;
+  margin: 0 !important;
 `;
 
 export const StyleDonors = styled.div``;

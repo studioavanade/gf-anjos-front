@@ -1,11 +1,11 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import { LoadingContainer } from "./styles";
 import { useSelector } from "react-redux";
-import { ApplicationState } from "./../../../store/rootReducer";
+import { IApplicationState } from "./../../../store/rootReducer";
 import { useEffect } from "react";
 
 const LoadingProgress = () => {
-  const loadingState = useSelector((state: ApplicationState) => state.loading);
+  const loadingState = useSelector((state: IApplicationState) => state.loading);
 
   useEffect(() => {
     let overflow = "";

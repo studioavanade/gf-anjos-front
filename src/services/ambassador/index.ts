@@ -5,13 +5,12 @@ import { IAmbassador } from "../../store/ambassador/types";
 
 interface IApi {
   backend: AxiosInstance;
+  getAmbassador(cpfCnpj?: string, email?: string): Promise<AxiosResponse>;
   createAmbassador(ambassador: IAmbassador): Promise<AxiosResponse>;
-  getAmbassador(ambassador: IAmbassador): Promise<AxiosResponse>;
   updateAmbassador(ambassador: IAmbassador): Promise<AxiosResponse>;
 }
 
 const api = (): IApi => {
-  console.log("url: ", apis.backend);
   const backend = axios.create({
     baseURL: apis.backend,
   });
@@ -19,12 +18,15 @@ const api = (): IApi => {
   return {
     backend,
 
-    createAmbassador: (ambassador: IAmbassador): Promise<AxiosResponse> => {
-      return backend.post(`/ambassadors`, ambassador);
+    getAmbassador: (
+      cpfCnpj?: string,
+      email?: string
+    ): Promise<AxiosResponse> => {
+      return backend.get(`/ambassadors?cpfCnpj=${cpfCnpj}&email=${email}`);
     },
 
-    getAmbassador: (ambassador: IAmbassador): Promise<AxiosResponse> => {
-      return backend.get(`/ambassadors/all`);
+    createAmbassador: (ambassador: IAmbassador): Promise<AxiosResponse> => {
+      return backend.post(`/ambassadors`, ambassador);
     },
 
     updateAmbassador: (ambassador: IAmbassador): Promise<AxiosResponse> => {

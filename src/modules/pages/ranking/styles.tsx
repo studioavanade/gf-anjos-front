@@ -61,16 +61,15 @@ export const StyleIcon = styled.div`
 
 export const StylePharses = styled(Grid)`
   padding-top: 32px;
+  padding-bottom: 32px;
 `;
 
 export const DivSubmitButton = styled(Grid)`
   text-align: center;
-  max-width: 450px;
   margin-top: 50px;
 
   @media (max-width: 600px) {
     font-size: 1rem;
-    justify-content: center;
     text-align: center;
   }
 `;

@@ -14,9 +14,11 @@ import { isEmailValid } from "../../../../utils";
 import {
   clearAmbassadorState,
   setAmbassadorEmail,
+  setIsEditting,
 } from "../../../../store/ambassador/actions";
 import { signOut } from "../../../../store/auth/actions";
 import { setLoading } from "../../../../store/loading-progress/actions";
+import { clearCampaignState } from "../../../../store/campaign/actions";
 
 const AmbassadorCreateAccount = () => {
   const dispatch = useDispatch();
@@ -33,6 +35,8 @@ const AmbassadorCreateAccount = () => {
   useEffect(() => {
     dispatch(signOut());
     dispatch(clearAmbassadorState());
+    dispatch(clearCampaignState());
+    dispatch(setIsEditting(false));
   }, [dispatch]);
 
   const onSubmit = (data: any) => {
@@ -61,9 +65,12 @@ const AmbassadorCreateAccount = () => {
     dispatch(setLoading());
     dispatch(
       createUser(email, password, () => {
-        dispatch(signIn(email, password));
-        dispatch(setAmbassadorEmail(email));
-        navigate(ROUTING_PATHS.PersonalInformations);
+        dispatch(
+          signIn(email, password, false, () => {
+            dispatch(setAmbassadorEmail(email));
+            navigate(ROUTING_PATHS.PersonalInformations);
+          })
+        );
       })
     );
   };

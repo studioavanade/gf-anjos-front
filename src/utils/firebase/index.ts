@@ -8,9 +8,8 @@ export const getApiErrorMessages = (defaultMsg: string): string => {
     case "TOO_MANY_ATTEMPTS_TRY_LATER":
       return "Quantidade máxima de tentativas excedida.";
     case "EMAIL_NOT_FOUND":
-      return "E-mail não encontrado.";
     case "INVALID_PASSWORD":
-      return "Senha inválida!";
+      return "Usuário ou senha inválida!";
     case "USER_DISABLED":
       return "Usuário bloqueado.";
     default:
@@ -18,7 +17,7 @@ export const getApiErrorMessages = (defaultMsg: string): string => {
   }
 };
 
-export const getMessageFromError = (error: FirebaseError): string => {
+export const getMessageFromFirebaseError = (error: FirebaseError): string => {
   const err = (error.customData?._tokenResponse as any).error.message as string;
   return getApiErrorMessages(err);
 };

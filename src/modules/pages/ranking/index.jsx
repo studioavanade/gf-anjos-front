@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import {
@@ -6,6 +7,7 @@ import {
   Button,
   DialogActions,
   useMediaQuery,
+  CircularProgress,
 } from "@mui/material";
 
 import IconHeartSVG from "../../../assets/img/ranking/icon-heart-box.svg";
@@ -68,52 +70,10 @@ import {
 } from "./styles";
 import ROUTING_PATHS from "../../../routes/paths/index";
 import theme from "../../../theme";
+import { setLoading } from "../../../store/loading-progress/actions";
+import { getRanking } from "../../../store/ranking/actions";
 
 const mockedRanking = [
-  {
-    ambassador: "Nome do embaixador",
-    totalValue: 15500,
-  },
-  {
-    ambassador: "Nome do embaixador",
-    totalValue: 15500,
-  },
-  {
-    ambassador: "Nome do embaixador",
-    totalValue: 15500,
-  },
-  {
-    ambassador: "Nome do embaixador",
-    totalValue: 15500,
-  },
-  {
-    ambassador: "Nome do embaixador",
-    totalValue: 15500,
-  },
-  {
-    ambassador: "Nome do embaixador",
-    totalValue: 15500,
-  },
-  {
-    ambassador: "Nome do embaixador",
-    totalValue: 15500,
-  },
-  {
-    ambassador: "Nome do embaixador",
-    totalValue: 15500,
-  },
-  {
-    ambassador: "Nome do embaixador",
-    totalValue: 15500,
-  },
-  {
-    ambassador: "Nome do embaixador",
-    totalValue: 15500,
-  },
-  {
-    ambassador: "Nome do embaixador",
-    totalValue: 15500,
-  },
   {
     ambassador: "Nome do embaixador",
     totalValue: 15500,
@@ -133,7 +93,12 @@ const mockedRanking = [
 ];
 
 const Ranking = () => {
+  const dispatch = useDispatch();
+
   const [open, setOpen] = React.useState(false);
+
+  const rankingState = useSelector((state) => state.ranking);
+
   const isSmallerThan900 = useMediaQuery(theme.breakpoints.down("md"));
   const isSmallerThan600 = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -159,6 +124,10 @@ const Ranking = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    dispatch(getRanking());
+  }, []);
 
   const IconCard = ({ icon, text }) => (
     <IconText
@@ -344,7 +313,6 @@ const Ranking = () => {
           justifyContent={isSmallerThan900 ? "center" : "space-between"}
           alignItems="center"
           direction="row"
-          spacing={5}
         >
           <IconCard
             icon={IconPageSVG}
@@ -360,15 +328,34 @@ const Ranking = () => {
           />
         </StylePharses>
 
-        <DivSubmitButton>
-          <Button
-            onClick={handleClickOpen}
-            variant="contained"
-            type="submit"
-            fullWidth
-          >
-            Quero ser um influenciador
-          </Button>
+        <DivSubmitButton
+          container
+          item
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Grid item xs={12} md={6} style={{ padding: "12px" }}>
+            <Button
+              onClick={handleClickOpen}
+              variant="contained"
+              type="submit"
+              fullWidth
+              spacing={3}
+            >
+              Quero ser um influenciador
+            </Button>
+          </Grid>
+          <Grid item xs={12} md={6} style={{ padding: "12px" }}>
+            <Button
+              component={Link}
+              to={ROUTING_PATHS.AmbassadorLogin}
+              type="submit"
+              variant="outlined"
+              fullWidth
+            >
+              Entrar como influenciador
+            </Button>
+          </Grid>
         </DivSubmitButton>
       </TopContent>
 
@@ -387,8 +374,10 @@ const Ranking = () => {
       {!isSmallerThan600 ? <HorizontalCarousel /> : <VerticalGallery />}
 
       <TitleYourInfluence container justifyContent="center">
-        <span style={{ color: "#04C6FB" }}>Como funciona</span> a sua
-        influência?
+        <span style={{ color: "#04C6FB", marginRight: "12px" }}>
+          Como funciona
+        </span>{" "}
+        a sua influência?
       </TitleYourInfluence>
 
       <DescriptionYourInfluence
@@ -409,23 +398,35 @@ const Ranking = () => {
           ACOMPANHE NOSSO RANKING DE ANJOS
         </TitleRanking>
 
-        <RankingParentCard
-          xs={12}
-          lg={5.5}
-          color="#F87A00"
-          icon={<PersonIcon color="#F87A00" />}
-          title="PESSOA FÍSICA"
-          list={mockedRanking}
-        />
-        <RankingSpacer item xs={12} lg={0.5} />
-        <RankingParentCard
-          xs={12}
-          lg={5.5}
-          color="#00AEEF"
-          icon={<SuitCaseIcon color="#00AEEF" />}
-          title="PESSOA JURÍDICA"
-          list={mockedRanking}
-        />
+        {rankingState.naturalPerson &&
+        rankingState.naturalPerson.length > 0 &&
+        rankingState.legalPerson &&
+        rankingState.legalPerson.length > 0 ? (
+          <>
+            <RankingParentCard
+              xs={12}
+              lg={5.5}
+              color="#F87A00"
+              icon={<PersonIcon color="#F87A00" />}
+              title="PESSOA FÍSICA"
+              list={rankingState.naturalPerson || mockedRanking}
+            />
+            <RankingSpacer item xs={12} lg={0.5} />
+            <RankingParentCard
+              xs={12}
+              lg={5.5}
+              color="#00AEEF"
+              icon={<SuitCaseIcon color="#00AEEF" />}
+              title="PESSOA JURÍDICA"
+              list={rankingState.legalPerson || mockedRanking}
+            />
+          </>
+        ) : (
+          // <CircularProgress />
+          <>
+            <i>Dados indisponíveis</i>
+          </>
+        )}
       </PaperCardBox>
 
       <Grid container justifyContent="center" style={{ marginTop: "60px" }}>

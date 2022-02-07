@@ -16,6 +16,7 @@ const authReducer = (state = initialState, action: IAction): IAuthStates => {
         loading: true,
       };
     }
+
     case AuthTypes.CREATE_USER_ERROR:
       return {
         ...initialState,
@@ -29,11 +30,13 @@ const authReducer = (state = initialState, action: IAction): IAuthStates => {
         signInError: initialState.signInError,
         loading: false,
       };
+
     case AuthTypes.SIGNIN_ERROR:
       return {
         ...initialState,
         signInError: action.payload,
       };
+
     case AuthTypes.SIGNOUT:
       return {
         ...state,
@@ -41,6 +44,7 @@ const authReducer = (state = initialState, action: IAction): IAuthStates => {
         signInError: initialState.signInError,
         loading: false,
       };
+
     default:
       return { ...initialState };
   }

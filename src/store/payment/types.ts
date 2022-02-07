@@ -39,6 +39,12 @@ export interface IDonatorPersonalDataForm {
   allowPrivacyData?: boolean;
 }
 
+export interface IPaymentPayload {
+  campaignId: string;
+  donator: IDonator;
+  payment: IPaymentInfo;
+}
+
 export interface IPaymentStates {
   loading?: boolean;
   error?: any;
@@ -46,4 +52,5 @@ export interface IPaymentStates {
   donator?: IDonator;
   donationValue: number;
   paymentSubmitted: boolean;
+  donationItemId: string;
 }

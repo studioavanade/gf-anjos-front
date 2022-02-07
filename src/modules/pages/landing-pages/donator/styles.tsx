@@ -31,6 +31,7 @@ export const InfluencerProfile = styled(Grid)`
 
 export const InfluencerName = styled.div`
   font-family: "KG Life is Messy";
+  text-align: center;
 `;
 
 export const DonationTitle = styled(Grid)`
@@ -120,6 +121,14 @@ export const StyleMoneyIcon = styled(Grid)`
   padding-left: 16px;
 `;
 
+export const DonationCardsGrid = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+`;
+
 export const DonationValueCard = styled(Grid)`
   width: 300px;
   height: 195px;
@@ -127,7 +136,8 @@ export const DonationValueCard = styled(Grid)`
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
     0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
   border-radius: 5px;
-  margin: 24px 50px;
+  margin: 24px 50px !important;
+  cursor: "pointer";
 
   @media (max-width: 800px) {
     width: 100%;

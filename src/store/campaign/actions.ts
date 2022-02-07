@@ -15,7 +15,11 @@ export const createCampaign =
       .createCampaign(image, ambassadorId, targetDonators, isActive)
       .then(() => {
         dispatch(
-          createCampaignSuccess({ image, ambassadorId, targetDonators })
+          createCampaignSuccess({
+            pictureUrl: image,
+            ambassadorId,
+            targetDonators,
+          })
         );
         if (onSuccessCallback) onSuccessCallback();
       })
@@ -42,11 +46,15 @@ const saveTargetDonators = (targetDonators: number) => ({
   type: CampaignTypes.SAVE_TARGET_DONATORS,
 });
 
-export const getCampaign = (campaignId: string) => (dispatch: any) => {
+export const getCampaign = (campaignId: number | string) => (dispatch: any) => {
   CampaignService()
     .getCampaign(campaignId)
     .then((res: AxiosResponse) => {
-      dispatch(getCampaignSuccess(res.data));
+      const campaign = {
+        ...res.data.campaign,
+        ambassador: res.data.ambassador,
+      };
+      dispatch(getCampaignSuccess(campaign));
     })
     .catch((error) => dispatch(getCampaignError(error.message)));
 };
@@ -73,4 +81,38 @@ const setAmbassadorIdIntoCampaignSuccess = (ambassadorId: string) => ({
 
 export const clearCampaignState = () => ({
   type: CampaignTypes.CLEAR_STATE,
+});
+
+export const updateCampaign =
+  (
+    image: File,
+    ambassadorId: string,
+    targetDonators: number,
+    onSuccessCallback: any = null,
+    isActive: boolean = true
+  ) =>
+  (dispatch: any) => {
+    CampaignService()
+      .createCampaign(image, ambassadorId, targetDonators, isActive)
+      .then(() => {
+        dispatch(
+          updateCampaignSuccess({
+            pictureUrl: image,
+            ambassadorId,
+            targetDonators,
+          })
+        );
+        if (onSuccessCallback) onSuccessCallback();
+      })
+      .catch((error) => dispatch(updateCampaignError(error.message)));
+  };
+
+const updateCampaignSuccess = (ambassador: ICampaign) => ({
+  payload: ambassador,
+  type: CampaignTypes.UPDATE_CAMPAIGN_SUCCESS,
+});
+
+const updateCampaignError = (error: any) => ({
+  payload: error,
+  type: CampaignTypes.UPDATE_CAMPAIGN_ERROR,
 });

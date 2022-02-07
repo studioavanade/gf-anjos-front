@@ -2,9 +2,16 @@ import Chart from "react-apexcharts";
 
 // https://apexcharts.com/docs/react-charts/
 
-const DoughnutChart = ({width = "400px", height = "500px"}) => {
-  const options = {
-    series: [38, 62],
+const DoughnutChart = ({
+  width = "400px",
+  height = "500px",
+  reached = 62,
+  left = 38,
+}: any) => {
+  const series = [reached, left];
+
+  const options: ApexCharts.ApexOptions = {
+    series,
     labels: ["Atingido", "Restante"],
     colors: ["#0066CC", "#8BC1F7"],
     plotOptions: {
@@ -16,28 +23,26 @@ const DoughnutChart = ({width = "400px", height = "500px"}) => {
             show: true,
             total: {
               show: true,
-              showAlways: true,
+              showAlways: false,
               fontSize: "25px",
             },
           },
         },
       },
-      legend: {
-        show: false,
-      },
+    },
+    legend: {
+      show: true,
     },
   };
 
-  const series = [62, 38];
-
   return (
-      <Chart
-        options={options}
-        series={series}
-        type="donut"
-        width={width}
-        height={height}
-      />
+    <Chart
+      options={options}
+      series={series}
+      type="donut"
+      width={width}
+      height={height}
+    />
   );
 };
 

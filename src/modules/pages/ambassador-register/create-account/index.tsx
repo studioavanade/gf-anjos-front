@@ -18,6 +18,7 @@ import {
 } from "../../../../store/ambassador/actions";
 import { signOut } from "../../../../store/auth/actions";
 import { setLoading } from "../../../../store/loading-progress/actions";
+import { clearCampaignState } from "../../../../store/campaign/actions";
 
 const AmbassadorCreateAccount = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const AmbassadorCreateAccount = () => {
   useEffect(() => {
     dispatch(signOut());
     dispatch(clearAmbassadorState());
+    dispatch(clearCampaignState());
     dispatch(setIsEditting(false));
   }, [dispatch]);
 

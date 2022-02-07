@@ -5,13 +5,13 @@ import { ICampaign } from "../../store/campaign/types";
 
 interface IApi {
   backend: AxiosInstance;
+  getCampaign(campaignId: string | number): Promise<AxiosResponse>;
   createCampaign(
     image: any,
     ambassadorId: string,
     targetDonators: number,
     isActive: boolean
   ): Promise<AxiosResponse>;
-  getCampaign(campaignId: string): Promise<AxiosResponse>;
   updateCampaign(campaign: ICampaign): Promise<AxiosResponse>;
 }
 
@@ -22,6 +22,10 @@ const api = (): IApi => {
 
   return {
     backend,
+
+    getCampaign: (campaignId: string | number): Promise<AxiosResponse> => {
+      return backend.get(`/campaigns/${campaignId}`);
+    },
 
     createCampaign: (
       image: any,
@@ -40,12 +44,19 @@ const api = (): IApi => {
       });
     },
 
-    getCampaign: (campaignId: string): Promise<AxiosResponse> => {
-      return backend.get(`/campaigns?id=${campaignId}`);
-    },
-
     updateCampaign: (campaign: ICampaign): Promise<AxiosResponse> => {
-      return backend.put(`/campaigns`);
+      const formData = new FormData();
+      formData.append("image", campaign.pictureUrl);
+      formData.append("ambassadorId", campaign.ambassadorId || "");
+      formData.append(
+        "targetDonators",
+        campaign.targetDonators?.toString() || ""
+      );
+      formData.append("isActive", campaign.isActive?.toString() || "");
+
+      return backend.put(`/campaigns/${campaign.id}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
     },
   };
 };

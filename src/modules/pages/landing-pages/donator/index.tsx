@@ -36,6 +36,7 @@ import {
   StyleBoxValue,
   StyleDonationMonth,
   CustomValueTextField,
+  DonationCardsGrid,
 } from "./styles";
 import BackgroundWithHeader from "./../../../components/background-with-header/index";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -48,6 +49,7 @@ import { showErrorToast } from "./../../../../utils/toast/index";
 import { SubmiteCustomValue } from "../../../../assets/img";
 import { getCampaign } from "./../../../../store/campaign/actions";
 import { IApplicationState } from "./../../../../store/rootReducer";
+import { IAmbassador } from "../../../../store/ambassador/types";
 
 interface IValueCardProps {
   monthlyValue: number;
@@ -55,8 +57,6 @@ interface IValueCardProps {
 }
 
 const LadingPageDonator = () => {
-  const namePerfil = "Eduardo";
-
   const isSmallerThan1200 = useMediaQuery("(max-width: 1200px)");
   const [searchParams] = useSearchParams();
   const campaignState = useSelector(
@@ -70,8 +70,9 @@ const LadingPageDonator = () => {
 
   useEffect(() => {
     dispatch(clearStates());
-    const id = searchParams.get("campaignId");
+    const id = searchParams.get("id");
     setCampaignId(id);
+    console.log("id da campanha: ", id);
   }, []);
 
   useEffect(() => {
@@ -81,7 +82,7 @@ const LadingPageDonator = () => {
   }, [campaignId]);
 
   useEffect(() => {
-    if (campaignState.error || !campaignId) {
+    if (campaignState.error) {
       showErrorToast("Não conseguimos localizar esta campanha...");
       navigate(ROUTING_PATHS.PageNotFound);
     }
@@ -106,7 +107,6 @@ const LadingPageDonator = () => {
         onClick={() => {
           donate(monthlyValue);
         }}
-        style={{ cursor: "pointer" }}
       >
         <DonationValueCardTitle>
           <StyleMoneyIcon
@@ -149,6 +149,15 @@ const LadingPageDonator = () => {
     );
   };
 
+  const geAmbassadortFullName = (ambassador: IAmbassador | undefined) => {
+    if (ambassador) {
+      if (ambassador.name && ambassador.lastName) {
+        return `${ambassador.name} ${ambassador.lastName}`;
+      }
+    }
+    return "";
+  };
+
   return (
     <BackgroundWithHeader bg="darkblue">
       <TopContainerInfluencer>
@@ -162,8 +171,16 @@ const LadingPageDonator = () => {
             xs={12}
             lg={4}
           >
-            <img src={campaignState.campaign?.image} alt="Perfil" />
-            <InfluencerName>{namePerfil}</InfluencerName>
+            {campaignState.campaign?.pictureUrl && (
+              <img
+                src={campaignState.campaign?.pictureUrl}
+                width="100%"
+                alt="Perfil"
+              />
+            )}
+            <InfluencerName>
+              {geAmbassadortFullName(campaignState.campaign?.ambassador)}
+            </InfluencerName>
           </InfluencerProfile>
 
           <Grid
@@ -172,7 +189,11 @@ const LadingPageDonator = () => {
             justifyContent={isSmallerThan1200 ? "center" : "flex-start"}
             xs={12}
             lg={8}
-            style={isSmallerThan1200 ? undefined : { paddingLeft: "50px" }}
+            style={
+              isSmallerThan1200
+                ? { marginTop: "50px" }
+                : { paddingLeft: "50px" }
+            }
           >
             <DonationTitle>VAMOS DOAR JUNTOS</DonationTitle>
             <DonationDescription>
@@ -202,7 +223,7 @@ const LadingPageDonator = () => {
         SEJA UM DOADOR RECORRENTE
       </StyleTitleRecurring>
 
-      <Grid container justifyContent="space-around">
+      <DonationCardsGrid>
         <ValueCard monthlyValue={20} color="#F5821F" />
         <ValueCard monthlyValue={50} color="#EB1D68" />
         <ValueCard monthlyValue={100} color="#00AEEF" />
@@ -260,7 +281,7 @@ const LadingPageDonator = () => {
             </StyleValue>
           </Grid>
         </DonationValueCard>
-      </Grid>
+      </DonationCardsGrid>
 
       <Grid container justifyContent="space-around">
         <Grid container item xs={12} lg={6} direction="column">
@@ -271,15 +292,32 @@ const LadingPageDonator = () => {
             <StyleBoxGoal container alignItems="center" justifyContent="center">
               <StyleCardGoal>
                 <StyleDonut>
-                  <DoughnutChart width="150%" height="150%" />
+                  <DoughnutChart
+                    width="150%"
+                    height="150%"
+                    reached={campaignState.campaign?.currentDonators || 0}
+                    left={
+                      (campaignState.campaign?.targetDonators || 0) -
+                      (campaignState.campaign?.currentDonators || 0)
+                    }
+                  />
                 </StyleDonut>
               </StyleCardGoal>
               <StyleCardDonut>
                 <StyleSubtitleDonation>
-                  <b>310 de 500 </b> doadores já fizeram doações
+                  <b>
+                    {campaignState.campaign?.currentDonators || 0} de{" "}
+                    {campaignState.campaign?.targetDonators || 0}{" "}
+                  </b>{" "}
+                  doadores já fizeram doações
                 </StyleSubtitleDonation>
                 <div style={{ fontFamily: "Inter Light" }}>
-                  Faltam <b>190</b> doadores para atingir sua meta
+                  Faltam{" "}
+                  <b>
+                    {(campaignState.campaign?.targetDonators || 0) -
+                      (campaignState.campaign?.currentDonators || 0)}
+                  </b>{" "}
+                  doadores para atingir sua meta
                 </div>
               </StyleCardDonut>
             </StyleBoxGoal>
@@ -303,7 +341,12 @@ const LadingPageDonator = () => {
                 alignItems="center"
                 justifyContent="center"
               >
-                R$: 1.200,00
+                R${" "}
+                {campaignState.campaign?.currentMonthlyDonationsValue
+                  ? campaignState.campaign?.currentMonthlyDonationsValue.toFixed(
+                      2
+                    )
+                  : (0).toFixed(2)}
               </StyleBoxValue>
               <StyleDonationMonth>
                 Em doações mensais para nossa campanha

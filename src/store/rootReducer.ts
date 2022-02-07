@@ -7,7 +7,6 @@ import { ILoadingProgressState } from "./loading-progress/types";
 import auth from "./auth/reducer";
 import ambassador from "./ambassador/reducer";
 import campaign from "./campaign/reducer";
-import ambassadorEdit from "./ambassador/reducer";
 import payment from "./payment/reducer";
 import loading from "./loading-progress/reducer";
 import ranking from "./ranking/reducer";
@@ -21,7 +20,6 @@ export interface IApplicationState {
   campaign: ICampaignStates;
   payment: IPaymentStates;
   loading: ILoadingProgressState;
-  ambassadorEdit: IAmbassador;
   ranking: IRankingStates;
 }
 
@@ -30,7 +28,6 @@ export default combineReducers({
   auth,
   payment,
   loading,
-  ambassadorEdit,
   campaign,
   ranking,
 });

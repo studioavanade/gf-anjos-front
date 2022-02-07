@@ -50,7 +50,10 @@ import { showErrorToast } from "../../../../utils/toast/";
 import { IAmbassador } from "../../../../store/ambassador/types";
 import { IApplicationState } from "../../../../store/rootReducer";
 import { isCNPJValid, isCPFValid } from "../../../../utils";
-import { saveFormTargetDonators } from "../../../../store/campaign/actions";
+import {
+  getCampaign,
+  saveFormTargetDonators,
+} from "../../../../store/campaign/actions";
 import {
   clearAmbassadorState,
   createAmbassador,
@@ -60,8 +63,12 @@ import {
 import PrivateComponentVerifier from "../../../components/private-component-verifier";
 import BackgroundWithHeader from "../../../components/background-with-header/";
 import ROUTING_PATHS from "../../../../routes/paths";
-import { setLoading } from "../../../../store/loading-progress/actions";
+import {
+  clearLoading,
+  setLoading,
+} from "../../../../store/loading-progress/actions";
 import MainContainer from "../../../components/main-container";
+import moment from "moment";
 import {
   SuitCaseIcon,
   PersonIcon as PersonTypeIcon,
@@ -75,6 +82,14 @@ const PersonalInformation = () => {
   const [personType, setPersonType] = useState(PersonType.NATURAL_PERSON);
   const [education, setEducation] = useState("");
   const [isEditMode, setIsEditMode] = useState(false);
+  const [formValues, setFormValues] = useState({
+    name: "",
+    cpfCnpj: "",
+    birthDate: moment(new Date()).utc().format("YYYY-MM-DD"),
+    profession: "",
+    phone: "",
+    celPhone: "",
+  });
 
   const authEmail = useSelector(
     (state: IApplicationState) => state.auth.userEmail
@@ -84,10 +99,15 @@ const PersonalInformation = () => {
     (state: IApplicationState) => state.ambassador
   );
 
+  const campaignState = useSelector(
+    (state: IApplicationState) => state.campaign
+  );
+
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data: any) => {
-    const { name, cpfCnpj, birthDate, profession, phone, celPhone } = data;
+  const onSubmit = () => {
+    const { name, cpfCnpj, birthDate, profession, phone, celPhone } =
+      formValues;
 
     const [firstName, lastName] = name.split(" ");
 
@@ -141,7 +161,12 @@ const PersonalInformation = () => {
         })
       );
     } else {
-      //dispatch(updateAmbassador(ambassador));
+      dispatch(
+        updateAmbassador(ambassador, () => {
+          dispatch(saveFormTargetDonators(Number(targetDonators)));
+          navigate(ROUTING_PATHS.PhotoUpload);
+        })
+      );
     }
   };
 
@@ -153,7 +178,14 @@ const PersonalInformation = () => {
     setEducation(event.target.value);
   };
 
-  const showErrorAndMavigateDelyaed = (
+  const handleFormChange = (e: any) => {
+    setFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const showErrorAndMavigateDelayed = (
     msg: string,
     delay: number,
     to: string
@@ -169,27 +201,58 @@ const PersonalInformation = () => {
 
     if (ambassadorState.isEditting && authEmail && authEmail.length > 0) {
       setIsEditMode(true);
-      dispatch(setLoading());
       dispatch(getAmbassador("", authEmail));
     }
-    // return () => {
-    //   dispatch(clearAmbassadorState());
-    // };
   }, [ambassadorState.isEditting, authEmail]);
 
   useEffect(() => {
     if (ambassadorState.error && ambassadorState.isEditting) {
-      // showErrorAndMavigateDelyaed(
-      //   "Erro para localizar embaixador.",
-      //   3000,
-      //   ROUTING_PATHS.AmbassadorLogin
-      // );
+      showErrorAndMavigateDelayed(
+        "Erro ao buscar dados.",
+        3000,
+        ROUTING_PATHS.AmbassadorLogin
+      );
     }
   }, [ambassadorState.error]);
 
   useEffect(() => {
+    if (isEditMode && ambassadorState.ambassador) {
+      dispatch(setLoading());
+      if (!campaignState.campaign) {
+        if (ambassadorState.ambassador.currentCampaignId)
+          dispatch(getCampaign(ambassadorState.ambassador.currentCampaignId));
+      } else {
+        const values = {
+          name: `${ambassadorState.ambassador.name + " " || ""}${
+            ambassadorState.ambassador.lastName || ""
+          }`,
+          cpfCnpj: ambassadorState.ambassador.cpfCnpj || "",
+          birthDate: ambassadorState.ambassador.birthDate
+            ? moment(ambassadorState.ambassador.birthDate)
+                .utc()
+                .format("YYYY-MM-DD")
+            : moment(new Date()).utc().format("YYYY-MM-DD"),
+          profession: ambassadorState.ambassador.profession || "",
+          phone: ambassadorState.ambassador.phone || "",
+          celPhone: ambassadorState.ambassador.celPhone || "",
+        };
+
+        setFormValues(values);
+
+        if (ambassadorState.ambassador.personType !== undefined)
+          setPersonType(ambassadorState.ambassador.personType);
+        if (campaignState.campaign.targetDonators)
+          setTargetDonators(campaignState.campaign.targetDonators);
+        if (ambassadorState.ambassador.education)
+          setEducation(ambassadorState.ambassador.education);
+        dispatch(clearLoading());
+      }
+    }
+  }, [isEditMode, ambassadorState.ambassador, campaignState.campaign]);
+
+  useEffect(() => {
     if (!ambassadorState && (!authEmail || authEmail.length < 1)) {
-      showErrorAndMavigateDelyaed(
+      showErrorAndMavigateDelayed(
         "Crie uma conta ou entre para seguir com este cadastro. Redirecionando em 5s...",
         5000,
         ROUTING_PATHS.AmbassadorCreateAccount
@@ -286,7 +349,7 @@ const PersonalInformation = () => {
                 <Grid
                   container
                   spacing={3}
-                  style={{ margin: "-24px 0px 0px -24px" }}
+                  style={{ margin: "0px 0px 0px -24px" }}
                 >
                   <Grid item xs={12}>
                     <TextField
@@ -296,6 +359,8 @@ const PersonalInformation = () => {
                       variant="standard"
                       required
                       {...register("name")}
+                      value={formValues.name}
+                      onChange={handleFormChange}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
@@ -303,10 +368,13 @@ const PersonalInformation = () => {
                       fullWidth
                       id="cpfCnpj"
                       label="CPF/CNPJ"
+                      disabled={isEditMode}
                       variant="standard"
                       required
                       type="number"
                       {...register("cpfCnpj")}
+                      value={formValues.cpfCnpj}
+                      onChange={handleFormChange}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
@@ -322,6 +390,8 @@ const PersonalInformation = () => {
                       variant="standard"
                       required
                       {...register("birthDate")}
+                      value={formValues.birthDate}
+                      onChange={handleFormChange}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
@@ -356,6 +426,8 @@ const PersonalInformation = () => {
                       variant="standard"
                       required
                       {...register("profession")}
+                      value={formValues.profession}
+                      onChange={handleFormChange}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
@@ -368,6 +440,8 @@ const PersonalInformation = () => {
                       type="number"
                       required
                       {...register("phone")}
+                      value={formValues.phone}
+                      onChange={handleFormChange}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
@@ -380,6 +454,8 @@ const PersonalInformation = () => {
                       type="number"
                       required
                       {...register("celPhone")}
+                      value={formValues.celPhone}
+                      onChange={handleFormChange}
                     />
                   </Grid>
                 </Grid>
@@ -438,7 +514,7 @@ const PersonalInformation = () => {
                       ambassadorState.ambassador.email.length < 1
                     }
                   >
-                    Cadastrar
+                    {isEditMode ? "Salvar Embaixador" : "Cadastrar Embaixador"}
                   </Button>
                 </DivSubmitButton>
               </StyleDonors>

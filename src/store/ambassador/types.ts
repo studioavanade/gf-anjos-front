@@ -23,18 +23,17 @@ export interface IAmbassador {
   name?: string;
   lastName?: string;
   cpfCnpj?: string;
-  birthDate?: Date;
+  birthDate?: string;
   education?: string;
   profession?: string;
   phone?: string;
   celPhone?: string;
   personType?: PersonType;
+  currentCampaignId?: number;
 }
 
 export interface IAmbassadorStates {
   error?: any;
-  loading: boolean;
   ambassador?: IAmbassador;
-  ambassadorEdit?: IAmbassador;
   isEditting: boolean;
 }

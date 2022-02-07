@@ -45,12 +45,7 @@ export const getAmbassador =
     AmbassadorService()
       .getAmbassador(cpfCnpj, email)
       .then((res: any) => {
-        console.log("data: ", res.data);
-        // const getAmb = {
-        //   ...ambassador,
-        //   id: res.data.id,
-        // };
-        // dispatch(getAmbassadorSuccess(getAmb));
+        dispatch(getAmbassadorSuccess(res.data));
       })
       .catch((error) => {
         dispatch(getAmbassadorError(error.message));
@@ -71,7 +66,7 @@ export const getAmbassadorError = (error: any) => ({
 // Update Ambassador
 
 export const updateAmbassador =
-  (ambassador: IAmbassador) => (dispatch: any) => {
+  (ambassador: IAmbassador, successCallback?: any) => (dispatch: any) => {
     AmbassadorService()
       .updateAmbassador(ambassador)
       .then((res: any) => {
@@ -80,6 +75,7 @@ export const updateAmbassador =
           id: res.data.id,
         };
         dispatch(updateAmbassadorSuccess(updAmb));
+        if (successCallback) successCallback();
       })
       .catch((error) => {
         dispatch(updateAmbassadorError(error.message));

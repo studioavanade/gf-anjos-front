@@ -5,7 +5,7 @@ const ROUTING_PATHS = {
   PersonalInformations: "/personal-informations",
   PhotoUpload: "/photo-upload",
   PaymentSteps: "/payment-steps",
-  LadingPageDonator: "/donator-landing-page",
+  LadingPageDonator: "/campaign",
   Ranking: "/ranking",
   PageNotFound: "/not-found",
 };

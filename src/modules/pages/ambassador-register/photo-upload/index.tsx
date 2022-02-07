@@ -21,6 +21,7 @@ import { IApplicationState } from "../../../../store/rootReducer";
 import {
   createCampaign,
   setAmbassadorIdIntoCampaign,
+  updateCampaign,
 } from "../../../../store/campaign/actions";
 import {
   CameraIcon,
@@ -63,6 +64,10 @@ const PhotoUpload = () => {
     (state: IApplicationState) => state.ambassador.ambassador
   );
 
+  const isEditMode = useSelector(
+    (state: IApplicationState) => state.ambassador.isEditting
+  );
+
   const handleFile = (file: any) => {
     if (file.size && file.size > MAX_PHOTO_SIZE_IN_MB * 1000000) {
       showErrorToast("Arquivo não pode ser maior que 10MB");
@@ -90,17 +95,31 @@ const PhotoUpload = () => {
       showAccountErrorAndRedirect();
       return;
     }
-    dispatch(
-      createCampaign(
-        file,
-        campaignState.campaign.ambassadorId,
-        Number(campaignState.campaign.targetDonators),
-        () => {
-          setOpenSuccessDialog(true);
-        },
-        true
-      )
-    );
+    if (!isEditMode) {
+      dispatch(
+        createCampaign(
+          file,
+          campaignState.campaign.ambassadorId,
+          Number(campaignState.campaign.targetDonators),
+          () => {
+            setOpenSuccessDialog(true);
+          },
+          true
+        )
+      );
+    } else {
+      dispatch(
+        updateCampaign(
+          file,
+          campaignState.campaign.ambassadorId,
+          Number(campaignState.campaign.targetDonators),
+          () => {
+            setOpenSuccessDialog(true);
+          },
+          true
+        )
+      );
+    }
   };
 
   const {
@@ -407,7 +426,7 @@ const PhotoUpload = () => {
                 onClick={onSubmitFile}
                 disabled={!file}
               >
-                Enviar
+                {isEditMode ? "Salvar Campanha" : "Criar Campanha"}
               </Button>
             </DivSubmitButton>
           </Grid>

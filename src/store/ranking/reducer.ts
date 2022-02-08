@@ -2,8 +2,8 @@ import { IRankingStates, RankingTypes } from "./types";
 
 const initialState: IRankingStates = {
   error: undefined,
-  naturalPerson: [],
-  legalPerson: [],
+  naturalAmbassadors: [],
+  legalAmbassadors: [],
 };
 
 const paymentReducer = (
@@ -14,14 +14,14 @@ const paymentReducer = (
     case RankingTypes.GET_RANKING_SUCCESS:
       return {
         ...state,
-        naturalPerson: action.payload.naturalPerson,
-        legalPerson: action.payload.legalPerson,
+        naturalAmbassadors: action.payload.naturalAmbassadors,
+        legalAmbassadors: action.payload.legalAmbassadors,
       };
     case RankingTypes.GET_RANKING_ERROR:
       return {
         ...state,
-        naturalPerson: initialState.naturalPerson,
-        legalPerson: initialState.legalPerson,
+        naturalAmbassadors: initialState.naturalAmbassadors,
+        legalAmbassadors: initialState.legalAmbassadors,
       };
 
     default:

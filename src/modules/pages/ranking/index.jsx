@@ -218,45 +218,47 @@ const Ranking = () => {
     </Grid>
   );
 
-  const RankingParentCard = ({ color, icon, title, list, ...rest }) => (
-    <RankingCard
-      container
-      item
-      alignItems="center"
-      direction="column"
-      wrap="nowrap"
-      {...rest}
-    >
-      <CardHeader color={color} title={title} icon={icon} />
+  const RankingParentCard = ({ color, icon, title, list, ...rest }) => {
+    return (
+      <RankingCard
+        container
+        item
+        alignItems="center"
+        direction="column"
+        wrap="nowrap"
+        {...rest}
+      >
+        <CardHeader color={color} title={title} icon={icon} />
 
-      <TableContainer style={{ maxHeight: "450px" }}>
-        <RankingTable>
-          <TableHead>
-            <TableRow>
-              <RankingTableCell bold="true" align="left">
-                Nome
-              </RankingTableCell>
-              <RankingTableCell bold="true" align="right">
-                Total arrecadado
-              </RankingTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {!!list &&
-              list.length > 0 &&
-              list.map(({ ambassador, totalValue }) => (
-                <TableRow key={ambassador + Math.random() * 10000}>
-                  <RankingTableCell align="left">{ambassador}</RankingTableCell>
-                  <RankingTableCell align="right">
-                    {totalValue}
-                  </RankingTableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </RankingTable>
-      </TableContainer>
-    </RankingCard>
-  );
+        <TableContainer style={{ maxHeight: "450px" }}>
+          <RankingTable>
+            <TableHead>
+              <TableRow>
+                <RankingTableCell bold="true" align="left">
+                  Nome
+                </RankingTableCell>
+                <RankingTableCell bold="true" align="right">
+                  Total arrecadado
+                </RankingTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {!!list &&
+                list.length > 0 &&
+                list.map((ambassador) => (
+                  <TableRow key={ambassador + Math.random() * 10000}>
+                    <RankingTableCell align="left">{`${ambassador.name} ${ambassador.lastName}`}</RankingTableCell>
+                    <RankingTableCell align="right">
+                      {ambassador.total}
+                    </RankingTableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </RankingTable>
+        </TableContainer>
+      </RankingCard>
+    );
+  };
 
   const HorizontalCarousel = () => (
     <HorizontalCarouselContainer
@@ -397,32 +399,43 @@ const Ranking = () => {
         <TitleRanking container item justifyContent="center" xs={12}>
           ACOMPANHE NOSSO RANKING DE ANJOS
         </TitleRanking>
-
-        {rankingState.naturalPerson &&
-        rankingState.naturalPerson.length > 0 &&
-        rankingState.legalPerson &&
-        rankingState.legalPerson.length > 0 ? (
+        {(rankingState.naturalAmbassadors &&
+          rankingState.naturalAmbassadors.length) ||
+        (rankingState.legalAmbassadors &&
+          rankingState.legalAmbassadors.length > 0) ? (
           <>
-            <RankingParentCard
-              xs={12}
-              lg={5.5}
-              color="#F87A00"
-              icon={<PersonIcon color="#F87A00" />}
-              title="PESSOA FÍSICA"
-              list={rankingState.naturalPerson || mockedRanking}
-            />
-            <RankingSpacer item xs={12} lg={0.5} />
-            <RankingParentCard
-              xs={12}
-              lg={5.5}
-              color="#00AEEF"
-              icon={<SuitCaseIcon color="#00AEEF" />}
-              title="PESSOA JURÍDICA"
-              list={rankingState.legalPerson || mockedRanking}
-            />
+            {rankingState.naturalAmbassadors &&
+              rankingState.naturalAmbassadors.length > 0 && (
+                <RankingParentCard
+                  xs={12}
+                  lg={5.5}
+                  color="#F87A00"
+                  icon={<PersonIcon color="#F87A00" />}
+                  title="PESSOA FÍSICA"
+                  list={rankingState.naturalAmbassadors}
+                />
+              )}
+
+            {rankingState.naturalAmbassadors &&
+              rankingState.naturalAmbassadors.length > 0 &&
+              rankingState.legalAmbassadors &&
+              rankingState.legalAmbassadors.length > 0 && (
+                <RankingSpacer item xs={12} lg={0.5} />
+              )}
+
+            {rankingState.legalAmbassadors &&
+              rankingState.legalAmbassadors.length > 0 && (
+                <RankingParentCard
+                  xs={12}
+                  lg={5.5}
+                  color="#00AEEF"
+                  icon={<SuitCaseIcon color="#00AEEF" />}
+                  title="PESSOA JURÍDICA"
+                  list={rankingState.legalAmbassadors}
+                />
+              )}
           </>
         ) : (
-          // <CircularProgress />
           <>
             <i>Dados indisponíveis</i>
           </>

@@ -11,6 +11,7 @@ export const Background = styled.div`
   height: 100%;
   position: absolute;
   z-index: -10;
+  width: 100%;
 `;
 
 export const InnerContentContainer = styled(Grid)`

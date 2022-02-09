@@ -20,8 +20,8 @@ describe("Ambassador Login Page", () => {
       </Provider>
     );
 
-    const buttonSaved = getByTestId("button-continued");
-    expect(buttonSaved).toBeInTheDocument();
+    const buttonContinued = getByTestId("button-continued");
+    expect(buttonContinued).toBeInTheDocument();
 
     expect(screen.getByText("LOGIN")).toBeInTheDocument();
     expect(screen.getByText("Entrar")).toBeInTheDocument();

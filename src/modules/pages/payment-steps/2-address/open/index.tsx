@@ -68,7 +68,7 @@ const AddressStepOpen = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <CardAddressOpen item direction="column" spacing={3}>
+      <CardAddressOpen item direction="column" container spacing={3}>
         <AddressIcon container item direction="row" spacing={3}>
           <Grid item>
             <img src={AddressIconSVG} alt="IconAddress" />
@@ -225,7 +225,7 @@ const AddressStepOpen = () => {
         </Grid>
 
         <DivSubmitButton>
-          <Button variant="contained" type="submit" fullWidth>
+          <Button variant="contained" type="submit" fullWidth data-testid="button-saved">
             {buttonSaved}
           </Button>
         </DivSubmitButton>

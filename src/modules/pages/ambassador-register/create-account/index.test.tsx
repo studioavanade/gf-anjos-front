@@ -17,8 +17,8 @@ describe("Ambassador Create Account Page", () => {
       </Provider>
     );
 
-    const buttonSaved = getByTestId("button-continued");
-    expect(buttonSaved).toBeInTheDocument();
+    const buttonContinue = getByTestId("button-continue");
+    expect(buttonContinue).toBeInTheDocument();
 
     expect(screen.getByText("Cadastro")).toBeInTheDocument();
     expect(screen.getByText("Continuar")).toBeInTheDocument();

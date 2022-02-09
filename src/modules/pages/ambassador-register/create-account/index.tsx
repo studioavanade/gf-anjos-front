@@ -122,7 +122,7 @@ const AmbassadorCreateAccount = () => {
               </Stack>
             )}
             <DivSubmitButton>
-              <Button variant="contained" type="submit" fullWidth data-testid="button-continued">
+              <Button variant="contained" type="submit" fullWidth data-testid="button-continue">
                 {buttonContinue}
               </Button>
             </DivSubmitButton>

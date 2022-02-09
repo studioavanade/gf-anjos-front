@@ -152,7 +152,12 @@ const PaymentStepOpen = () => {
           </Grid>
         </Grid>
         <DivSubmitButton>
-          <Button variant="contained" type="submit" fullWidth>
+          <Button
+            variant="contained"
+            type="submit"
+            fullWidth
+            data-testid="button-donation"
+          >
             Finalizar doação
           </Button>
         </DivSubmitButton>

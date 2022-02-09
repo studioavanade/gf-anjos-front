@@ -1,21 +1,22 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import IdentityStepClosed from "./index";
+import { Provider } from "react-redux";
+import store from "../../../../../store";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ROUTING_PATHS from "../../../../../routes/paths";
 
 describe("Identity Step Closed", () => {
   it("Should render on Identity Step Closed screen", () => {
     render(
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path={ROUTING_PATHS.PaymentSteps}
-            element={<IdentityStepClosed />}
-          />
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path={"/"} element={<IdentityStepClosed />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     );
+    expect(screen.getByText("Identificação")).toBeInTheDocument();
   });
 });

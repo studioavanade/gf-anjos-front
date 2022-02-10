@@ -104,7 +104,7 @@ const PaymentStepOpen = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <CardPaymentOpen item direction="column">
+      <CardPaymentOpen container item direction="column">
         <Grid container item direction="row">
           <Grid item>
             <img src={PaymentIconSVG} alt="IconAddress" />
@@ -119,7 +119,7 @@ const PaymentStepOpen = () => {
           direction="row"
           alignItems="center"
           spacing={3}
-          style={{ marginTop: "32px !important", marginBottom: "32px" }}
+          style={{ marginBottom: "32px" }}
         >
           <Grid item>
             <img src={IconCreditCard} alt="Credit Card" />
@@ -211,7 +211,12 @@ const PaymentStepOpen = () => {
           </Grid>
         </Grid>
         <DivSubmitButton>
-          <Button variant="contained" type="submit" fullWidth>
+          <Button
+            variant="contained"
+            type="submit"
+            fullWidth
+            data-testid="button-donation"
+          >
             Finalizar doação
           </Button>
         </DivSubmitButton>

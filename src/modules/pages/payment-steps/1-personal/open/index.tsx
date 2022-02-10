@@ -180,6 +180,7 @@ const PersonalStepOpen = () => {
             type="submit"
             fullWidth
             disabled={!allowPrivacyData}
+            data-testid="button-saved"
           >
             {buttonSaved}
           </Button>

@@ -255,7 +255,12 @@ const AddressStepOpen = () => {
         </Grid>
 
         <DivSubmitButton>
-          <Button variant="contained" type="submit" fullWidth>
+          <Button
+            variant="contained"
+            type="submit"
+            fullWidth
+            data-testid="button-saved"
+          >
             {buttonSaved}
           </Button>
         </DivSubmitButton>

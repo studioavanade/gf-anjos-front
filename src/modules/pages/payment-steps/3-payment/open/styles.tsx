@@ -17,7 +17,7 @@ export const TitlePayment = styled.div`
 export const CardCredit = styled(Grid)`
   border: 1px solid #c4c4c4;
   border-radius: 10px;
-  margin-top: 32px;
+  margin-top: 16px !important;
   margin-left: 0px;
   width: 100%;
   padding: 16px 0px;

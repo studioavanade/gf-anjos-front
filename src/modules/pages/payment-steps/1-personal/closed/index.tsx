@@ -14,7 +14,7 @@ const PersonalStepClosed = () => {
 
   return (
     <CardPersonalClosed container direction="column">
-      <PersonIcon container direction="row" spacing={3}>
+      <PersonIcon container direction="row">
         <Grid item>
           <img src={PersonIconSVG} alt="IconPerson" />
         </Grid>

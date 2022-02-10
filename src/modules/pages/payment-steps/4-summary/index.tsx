@@ -1,6 +1,11 @@
 import DonationIconSVG from "../../../../assets/img/payment/icon-box-card.svg";
 
-import { CardPersonalOpen, TitleSummary, ValueSummary } from "./styles";
+import {
+  CardPersonalOpen,
+  TitleSummary,
+  TotalText,
+  SubtotalText,
+} from "./styles";
 
 import { Grid } from "@mui/material";
 import { IApplicationState } from "./../../../../store/rootReducer";
@@ -16,7 +21,7 @@ const DonationSummaryStep = () => {
 
   return (
     <CardPersonalOpen container item direction="column">
-      <Grid container item direction="row" spacing={3}>
+      <Grid container item direction="row">
         <Grid item>
           <img src={DonationIconSVG} alt="IconAddress" />
         </Grid>
@@ -24,12 +29,12 @@ const DonationSummaryStep = () => {
           <TitleSummary>{titleSummary}</TitleSummary>
         </Grid>
       </Grid>
-      <TitleSummary item>{`${subtitleSummary} R$${donationValue.toFixed(
+      <SubtotalText item>{`${subtitleSummary} R$${donationValue.toFixed(
         2
-      )}`}</TitleSummary>
-      <ValueSummary item>
+      )}`}</SubtotalText>
+      <TotalText item>
         <strong>{`${totalSummary} R$${donationValue.toFixed(2)}`}</strong>
-      </ValueSummary>
+      </TotalText>
     </CardPersonalOpen>
   );
 };

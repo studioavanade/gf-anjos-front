@@ -25,7 +25,6 @@ import {
   StyleButtonsDonors,
   ButtonIncremented,
   ButtonDecremented,
-  StyleCardCount,
   DivSubmitButton,
   GridNoPadding,
   PersonTypePaper,

@@ -19,7 +19,6 @@ import {
   setPaymentStep,
 } from "../../../../../store/payment/actions";
 import { showErrorToast } from "./../../../../../utils/toast/index";
-import { isCPFValid } from "../../../../../utils";
 import { IApplicationState } from "./../../../../../store/rootReducer";
 
 const PersonalStepOpen = () => {
@@ -44,10 +43,7 @@ const PersonalStepOpen = () => {
   const onSubmit = (data: any) => {
     const { firstName, lastName, birthDate, cpf, phone } = data;
 
-    if (!isCPFValid(cpf)) {
-      showErrorToast("CPF inválido!");
-      return;
-    } else if (Number(phone.length) !== 11) {
+    if (Number(phone.length) !== 11) {
       showErrorToast("Telefone inválido!");
       return;
     }
@@ -58,7 +54,7 @@ const PersonalStepOpen = () => {
     }
 
     let donator: IDonatorPersonalDataForm = {
-      firstName,
+      name: firstName,
       lastName,
       birthDate,
       cpf,
@@ -73,8 +69,8 @@ const PersonalStepOpen = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <CardPersonalOpen item direction="column">
-        <PersonIcon container item direction="row" spacing={3}>
+      <CardPersonalOpen container item direction="column">
+        <PersonIcon container item direction="row">
           <Grid item>
             <img src={PersonIconSVG} alt="IconPerson" />
           </Grid>

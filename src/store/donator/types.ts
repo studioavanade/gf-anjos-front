@@ -1,9 +1,8 @@
 import { IAddress, PersonType } from "../shared";
 
 export interface IDonator {
-  personType?: PersonType;
+  id?: number;
   email?: string;
-  id?: string;
   name?: string;
   lastName?: string;
   birthDate?: Date;

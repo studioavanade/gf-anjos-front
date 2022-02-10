@@ -11,7 +11,7 @@ const IdentityStepClosed = () => {
 
   return (
     <CardIdentityClosed container item direction="column">
-      <Grid container item direction="row" spacing={3}>
+      <Grid container item direction="row">
         <Grid item flexGrow={0}>
           <img src={EnvelopeIconSVG} alt="IconEnvelope" />
         </Grid>

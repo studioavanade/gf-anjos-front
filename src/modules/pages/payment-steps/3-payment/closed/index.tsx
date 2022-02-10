@@ -9,7 +9,7 @@ const PaymentStepClosed = () => {
 
   return (
     <CardPaymentClosed container item direction="column">
-      <Grid container item direction="row" spacing={3}>
+      <Grid container item direction="row">
         <Grid item>
           <img src={PaymentIconSVG} alt="IconAddress" />
         </Grid>

@@ -22,7 +22,7 @@ export const PageTitle = styled(Grid)`
   font-family: "KG Life is Messy";
   color: white;
   text-align: center;
-  margin-bottom: 2vw;
+  margin-bottom: 2vw !important;
 
   @media (max-width: 600px) {
     font-size: 1rem;
@@ -36,6 +36,7 @@ export const StepsHeader = styled(Grid)`
   text-align: center;
   padding: 32px 16px;
   min-width: var(--page-min-width);
+  margin-bottom: 24px !important;
 `;
 
 export const StepsItemBG = styled.div`

@@ -13,9 +13,11 @@ export const Title = styled.div`
   font-family: "Roboto Regular";
   font-weight: 400;
   font-size: 24px;
+  margin-left: 24px;
 `;
 
 export const EmailGrid = styled(Grid)`
   font-family: "Roboto Regular";
   font-weight: 300;
+  padding-top: 24px;
 `;

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddressIconSVG from "../../../../../assets/img/payment/icon-address-card.svg";
 
@@ -26,8 +26,10 @@ import { IApplicationState } from "../../../../../store/rootReducer";
 import {
   setDonatorAddress,
   setPaymentStep,
+  createDonator,
 } from "../../../../../store/payment/actions";
 import { IAddress } from "../../../../../store/shared";
+import { showErrorToast } from "../../../../../utils/toast";
 
 interface IAddressForm {
   street: string;
@@ -51,6 +53,7 @@ const AddressStepOpen = () => {
   const { handleSubmit, register } = useForm();
 
   const [country, setCountry] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChangeCountry = (event: SelectChangeEvent) => {
     setCountry(event.target.value);
@@ -63,13 +66,35 @@ const AddressStepOpen = () => {
     };
 
     dispatch(setDonatorAddress(address));
-    dispatch(setPaymentStep(paymentState.currentStep + 1));
+    setSubmitted(true);
   };
+
+  useEffect(() => {
+    if (paymentState.donator && submitted && paymentState.donator.address) {
+      dispatch(
+        createDonator(
+          paymentState.donator,
+          () => {
+            dispatch(setPaymentStep(paymentState.currentStep + 1));
+          },
+          (errorMessage: any) => {
+            showErrorToast(
+              `Erro ao cadastrar doador${
+                errorMessage && errorMessage.length > 0
+                  ? ": " + errorMessage
+                  : ""
+              }`
+            );
+          }
+        )
+      );
+    }
+  }, [paymentState.donator?.address, submitted]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <CardAddressOpen item direction="column" spacing={3}>
-        <AddressIcon container item direction="row" spacing={3}>
+      <CardAddressOpen container item direction="column">
+        <AddressIcon container item direction="row">
           <Grid item>
             <img src={AddressIconSVG} alt="IconAddress" />
           </Grid>
@@ -137,6 +162,21 @@ const AddressStepOpen = () => {
 
         <Grid item container>
           <TextField
+            id="city"
+            label="Cidade"
+            placeholder="Rio de Janeiro"
+            variant="standard"
+            type="text"
+            fullWidth
+            required
+            margin="normal"
+            style={{ marginBottom: "16px" }}
+            {...register("city")}
+          />
+        </Grid>
+
+        <Grid item container>
+          <TextField
             id="state"
             label="Estado"
             placeholder="Rio de Janeiro"
@@ -181,14 +221,18 @@ const AddressStepOpen = () => {
           </Link>
         </Grid>
 
-        <Grid item container direction="row" spacing={2}>
+        <Grid item container direction="row">
           <Grid item>
             <TextField
               id="number"
               label="Número"
               placeholder="Ex. 285"
               variant="standard"
-              style={{ maxWidth: "100px", marginBottom: "16px" }}
+              style={{
+                maxWidth: "100px",
+                marginBottom: "16px",
+                marginRight: "16px",
+              }}
               type="number"
               fullWidth
               required
@@ -208,20 +252,6 @@ const AddressStepOpen = () => {
               {...register("complement")}
             />
           </Grid>
-        </Grid>
-
-        <Grid container item>
-          <TextField
-            id="reference"
-            label="Referência"
-            placeholder="Ao lado do shopping"
-            type="text"
-            variant="standard"
-            fullWidth
-            margin="normal"
-            style={{ marginBottom: "16px" }}
-            {...register("reference")}
-          />
         </Grid>
 
         <DivSubmitButton>

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PaymentIconSVG from "../../../../../assets/img/payment/icon-money-card.svg";
 import { IconCreditCard, SecureEnviroment } from "../../../../../assets/img";
 
@@ -21,13 +21,29 @@ import {
   CardCredit,
   DivSubmitButton,
 } from "./styles";
-import { submitPaymentSuccess } from "../../../../../store/payment/actions";
+import {
+  submitPaymentSuccess,
+  submitPayment,
+} from "../../../../../store/payment/actions";
+import { IApplicationState } from "../../../../../store/rootReducer";
+import {
+  IPaymentForm,
+  IPaymentInfo,
+  IPaymentPayload,
+} from "../../../../../store/payment/types";
+import { showErrorToast } from "../../../../../utils/toast";
+import {
+  clearLoading,
+  setLoading,
+} from "../../../../../store/loading-progress/actions";
 
 const PaymentStepOpen = () => {
   const [creditCardMonth, setCreditCardMonth] = useState("");
   const [creditCardYear, setCreditCardYear] = useState("");
 
   const dispatch = useDispatch();
+
+  const paymentState = useSelector((state: IApplicationState) => state.payment);
 
   const { handleSubmit, register } = useForm();
 
@@ -39,14 +55,57 @@ const PaymentStepOpen = () => {
     setCreditCardYear(event.target.value);
   };
 
-  const onSubmit = (data: any) => {
-    dispatch(submitPaymentSuccess());
+  const onSubmit = (data: IPaymentForm) => {
+    const { cardName, cardNumber, cvv } = data;
+
+    if (!paymentState.donator || !paymentState.donator.id) {
+      showErrorToast("Dados do doador não encontrados!");
+      return;
+    }
+
+    const payment: IPaymentInfo = {
+      value: paymentState.donationValue,
+      card: {
+        holder: cardName,
+        number: cardNumber,
+        csc: cvv,
+        expiration: {
+          month: creditCardMonth,
+          year: creditCardYear,
+        },
+      },
+    };
+
+    const payload: IPaymentPayload = {
+      campaignId: paymentState.campaignId,
+      donator: paymentState.donator,
+      payment,
+    };
+
+    dispatch(setLoading());
+    dispatch(
+      submitPayment(
+        payload,
+        () => {
+          dispatch(submitPaymentSuccess());
+          dispatch(clearLoading());
+        },
+        (errorMessage: any) => {
+          showErrorToast(
+            `Erro ao processar pagamento${
+              errorMessage && errorMessage.length > 0 ? ": " + errorMessage : ""
+            }`
+          );
+          dispatch(clearLoading());
+        }
+      )
+    );
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <CardPaymentOpen item direction="column">
-        <Grid container item direction="row" spacing={3}>
+        <Grid container item direction="row">
           <Grid item>
             <img src={PaymentIconSVG} alt="IconAddress" />
           </Grid>
@@ -60,7 +119,7 @@ const PaymentStepOpen = () => {
           direction="row"
           alignItems="center"
           spacing={3}
-          style={{ marginBottom: "32px" }}
+          style={{ marginTop: "32px !important", marginBottom: "32px" }}
         >
           <Grid item>
             <img src={IconCreditCard} alt="Credit Card" />
@@ -84,7 +143,7 @@ const PaymentStepOpen = () => {
           <TextField
             id="cardNumber"
             label="Número do cartão"
-            type="text"
+            type="number"
             variant="standard"
             placeholder="Número do cartão"
             fullWidth
@@ -106,8 +165,8 @@ const PaymentStepOpen = () => {
             {...register("cvv")}
           />
         </Grid>
-        <Grid container item direction="row" spacing={3}>
-          <Grid item xs={6}>
+        <Grid container item direction="row">
+          <Grid item xs={6} style={{ paddingRight: "24px" }}>
             <FormControl variant="standard" fullWidth>
               <InputLabel id="valid">Validade Mês</InputLabel>
               <Select
@@ -161,7 +220,6 @@ const PaymentStepOpen = () => {
           container
           item
           direction="row"
-          spacing={3}
           justifyContent="flex-end"
           alignItems="center"
           style={{ paddingTop: "8px" }}

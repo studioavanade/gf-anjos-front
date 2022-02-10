@@ -15,6 +15,7 @@ export const TitleRegistration = styled.div`
   font-family: "Roboto Regular";
   font-weight: 400;
   font-size: 24px;
+  margin-left: 24px;
 `;
 
 export const StyleLink = styled.div`
@@ -26,5 +27,5 @@ export const PersonData = styled(Grid)`
   font-family: "Roboto";
   font-weight: 300;
   font-size: 20px;
-  margin-top: 16px;
+  padding-top: 16px;
 `;

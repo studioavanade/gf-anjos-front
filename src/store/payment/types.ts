@@ -3,9 +3,9 @@ import { IDonator } from "../donator/types";
 export enum PaymentTypes {
   SET_PAYMENT_STEP = "@payment/SET_PAYMENT_STEP",
   SET_DONATION_VALUE = "@payment/SET_DONATION_VALUE",
-  CREATE_DONATOR_ACCOUNT_SUCCESS = "@payment/CREATE_DONATOR_ACCOUNT_SUCCESS",
+  CREATE_DONATOR_AUTH_SUCCESS = "@payment/CREATE_DONATOR_AUTH_SUCCESS",
   SAVE_DONATOR_PERSONAL_DATA_SUCCESS = "@payment/SAVE_DONATOR_PERSONAL_DATA_SUCCESS",
-  SUBMIT_DONATOR_SUCCESS = "@payment/SUBMIT_DONATOR_SUCCESS",
+  CREATE_DONATOR_SUCCESS = "@payment/CREATE_DONATOR_SUCCESS",
   SUBMIT_PAYMENT_SUCCESS = "@payment/SUBMIT_PAYMENT",
   CLEAR_STATES = "@payment/CLEAR_STATES",
   SET_DONATOR_EMAIL = "@payment/SET_DONATOR_EMAIL",
@@ -14,8 +14,6 @@ export enum PaymentTypes {
 }
 
 export interface IPaymentInfo {
-  donatorId: string;
-  campaignId: string;
   value: number;
   card: {
     holder: string;
@@ -28,8 +26,14 @@ export interface IPaymentInfo {
   };
 }
 
+export interface IPaymentForm {
+  cardName: string;
+  cardNumber: string;
+  cvv: string;
+}
+
 export interface IDonatorPersonalDataForm {
-  firstName: string;
+  name: string;
   lastName: string;
   birthDate: Date;
   cpf: string;
@@ -40,7 +44,7 @@ export interface IDonatorPersonalDataForm {
 }
 
 export interface IPaymentPayload {
-  campaignId: string;
+  campaignId: number;
   donator: IDonator;
   payment: IPaymentInfo;
 }
@@ -52,5 +56,5 @@ export interface IPaymentStates {
   donator?: IDonator;
   donationValue: number;
   paymentSubmitted: boolean;
-  donationItemId: string;
+  campaignId: number;
 }

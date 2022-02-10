@@ -7,7 +7,7 @@ const initialState: IPaymentStates = {
   donator: undefined,
   paymentSubmitted: false,
   donationValue: 20,
-  donationItemId: "",
+  campaignId: 0,
 };
 
 const paymentReducer = (
@@ -20,7 +20,7 @@ const paymentReducer = (
         ...state,
         currentStep: action.payload,
       };
-    case PaymentTypes.CREATE_DONATOR_ACCOUNT_SUCCESS:
+    case PaymentTypes.CREATE_DONATOR_AUTH_SUCCESS:
       return {
         ...state,
         donator: {
@@ -35,7 +35,7 @@ const paymentReducer = (
           ...action.payload.personalData,
         },
       };
-    case PaymentTypes.SUBMIT_DONATOR_SUCCESS:
+    case PaymentTypes.CREATE_DONATOR_SUCCESS:
       return {
         ...state,
         donator: {
@@ -55,7 +55,8 @@ const paymentReducer = (
     case PaymentTypes.SET_DONATION_VALUE:
       return {
         ...state,
-        donationValue: action.payload,
+        donationValue: action.payload.donationValue,
+        campaignId: action.payload.campaignId,
       };
     case PaymentTypes.SET_DONATOR_EMAIL:
       return {

@@ -11,6 +11,7 @@ export const TitlePayment = styled.div`
   font-family: "Roboto Regular";
   font-weight: 400;
   font-size: 24px;
+  margin-left: 24px;
 `;
 
 export const CardCredit = styled(Grid)`
@@ -27,8 +28,7 @@ export const CardCredit = styled(Grid)`
 `;
 
 export const DivSubmitButton = styled(Grid)`
-  margin-top: 32px;
-  padding-top: 32px;
+  padding-top: 64px;
   padding-bottom: 64px;
   border-bottom: 1px solid black;
 `;

@@ -41,7 +41,7 @@ import {
 import BackgroundWithHeader from "./../../../components/background-with-header/index";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {
-  setDonationValue,
+  setDonationValueAndCampaignId,
   clearStates,
 } from "../../../../store/payment/actions";
 import ROUTING_PATHS from "./../../../../routes/paths/index";
@@ -94,7 +94,13 @@ const LadingPageDonator = () => {
       showErrorToast("Valor de doação inválido.");
       return;
     }
-    dispatch(setDonationValue(donation));
+
+    if (!campaignId || (campaignId as string).length < 1) {
+      showErrorToast("Campanha inválida.");
+      return;
+    }
+
+    dispatch(setDonationValueAndCampaignId(donation, Number(campaignId)));
     navigate(ROUTING_PATHS.PaymentSteps);
   };
 
@@ -295,10 +301,10 @@ const LadingPageDonator = () => {
                   <DoughnutChart
                     width="150%"
                     height="150%"
-                    reached={campaignState.campaign?.currentDonators || 0}
+                    reached={campaignState.campaign?.numberOfDonators || 0}
                     left={
                       (campaignState.campaign?.targetDonators || 0) -
-                      (campaignState.campaign?.currentDonators || 0)
+                      (campaignState.campaign?.numberOfDonators || 0)
                     }
                   />
                 </StyleDonut>
@@ -306,7 +312,7 @@ const LadingPageDonator = () => {
               <StyleCardDonut>
                 <StyleSubtitleDonation>
                   <b>
-                    {campaignState.campaign?.currentDonators || 0} de{" "}
+                    {campaignState.campaign?.numberOfDonators || 0} de{" "}
                     {campaignState.campaign?.targetDonators || 0}{" "}
                   </b>{" "}
                   doadores já fizeram doações
@@ -315,7 +321,7 @@ const LadingPageDonator = () => {
                   Faltam{" "}
                   <b>
                     {(campaignState.campaign?.targetDonators || 0) -
-                      (campaignState.campaign?.currentDonators || 0)}
+                      (campaignState.campaign?.numberOfDonators || 0)}
                   </b>{" "}
                   doadores para atingir sua meta
                 </div>
@@ -342,11 +348,9 @@ const LadingPageDonator = () => {
                 justifyContent="center"
               >
                 R${" "}
-                {campaignState.campaign?.currentMonthlyDonationsValue
-                  ? campaignState.campaign?.currentMonthlyDonationsValue.toFixed(
-                      2
-                    )
-                  : (0).toFixed(2)}
+                {campaignState.campaign?.monthlyDonationsValue !== undefined
+                  ? campaignState.campaign?.monthlyDonationsValue.toFixed(2)
+                  : 0}
               </StyleBoxValue>
               <StyleDonationMonth>
                 Em doações mensais para nossa campanha

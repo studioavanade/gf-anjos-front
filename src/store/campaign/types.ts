@@ -18,8 +18,8 @@ export interface ICampaign {
   ambassador?: IAmbassador;
   pictureUrl?: any;
   targetDonators?: number;
-  currentDonators?: number;
-  currentMonthlyDonationsValue?: number;
+  numberOfDonators?: number;
+  monthlyDonationsValue?: number;
   isActive?: boolean;
 }
 

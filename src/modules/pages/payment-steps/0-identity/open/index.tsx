@@ -45,7 +45,7 @@ const IdentityStepOpen = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <CardIdentityOpen container direction="column">
-        <Grid container item direction="row" spacing={3}>
+        <Grid container item direction="row">
           <Grid item>
             <img src={EnvelopeIconSVG} alt="IconEnvelope" />
           </Grid>

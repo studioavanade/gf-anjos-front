@@ -13,10 +13,18 @@ export const TitleSummary = styled(Grid)`
   font-family: "Roboto Regular";
   font-weight: 400;
   font-size: 24px;
+  margin-left: 24px !important;
+  margin-bottom: 16px !important;
+`;
+
+export const SubtotalText = styled(Grid)`
+  font-weight: 400;
+  font-family: "Roboto Regular";
+  font-size: 24px;
   margin-bottom: 16px;
 `;
 
-export const ValueSummary = styled(Grid)`
+export const TotalText = styled(Grid)`
   font-weight: 800;
   font-family: "Roboto Regular";
   font-size: 24px;

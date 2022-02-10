@@ -15,7 +15,7 @@ export const TitleAddress = styled.div`
   font-family: "Roboto Regular";
   font-weight: 400;
   font-size: 24px;
-  padding-left: 24px;
+  margin-left: 24px;
 `;
 
 export const StyleLink = styled.div`

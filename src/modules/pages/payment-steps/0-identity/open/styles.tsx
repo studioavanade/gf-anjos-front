@@ -11,6 +11,7 @@ export const Title = styled.div`
   font-family: "Roboto Regular";
   font-weight: 400;
   font-size: 24px;
+  margin-left: 24px;
 `;
 
 export const ButtonContainer = styled(Grid)`

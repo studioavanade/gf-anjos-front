@@ -137,7 +137,7 @@ export const DonationValueCard = styled(Grid)`
     0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
   border-radius: 5px;
   margin: 24px 50px !important;
-  cursor: "pointer";
+  cursor: pointer;
 
   @media (max-width: 800px) {
     width: 100%;

@@ -342,6 +342,7 @@ const Ranking = () => {
               variant="contained"
               type="submit"
               fullWidth
+              data-testid="submit-influencer"
               spacing={3}
             >
               Quero ser um influenciador
@@ -353,6 +354,7 @@ const Ranking = () => {
               to={ROUTING_PATHS.AmbassadorLogin}
               type="submit"
               variant="outlined"
+              data-testid="submit-influencer"
               fullWidth
             >
               Entrar como influenciador
@@ -400,7 +402,7 @@ const Ranking = () => {
           ACOMPANHE NOSSO RANKING DE ANJOS
         </TitleRanking>
         {(rankingState.naturalAmbassadors &&
-          rankingState.naturalAmbassadors.length) ||
+          rankingState.naturalAmbassadors.length > 0) ||
         (rankingState.legalAmbassadors &&
           rankingState.legalAmbassadors.length > 0) ? (
           <>
@@ -447,12 +449,12 @@ const Ranking = () => {
           <StyleColorText>
             <SubTitleGF>
               <TitleGF>Gerando Falções</TitleGF>
-              const subTitleGF: "Somos um ecossistema de desenvolvimento social
-              que atua por meio da estratégia de rede em periferias e favelas de
-              todo o Brasil. Atráves da Falcons University, Unidades Aceleradas,
-              Oficinas e o Redesenho de Favelas, baseamos nossas ações em
-              análise de dados e gestão eficiente, para interromper o ciclo de
-              pobreza e transformar a pobreza em item de museu.
+              Somos um ecossistema de desenvolvimento social que atua por meio
+              da estratégia de rede em periferias e favelas de todo o Brasil.
+              Atráves da Falcons University, Unidades Aceleradas, Oficinas e o
+              Redesenho de Favelas, baseamos nossas ações em análise de dados e
+              gestão eficiente, para interromper o ciclo de pobreza e
+              transformar a pobreza em item de museu.
             </SubTitleGF>
           </StyleColorText>
         </Grid>

@@ -13,16 +13,17 @@ const PrivateComponentVerifier = ({ children }: any) => {
   );
 
   const isLoggedIn = () => {
-    if (userEmail && userEmail.length > 0) return true;
+    return true;
+    // if (userEmail && userEmail.length > 0) return true;
 
-    const userEmailStored = storage.getStorage(USER_EMAIL_STORAGE_KEY);
+    // const userEmailStored = storage.getStorage(USER_EMAIL_STORAGE_KEY);
 
-    if (userEmailStored) {
-      dispatch(saveUserEmail(userEmailStored));
-      return true;
-    }
+    // if (userEmailStored) {
+    //   dispatch(saveUserEmail(userEmailStored));
+    //   return true;
+    // }
 
-    return false;
+    // return false;
   };
 
   return !isLoggedIn() ? <Navigate to="/" /> : <></>;

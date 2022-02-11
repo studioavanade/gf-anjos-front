@@ -198,9 +198,11 @@ const PersonalInformation = () => {
   useEffect(() => {
     if (isEditMode) return;
 
-    if (ambassadorState.isEditting && authEmail && authEmail.length > 0) {
-      setIsEditMode(true);
-      dispatch(getAmbassador("", authEmail));
+    if (authEmail && authEmail.length > 0) {
+      if (ambassadorState.isEditting) {
+        setIsEditMode(true);
+        dispatch(getAmbassador("", authEmail));
+      }
     }
   }, [ambassadorState.isEditting, authEmail]);
 
@@ -381,7 +383,6 @@ const PersonalInformation = () => {
                       fullWidth
                       id="date"
                       type="date"
-                      defaultValue="2017-05-24"
                       label="Data de nascimento"
                       InputLabelProps={{
                         shrink: true,

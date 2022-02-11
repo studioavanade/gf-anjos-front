@@ -66,7 +66,7 @@ const AmbassadorCreateAccount = () => {
     dispatch(
       createUser(email, password, () => {
         dispatch(
-          signIn(email, password, false, () => {
+          signIn(email, password, () => {
             dispatch(setAmbassadorEmail(email));
             navigate(ROUTING_PATHS.PersonalInformations);
           })
@@ -122,7 +122,12 @@ const AmbassadorCreateAccount = () => {
               </Stack>
             )}
             <DivSubmitButton>
-              <Button variant="contained" type="submit" fullWidth data-testid="button-continue">
+              <Button
+                variant="contained"
+                type="submit"
+                fullWidth
+                data-testid="button-continue"
+              >
                 {buttonContinue}
               </Button>
             </DivSubmitButton>

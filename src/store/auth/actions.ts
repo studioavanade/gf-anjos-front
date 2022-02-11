@@ -30,6 +30,7 @@ export const signIn =
         if (onSuccessCallback) onSuccessCallback();
       })
       .catch((error) => {
+        console.log("signIn error");
         let errorMessageTranslated = "";
         if (error.customData?._tokenResponse) {
           errorMessageTranslated = getMessageFromFirebaseError(error);

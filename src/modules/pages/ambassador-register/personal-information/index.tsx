@@ -90,10 +90,6 @@ const PersonalInformation = () => {
     celPhone: "",
   });
 
-  const authEmail = useSelector(
-    (state: IApplicationState) => state.auth.userEmail
-  );
-
   const ambassadorState = useSelector(
     (state: IApplicationState) => state.ambassador
   );
@@ -113,7 +109,11 @@ const PersonalInformation = () => {
     if (!lastName) {
       showErrorToast("Necessário inserir pelo menos 1 sobrenome.");
       return;
-    } else if (!authEmail || authEmail.length < 1) {
+    } else if (
+      !ambassadorState.ambassador ||
+      !ambassadorState.ambassador.email ||
+      ambassadorState.ambassador.email.length < 1
+    ) {
       showErrorToast("Necessário estar autenticado.");
       return;
     }
@@ -138,7 +138,7 @@ const PersonalInformation = () => {
     }
 
     const ambassador: IAmbassador = {
-      email: authEmail,
+      email: ambassadorState.ambassador.email,
       name: firstName,
       lastName,
       cpfCnpj,
@@ -198,13 +198,17 @@ const PersonalInformation = () => {
   useEffect(() => {
     if (isEditMode) return;
 
-    if (authEmail && authEmail.length > 0) {
+    if (
+      ambassadorState.ambassador &&
+      ambassadorState.ambassador.email &&
+      ambassadorState.ambassador.email.length > 0
+    ) {
       if (ambassadorState.isEditting) {
         setIsEditMode(true);
-        dispatch(getAmbassador("", authEmail));
+        dispatch(getAmbassador("", ambassadorState.ambassador.email));
       }
     }
-  }, [ambassadorState.isEditting, authEmail]);
+  }, [ambassadorState.isEditting, ambassadorState.ambassador?.email]);
 
   useEffect(() => {
     if (ambassadorState.error && ambassadorState.isEditting) {
@@ -252,7 +256,11 @@ const PersonalInformation = () => {
   }, [isEditMode, ambassadorState.ambassador, campaignState.campaign]);
 
   useEffect(() => {
-    if (!ambassadorState && (!authEmail || authEmail.length < 1)) {
+    if (
+      !ambassadorState.ambassador ||
+      !ambassadorState.ambassador.email ||
+      ambassadorState.ambassador.email.length < 1
+    ) {
       showErrorAndMavigateDelayed(
         "Crie uma conta ou entre para seguir com este cadastro. Redirecionando em 5s...",
         5000,

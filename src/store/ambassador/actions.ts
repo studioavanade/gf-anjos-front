@@ -17,8 +17,10 @@ export const createAmbassador =
         if (successCallback) successCallback();
       })
       .catch((error) => {
-        dispatch(createAmbassadorError(error.message));
-        showErrorToast(error.message);
+        const errorMessage = JSON.parse(error.request.response).message;
+        console.error("Erro ao cadastrar doador: " + errorMessage);
+        dispatch(createAmbassadorError(errorMessage));
+        showErrorToast(errorMessage || "Erro ao criar embaixador.");
       })
       .finally(() => dispatch(clearLoading()));
   };
@@ -48,8 +50,10 @@ export const getAmbassador =
         dispatch(getAmbassadorSuccess(res.data));
       })
       .catch((error) => {
+        const errorMessage = JSON.parse(error.request.response).message;
+        console.error("Erro ao cadastrar doador: " + errorMessage);
         dispatch(getAmbassadorError(error.message));
-        showErrorToast(error.message);
+        showErrorToast(errorMessage || "Erro ao criar embaixador.");
       });
   };
 
@@ -78,8 +82,10 @@ export const updateAmbassador =
         if (successCallback) successCallback();
       })
       .catch((error) => {
+        const errorMessage = JSON.parse(error.request.response).message;
+        console.error("Erro ao cadastrar doador: " + errorMessage);
         dispatch(updateAmbassadorError(error.message));
-        showErrorToast(error.message);
+        showErrorToast(errorMessage || "Erro ao criar embaixador.");
       });
   };
 

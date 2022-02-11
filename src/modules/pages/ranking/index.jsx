@@ -342,7 +342,6 @@ const Ranking = () => {
               variant="contained"
               type="submit"
               fullWidth
-              data-testid="submit-influencer"
               spacing={3}
             >
               Quero ser um influenciador

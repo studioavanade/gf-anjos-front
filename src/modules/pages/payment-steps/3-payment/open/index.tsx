@@ -71,14 +71,14 @@ const PaymentStepOpen = () => {
     }
 
     const payment: IPaymentInfo = {
-      value: paymentState.donationValue,
+      value: 1, //paymentState.donationValue,
       card: {
         holder: cardName,
         number: cardNumber,
         csc: cvv,
         expiration: {
           month: creditCardMonth,
-          year: creditCardYear,
+          year: creditCardYear.toString().slice(2, 4),
         },
       },
     };
@@ -184,8 +184,8 @@ const PaymentStepOpen = () => {
                 {Array.from({ length: 12 }, (_, i) => i + 1).map(
                   (n: number) => {
                     return (
-                      <MenuItem value={n} key={n}>
-                        {n.toString(10)}
+                      <MenuItem value={n.toString(10).padStart(2, "0")} key={n}>
+                        {n.toString(10).padStart(2, "0")}
                       </MenuItem>
                     );
                   }

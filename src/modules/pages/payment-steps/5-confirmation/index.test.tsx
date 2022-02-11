@@ -24,6 +24,6 @@ describe("Confirmation Step Page", () => {
       )
     ).toBeInTheDocument();
     expect(screen.getByText("Seu pagamento foi efetuado")).toBeInTheDocument();
-    expect(screen.getByText("Baixar comprovante")).toBeInTheDocument();
+    //expect(screen.getByText("Baixar comprovante")).toBeInTheDocument();
   });
 });

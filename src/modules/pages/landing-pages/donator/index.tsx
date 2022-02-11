@@ -50,6 +50,10 @@ import { SubmiteCustomValue } from "../../../../assets/img";
 import { getCampaign } from "./../../../../store/campaign/actions";
 import { IApplicationState } from "./../../../../store/rootReducer";
 import { IAmbassador } from "../../../../store/ambassador/types";
+import {
+  setLoading,
+  clearLoading,
+} from "../../../../store/loading-progress/actions";
 
 interface IValueCardProps {
   monthlyValue: number;
@@ -72,7 +76,7 @@ const LadingPageDonator = () => {
     dispatch(clearStates());
     const id = searchParams.get("id");
     setCampaignId(id);
-    console.log("id da campanha: ", id);
+    dispatch(setLoading());
   }, []);
 
   useEffect(() => {
@@ -85,6 +89,12 @@ const LadingPageDonator = () => {
     if (campaignState.error) {
       showErrorToast("Não conseguimos localizar esta campanha...");
       navigate(ROUTING_PATHS.PageNotFound);
+    } else if (
+      campaignState.campaign &&
+      campaignState.campaign.id &&
+      campaignState.campaign.id > 0
+    ) {
+      dispatch(clearLoading());
     }
   }, [campaignState, campaignState.error]);
 

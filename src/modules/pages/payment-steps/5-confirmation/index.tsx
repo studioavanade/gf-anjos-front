@@ -35,10 +35,10 @@ const ConfirmationStep = () => {
       <BoxStyle container justifyContent="center" alignItems="center">
         <BoxPayment>Seu pagamento foi efetuado</BoxPayment>
       </BoxStyle>
-      <DownloadStyle container justifyContent="center" alignItems="center">
+      {/* <DownloadStyle container justifyContent="center" alignItems="center">
         <img src={DownloadPdfIcon} alt="IconDownload" />
         <Link style={{ paddingLeft: "5px" }}>Baixar comprovante</Link>
-      </DownloadStyle>
+      </DownloadStyle> */}
     </BoxCard>
   );
 };

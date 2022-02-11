@@ -30,6 +30,10 @@ import {
 } from "../../../../../store/payment/actions";
 import { IAddress } from "../../../../../store/shared";
 import { showErrorToast } from "../../../../../utils/toast";
+import {
+  setLoading,
+  clearLoading,
+} from "../../../../../store/loading-progress/actions";
 
 interface IAddressForm {
   street: string;
@@ -67,6 +71,7 @@ const AddressStepOpen = () => {
 
     dispatch(setDonatorAddress(address));
     setSubmitted(true);
+    dispatch(setLoading());
   };
 
   useEffect(() => {
@@ -76,8 +81,10 @@ const AddressStepOpen = () => {
           paymentState.donator,
           () => {
             dispatch(setPaymentStep(paymentState.currentStep + 1));
+            dispatch(clearLoading());
           },
           (errorMessage: any) => {
+            dispatch(clearLoading());
             showErrorToast(
               `Erro ao cadastrar doador${
                 errorMessage && errorMessage.length > 0

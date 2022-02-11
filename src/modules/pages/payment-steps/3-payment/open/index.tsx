@@ -63,6 +63,13 @@ const PaymentStepOpen = () => {
       return;
     }
 
+    if (!paymentState.campaignId || paymentState.campaignId < 1) {
+      showErrorToast(
+        "Acesse esta página através de uma landing page de uma campanha!"
+      );
+      return;
+    }
+
     const payment: IPaymentInfo = {
       value: paymentState.donationValue,
       card: {

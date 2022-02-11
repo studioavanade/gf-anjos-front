@@ -16,7 +16,6 @@ ReactDOM.render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <ToastContainer autoClose={TOAST_DURATION} theme="colored" />
-        <LoadingProgress />
         <App />
       </ThemeProvider>
     </Provider>

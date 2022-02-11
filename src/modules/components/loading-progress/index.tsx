@@ -19,9 +19,6 @@ const LoadingProgress = () => {
 
   return (
     <LoadingContainer
-      container
-      justifyContent="center"
-      alignItems="center"
       style={{ display: loadingState.loading ? "flex" : "none" }}
     >
       <CircularProgress size="5vw" />

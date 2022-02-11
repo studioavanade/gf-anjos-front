@@ -8,14 +8,17 @@ import PhotoUpload from "./../modules/pages/ambassador-register/photo-upload/";
 import LadingPageDonator from "./../modules/pages/landing-pages/donator/";
 import Ranking from "../modules/pages/ranking";
 import PageNotFound from "./../modules/pages/404/index";
+import LoadingProgress from "../modules/components/loading-progress";
 
 const AppRoutes = () => {
   return (
     <BrowserRouter>
+      <LoadingProgress />
       <Routes>
         {/*
          * Public routes
          */}
+
         <Route
           path={ROUTING_PATHS.LadingPageDonator}
           element={<LadingPageDonator />}

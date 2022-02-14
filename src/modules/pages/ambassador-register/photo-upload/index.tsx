@@ -45,7 +45,17 @@ import {
   CheckIcon,
   CloseIcon,
 } from "../../../../assets/img";
-import { MAX_PHOTO_SIZE_IN_MB } from "../../../../constants";
+import {
+  AMBASSADOR_STORAGE_KEY,
+  MAX_PHOTO_SIZE_IN_MB,
+} from "../../../../constants";
+import { getStorage } from "../../../../utils/storage";
+import { getAmbassadorSuccess } from "../../../../store/ambassador/actions";
+import { IAmbassador } from "../../../../store/ambassador/types";
+import {
+  setLoading,
+  clearLoading,
+} from "../../../../store/loading-progress/actions";
 
 const PhotoUpload = () => {
   const isSmallerThan600 = useMediaQuery(theme.breakpoints.down("sm"));
@@ -90,33 +100,46 @@ const PhotoUpload = () => {
       !campaignState ||
       !campaignState.campaign ||
       !campaignState.campaign.ambassadorId ||
-      !campaignState.campaign.targetDonators
+      !campaignState.campaign.targetDonators ||
+      !campaignState.campaign.id
     ) {
-      showAccountErrorAndRedirect();
+      showAccountErrorAndRedirect(false);
       return;
     }
+
+    dispatch(setLoading());
+
     if (!isEditMode) {
       dispatch(
         createCampaign(
           file,
           campaignState.campaign.ambassadorId,
           Number(campaignState.campaign.targetDonators),
+          true,
           () => {
             setOpenSuccessDialog(true);
           },
-          true
+          null,
+          () => {
+            dispatch(clearLoading());
+          }
         )
       );
     } else {
       dispatch(
         updateCampaign(
-          file,
-          campaignState.campaign.ambassadorId,
-          Number(campaignState.campaign.targetDonators),
+          {
+            ...campaignState.campaign,
+            image: file,
+            targetDonators: Number(campaignState.campaign.targetDonators),
+          },
           () => {
             setOpenSuccessDialog(true);
           },
-          true
+          null,
+          () => {
+            dispatch(clearLoading());
+          }
         )
       );
     }
@@ -149,13 +172,16 @@ const PhotoUpload = () => {
     return sanitizedName + "." + extension;
   };
 
-  const showAccountErrorAndRedirect = () => {
+  const showAccountErrorAndRedirect = (redirect: boolean = true) => {
     showErrorToast(
-      "Crie uma conta ou entre para seguir com este cadastro. Redirecionando em 5s..."
+      `Crie uma conta ou entre novamente para seguir com este cadastro. ${
+        redirect ? "Redirecionando em 5s..." : ""
+      }`
     );
-    setTimeout(() => {
-      navigate(ROUTING_PATHS.AmbassadorCreateAccount);
-    }, 5000);
+    if (redirect)
+      setTimeout(() => {
+        navigate(ROUTING_PATHS.AmbassadorCreateAccount);
+      }, 5000);
   };
 
   useEffect(() => {
@@ -164,13 +190,18 @@ const PhotoUpload = () => {
       !ambassadorState.email ||
       ambassadorState.email.length < 1
     ) {
-      showAccountErrorAndRedirect();
+      const storedAmbassador = getStorage(AMBASSADOR_STORAGE_KEY);
+
+      if (storedAmbassador && storedAmbassador.length > 0) {
+        const parsedAmbassador: IAmbassador = JSON.parse(storedAmbassador);
+        if (parsedAmbassador) dispatch(getAmbassadorSuccess(parsedAmbassador));
+      } else {
+        showAccountErrorAndRedirect();
+      }
     } else if (ambassadorState.id) {
       dispatch(setAmbassadorIdIntoCampaign(ambassadorState.id));
     }
   }, [ambassadorState]);
-
-  useEffect(() => {}, [ambassadorState]);
 
   const CustomDialog = ({ title, content, button, open, onClose }: any) => (
     <Dialog
@@ -294,13 +325,26 @@ const PhotoUpload = () => {
                 OBRIGADO
               </Grid>
               <Grid item>Imagem enviada com sucesso!</Grid>
+              <Grid item>
+                A URL da sua campanha é:{" "}
+                <a
+                  target="_blank"
+                  href={
+                    campaignState.campaign?.id
+                      ? `/campaign?id=${campaignState.campaign?.id}`
+                      : "#"
+                  }
+                >
+                  /campaign?id={campaignState.campaign?.id}
+                </a>
+              </Grid>
             </Grid>
           </>
         }
         button={
           <Button
             component={Link}
-            to={ROUTING_PATHS.Ranking}
+            to={`/campaign?id=${campaignState.campaign?.id}`}
             onClick={() => {
               setOpenMoreInfoDialog(false);
             }}

@@ -1,5 +1,6 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid, useMediaQuery } from "@mui/material";
-import { useSelector } from "react-redux";
 import {
   IconIdentityStepInactive,
   IconRegistrationStepInactive,
@@ -28,6 +29,9 @@ import PaymentStep from "./3-payment";
 import DonationSummaryStep from "./4-summary";
 import ConfirmationStep from "./5-confirmation";
 import BackgroundWithHeader from "./../../components/background-with-header/";
+import { getStorage } from "../../../utils/storage";
+import { PAYMENT_VALUE_CAMPAIGNID_STORAGE_KEY } from "../../../constants";
+import { setDonationValueAndCampaignId } from "../../../store/payment/actions";
 
 const DashedStroke = () => (
   <Stroke height="1px" width="67%">
@@ -38,9 +42,21 @@ const DashedStroke = () => (
 );
 
 const PaymentSteps = () => {
+  const dispatch = useDispatch();
+
   const isSmallerThan900 = useMediaQuery("(max-width:900px)");
 
   const paymentState = useSelector((state: IApplicationState) => state.payment);
+
+  useEffect(() => {
+    const paymentData = getStorage(PAYMENT_VALUE_CAMPAIGNID_STORAGE_KEY);
+    if (paymentData) {
+      const parsed = JSON.parse(paymentData);
+      dispatch(
+        setDonationValueAndCampaignId(parsed.donationValue, parsed.campaignId)
+      );
+    }
+  }, []);
 
   const HeaderStepItem = ({ stepName, img, ...rest }: any) => (
     <Grid

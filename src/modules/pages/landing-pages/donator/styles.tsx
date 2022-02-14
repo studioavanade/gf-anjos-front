@@ -20,12 +20,14 @@ export const TopContainerInfluencer = styled(Paper)`
 export const InfluencerProfile = styled(Grid)`
   font-size: 40px;
   border-right: 1px solid #c4c4c4;
+  padding-right: 50px;
 
   @media (max-width: 1200px) {
     border-bottom: 1px solid #c4c4c4;
     border-right: unset;
     margin-bottom: 50px;
     padding-bottom: 50px;
+    padding-right: 0px;
   }
 `;
 

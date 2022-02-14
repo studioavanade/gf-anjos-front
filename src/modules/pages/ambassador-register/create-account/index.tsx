@@ -17,8 +17,12 @@ import {
   setIsEditting,
 } from "../../../../store/ambassador/actions";
 import { signOut } from "../../../../store/auth/actions";
-import { setLoading } from "../../../../store/loading-progress/actions";
+import {
+  clearLoading,
+  setLoading,
+} from "../../../../store/loading-progress/actions";
 import { clearCampaignState } from "../../../../store/campaign/actions";
+import { clearStorage } from "../../../../utils/storage";
 
 const AmbassadorCreateAccount = () => {
   const dispatch = useDispatch();
@@ -37,6 +41,8 @@ const AmbassadorCreateAccount = () => {
     dispatch(clearAmbassadorState());
     dispatch(clearCampaignState());
     dispatch(setIsEditting(false));
+    clearStorage();
+    dispatch(clearLoading());
   }, [dispatch]);
 
   const onSubmit = (data: any) => {

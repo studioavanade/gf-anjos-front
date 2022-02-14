@@ -53,6 +53,15 @@ const ambassadorReducer = (
         isEditting: action.payload,
       };
 
+    case AmbassadorActionTypes.SAVE_AMBASSADOR_EMAIL:
+      return {
+        ...state,
+        ambassador: {
+          ...state.ambassador,
+          email: action.payload,
+        },
+      };
+
     default:
       return state;
   }

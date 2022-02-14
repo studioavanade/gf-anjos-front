@@ -12,17 +12,14 @@ const PrivateRoute = ({ children, ...rest }: any) => {
   );
 
   const isLoggedIn = () => {
-    console.log("################### 1");
     if (userEmail && userEmail.length > 0) return true;
 
-    console.log("################### 2");
     const userEmailStored = storage.getStorage(USER_EMAIL_STORAGE_KEY);
 
     if (userEmailStored) {
       dispatch(saveUserEmail(userEmailStored));
       return true;
     }
-    console.log("################### 3");
 
     return false;
   };

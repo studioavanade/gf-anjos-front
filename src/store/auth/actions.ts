@@ -10,19 +10,15 @@ import { setSessionStorage } from "./../../utils/storage/index";
 import { USER_EMAIL_STORAGE_KEY } from "../../constants";
 import { clearLoading } from "./../loading-progress/actions";
 
-const authRequest = () => ({
-  type: AuthTypes.AUTH_REQUEST,
-});
-
 export const signIn =
   (
     email: string,
     password: string,
-    onSuccessCallback: any | null = null,
-    onErrorCallback: any | null = null
+    onSuccessCallback: any = null,
+    onErrorCallback: any = null,
+    onFinishCallback: any = null
   ) =>
   (dispatch: any) => {
-    dispatch(authRequest());
     AuthService.signIn(email, password)
       .then(() => {
         setSessionStorage(USER_EMAIL_STORAGE_KEY, email);
@@ -30,7 +26,6 @@ export const signIn =
         if (onSuccessCallback) onSuccessCallback();
       })
       .catch((error) => {
-        console.log("signIn error");
         let errorMessageTranslated = "";
         if (error.customData?._tokenResponse) {
           errorMessageTranslated = getMessageFromFirebaseError(error);
@@ -45,6 +40,7 @@ export const signIn =
       })
       .finally(() => {
         dispatch(clearLoading());
+        if (onFinishCallback) onFinishCallback();
       });
   };
 
@@ -66,23 +62,24 @@ export const createUser =
   (
     email: string,
     password: string,
-    onSuccessCallback: any | null = null,
-    onErrorCallback: any | null = null
+    onSuccessCallback: any = null,
+    onErrorCallback: any = null,
+    onFinishCallback: any = null
   ) =>
   (dispatch: any) => {
-    dispatch(authRequest());
     AuthService.createUser(email, password)
       .then((_) => {
         if (onSuccessCallback) onSuccessCallback();
       })
       .catch((error: FirebaseError) => {
-        if (onErrorCallback) onErrorCallback();
         const errorMessageTranslated = getMessageFromFirebaseError(error);
         showErrorToast(errorMessageTranslated);
         dispatch(createUserError(errorMessageTranslated));
+        if (onErrorCallback) onErrorCallback();
       })
       .finally(() => {
         dispatch(clearLoading());
+        if (onFinishCallback) onFinishCallback();
       });
   };
 

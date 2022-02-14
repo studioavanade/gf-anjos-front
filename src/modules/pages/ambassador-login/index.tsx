@@ -13,6 +13,9 @@ import {
   setIsEditting,
 } from "../../../store/ambassador/actions";
 import { clearCampaignState } from "../../../store/campaign/actions";
+import { clearStorage, setSessionStorage } from "../../../utils/storage";
+import { AMBASSADOR_IS_EDITTING } from "../../../constants";
+import { clearLoading } from "../../../store/loading-progress/actions";
 
 const AmbassadorLogin = () => {
   const dispatch = useDispatch();
@@ -29,6 +32,8 @@ const AmbassadorLogin = () => {
     dispatch(clearAmbassadorState());
     dispatch(clearCampaignState());
     dispatch(setIsEditting(false));
+    clearStorage();
+    dispatch(clearLoading());
   }, [dispatch]);
 
   const onSubmit = (data: any) => {
@@ -38,6 +43,7 @@ const AmbassadorLogin = () => {
       signIn(email, password, () => {
         dispatch(setIsEditting(true));
         navigate(ROUTING_PATHS.PersonalInformations);
+        setSessionStorage(AMBASSADOR_IS_EDITTING, "true");
       })
     );
   };
@@ -69,7 +75,12 @@ const AmbassadorLogin = () => {
               {...register("password")}
             />
             <DivSubmitButton>
-              <Button variant="contained" type="submit" fullWidth data-testid="button-continued">
+              <Button
+                variant="contained"
+                type="submit"
+                fullWidth
+                data-testid="button-continued"
+              >
                 {buttonContinue}
               </Button>
             </DivSubmitButton>

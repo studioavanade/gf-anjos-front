@@ -38,14 +38,14 @@ import {
   CustomValueTextField,
   DonationCardsGrid,
 } from "./styles";
-import BackgroundWithHeader from "./../../../components/background-with-header/index";
+import BackgroundWithHeader from "./../../../components/background-with-header";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {
   setDonationValueAndCampaignId,
   clearStates,
 } from "../../../../store/payment/actions";
-import ROUTING_PATHS from "./../../../../routes/paths/index";
-import { showErrorToast } from "./../../../../utils/toast/index";
+import ROUTING_PATHS from "./../../../../routes/paths";
+import { showErrorToast } from "./../../../../utils/toast";
 import { SubmiteCustomValue } from "../../../../assets/img";
 import { getCampaign } from "./../../../../store/campaign/actions";
 import { IApplicationState } from "./../../../../store/rootReducer";
@@ -54,6 +54,11 @@ import {
   setLoading,
   clearLoading,
 } from "../../../../store/loading-progress/actions";
+import { removeFromStorage } from "../../../../utils/storage";
+import {
+  AMBASSADOR_STORAGE_KEY,
+  USER_EMAIL_STORAGE_KEY,
+} from "../../../../constants";
 
 interface IValueCardProps {
   monthlyValue: number;
@@ -77,6 +82,8 @@ const LadingPageDonator = () => {
     const id = searchParams.get("id");
     setCampaignId(id);
     dispatch(setLoading());
+    removeFromStorage(AMBASSADOR_STORAGE_KEY);
+    removeFromStorage(USER_EMAIL_STORAGE_KEY);
   }, []);
 
   useEffect(() => {
@@ -190,8 +197,13 @@ const LadingPageDonator = () => {
             {campaignState.campaign?.pictureUrl && (
               <img
                 src={campaignState.campaign?.pictureUrl}
-                width="100%"
                 alt="Perfil"
+                style={{
+                  width: "300px",
+                  borderRadius: "50%",
+                  maxWidth: "500px",
+                  height: "300px",
+                }}
               />
             )}
             <InfluencerName>

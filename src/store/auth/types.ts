@@ -1,5 +1,4 @@
 export enum AuthTypes {
-  AUTH_REQUEST = "@auth/AUTH_REQUEST",
   SIGNIN_SUCCESS = "@auth/SIGNIN_SUCCESS",
   SIGNIN_ERROR = "@auth/SIGNIN_ERROR",
   SIGNOUT = "@auth/SIGNOUT",

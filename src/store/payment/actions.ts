@@ -10,6 +10,8 @@ import DonatorService from "../../services/donator";
 import { IDonator } from "../donator/types";
 import { IAddress } from "../shared";
 import { AxiosResponse } from "axios";
+import { PAYMENT_VALUE_CAMPAIGNID_STORAGE_KEY } from "../../constants";
+import { setSessionStorage } from "../../utils/storage";
 
 export const setPaymentStep = (step: number) => (dispatch: any) => {
   dispatch(setPaymentStepSuccess(step));
@@ -42,7 +44,7 @@ export const createDonator =
   ) =>
   (dispatch: any) => {
     DonatorService()
-      .createDonator(donator)
+      .updateOrCreateDonator(donator)
       .then((res: AxiosResponse) => {
         dispatch(submitDonatorSuccess(res.data));
         if (onSuccessCallback) onSuccessCallback();
@@ -87,8 +89,13 @@ export const submitPaymentSuccess = () => ({
 
 export const setDonationValueAndCampaignId =
   (donationValue: number, campaignId: number) => (dispatch: any) => {
+    const payload = { donationValue, campaignId };
+    setSessionStorage(
+      PAYMENT_VALUE_CAMPAIGNID_STORAGE_KEY,
+      JSON.stringify(payload)
+    );
     dispatch({
-      payload: { donationValue, campaignId },
+      payload,
       type: PaymentTypes.SET_DONATION_VALUE,
     });
   };

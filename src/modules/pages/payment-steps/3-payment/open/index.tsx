@@ -71,7 +71,7 @@ const PaymentStepOpen = () => {
     }
 
     const payment: IPaymentInfo = {
-      value: paymentState.donationValue,
+      value: 1, //paymentState.donationValue,
       card: {
         holder: cardName,
         number: cardNumber,

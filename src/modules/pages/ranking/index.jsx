@@ -3,11 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import {
+  Grid,
+  TableHead,
+  TableBody,
+  TableRow,
+  Dialog,
+  TableContainer,
   IconButton,
   Button,
   DialogActions,
   useMediaQuery,
-  CircularProgress,
 } from "@mui/material";
 
 import IconHeartSVG from "../../../assets/img/ranking/icon-heart-box.svg";
@@ -18,14 +23,6 @@ import { CloseIcon } from "../../../assets/img";
 
 import BackgroundWithHeader from "../../components/background-with-header";
 
-import {
-  Grid,
-  TableHead,
-  TableBody,
-  TableRow,
-  Dialog,
-  TableContainer,
-} from "@mui/material";
 import Carousel from "react-elastic-carousel";
 
 import Photo1SVG from "../../../assets/img/ranking/slider-images/photo1.svg";
@@ -70,8 +67,8 @@ import {
 } from "./styles";
 import ROUTING_PATHS from "../../../routes/paths/index";
 import theme from "../../../theme";
-import { setLoading } from "../../../store/loading-progress/actions";
 import { getRanking } from "../../../store/ranking/actions";
+import { clearStorage } from "../../../utils/storage";
 
 const mockedRanking = [
   {
@@ -127,6 +124,7 @@ const Ranking = () => {
 
   useEffect(() => {
     dispatch(getRanking());
+    clearStorage();
   }, []);
 
   const IconCard = ({ icon, text }) => (

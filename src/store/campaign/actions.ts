@@ -7,23 +7,26 @@ export const createCampaign =
     image: File,
     ambassadorId: string,
     targetDonators: number,
+    isActive: boolean = true,
     onSuccessCallback: any = null,
-    isActive: boolean = true
+    onErrorCallback: any = null,
+    onFinishCallback: any = null
   ) =>
   (dispatch: any) => {
     CampaignService()
       .createCampaign(image, ambassadorId, targetDonators, isActive)
-      .then(() => {
-        dispatch(
-          createCampaignSuccess({
-            pictureUrl: image,
-            ambassadorId,
-            targetDonators,
-          })
-        );
+      .then((res: AxiosResponse) => {
+        const campaignCreated: ICampaign = res.data;
+        dispatch(createCampaignSuccess(campaignCreated));
         if (onSuccessCallback) onSuccessCallback();
       })
-      .catch((error) => dispatch(createCampaignError(error.message)));
+      .catch((error) => {
+        dispatch(createCampaignError(error.message));
+        if (onErrorCallback) onErrorCallback();
+      })
+      .finally(() => {
+        if (onFinishCallback) onFinishCallback();
+      });
   };
 
 const createCampaignSuccess = (ambassador: ICampaign) => ({
@@ -46,21 +49,35 @@ const saveTargetDonators = (targetDonators: number) => ({
   type: CampaignTypes.SAVE_TARGET_DONATORS,
 });
 
-export const getCampaign = (campaignId: number | string) => (dispatch: any) => {
-  CampaignService()
-    .getCampaign(campaignId)
-    .then((res: AxiosResponse) => {
-      const campaign = {
-        ...res.data.campaign,
-        ambassador: res.data.ambassador,
-      };
-      dispatch(getCampaignSuccess(campaign));
-    })
-    .catch((error) => dispatch(getCampaignError(error.message)));
-};
+export const getCampaign =
+  (
+    campaignId: number | string,
+    onSuccessCallback: any = null,
+    onErrorCallback: any = null,
+    onFinishCallback: any = null
+  ) =>
+  (dispatch: any) => {
+    CampaignService()
+      .getCampaign(campaignId)
+      .then((res: AxiosResponse) => {
+        const campaign = {
+          ...res.data.campaign,
+          ambassador: res.data.ambassador,
+        };
+        dispatch(getCampaignSuccess(campaign));
+        if (onSuccessCallback) onSuccessCallback();
+      })
+      .catch((error) => {
+        dispatch(getCampaignError(error.message));
+        if (onErrorCallback) onErrorCallback();
+      })
+      .finally(() => {
+        if (onFinishCallback) onFinishCallback();
+      });
+  };
 
-const getCampaignSuccess = (ambassador: ICampaign) => ({
-  payload: ambassador,
+export const getCampaignSuccess = (campaign: ICampaign) => ({
+  payload: campaign,
   type: CampaignTypes.GET_CAMPAIGN_SUCCESS,
 });
 
@@ -85,26 +102,26 @@ export const clearCampaignState = () => ({
 
 export const updateCampaign =
   (
-    image: File,
-    ambassadorId: string,
-    targetDonators: number,
+    campaign: any,
     onSuccessCallback: any = null,
-    isActive: boolean = true
+    onErrorCallback: any = null,
+    onFinishCallback: any = null
   ) =>
   (dispatch: any) => {
     CampaignService()
-      .createCampaign(image, ambassadorId, targetDonators, isActive)
-      .then(() => {
-        dispatch(
-          updateCampaignSuccess({
-            pictureUrl: image,
-            ambassadorId,
-            targetDonators,
-          })
-        );
+      .updateCampaign(campaign)
+      .then((res: AxiosResponse) => {
+        const campaignUpdated: ICampaign = res.data;
+        dispatch(updateCampaignSuccess(campaignUpdated));
         if (onSuccessCallback) onSuccessCallback();
       })
-      .catch((error) => dispatch(updateCampaignError(error.message)));
+      .catch((error) => {
+        if (onErrorCallback) onErrorCallback();
+        dispatch(updateCampaignError(error.message));
+      })
+      .finally(() => {
+        if (onFinishCallback) onFinishCallback();
+      });
   };
 
 const updateCampaignSuccess = (ambassador: ICampaign) => ({

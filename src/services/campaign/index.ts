@@ -12,7 +12,7 @@ interface IApi {
     targetDonators: number,
     isActive: boolean
   ): Promise<AxiosResponse>;
-  updateCampaign(campaign: ICampaign): Promise<AxiosResponse>;
+  updateCampaign(campaign: any): Promise<AxiosResponse>;
 }
 
 const api = (): IApi => {
@@ -44,17 +44,30 @@ const api = (): IApi => {
       });
     },
 
-    updateCampaign: (campaign: ICampaign): Promise<AxiosResponse> => {
+    updateCampaign: (campaign: any): Promise<AxiosResponse> => {
       const formData = new FormData();
-      formData.append("image", campaign.pictureUrl);
+      formData.append("image", campaign.image);
       formData.append("ambassadorId", campaign.ambassadorId || "");
       formData.append(
         "targetDonators",
         campaign.targetDonators?.toString() || ""
       );
       formData.append("isActive", campaign.isActive?.toString() || "");
+      formData.append(
+        "monthlyDonationsValue",
+        campaign.monthlyDonationsValue !== undefined
+          ? campaign.monthlyDonationsValue.toString()
+          : ""
+      );
+      formData.append(
+        "numberOfDonators",
+        campaign.numberOfDonators !== undefined
+          ? campaign.numberOfDonators.toString()
+          : ""
+      );
+      formData.append("id", campaign.id ? campaign.id.toString() : "");
 
-      return backend.put(`/campaigns/${campaign.id}`, formData, {
+      return backend.put(`/campaigns`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
     },

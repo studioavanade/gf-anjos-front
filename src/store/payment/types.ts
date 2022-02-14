@@ -54,7 +54,7 @@ export interface IPaymentStates {
   error?: any;
   currentStep: number;
   donator?: IDonator;
-  donationValue: number;
   paymentSubmitted: boolean;
+  donationValue: number;
   campaignId: number;
 }

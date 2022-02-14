@@ -44,19 +44,25 @@ import {
 } from "@mui/material";
 
 import { PersonType } from "../../../../store/shared";
-import { SCHOOLING } from "../../../../constants/";
+import {
+  SCHOOLING,
+  USER_EMAIL_STORAGE_KEY,
+  AMBASSADOR_IS_EDITTING,
+} from "../../../../constants/";
 import { showErrorToast } from "../../../../utils/toast/";
 import { IAmbassador } from "../../../../store/ambassador/types";
 import { IApplicationState } from "../../../../store/rootReducer";
-import { isCNPJValid, isCPFValid } from "../../../../utils";
+import { isCNPJValid, isCPFValid, sanitizeCpf } from "../../../../utils";
 import {
   getCampaign,
+  getCampaignSuccess,
   saveFormTargetDonators,
 } from "../../../../store/campaign/actions";
 import {
-  clearAmbassadorState,
   createAmbassador,
   getAmbassador,
+  saveAmbassadorEmail,
+  setIsEditting,
   updateAmbassador,
 } from "./../../../../store/ambassador/actions";
 import PrivateComponentVerifier from "../../../components/private-component-verifier";
@@ -72,6 +78,8 @@ import {
   SuitCaseIcon,
   PersonIcon as PersonTypeIcon,
 } from "../../../../assets/img";
+import { getStorage } from "../../../../utils/storage";
+import { signInSuccess } from "../../../../store/auth/actions";
 
 const PersonalInformation = () => {
   const dispatch = useDispatch();
@@ -101,8 +109,14 @@ const PersonalInformation = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = () => {
-    const { name, cpfCnpj, birthDate, profession, phone, celPhone } =
-      formValues;
+    const {
+      name,
+      cpfCnpj: cpfCnpjNotSanitized,
+      birthDate,
+      profession,
+      phone,
+      celPhone,
+    } = formValues;
 
     const [firstName, lastName] = name.split(" ");
 
@@ -117,6 +131,8 @@ const PersonalInformation = () => {
       showErrorToast("Necessário estar autenticado.");
       return;
     }
+
+    const cpfCnpj = sanitizeCpf(cpfCnpjNotSanitized);
 
     if (personType == PersonType.NATURAL_PERSON) {
       if (!isCPFValid(cpfCnpj)) {
@@ -154,17 +170,33 @@ const PersonalInformation = () => {
 
     if (!isEditMode) {
       dispatch(
-        createAmbassador(ambassador, () => {
-          dispatch(saveFormTargetDonators(Number(targetDonators)));
-          navigate(ROUTING_PATHS.PhotoUpload);
-        })
+        createAmbassador(
+          ambassador,
+          () => {
+            dispatch(saveFormTargetDonators(Number(targetDonators)));
+            navigate(ROUTING_PATHS.PhotoUpload);
+          },
+          null,
+          () => {
+            dispatch(clearLoading());
+          }
+        )
       );
     } else {
       dispatch(
-        updateAmbassador(ambassador, () => {
-          dispatch(saveFormTargetDonators(Number(targetDonators)));
-          navigate(ROUTING_PATHS.PhotoUpload);
-        })
+        updateAmbassador(
+          ambassador,
+          () => {
+            if (campaignState.campaign) {
+              dispatch(getCampaignSuccess(campaignState.campaign));
+              navigate(ROUTING_PATHS.PhotoUpload);
+            }
+          },
+          null,
+          () => {
+            dispatch(clearLoading());
+          }
+        )
       );
     }
   };
@@ -184,7 +216,7 @@ const PersonalInformation = () => {
     });
   };
 
-  const showErrorAndMavigateDelayed = (
+  const showErrorAndNavigateDelayed = (
     msg: string,
     delay: number,
     to: string
@@ -195,65 +227,37 @@ const PersonalInformation = () => {
     }, delay);
   };
 
-  useEffect(() => {
-    if (isEditMode) return;
-
+  const fillForm = () => {
     if (
-      ambassadorState.ambassador &&
-      ambassadorState.ambassador.email &&
-      ambassadorState.ambassador.email.length > 0
+      isEditMode &&
+      ambassadorState.ambassador?.id !== undefined &&
+      campaignState.campaign?.id !== undefined
     ) {
-      if (ambassadorState.isEditting) {
-        setIsEditMode(true);
-        dispatch(getAmbassador("", ambassadorState.ambassador.email));
-      }
+      const values = {
+        name: `${ambassadorState.ambassador.name + " " || ""}${
+          ambassadorState.ambassador.lastName || ""
+        }`,
+        cpfCnpj: ambassadorState.ambassador.cpfCnpj || "",
+        birthDate: ambassadorState.ambassador.birthDate
+          ? moment(ambassadorState.ambassador.birthDate)
+              .utc()
+              .format("YYYY-MM-DD")
+          : moment(new Date()).utc().format("YYYY-MM-DD"),
+        profession: ambassadorState.ambassador.profession || "",
+        phone: ambassadorState.ambassador.phone || "",
+        celPhone: ambassadorState.ambassador.celPhone || "",
+      };
+
+      setFormValues(values);
+
+      if (ambassadorState.ambassador.personType !== undefined)
+        setPersonType(ambassadorState.ambassador.personType);
+      if (campaignState.campaign.targetDonators)
+        setTargetDonators(campaignState.campaign.targetDonators);
+      if (ambassadorState.ambassador.education)
+        setEducation(ambassadorState.ambassador.education);
     }
-  }, [ambassadorState.isEditting, ambassadorState.ambassador?.email]);
-
-  useEffect(() => {
-    if (ambassadorState.error && ambassadorState.isEditting) {
-      showErrorAndMavigateDelayed(
-        "Erro ao buscar dados.",
-        3000,
-        ROUTING_PATHS.AmbassadorLogin
-      );
-    }
-  }, [ambassadorState.error]);
-
-  useEffect(() => {
-    if (isEditMode && ambassadorState.ambassador) {
-      dispatch(setLoading());
-      if (!campaignState.campaign) {
-        if (ambassadorState.ambassador.currentCampaignId)
-          dispatch(getCampaign(ambassadorState.ambassador.currentCampaignId));
-      } else {
-        const values = {
-          name: `${ambassadorState.ambassador.name + " " || ""}${
-            ambassadorState.ambassador.lastName || ""
-          }`,
-          cpfCnpj: ambassadorState.ambassador.cpfCnpj || "",
-          birthDate: ambassadorState.ambassador.birthDate
-            ? moment(ambassadorState.ambassador.birthDate)
-                .utc()
-                .format("YYYY-MM-DD")
-            : moment(new Date()).utc().format("YYYY-MM-DD"),
-          profession: ambassadorState.ambassador.profession || "",
-          phone: ambassadorState.ambassador.phone || "",
-          celPhone: ambassadorState.ambassador.celPhone || "",
-        };
-
-        setFormValues(values);
-
-        if (ambassadorState.ambassador.personType !== undefined)
-          setPersonType(ambassadorState.ambassador.personType);
-        if (campaignState.campaign.targetDonators)
-          setTargetDonators(campaignState.campaign.targetDonators);
-        if (ambassadorState.ambassador.education)
-          setEducation(ambassadorState.ambassador.education);
-        dispatch(clearLoading());
-      }
-    }
-  }, [isEditMode, ambassadorState.ambassador, campaignState.campaign]);
+  };
 
   useEffect(() => {
     if (
@@ -261,13 +265,58 @@ const PersonalInformation = () => {
       !ambassadorState.ambassador.email ||
       ambassadorState.ambassador.email.length < 1
     ) {
-      showErrorAndMavigateDelayed(
-        "Crie uma conta ou entre para seguir com este cadastro. Redirecionando em 5s...",
-        5000,
-        ROUTING_PATHS.AmbassadorCreateAccount
-      );
+      const storedEmail = getStorage(USER_EMAIL_STORAGE_KEY);
+
+      if (storedEmail && storedEmail.length > 0) {
+        dispatch(signInSuccess(storedEmail));
+        dispatch(saveAmbassadorEmail(storedEmail));
+      } else {
+        showErrorAndNavigateDelayed(
+          "Crie uma conta ou entre para seguir com este cadastro. Redirecionando em 5s...",
+          5000,
+          ROUTING_PATHS.AmbassadorCreateAccount
+        );
+      }
     }
-  }, [ambassadorState.ambassador]);
+
+    const storedIsEditting = getStorage(AMBASSADOR_IS_EDITTING);
+
+    if (storedIsEditting !== undefined && storedIsEditting !== null) {
+      dispatch(setIsEditting(storedIsEditting === "true"));
+      setIsEditMode(true);
+    } else if (ambassadorState.isEditting) {
+      setIsEditMode(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isEditMode) {
+      dispatch(setLoading());
+      if (
+        ambassadorState.ambassador &&
+        ambassadorState.ambassador.email &&
+        ambassadorState.ambassador.email.length > 0
+      ) {
+        dispatch(setLoading());
+        if (!ambassadorState.ambassador.id) {
+          dispatch(getAmbassador("", ambassadorState.ambassador.email));
+        }
+      }
+    }
+  }, [dispatch, isEditMode]);
+
+  useEffect(() => {
+    if (isEditMode && ambassadorState.ambassador?.currentCampaignId)
+      dispatch(getCampaign(ambassadorState.ambassador.currentCampaignId));
+  }, [ambassadorState.ambassador?.id]);
+
+  useEffect(() => {
+    if (isEditMode && campaignState.campaign?.id) {
+      dispatch(clearLoading());
+      console.log("filling form");
+      fillForm();
+    }
+  }, [campaignState.campaign?.id]);
 
   return (
     <BackgroundWithHeader>
@@ -377,12 +426,12 @@ const PersonalInformation = () => {
                       fullWidth
                       id="cpfCnpj"
                       label="CPF/CNPJ"
-                      disabled={isEditMode}
+                      disabled={isEditMode && !!ambassadorState.ambassador?.id}
                       variant="standard"
                       required
-                      type="number"
+                      type="text"
                       {...register("cpfCnpj")}
-                      value={formValues.cpfCnpj}
+                      value={sanitizeCpf(formValues.cpfCnpj)}
                       onChange={handleFormChange}
                     />
                   </Grid>

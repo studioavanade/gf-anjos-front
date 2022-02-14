@@ -1,5 +1,7 @@
 export const USER_EMAIL_STORAGE_KEY = "userEmail";
 export const AMBASSADOR_STORAGE_KEY = "ambassador";
+export const PAYMENT_VALUE_CAMPAIGNID_STORAGE_KEY = "payment";
+export const AMBASSADOR_IS_EDITTING = "ambassadorEditting";
 export const FAIL_LOGIN = "Falha ao entrar!";
 export const FAIL_SIGN_UP = "Falha ao realizar cadastro!";
 export const TOAST_DURATION = 6000;

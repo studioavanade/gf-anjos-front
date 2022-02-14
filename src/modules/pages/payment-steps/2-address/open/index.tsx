@@ -72,6 +72,7 @@ const AddressStepOpen = () => {
     dispatch(setDonatorAddress(address));
     setSubmitted(true);
     dispatch(setLoading());
+    // Submit made in the useEffect below
   };
 
   useEffect(() => {
@@ -240,7 +241,7 @@ const AddressStepOpen = () => {
                 marginBottom: "16px",
                 marginRight: "16px",
               }}
-              type="number"
+              type="text"
               fullWidth
               required
               margin="normal"

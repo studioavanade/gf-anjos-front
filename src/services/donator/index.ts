@@ -6,7 +6,7 @@ import { IDonator } from "../../store/donator/types";
 
 interface IApi {
   backend: AxiosInstance;
-  createDonator(donator: IDonator): Promise<AxiosResponse>;
+  updateOrCreateDonator(donator: IDonator): Promise<AxiosResponse>;
 }
 
 const api = (): IApi => {
@@ -17,8 +17,8 @@ const api = (): IApi => {
   return {
     backend,
 
-    createDonator: (donator: IDonator): Promise<AxiosResponse> => {
-      return backend.post(`/donators/`, donator);
+    updateOrCreateDonator: (donator: IDonator): Promise<AxiosResponse> => {
+      return backend.put(`/donators/`, donator);
     },
   };
 };
